@@ -1,0 +1,95 @@
+common commends for git
+git init
+git <verb> --help 
+git <verb> -h
+git config --global credential.helper store %remmber the user name and password after the first time 
+
+%setting the user
+git config --global user.name
+git config --get user.name
+git config --list
+
+git add -A % adding all to staging directory
+git reset calc.py %remove file from staging area
+git reset
+git commit -m "commit message"
+
+%setting remote
+git remote add origin
+git remote -v
+git remote remove origin
+
+git push -u
+
+
+%cloning a remote repo
+git clone
+git remote add <shortname> <url> %origin is default remote
+git remote -v %the info repository
+git remote show origin
+git branch -a %list branches localy and remotly
+git pull origin master %pulling from origin all updates
+git push origin master
+
+
+%gitignore:
+touch .gitignore %create the files for ignore
+.gitignore:
+*.pyc %ignore all file ___.pyc
+
+
+%local project tracking = staging ground
+git init
+git status -s
+
+%branch: common work flow which work on single fitter on one branch
+git branch --merged %filter which branch your not merged yet
+git branch %show the current branch you are working on
+git fetch origin %getting all new changes from origin in case you have the branch you can work with pull
+git pull origin lior % update existed branch
+git branch substract %create branch
+git chechkout calc-divide
+git checkout calc-divide
+git push -u origin calc-divide % push the branch to the origin next time use git push git pull to it
+
+%merge with master
+git checkout master %delete changes from current user
+git pull origin master
+git branch --merged %show merged branches not nessery need to localy and epository delete
+git merge calc-divide %merge to master
+git push origin master %push to repository
+%in case of conflict
+git mergetool
+
+%delete files 
+git rm a.txt
+rm a.txt
+
+%delete modifires of staging
+git reset HEAD a.txt %if you add -A and didnt wanted to add this file
+git checkout -- a.txt %reverse the file back how it was dangoures
+ 
+%delete branch
+git branch -d clac-divide %delete local 
+git push origin --delete calc-divide
+
+%tag = constant branch
+
+%log
+git log 
+git diff %show changes that didnt added
+
+
+%daily rutine:
+git branch substract 
+git checkout substract
+%modifiy substract
+git status %check changes
+git add -A
+git commit -m "substract"
+%git pull origin master
+git push -u origin substract
+%test substract
+git pull origin master
+git merge substract
+git push origin master
