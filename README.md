@@ -1,4 +1,4 @@
-# projecton
+# projecton - manual
 Merge : local branch - master
         pull
         branches list
