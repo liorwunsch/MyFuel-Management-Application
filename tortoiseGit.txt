@@ -1,0 +1,13 @@
+1. download git batch
+2. request collab
+3. download tortoiseGit
+4. new key via puttygen
+5. click generate, save public and private anywhere
+6. github -> settings -> ssh -> new ssh -> copy from -puttygen
+7. run pageant
+8. new folder anywhere
+9. right click on folder, git create new repo
+10. ok
+11. right  click in folder, git sync
+12. manage, remote = anyname, url and pushurl is project's git, puttykey is pvt key, add new/save
+13. play with pull commit push
