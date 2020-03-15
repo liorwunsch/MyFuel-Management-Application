@@ -1,5 +1,5 @@
 # projecton - manual
-Merge : local branch - master
+merge : local branch - master
         pull
         branches list
         right click any branch, merge to master
