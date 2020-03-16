@@ -1,15 +1,16 @@
 # projecton - manual
-merge : local branch - master,
-        pull,
+merge : local branch - master
+
+pull
         
-        branches list,
+branches list
         
-        right click any branch, merge to master, ok,
+right click any branch, merge to master, ok
         
-        local branch - master,
+local branch - master
+
+push.
         
-        push.
-        
-        ### GL&HF
+### GL&HF
         
 ![](https://github.com/leaguelior/projecton/blob/Liad/when-code-print-hello-world-runs-at-first-try-i0-44305895.png?raw=true)
