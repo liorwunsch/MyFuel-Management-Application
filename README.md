@@ -1,6 +1,7 @@
 # projecton
 - Never delete README (any branch)
 - Documentation ( // ) - file description, each func's input/output
+- Backup locally after each merge - Time & Date
 - Before Merging to Master :
 
         Request Code Review
@@ -9,10 +10,9 @@
 
         Review Confirmed - what changed, merger, reviewer
 
-- Backup after each merge - Time & Date
+# merge
 
-
-merge : local branch - master
+local branch - master
 
 pull
 
