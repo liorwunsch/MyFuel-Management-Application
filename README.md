@@ -1,4 +1,4 @@
-# projecton
+# Rules
 - Never delete README (any branch)
 - Documentation ( // ) - file description, each func's input/output
 - Backup locally after each merge - Time & Date
@@ -10,7 +10,7 @@
 
         Review Confirmed - what changed, merger, reviewer
 
-# merge
+# Merge
 
 local branch - master
 
@@ -24,6 +24,6 @@ local branch - master
 
 push.
 
-### GL&HF
+# GL&HF
         
 ![](https://github.com/leaguelior/projecton/blob/Liad/when-code-print-hello-world-runs-at-first-try-i0-44305895.png?raw=true)
