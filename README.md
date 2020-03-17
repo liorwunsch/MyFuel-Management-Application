@@ -2,9 +2,13 @@
 - Never delete README (any branch)
 - Documentation ( // ) - file description, each func's input/output
 - Before Merging to Master :
+
         Request Code Review
+
         Review Denied - fix
+
         Review Confirmed - what changed, merger, reviewer
+
 - Backup after each merge - Time & Date
 
 
