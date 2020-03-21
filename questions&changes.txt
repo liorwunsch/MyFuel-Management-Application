@@ -1,0 +1,20 @@
+אצלי מערכת ניהול חיצונית לא משתמשת ב-MyFuel אלא יש לה גישה למסד הנתונים, האם אפשר לוותר על UC שלה? או שכדאי לשנות שכן תשתמש ב-MyFuel?
+
+מי מוסיף תוכנית/מודל רכישה?
+
+בבחירת מודל רכישה, האם יש לתעד את שם בעל הרכב ואת זיהוי הרכב תוך בחירת מודל תמחור?
+
+בפסקת ניהול מכירות ומלאי המערכת מבצעת בעצמה הרבה דברים (למשל: הכנסה הזמנה לספר דלק), האם יש צורך להוסיף UC לאותם דברים?
+
+פסקה 2 - קונצנזוס
+precondition - logged in, press button or window
+last step - system saves
+
+שינויים:
+1.granting low storage threshold
+2.marketing generalization
+3.analyzing customers events
+4.add sales pattern
+5.generate marketing reports
+6.add client include
+7.add car
