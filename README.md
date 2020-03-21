@@ -1,4 +1,5 @@
 # Rules
+- Don't touch my branch (tyty)
 - Never delete README (any branch)
 - Documentation ( // ) - file description, each func's input/output
 - Backup locally after each merge - Time & Date
