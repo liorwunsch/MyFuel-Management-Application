@@ -106,7 +106,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="121.0" text="Final Price :" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="121.0" text="Due Time :" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Button fx:id="AddStudentBtn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddPressed" prefHeight="30.0" prefWidth="160.0" text="Confirm" textFill="#523e3b" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button fx:id="AddStudentBtn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddPressed" prefHeight="30.0" prefWidth="160.0" text="Place Order" textFill="#523e3b" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Label text="0.00 ILS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Label text="0.00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                </children>
