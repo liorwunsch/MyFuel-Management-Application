@@ -122,7 +122,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 		lblHelloUser.setText("Hello, " + username);
 	}
 
-	public void signOutClicked() {
+	public boolean signOutClicked() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Sign Out");
 		alert.setHeaderText("Would you like to sign out?");
@@ -133,9 +133,11 @@ public class MarketingRepresentativeWindow extends UserWindow {
 		if (result.get() == buttonTypeOne) {
 			this.userController.setCurrentWindow(this);
 			this.userController.handleMessageFromClientUI("signout " + username);
+			return true;
 		}
 		if (result.get() == buttonTypeTwo)
 			alert.hide();
+		return false;
 	}
 
 }

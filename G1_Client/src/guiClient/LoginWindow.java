@@ -73,9 +73,9 @@ public class LoginWindow implements IFXML {
 	/**
 	 * 
 	 * @param role
-	 * @author lior - add fxmls each time
+	 * @author Elroy, Lior - add fxmls each time
 	 */
-	
+
 	private void successLogin(String role) {
 		this.lblError.setVisible(false);
 
@@ -95,7 +95,8 @@ public class LoginWindow implements IFXML {
 				newStage.show();
 				newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent we) {
-						marketingRepresentativeWindow.signOutClicked();
+						if (!marketingRepresentativeWindow.signOutClicked()) // return false if clicked no
+							we.consume();
 					}
 				});
 				this.btnSignIn.getScene().getWindow().hide();
