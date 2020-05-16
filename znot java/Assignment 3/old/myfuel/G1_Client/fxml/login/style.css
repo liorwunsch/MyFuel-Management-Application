@@ -1,0 +1,68 @@
+.button 
+{
+  -fx-transition-duration: 0.4s;
+  -fx-background-color: #1e262c; 
+}
+  
+.button:hover
+{
+  -fx-background-color: #4c606e; 
+  -fx-color: black;
+}
+
+.button:focused
+{
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+
+.button:selected {
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+.button:selected:focused {
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+
+
+
+.toggle-button 
+{
+  -fx-transition-duration: 0.4s;
+  -fx-background-color: #1e262c; 
+}
+  
+.toggle-button:hover
+{
+  -fx-background-color: #4c606e; 
+  -fx-color: black;
+}
+
+.toggle-button:focused
+{
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+
+.toggle-button:selected {
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+.toggle-button:selected:focused {
+  -fx-background-color:#4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width:0px 0px 0px 5px;
+}
+
+.grid-pane
+{
+  -fx-background-color:#f1f2f4;
+  -fx-border-color: #698396;
+  -fx-border-width:3px 3px 3px 3px;
+}
