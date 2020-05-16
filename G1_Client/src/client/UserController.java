@@ -15,7 +15,7 @@ public class UserController extends ClientController {
 
 	/**
 	 * @author Lior - don't change
-	 * @author is is really singleton?
+	 * @author is it really singleton?
 	 */
 
 	public static UserController getInstance(String host, int port) {
