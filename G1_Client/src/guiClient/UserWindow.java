@@ -9,6 +9,12 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
+
 public abstract class UserWindow implements IFXML {
 
 	public void handleSignOut(String lastMsg, Window window) {

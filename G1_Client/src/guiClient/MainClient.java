@@ -7,6 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
 public class MainClient extends Application {
 
 	@Override

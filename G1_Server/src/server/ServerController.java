@@ -29,6 +29,11 @@ public class ServerController extends AbstractServer {
 		this.serverWindow = serverWindow;
 		this.databaseController = DatabaseController.getInstance(serverWindow, host, schema, username, password);
 	}
+	
+	/**
+	 * 
+	 * @author Lior - add handling for other client controller / server***controller
+	 */
 
 	public void handleMessageFromClient(Object obj, ConnectionToClient client) {
 		System.out.println(client + ": sent request to server");

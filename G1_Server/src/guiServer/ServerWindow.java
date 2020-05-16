@@ -13,6 +13,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import server.ServerController;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
+
 public class ServerWindow {
 
 	@FXML

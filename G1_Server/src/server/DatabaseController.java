@@ -6,6 +6,12 @@ import java.sql.SQLException;
 
 import guiServer.ServerWindow;
 
+/**
+ * 
+ * @author Lior - add functions routing to other database***controllers
+ *
+ */
+
 public class DatabaseController {
 
 	private static DatabaseController instance;

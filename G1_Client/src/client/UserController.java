@@ -14,7 +14,7 @@ public class UserController extends ClientController {
 	private IFXML currentWindow;
 
 	/**
-	 * 
+	 * @author Lior - don't change
 	 * @author is is really singleton?
 	 */
 

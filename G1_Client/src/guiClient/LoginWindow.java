@@ -70,6 +70,12 @@ public class LoginWindow implements IFXML {
 		this.mySignIn();
 	}
 
+	/**
+	 * 
+	 * @param role
+	 * @author lior - add fxmls each time
+	 */
+	
 	private void successLogin(String role) {
 		this.lblError.setVisible(false);
 

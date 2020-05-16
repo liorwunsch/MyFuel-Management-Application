@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import ocsf.client.AbstractClient;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
 public abstract class ClientController extends AbstractClient {
 
 	protected String lastMsg;

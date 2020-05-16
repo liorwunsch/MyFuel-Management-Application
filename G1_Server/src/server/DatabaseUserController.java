@@ -5,6 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
+
 public class DatabaseUserController {
 
 	private static DatabaseUserController instance;

@@ -6,6 +6,12 @@ import entities.User;
 import guiServer.ServerWindow;
 import ocsf.server.ConnectionToClient;
 
+/**
+ * 
+ * @author Lior - don't change
+ *
+ */
+
 public class ServerUserController {
 
 	private static ServerUserController instance;
