@@ -2,7 +2,7 @@ package client;
 
 import java.io.IOException;
 
-import guiClient.IFXML;
+import guiClient.AFXML;
 import ocsf.client.AbstractClient;
 
 /**
@@ -14,7 +14,7 @@ import ocsf.client.AbstractClient;
 public abstract class ClientController extends AbstractClient {
 
 	protected static boolean awaitResponse = false;
-	protected IFXML currentWindow;
+	protected AFXML currentWindow;
 	protected Object lastMsgFromServer;
 
 	/**
@@ -34,7 +34,7 @@ public abstract class ClientController extends AbstractClient {
 	 * 
 	 * @param currentWindow
 	 */
-	public void setCurrentWindow(IFXML currentWindow) {
+	public void setCurrentWindow(AFXML currentWindow) {
 		this.currentWindow = currentWindow;
 	}
 

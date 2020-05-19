@@ -1,0 +1,149 @@
+.confirmation-button {
+  -fx-background-color: #5cb85c;
+  -fx-font-family: Calibri;
+  -fx-font-size: 20px;
+  -fx-text-fill: #ffffff;
+}
+
+.confirmation-button:focused {
+  -fx-background-color: #46a046;
+  -fx-border-color: #2b80d4;
+  -fx-border-width: 1px 1px 1px 1px;
+  -fx-border-radius: 2px 2px 2px 2px;
+}
+
+.cancel-button {
+  -fx-background-color: #d9534f;
+  -fx-font-family: Calibri;
+  -fx-font-size: 20px;
+  -fx-text-fill: #ffffff;
+}
+
+.cancel-button:focused {
+  -fx-background-color: #d1332e;
+  -fx-border-color: #2b80d4;
+  -fx-border-width: 1px 1px 1px 1px;
+  -fx-border-radius: 2px 2px 2px 2px;
+}
+
+.task-button {
+  -fx-background-color: #337ab7;
+  -fx-font-family: Calibri;
+  -fx-font-size: 16px;
+  -fx-text-fill: #ffffff;
+}
+
+.task-button:focused {
+  -fx-background-color: #2d6a9f;
+  -fx-border-color: #2b80d4;
+  -fx-border-width: 1px 1px 1px 1px;
+  -fx-border-radius: 2px 2px 2px 2px;
+}
+
+.return-button {
+  -fx-background-color: #5bc0de;
+  -fx-font-family: Calibri;
+  -fx-font-size: 20px;
+  -fx-text-fill: #ffffff;
+}
+
+.return-button:focused {
+  -fx-background-color: #238aa9;
+  -fx-border-color: #2b80d4;
+  -fx-border-width: 1px 1px 1px 1px;
+  -fx-border-radius: 2px 2px 2px 2px;
+}
+
+.side-bar-toggle-button {
+  -fx-transition-duration: 0.4s;
+  -fx-background-color: #1e262c;
+  -fx-font-family: Calibri;
+  -fx-font-size: 20px;
+  -fx-text-fill: #ffffff;
+}
+
+.side-bar-toggle-button:hover {
+  -fx-background-color: #4c606e;
+  -fx-color: black;
+}
+
+.side-bar-toggle-button:focused {
+  -fx-background-color: #4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width: 0px 0px 0px 5px;
+}
+
+.side-bar-toggle-button:selected {
+  -fx-background-color: #4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width: 0px 0px 0px 5px;
+}
+
+.side-bar-toggle-button:selected:focused {
+  -fx-background-color: #4c606e;
+  -fx-border-color: #f56b2c;
+  -fx-border-width: 0px 0px 0px 5px;
+}
+
+.task-toggle-button {
+  -fx-background-color: #337ab7;
+  -fx-font-family: Calibri;
+  -fx-font-size: 20px;
+  -fx-text-fill: #ffffff;
+}
+
+.task-toggle-button:focused {
+  -fx-background-color: #46a046;
+}
+
+.task-toggle-button:selected {
+  -fx-background-color: #46a046;
+}
+
+.task-toggle-button:selected:focused {
+  -fx-background-color: #46a046;
+}
+
+.disconnect-button {
+  -fx-background-color: #1e262c;
+  -fx-font-family: Calibri;
+  -fx-font-size: 18px;
+  -fx-text-fill: #ffffff;
+}
+
+.disconnect-button:focused {
+  -fx-background-color: #4c606e;
+}
+
+.disconnect-button:hover {
+  -fx-background-color: #4c606e;
+}
+
+.linear-grad-to-top {
+  -fx-background-color:  #141b20;
+}
+
+.exit-button {
+  -fx-background-color:  #141b20;
+}
+
+.exit-button:hover {
+  -fx-background-color: #d1332eb2;
+}
+
+/*
+.exit-button:focused {
+  -fx-background-color: #d1332e;
+}
+*/
+.minimize-button {
+  -fx-background-color:#141b20;
+}
+/*
+.minimize-button:focused {
+ -fx-background-color:  #2b80d4;
+}
+*/
+.minimize-button:hover {
+  -fx-background-color: #2b7fd4b2;
+}

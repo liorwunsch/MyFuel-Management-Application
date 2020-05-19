@@ -2,7 +2,6 @@ package guiClient;
 
 import client.LoginController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.stage.StageStyle;
 
 /**
  * boundary for login window
@@ -24,7 +23,7 @@ import javafx.stage.WindowEvent;
  * @see successLogin()
  * @author Elroy, Lior
  */
-public class LoginWindow implements IFXML {
+public class LoginWindow extends AFXML {
 
 	@FXML	private TextField tfLoginUserName;
 	@FXML	private PasswordField tfLoginPassword;
@@ -113,11 +112,16 @@ public class LoginWindow implements IFXML {
 		String newWindowPath = "";
 		String newWindowTitle = "";
 
-		if (role.equals("MarketingRepresentative")) {
-			newWindowPath = "/marketing/MarketingRepresentativeWindow.fxml";
-			newWindowTitle = "MyFuel Marketing Representative";
+		if (role.equals("Customer")) {
+			newWindowPath = "/windows/CustomerWindow.fxml";
+			newWindowTitle = "MyFuel Customer";
 		}
 		
+		if (role.equals("MarketingRepresentative")) {
+			newWindowPath = "/windows/MarketingRepresentativeWindow.fxml";
+			newWindowTitle = "MyFuel Marketing Representative";
+		}
+
 		/**
 		 * 
 		 */
@@ -134,13 +138,8 @@ public class LoginWindow implements IFXML {
 			newStage.setResizable(false);
 			newStage.setScene(newScene);
 			newStage.setTitle(newWindowTitle);
+			newStage.initStyle(StageStyle.UNDECORATED);
 			newStage.show();
-			newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-				public void handle(WindowEvent we) {
-					if (!newWindow.signOutClicked(newWindow.getWindow()))
-						we.consume();
-				}
-			});
 			this.btnSignIn.getScene().getWindow().hide();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -213,4 +212,9 @@ public class LoginWindow implements IFXML {
 		}
 	}
 
+	@FXML
+	public void closeTopBar(ActionEvent event) {
+		System.exit(0);
+	}
+	
 }

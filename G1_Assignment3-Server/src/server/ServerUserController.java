@@ -81,6 +81,7 @@ public class ServerUserController {
 		}
 
 		try {
+			/* send message back to client */
 			client.sendToClient(result);
 		} catch (IOException e) {
 			e.printStackTrace();

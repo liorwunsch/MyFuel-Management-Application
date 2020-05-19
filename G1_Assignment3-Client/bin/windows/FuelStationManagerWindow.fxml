@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="700.0" minWidth="1024.0" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="260.0">
+               <children>
+                  <Label fx:id="sidebar_HelloUser_lb" layoutX="12.0" prefHeight="35.0" prefWidth="122.0" text="Hello, Julia" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <GridPane maxHeight="-Infinity" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="20.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
+                                 <image>
+                                    <Image url="@תמונות/home%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="one" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Update Threshold" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Leelawadee UI" size="20.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
+                                 <image>
+                                    <Image url="@תמונות/btnUpdate.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Assess Station Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Leelawadee UI" size="17.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="-1.0" layoutY="4.0">
+                                 <image>
+                                    <Image url="@תמונות/btnAssetss.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Generate Quarently Report" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Leelawadee UI" size="17.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-2.0">
+                                 <image>
+                                    <Image url="@תמונות/btnReport.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
+            <Pane minHeight="190.0" minWidth="260.0" prefHeight="190.0" prefWidth="260.0">
+               <children>
+                  <Group layoutX="125.0" layoutY="65.0">
+                     <children>
+                        <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="-72.0" layoutY="-57.0">
+                           <image>
+                              <Image url="@תמונות/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="-63.0" layoutY="91.0" prefWidth="124.0" text="MyFuel" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Group>
+               </children>
+            </Pane>
+            <Pane>
+               <VBox.margin>
+                  <Insets left="5.0" top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="sidebar_SignOut_btn" layoutX="1.0" mnemonicParsing="false" styleClass="disconnect-button" stylesheets="@style.css" text="Sign Out" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0">
+                           <image>
+                              <Image url="@תמונות/btnexit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Leelawadee" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="titleBar" onMouseDragged="#handleMovmentAction" onMousePressed="#handleClickAction" prefHeight="25.0" prefWidth="1100.0" styleClass="linear-grad-to-top" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@תמונות/logo_mini.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="27.0" layoutY="7.0" text="MyFuel" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnExit" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseAction" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@style.css">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@תמונות/exit_btn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnMini" layoutX="994.0" mnemonicParsing="false" onAction="#handleMinimizeAction" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@style.css">
+                     <graphic>
+                        <ImageView fitHeight="10.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@תמונות/minimize_btn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="1088.0" prefHeight="30.0" prefWidth="1092.0" style="-fx-background-color: #d8dce0;">
+               <children>
+                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;" />
+                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Purchase Home Fuel">
+                     <font>
+                        <Font name="Arial" size="26.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <AnchorPane fx:id="mainwindow_pane" minHeight="600.0" minWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="13.0" layoutY="13.0" prefHeight="543.0" prefWidth="639.0">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="529.0" prefWidth="638.0" styleClass="grid-pane" stylesheets="@gridPaneStyle.css">
+                     <children>
+                        <HBox layoutX="164.0" layoutY="454.0" prefHeight="47.0" prefWidth="310.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@style.css" text="Confirm ">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@תמונות/v.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@style.css" text="Decline" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="19.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@תמונות/x.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="15.0" layoutY="46.0" prefHeight="51.0" prefWidth="159.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="129.0" text="Station Order ID:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </Label>
+                              <ComboBox prefHeight="30.0" prefWidth="150.0" promptText="Select ID" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="13.0" layoutY="122.0" prefHeight="308.0" prefWidth="158.0">
+                           <children>
+                              <Label text="Product Name">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font></Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="Amount to Buy ">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font></Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="Final Price">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font></Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="Time">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font></Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="Address">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font></Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <Label layoutX="207.0" layoutY="23.0" text="No Station Orders To Assess" textFill="RED" visible="false" />
+                        <Button layoutX="220.0" layoutY="66.0" mnemonicParsing="false" styleClass="task-button" stylesheets="@style.css" text="Show Order">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@תמונות/eye.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <VBox layoutX="192.0" layoutY="122.0" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label text="Threshold">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="In Stock">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="30.0" prefWidth="103.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutY="-1.0" text="Orders information">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="5.0" layoutY="31.0" text="Please choose an Order:" textFill="#144465" underline="true">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

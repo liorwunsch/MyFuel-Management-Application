@@ -9,12 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
@@ -23,15 +24,16 @@ import javafx.stage.WindowEvent;
  * <p>
  * all boundaries except login extend this
  * 
- * @version Final
+ * @version Almost Final
  * @author Elroy, Lior
  */
-public abstract class UserWindow implements IFXML {
+public abstract class UserWindow extends AFXML {
 
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
 	@FXML	protected Button btnSignOut;
 
+	protected AnchorPane visableNow;
 	protected String username;
 	protected UserController controller;
 
@@ -100,13 +102,14 @@ public abstract class UserWindow implements IFXML {
 	public void signOutToLogin(Window window) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/login/LoginWindow.fxml"));
+			loader.setLocation(getClass().getResource("/windows/LoginWindow.fxml"));
 			Scene newScene = new Scene(loader.load());
 			Stage newStage = new Stage();
 
 			newStage.setResizable(false);
 			newStage.setScene(newScene);
 			newStage.setTitle("MyFuel Login");
+			newStage.initStyle(StageStyle.UNDECORATED);
 			newStage.show();
 			newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				public void handle(WindowEvent we) {
@@ -125,13 +128,9 @@ public abstract class UserWindow implements IFXML {
 	}
 
 	@FXML
-	void btnSignOutHover(MouseEvent event) {
-		this.btnSignOut.setStyle("-fx-background-color:  #4c606e");
-	}
-
-	@FXML
-	void btnSignOutExited(MouseEvent event) {
-		this.btnSignOut.setStyle("-fx-background-color:  #1e262c");
+	public void closeTopBar(ActionEvent event) {
+		if (!this.signOutClicked(this.getWindow()))
+			event.consume();
 	}
 
 }
