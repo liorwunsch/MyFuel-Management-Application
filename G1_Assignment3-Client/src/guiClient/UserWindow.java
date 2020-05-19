@@ -3,12 +3,17 @@ package guiClient;
 import java.util.Optional;
 
 import client.UserController;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
@@ -23,21 +28,29 @@ import javafx.stage.WindowEvent;
  */
 public abstract class UserWindow implements IFXML {
 
+	@FXML	protected Label lblHelloUser;
+	@FXML	protected Label topbar_window_label;
+	@FXML	protected Button btnSignOut;
+
 	protected String username;
 	protected UserController controller;
+
+	public abstract Window getWindow();
 
 	/**
 	 * updates <Code>username</Code> to that of the one connnected
 	 * 
 	 * @param username
 	 */
-	public abstract void setUsername(String username);
+	public void setUsername(String username) {
+		this.username = username;
+		this.lblHelloUser.setText("Hello, " + username);
+	}
 
 	/**
 	 * @param username
 	 * @return the window of the boundary
 	 */
-	public abstract Window getWindow();
 
 	/**
 	 * if signout request confirmed, send username to the appropriate controller
@@ -104,6 +117,21 @@ public abstract class UserWindow implements IFXML {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	void btnSignOutClicked(ActionEvent event) {
+		this.signOutClicked(this.getWindow());
+	}
+
+	@FXML
+	void btnSignOutHover(MouseEvent event) {
+		this.btnSignOut.setStyle("-fx-background-color:  #4c606e");
+	}
+
+	@FXML
+	void btnSignOutExited(MouseEvent event) {
+		this.btnSignOut.setStyle("-fx-background-color:  #1e262c");
 	}
 
 }

@@ -137,7 +137,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="180.0" layoutX="15.0">
                      <image>
-                        <Image url="@logo.png" />
+                        <Image url="@../general/logo.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="44.0" layoutY="181.0" prefWidth="124.0" text="MyFuel">

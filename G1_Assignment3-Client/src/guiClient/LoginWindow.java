@@ -1,7 +1,5 @@
 package guiClient;
 
-import java.io.IOException;
-
 import client.LoginController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -27,31 +26,18 @@ import javafx.stage.WindowEvent;
  */
 public class LoginWindow implements IFXML {
 
-	@FXML
-	private TextField tfLoginUserName;
-
-	@FXML
-	private PasswordField tfLoginPassword;
-
-	@FXML
-	private Label lblError;
-
-	@FXML
-	private Button btnSignIn;
-
-	@FXML
-	private ToggleGroup rb1;
-
-	@FXML
-	private RadioButton rbEmployee;
-
-	@FXML
-	private RadioButton rbCustomer;
+	@FXML	private TextField tfLoginUserName;
+	@FXML	private PasswordField tfLoginPassword;
+	@FXML	private ToggleGroup rb1;
+	@FXML	private RadioButton rbEmployee;
+	@FXML	private RadioButton rbCustomer;
+	@FXML	private Label lblError;
+	@FXML	private Button btnSignIn;
 
 	private LoginController loginController;
 
 	@FXML
-	void initialize() throws IOException {
+	void initialize() {
 		this.loginController = LoginController.getInstance();
 		this.loginController.setCurrentWindow(this);
 	}
@@ -77,16 +63,6 @@ public class LoginWindow implements IFXML {
 			if (message.startsWith("login already connected"))
 				this.alreadyConnectedLogin();
 		}
-	}
-
-	/**
-	 * user clicked on sign in button
-	 * 
-	 * @param event
-	 * @throws Exception
-	 */
-	public void signIn(ActionEvent event) throws Exception {
-		this.mySignIn();
 	}
 
 	/**
@@ -141,6 +117,10 @@ public class LoginWindow implements IFXML {
 			newWindowPath = "/marketing/MarketingRepresentativeWindow.fxml";
 			newWindowTitle = "MyFuel Marketing Representative";
 		}
+		
+		/**
+		 * 
+		 */
 
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -185,11 +165,18 @@ public class LoginWindow implements IFXML {
 		this.lblError.setVisible(true);
 	}
 
-	public void btnSignInHover() {
+	@FXML
+	void signIn(ActionEvent event) {
+		this.mySignIn();
+	}
+
+	@FXML
+	void btnSignInHover(MouseEvent event) {
 		this.btnSignIn.setStyle("-fx-background-color: #FFA07A ; -fx-background-radius: 7");
 	}
 
-	public void btnSignInExit() {
+	@FXML
+	void btnSignInExit(MouseEvent event) {
 		this.btnSignIn.setStyle("-fx-background-color:  #F56B2C ; -fx-background-radius: 7");
 	}
 

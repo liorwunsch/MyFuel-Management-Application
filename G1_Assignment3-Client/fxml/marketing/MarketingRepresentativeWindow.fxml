@@ -48,7 +48,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Add Customer" textFill="WHITE">
+                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" stylesheets="@../general/style.css" text="Add Customer" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="18.0" />
                      </font>
@@ -67,7 +67,7 @@
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Car" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Add Car" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Car" prefHeight="188.0" prefWidth="347.0" stylesheets="@../general/style.css" text="Add Car" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                      <font>
                         <Font name="Leelawadee UI" size="18.0" />
                      </font>
@@ -86,7 +86,7 @@
                         <Insets />
                      </GridPane.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Purchase_Prog" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Set Purchasing Program" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                  <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Purchase_Prog" prefHeight="188.0" prefWidth="347.0" stylesheets="@../general/style.css" text="Set Purchasing Program" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                      <font>
                         <Font name="Leelawadee UI" size="18.0" />
                      </font>
@@ -102,7 +102,7 @@
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn4" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Pricing_Model" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Set Pricing Model" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
+                  <ToggleButton fx:id="sidebar_btn4" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Pricing_Model" prefHeight="188.0" prefWidth="347.0" stylesheets="@../general/style.css" text="Set Pricing Model" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
                      <font>
                         <Font name="Leelawadee UI" size="18.0" />
                      </font>
@@ -129,7 +129,7 @@
                      <children>
                         <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="-74.0" layoutY="-63.0">
                            <image>
-                              <Image url="@logo.png" />
+                              <Image url="@../general/logo.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="-66.0" layoutY="80.0" prefWidth="124.0" text="MyFuel" textFill="WHITE">
@@ -150,7 +150,7 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="26.0">
                            <image>
-                              <Image url="@signout.png" />
+                              <Image url="@../general/signout.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -181,7 +181,7 @@
    <center>
       <AnchorPane fx:id="mainwindow_pane" minHeight="600.0" minWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="Add Customer AnchorPane" fx:id="addCustomer_pane" layoutX="3.0" layoutY="12.0" prefHeight="600.0" prefWidth="833.0">
+            <AnchorPane fx:id="addCustomer_pane" layoutX="3.0" layoutY="12.0" prefHeight="600.0" prefWidth="833.0">
                <children>
                   <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Customer Information">
                      <font>
@@ -284,7 +284,7 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <AnchorPane id="Add Customer AnchorPane" fx:id="addCar_pane" layoutX="1.0" layoutY="10.0" prefHeight="600.0" prefWidth="830.0" visible="false">
+            <AnchorPane fx:id="addCar_pane" layoutX="1.0" layoutY="10.0" prefHeight="600.0" prefWidth="830.0" visible="false">
                <children>
                   <Label layoutX="10.0" layoutY="-1.0" prefHeight="21.0" prefWidth="215.0" text="Car Information">
                      <font>
