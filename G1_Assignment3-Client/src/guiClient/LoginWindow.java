@@ -121,6 +121,11 @@ public class LoginWindow extends AFXML {
 			newWindowPath = "/windows/MarketingRepresentativeWindow.fxml";
 			newWindowTitle = "MyFuel Marketing Representative";
 		}
+		
+		if (role.equals("FuelStationManager")) {
+			newWindowPath = "/windows/FuelStationManagerWindow.fxml";
+			newWindowTitle = "MyFuel Fuel Station Manager";
+		}
 
 		/**
 		 * 

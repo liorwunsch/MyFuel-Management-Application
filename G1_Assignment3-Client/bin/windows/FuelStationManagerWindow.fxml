@@ -20,13 +20,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="700.0" minWidth="1024.0" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="700.0" minWidth="1024.0" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.FuelStationManagerWindow">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="50.0" prefWidth="260.0">
                <children>
-                  <Label fx:id="sidebar_HelloUser_lb" layoutX="12.0" prefHeight="35.0" prefWidth="122.0" text="Hello, Julia" textFill="WHITE">
+                  <Label fx:id="lblHelloUser" layoutX="12.0" prefHeight="35.0" prefWidth="231.0" text="Hello, Julia" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="24.0" />
                      </font>
@@ -45,7 +45,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Home" textFill="WHITE">
+                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="20.0" />
                      </font>
@@ -54,7 +54,7 @@
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
                                  <image>
-                                    <Image url="@תמונות/home%20(1).png" />
+                                    <Image url="@../pics/home.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -64,7 +64,7 @@
                         <ToggleGroup fx:id="one" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Update Threshold" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Update Threshold" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                      <font>
                         <Font name="Leelawadee UI" size="20.0" />
                      </font>
@@ -73,14 +73,14 @@
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
                                  <image>
-                                    <Image url="@תמונות/btnUpdate.png" />
+                                    <Image url="@../pics/updatethreshold.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Assess Station Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Assess Station Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                      <font>
                         <Font name="Leelawadee UI" size="17.0" />
                      </font>
@@ -89,7 +89,7 @@
                            <children>
                               <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="-1.0" layoutY="4.0">
                                  <image>
-                                    <Image url="@תמונות/btnAssetss.png" />
+                                    <Image url="@../pics/assessstationorders.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -99,7 +99,7 @@
                         <Insets />
                      </GridPane.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" stylesheets="@style.css" text="Generate Quarently Report" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
+                  <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Generate Quarently Report" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
                      <font>
                         <Font name="Leelawadee UI" size="17.0" />
                      </font>
@@ -108,7 +108,7 @@
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-2.0">
                                  <image>
-                                    <Image url="@תמונות/btnReport.png" />
+                                    <Image url="@../pics/generatequarentlyreport.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -126,7 +126,7 @@
                      <children>
                         <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="-72.0" layoutY="-57.0">
                            <image>
-                              <Image url="@תמונות/logo.png" />
+                              <Image url="@../pics/logo.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="-63.0" layoutY="91.0" prefWidth="124.0" text="MyFuel" textFill="WHITE">
@@ -143,11 +143,11 @@
                   <Insets left="5.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="sidebar_SignOut_btn" layoutX="1.0" mnemonicParsing="false" styleClass="disconnect-button" stylesheets="@style.css" text="Sign Out" textFill="WHITE">
+                  <Button fx:id="btnSignOut" layoutX="1.0" mnemonicParsing="false" onAction="#btnSignOutClicked" styleClass="disconnect-button" stylesheets="@../pics/style.css" text="Sign Out" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="26.0">
                            <image>
-                              <Image url="@תמונות/btnexit.png" />
+                              <Image url="@../pics/signout.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -163,11 +163,11 @@
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="titleBar" onMouseDragged="#handleMovmentAction" onMousePressed="#handleClickAction" prefHeight="25.0" prefWidth="1100.0" styleClass="linear-grad-to-top" stylesheets="@style.css">
+            <AnchorPane fx:id="titleBar" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" prefHeight="25.0" prefWidth="1100.0" styleClass="linear-grad-to-top" stylesheets="@../pics/style.css">
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@תמונות/logo_mini.png" />
+                        <Image url="@../pics/logo_mini.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="27.0" layoutY="7.0" text="MyFuel" textAlignment="CENTER" textFill="WHITE">
@@ -175,20 +175,20 @@
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnExit" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseAction" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@style.css">
+                  <Button fx:id="btnExit" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@תמונות/exit_btn.png" />
+                              <Image url="@../pics/close.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnMini" layoutX="994.0" mnemonicParsing="false" onAction="#handleMinimizeAction" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@style.css">
+                  <Button fx:id="btnMini" layoutX="994.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
                      <graphic>
                         <ImageView fitHeight="10.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@תמונות/minimize_btn.png" />
+                              <Image url="@../pics/minimize.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -198,7 +198,7 @@
             <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="1088.0" prefHeight="30.0" prefWidth="1092.0" style="-fx-background-color: #d8dce0;">
                <children>
                   <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;" />
-                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Purchase Home Fuel">
+                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Assess Station Orders">
                      <font>
                         <Font name="Arial" size="26.0" />
                      </font>
@@ -216,27 +216,27 @@
          <children>
             <AnchorPane layoutX="13.0" layoutY="13.0" prefHeight="543.0" prefWidth="639.0">
                <children>
-                  <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="529.0" prefWidth="638.0" styleClass="grid-pane" stylesheets="@gridPaneStyle.css">
+                  <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="529.0" prefWidth="638.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
                         <HBox layoutX="164.0" layoutY="454.0" prefHeight="47.0" prefWidth="310.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@style.css" text="Confirm ">
+                              <Button fx:id="btnConfirmAssess" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm ">
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin>
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@תמונות/v.png" />
+                                          <Image url="@../pics/v.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@style.css" text="Decline" textFill="WHITE">
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Decline" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="19.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@תמונות/x.png" />
+                                          <Image url="@../pics/x.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -312,11 +312,11 @@
                            </padding>
                         </VBox>
                         <Label layoutX="207.0" layoutY="23.0" text="No Station Orders To Assess" textFill="RED" visible="false" />
-                        <Button layoutX="220.0" layoutY="66.0" mnemonicParsing="false" styleClass="task-button" stylesheets="@style.css" text="Show Order">
+                        <Button layoutX="220.0" layoutY="66.0" mnemonicParsing="false" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Order">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@תמונות/eye.png" />
+                                    <Image url="@../pics/eye.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>

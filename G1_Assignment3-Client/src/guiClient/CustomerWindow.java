@@ -12,19 +12,26 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 
+/**
+ * boundary for customer window
+ * 
+ * @version Basic
+ * @author Lior
+ */
 public class CustomerWindow extends UserWindow {
 
-	@FXML	protected ToggleButton sidebar_btn11;
+	@FXML	private ToggleGroup one;
+	@FXML	private ToggleButton sidebar_btn11;
 	@FXML	private ToggleButton sidebar_btn1;
 	@FXML	private ToggleButton sidebar_btn3;
-	@FXML	private AnchorPane mainwindow_pane;
+	
 	@FXML	private Label lblTitleFillFields;
 	@FXML	private AnchorPane pricingModel_pane;
 	@FXML	private TextField tfDiscout;
 	@FXML	private TextField tfAddress;
+	@FXML	private ToggleGroup three;
 	@FXML	private ScrollPane purchProg_SingleProgBox_SP;
 	@FXML	private RadioButton purchProg_SingleProg_RB;
-	@FXML	private ToggleGroup three;
 	@FXML	private ScrollPane purchProg_SingleProgBox_SP1;
 	@FXML	private RadioButton purchProg_SingleProg_RB1;
 	@FXML	private Button btnShowPrice;

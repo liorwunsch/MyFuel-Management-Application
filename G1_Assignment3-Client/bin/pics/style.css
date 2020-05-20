@@ -131,19 +131,10 @@
   -fx-background-color: #d1332eb2;
 }
 
-/*
-.exit-button:focused {
-  -fx-background-color: #d1332e;
-}
-*/
 .minimize-button {
   -fx-background-color:#141b20;
 }
-/*
-.minimize-button:focused {
- -fx-background-color:  #2b80d4;
-}
-*/
+
 .minimize-button:hover {
   -fx-background-color: #2b7fd4b2;
 }

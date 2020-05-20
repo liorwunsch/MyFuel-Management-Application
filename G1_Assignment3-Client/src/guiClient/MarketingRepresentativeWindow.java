@@ -22,14 +22,15 @@ import javafx.stage.Window;
  */
 public class MarketingRepresentativeWindow extends UserWindow {
 
-    @FXML    private BorderPane main_pane;
-    @FXML    private ToggleButton sidebar_btn11;
+
     @FXML    private ToggleGroup one;
+    @FXML    private ToggleButton sidebar_btn11;
     @FXML    private ToggleButton sidebar_btn1;
     @FXML    private ToggleButton sidebar_btn2;
     @FXML    private ToggleButton sidebar_btn3;
     @FXML    private ToggleButton sidebar_btn4;
-    @FXML    private AnchorPane mainwindow_pane;
+    
+    @FXML    private BorderPane main_pane;
     @FXML    private AnchorPane addCustomer_pane;
     @FXML    private TextField addcust_Credit_TF;
     @FXML    private TextField addcust_CustID_TF;
@@ -38,6 +39,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
     @FXML    private TextField addcust_Email_TF;
     @FXML    private ComboBox<?> addcust_CustType_CB;
     @FXML    private Button addcust_Save_btn;
+    
     @FXML    private AnchorPane addCar_pane;
     @FXML    private TextField addcar_RegPlate_TF;
     @FXML    private TextField addcar_OwnerName_TF;
@@ -45,6 +47,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
     @FXML    private TextField addcar_CustID_TF;
     @FXML    private Button addcar_CheckCust_btn;
     @FXML    private ComboBox<?> addcar_FuelType_CB;
+    
     @FXML    private AnchorPane PurchProg_pane;
     @FXML    private ScrollPane purchProg_ExpenProgBox_SP;
     @FXML    private RadioButton purchProg_ExpenProg_RB;
@@ -58,6 +61,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
     @FXML    private ToggleGroup two1;
     @FXML    private TextField addcar_CustID_TF1;
     @FXML    private Button addcar_CheckCust_btn1;
+    
     @FXML    private AnchorPane pricingModel_pane;
     @FXML    private Button pricingModel_SaveModel_btn;
     @FXML    private TextField addcar_CustID_TF2;

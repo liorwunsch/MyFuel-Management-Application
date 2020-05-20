@@ -28,7 +28,8 @@ import javafx.stage.WindowEvent;
  * @author Elroy, Lior
  */
 public abstract class UserWindow extends AFXML {
-
+	
+	@FXML	private AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
 	@FXML	protected Button btnSignOut;
