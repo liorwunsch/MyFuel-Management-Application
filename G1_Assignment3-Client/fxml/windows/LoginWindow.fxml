@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,14 +19,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox onKeyPressed="#enterKeyPressed" prefHeight="685.0" prefWidth="460.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.LoginWindow">
+<VBox onKeyPressed="#enterKeyPressed" prefHeight="685.0" prefWidth="465.0" styleClass="login-main-pane" stylesheets="@../pics/loginWindow.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.LoginWindow">
    <children>
-      <AnchorPane fx:id="titleBar" minHeight="30.0" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" prefHeight="30.0" style="-fx-background-color: #141b20;">
+      <AnchorPane fx:id="titleBar" minHeight="30.0" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" prefHeight="30.0" styleClass="title-bar" stylesheets="@../pics/loginWindow.css">
          <children>
-            <Button fx:id="btnExit" layoutX="405.0" layoutY="-1.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="30.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
+            <Button fx:id="btnExit" layoutX="410.0" layoutY="-1.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="30.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/loginWindow.css">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,7 +34,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnMini" layoutX="350.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="30.0" prefWidth="55.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
+            <Button fx:id="btnMini" layoutX="352.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="30.0" prefWidth="55.0" styleClass="minimize-button" stylesheets="@../pics/loginWindow.css">
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,15 +64,14 @@
       </AnchorPane>
       <Pane prefHeight="40.0" prefWidth="460.0">
          <children>
-            <Label layoutX="-1.0" layoutY="4.0" prefHeight="29.0" prefWidth="85.0" text="SIGN IN">
+            <Label alignment="CENTER" layoutX="29.0" layoutY="-5.0" prefHeight="50.0" prefWidth="55.0" styleClass="signIn-label" stylesheets="@../pics/loginWindow.css" text="SIGN IN">
                <font>
                   <Font name="Leelawadee UI" size="12.0" />
                </font>
                <padding>
-                  <Insets left="35.0" top="10.0" />
+                  <Insets top="10.0" />
                </padding>
             </Label>
-            <Line endX="-41.0" fill="#f56b2c" layoutX="117.0" layoutY="44.0" startX="-84.0" stroke="#f56b2c" strokeType="OUTSIDE" strokeWidth="2.0" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -163,12 +162,12 @@
             <Insets left="35.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#signIn" onMouseEntered="#btnSignInHover" onMouseExited="#btnSignInExit" prefHeight="38.0" prefWidth="399.0" style="-fx-background-color: #f56b2c; -fx-background-radius: 7;" text="Sign in" textFill="WHITE">
+      <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#signIn" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Sign in" textFill="WHITE">
          <VBox.margin>
             <Insets left="35.0" top="10.0" />
          </VBox.margin>
          <font>
-            <Font name="Leelawadee UI" size="15.0" />
+            <Font name="Leelawadee UI" size="16.0" />
          </font>
       </Button>
       <Pane prefHeight="295.0" prefWidth="460.0">
@@ -190,4 +189,7 @@
          </children>
       </Pane>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </VBox>

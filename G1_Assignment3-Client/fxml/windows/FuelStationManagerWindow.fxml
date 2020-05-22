@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="700.0" minWidth="1024.0" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.FuelStationManagerWindow">
+<BorderPane minHeight="700.0" prefHeight="650.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.FuelStationManagerWindow">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
          <children>
@@ -161,9 +161,9 @@
       </VBox>
    </left>
    <top>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox minWidth="-Infinity" prefHeight="56.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="titleBar" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" prefHeight="25.0" prefWidth="1100.0" styleClass="linear-grad-to-top" stylesheets="@../pics/style.css">
+            <AnchorPane fx:id="titleBar" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" styleClass="linear-grad-to-top" stylesheets="@../pics/style.css">
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -175,7 +175,7 @@
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnExit" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
+                  <Button fx:id="btnExit" layoutX="1027.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -184,7 +184,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnMini" layoutX="994.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
+                  <Button fx:id="btnMini" layoutX="976.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
                      <graphic>
                         <ImageView fitHeight="10.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -195,7 +195,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="1088.0" prefHeight="30.0" prefWidth="1092.0" style="-fx-background-color: #d8dce0;">
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #d8dce0;">
                <children>
                   <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;" />
                   <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Assess Station Orders">
@@ -207,8 +207,14 @@
                      </HBox.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </VBox>
    </top>
    <center>

@@ -12,7 +12,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -172,16 +171,6 @@ public class LoginWindow extends AFXML {
 	@FXML
 	void signIn(ActionEvent event) {
 		this.mySignIn();
-	}
-
-	@FXML
-	void btnSignInHover(MouseEvent event) {
-		this.btnSignIn.setStyle("-fx-background-color: #FFA07A ; -fx-background-radius: 7");
-	}
-
-	@FXML
-	void btnSignInExit(MouseEvent event) {
-		this.btnSignIn.setStyle("-fx-background-color:  #F56B2C ; -fx-background-radius: 7");
 	}
 
 	@FXML
