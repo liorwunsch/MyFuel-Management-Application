@@ -2,6 +2,7 @@ package server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import guiServer.ServerWindow;
@@ -35,6 +36,12 @@ public class DatabaseController {
 			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + schema + "?serverTimezone=IST",
 					dbUsername, dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
+
+			PreparedStatement pStmt;
+			pStmt = this.connection.prepareStatement("UPDATE User SET connected = ?");
+			pStmt.setString(1, "0");
+			pStmt.executeUpdate();
+
 		} catch (SQLException e) {
 			serverWindow.updateArea("SQLException: " + e.getMessage());
 			serverWindow.updateArea("SQLState: " + e.getSQLState());
