@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -180,7 +182,14 @@
             </AnchorPane>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #d8dce0;">
                <children>
-                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;" />
+                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="6.0" text="Customer" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Order Home Fuel">
                      <font>
                         <Font name="Arial" size="26.0" />
@@ -197,240 +206,381 @@
    <center>
       <AnchorPane fx:id="mainwindow_pane" prefHeight="665.0" prefWidth="828.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="13.0" layoutY="8.0" prefHeight="309.0" prefWidth="802.0">
+            <AnchorPane layoutX="12.0" layoutY="3.0" prefHeight="631.0" prefWidth="815.0">
                <children>
-                  <Label fx:id="lblTitleFillFields" layoutX="-1.0" layoutY="-5.0" prefHeight="21.0" prefWidth="231.0" text="Purchase Information:">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane fx:id="pricingModel_pane" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="814.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                  <AnchorPane layoutX="1.0" layoutY="5.0" prefHeight="309.0" prefWidth="802.0">
                      <children>
-                        <VBox layoutX="10.0" layoutY="19.0" prefHeight="224.0" prefWidth="189.0">
-                           <children>
-                              <Label text="Please fill the following:" textFill="#144465" underline="true">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="15.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label prefHeight="21.0" prefWidth="129.0" text="Fuel Amount :">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="tfDiscout" prefHeight="30.0" prefWidth="76.0">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                              <Label prefHeight="21.0" prefWidth="129.0" text="Home Address:">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextField fx:id="tfAddress" prefHeight="30.0" prefWidth="76.0">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="263.0" layoutY="68.0" prefHeight="118.0" prefWidth="210.0">
-                           <children>
-                              <ScrollPane fx:id="purchProg_SingleProgBox_SP" prefHeight="490.0" prefWidth="380.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="205.0">
-                                       <children>
-                                          <Label layoutX="7.0" layoutY="14.0" text="added price #1:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Text layoutX="8.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #1 : " wrappingWidth="187.548828125">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <RadioButton fx:id="purchProg_SingleProg_RB" mnemonicParsing="false" selected="true" text="Shipment Method #1">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="three" />
-                                 </toggleGroup>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="503.0" layoutY="68.0" prefHeight="118.0" prefWidth="210.0">
-                           <children>
-                              <ScrollPane fx:id="purchProg_SingleProgBox_SP1" prefHeight="490.0" prefWidth="380.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="205.0">
-                                       <children>
-                                          <Label layoutX="8.0" layoutY="14.0" text="added price #2:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Text layoutX="8.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #2 : " wrappingWidth="208.548828125">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <RadioButton fx:id="purchProg_SingleProg_RB1" mnemonicParsing="false" text="Shipment Method #2" toggleGroup="$three">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <Button fx:id="btnShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
-                           <graphic>
-                              <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../pics/eye.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <Label fx:id="lblTitleFillFields" layoutX="-1.0" layoutY="-5.0" prefHeight="21.0" prefWidth="231.0" text="Purchase Information:">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </Button>
+                        </Label>
+                        <AnchorPane fx:id="pricingModel_pane" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="797.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                           <children>
+                              <VBox layoutX="10.0" layoutY="19.0" prefHeight="224.0" prefWidth="189.0">
+                                 <children>
+                                    <Label text="Please fill the following:" textFill="#144465" underline="true">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label prefHeight="21.0" prefWidth="129.0" text="Fuel Amount :">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="tfDiscout" prefHeight="30.0" prefWidth="76.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TextField>
+                                    <Label prefHeight="21.0" prefWidth="129.0" text="Home Address:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="tfAddress" prefHeight="30.0" prefWidth="76.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TextField>
+                                    <Label prefHeight="21.0" prefWidth="129.0" text="Current fuel price:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <TextField fx:id="tfAddress1" editable="false" prefHeight="30.0" prefWidth="143.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="/ Liter">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="263.0" layoutY="54.0" prefHeight="140.0" prefWidth="245.0">
+                                 <children>
+                                    <ScrollPane fx:id="purchProg_SingleProgBox_SP" prefHeight="115.0" prefWidth="210.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="241.0">
+                                             <children>
+                                                <Label layoutX="7.0" layoutY="11.0" text="added price #1:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Text layoutX="7.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #1 : " wrappingWidth="136.548828125">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Label layoutX="7.0" layoutY="73.0" text="estimated delivery time: 5-10 Days">
+                                                   <font>
+                                                      <Font name="Arial" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <RadioButton fx:id="purchProg_SingleProg_RB" mnemonicParsing="false" selected="true" text="Shipment Method #1">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="three" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="528.0" layoutY="54.0" prefHeight="140.0" prefWidth="245.0">
+                                 <children>
+                                    <ScrollPane fx:id="purchProg_SingleProgBox_SP1" prefHeight="123.0" prefWidth="210.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="205.0">
+                                             <children>
+                                                <Label layoutX="8.0" layoutY="14.0" text="added price #2:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Text layoutX="8.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #2 : " wrappingWidth="208.548828125">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Label layoutX="8.0" layoutY="75.0" text="estimated delivery time: 6 Hours">
+                                                   <font>
+                                                      <Font name="Arial" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <RadioButton fx:id="purchProg_SingleProg_RB1" mnemonicParsing="false" text="Shipment Method #2" toggleGroup="$three">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/eye.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1.0" layoutY="318.0" prefHeight="320.0" prefWidth="303.0">
+                     <children>
+                        <Label fx:id="lblTitleOrderDetails" layoutX="-1.0" layoutY="-4.0" prefHeight="21.0" prefWidth="137.0" text="Order Details:">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutY="15.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                           <children>
+                              <VBox layoutX="58.0" layoutY="14.0" prefHeight="223.0" prefWidth="196.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="129.0" text="Ordered in:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="35.0" prefWidth="196.0">
+                                       <children>
+                                          <TextField fx:id="tfAmountOrderDetails11" prefHeight="25.0" prefWidth="145.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="21.0" prefWidth="129.0" text="Final Price:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="32.0" prefWidth="196.0">
+                                       <children>
+                                          <TextField fx:id="tfFinalPriceValueOrderDetails" prefHeight="25.0" prefWidth="147.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                          <Label prefHeight="27.0" prefWidth="25.0" text="₪">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="18.0" prefWidth="129.0" text="Amount:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="35.0" prefWidth="196.0">
+                                       <children>
+                                          <TextField fx:id="tfAmountOrderDetails" prefHeight="25.0" prefWidth="145.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                          <Label prefHeight="27.0" prefWidth="51.0" text="Liter">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="18.0" prefWidth="147.0" text="Shipment Method:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="35.0" prefWidth="196.0">
+                                       <children>
+                                          <TextField fx:id="tfAmountOrderDetails1" prefHeight="25.0" prefWidth="145.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnConfirmHomeFuelOrder" layoutX="59.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/v.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="349.0" layoutY="318.0" prefHeight="257.0" prefWidth="446.0">
+                     <children>
+                        <Label fx:id="lblTitleOrderDetails1" layoutX="-1.0" layoutY="-4.0" prefHeight="21.0" prefWidth="137.0" text="Discounts:">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutY="15.0" prefHeight="223.0" prefWidth="446.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                           <children>
+                              <Label layoutX="23.0" layoutY="153.0" prefHeight="21.0" prefWidth="282.0" text="Urgent shipment (within 6 hours):" textFill="#3b33d3">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="23.0" layoutY="26.0" text="Amount between 600 to 800 liters: " textFill="#3b33d3">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="23.0" layoutY="89.0" text="Amount more than 800 liters:  " textFill="#3b33d3">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="28.0" layoutY="47.0" text="3% off order price.">
+                                 <font>
+                                    <Font name="Arial" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="28.0" layoutY="110.0" text="4% discount on order price.">
+                                 <font>
+                                    <Font name="Arial" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="28.0" layoutY="174.0" text="+2% of fuel price">
+                                 <font>
+                                    <Font name="Arial" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="8.0" layoutY="104.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                 <font>
+                                    <Font size="58.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="7.0" layoutY="39.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                 <font>
+                                    <Font size="58.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="8.0" layoutY="-25.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                 <font>
+                                    <Font size="58.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="13.0" layoutY="321.0" prefHeight="320.0" prefWidth="303.0">
+            <AnchorPane layoutY="14.0" prefHeight="584.0" prefWidth="837.0" visible="false">
                <children>
-                  <Label fx:id="lblTitleOrderDetails" layoutX="-1.0" layoutY="-4.0" prefHeight="21.0" prefWidth="137.0" text="Order Details:">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                  <AnchorPane layoutX="2.0" layoutY="24.0" prefHeight="377.0" prefWidth="834.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                     <children>
+                        <TableView layoutX="7.0" layoutY="23.0" prefHeight="330.0" prefWidth="823.0">
+                          <columns>
+                            <TableColumn minWidth="-1.0" prefWidth="60.0" text="ID" />
+                              <TableColumn minWidth="-1.0" prefWidth="107.0" text="Order Time" />
+                              <TableColumn minWidth="-1.0" prefWidth="92.0" text="Address" />
+                              <TableColumn minWidth="-1.0" prefWidth="95.0" text="Product Name" />
+                              <TableColumn minWidth="-1.0" prefWidth="90.0" text="Amount" />
+                              <TableColumn minWidth="-1.0" prefWidth="117.0" text="Shipment Method" />
+                              <TableColumn minWidth="-1.0" prefWidth="84.0" text="Status" />
+                              <TableColumn minWidth="-1.0" prefWidth="86.0" text="Arrival Time" />
+                              <TableColumn minWidth="-1.0" prefWidth="91.0" text="Total Price" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="7.0" layoutY="5.0" text="Order Information:">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutY="15.0" prefHeight="300.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
-                     <children>
-                        <VBox layoutX="59.0" layoutY="36.0" prefHeight="158.0" prefWidth="196.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="129.0" text="Final Price:">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefHeight="34.0" prefWidth="196.0">
-                                 <children>
-                                    <TextField fx:id="tfFinalPriceValueOrderDetails" prefHeight="25.0" prefWidth="147.0">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </TextField>
-                                    <Label prefHeight="27.0" prefWidth="25.0" text="₪">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Label prefHeight="21.0" prefWidth="129.0" text="Amount:">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <HBox prefHeight="35.0" prefWidth="196.0">
-                                 <children>
-                                    <TextField fx:id="tfAmountOrderDetails" prefHeight="25.0" prefWidth="145.0">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </TextField>
-                                    <Label prefHeight="27.0" prefWidth="51.0" text="Liter">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="5.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Label prefHeight="30.0" prefWidth="147.0" text="Shipment Method:">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <TextField fx:id="tfShipmentMethodOrderDetails" prefHeight="25.0" prefWidth="145.0">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets right="50.0" />
-                                 </VBox.margin>
-                              </TextField>
-                           </children>
-                        </VBox>
-                        <Button fx:id="btnConfirmHomeFuelOrder" layoutX="58.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../pics/v.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

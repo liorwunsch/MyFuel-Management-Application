@@ -29,6 +29,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
     @FXML    private ToggleButton sidebar_btn2;
     @FXML    private ToggleButton sidebar_btn3;
     @FXML    private ToggleButton sidebar_btn4;
+    @FXML    private ToggleButton sidebar_btn5;
     
     @FXML    private BorderPane main_pane;
     @FXML    private AnchorPane addCustomer_pane;
@@ -67,6 +68,8 @@ public class MarketingRepresentativeWindow extends UserWindow {
     @FXML    private TextField addcar_CustID_TF2;
     @FXML    private Button addcar_CheckCust_btn2;
     @FXML    private ToggleGroup three;
+    
+    @FXML    private AnchorPane updateCustomer_pane;
     
 	@FXML
 	void initialize() {
@@ -122,6 +125,14 @@ public class MarketingRepresentativeWindow extends UserWindow {
 		pricingModel_pane.setVisible(true);
 		visableNow = pricingModel_pane;
 		topbar_window_label.setText("Pricing Model");
+	}
+	
+	@FXML
+	void Update_Customer(ActionEvent event) {
+		visableNow.setVisible(false);
+		updateCustomer_pane.setVisible(true);
+		visableNow = updateCustomer_pane;
+		topbar_window_label.setText("Update Customer");
 	}
 
 }

@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="main_pane" minHeight="700.0" prefHeight="650.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.MarketingRepresentativeWindow">
+<BorderPane fx:id="main_pane" minHeight="700.0" prefHeight="764.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.MarketingRepresentativeWindow">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
          <children>
@@ -47,9 +47,29 @@
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
+                  <ToggleButton fx:id="sidebar_btn5" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Update_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Update Customer" textFill="WHITE" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Leelawadee UI" size="18.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="-1.0" layoutY="-2.0">
+                                 <image>
+                                    <Image url="@../pics/UpdateCustomer.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="one" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE" toggleGroup="$one">
                      <font>
                         <Font name="Calibri" size="20.0" />
                      </font>
@@ -64,9 +84,6 @@
                            </children>
                         </Pane>
                      </graphic>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="one" />
-                     </toggleGroup>
                   </ToggleButton>
                   <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Add Customer" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                      <font>
@@ -75,7 +92,7 @@
                      <graphic>
                         <Pane>
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-3.0" layoutY="-1.0">
+                              <ImageView fitHeight="30.0" fitWidth="25.0" layoutY="-1.0">
                                  <image>
                                     <Image url="@../pics/addcustomer.png" />
                                  </image>
@@ -140,7 +157,7 @@
                   <Insets />
                </VBox.margin>
             </GridPane>
-            <Pane minHeight="190.0" minWidth="260.0" prefHeight="190.0" prefWidth="260.0">
+            <Pane minHeight="181.0" minWidth="260.0" prefHeight="181.0" prefWidth="260.0">
                <children>
                   <Group layoutX="133.0" layoutY="62.0">
                      <children>
@@ -217,7 +234,14 @@
             </AnchorPane>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #d8dce0;">
                <children>
-                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;" />
+                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;">
+                     <children>
+                        <Label layoutX="12.0" layoutY="6.0" text="Marketing Representative " textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Add Customer">
                      <font>
                         <Font name="Arial" size="26.0" />
@@ -232,13 +256,18 @@
       </VBox>
    </top>
    <center>
-      <AnchorPane fx:id="mainwindow_pane" minHeight="600.0" minWidth="830.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="mainwindow_pane" minHeight="600.0" minWidth="830.0" prefWidth="840.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="addCustomer_pane" layoutX="3.0" layoutY="12.0" prefHeight="600.0" prefWidth="830.0">
+            <AnchorPane fx:id="addCustomer_pane" layoutX="3.0" layoutY="12.0" prefHeight="600.0" prefWidth="830.0" visible="false">
                <children>
                   <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Customer Information">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="619.0" layoutY="-2.0" text="Customer Registration Step 1/3 " textFill="#0000ff">
+                     <font>
+                        <Font name="Calibri Italic" size="16.0" />
                      </font>
                   </Label>
                   <GridPane hgap="5.0" layoutX="-5.0" layoutY="17.0" prefHeight="422.0" prefWidth="790.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" vgap="5.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
@@ -350,66 +379,202 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="addCar_pane" layoutX="1.0" layoutY="10.0" prefHeight="551.0" prefWidth="830.0" visible="false">
+            <AnchorPane fx:id="addCar_pane" layoutX="1.0" layoutY="10.0" prefHeight="429.0" prefWidth="830.0" visible="false">
                <children>
+                  <Label layoutX="618.0" layoutY="2.0" text="Customer Registration Step 2/3 " textFill="#0000ff">
+                     <font>
+                        <Font name="Calibri Italic" size="16.0" />
+                     </font>
+                  </Label>
                   <Label layoutX="10.0" prefHeight="21.0" prefWidth="215.0" text="Car Information">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="-5.0" prefHeight="557.0" prefWidth="825.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
-                     <columnConstraints>
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="486.0" />
-                        <ColumnConstraints />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="84.0" minHeight="25.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="103.0" minHeight="30.0" prefHeight="46.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="57.0" minHeight="0.0" prefHeight="33.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="72.0" minHeight="0.0" percentHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="144.0" minHeight="0.0" percentHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="189.0" minHeight="4.0" prefHeight="38.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="216.0" minHeight="36.0" percentHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="204.0" minHeight="15.0" prefHeight="189.0" valignment="CENTER" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <AnchorPane layoutX="10.0" layoutY="20.0" prefHeight="369.0" prefWidth="816.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
                      <children>
-                        <Label text="Registration plate" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Owner Name" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Fuel Type" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="addcar_RegPlate_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets right="150.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="addcar_OwnerName_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets right="150.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <VBox alignment="CENTER" prefHeight="108.0" prefWidth="964.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                        <GridPane layoutY="-1.0" prefHeight="364.0" prefWidth="816.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="486.0" />
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="84.0" minHeight="25.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="103.0" minHeight="23.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="57.0" minHeight="0.0" prefHeight="24.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="72.0" minHeight="0.0" percentHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="24.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="144.0" minHeight="0.0" percentHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="189.0" minHeight="4.0" prefHeight="28.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="216.0" minHeight="36.0" percentHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="204.0" minHeight="15.0" prefHeight="86.0" valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <Button fx:id="addcar_SaveCar_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Car" textFill="WHITE" wrapText="true">
+                              <Label text="Registration plate" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Owner Name" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fuel Type" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcar_RegPlate_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="150.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="addcar_OwnerName_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets right="150.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <AnchorPane prefHeight="86.0" prefWidth="750.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                                 <children>
+                                    <Button fx:id="addcar_SaveCar_btn" layoutX="275.0" layoutY="19.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Car" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font name="Calibri" size="20.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../pics/v.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <GridPane prefHeight="81.0" prefWidth="616.0" GridPane.columnIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="161.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="227.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="229.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Customer ID">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addcar_CustID_TF" prefHeight="30.0" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <Button fx:id="addcar_CheckCust_btn" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="35.0" />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../pics/eye.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                              <ComboBox fx:id="addcar_FuelType_CB" prefHeight="30.0" prefWidth="173.0" promptText="Type #1" visibleRowCount="5" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <Label text="Please fill the following:" textFill="#144465" underline="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PurchProg_pane" layoutX="6.0" layoutY="4.0" prefHeight="660.0" prefWidth="827.0" visible="false">
+               <children>
+                  <AnchorPane layoutY="23.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="636.0" prefWidth="827.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                     <children>
+                        <AnchorPane layoutX="21.0" layoutY="59.0">
+                           <children>
+                              <Label text="Please choose a program:" textFill="#144465" underline="true">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <VBox alignment="TOP_CENTER" layoutX="446.0" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
+                                 <children>
+                                    <ScrollPane fx:id="purchProg_ExpenProgBox_SP" prefHeight="360.0" prefWidth="360.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                             <children>
+                                                <TextArea maxHeight="1.7976931348623157E308" prefHeight="193.0" prefWidth="358.0" text="program details&#10;" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <RadioButton fx:id="purchProg_ExpenProg_RB" mnemonicParsing="false" text="Expensive Program">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="two" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <GridPane layoutX="20.0" layoutY="419.0" prefHeight="56.0" prefWidth="743.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="48.0" minHeight="30.0" prefHeight="48.0" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Fuel Company #1" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label disable="true" text="Fuel Company #2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label disable="true" text="Fuel Company #3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="purchProg_FuelComp1_CB" prefWidth="150.0" promptText="#1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="purchProg_FuelComp2_CB" disable="true" prefWidth="150.0" promptText="#2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="purchProg_FuelComp3_CB" disable="true" prefWidth="150.0" promptText="#3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <Button fx:id="purchProg_SavePurch_btn" layoutX="260.0" layoutY="510.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="264.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Purchasing Program" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri" size="20.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets top="40.0" />
-                                 </VBox.margin>
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -418,34 +583,63 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <VBox alignment="TOP_CENTER" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
+                                 <children>
+                                    <ScrollPane fx:id="purchProg_ExpenProgBox_SP1" prefHeight="360.0" prefWidth="360.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                             <children>
+                                                <TextArea maxHeight="1.7976931348623157E308" prefWidth="358.0" text="when you click the radio button the program&#10;border change to green color&#10;" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <RadioButton fx:id="purchProg_ExpenProg_RB1" mnemonicParsing="false" selected="true" text="Single Program">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="two1" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <Label layoutY="382.0" text="Please choose ONE fuel company:" textFill="#144465" underline="true">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
                            </children>
-                        </VBox>
-                        <GridPane prefHeight="81.0" prefWidth="616.0" GridPane.columnIndex="2">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="161.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="227.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="229.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        </AnchorPane>
+                        <GridPane layoutX="28.0" layoutY="11.0" prefHeight="45.0" prefWidth="616.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="124.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="235.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="194.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
                               <Label text="Customer ID">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="addcar_CustID_TF" prefHeight="30.0" GridPane.columnIndex="1">
+                              <TextField fx:id="addcar_CustID_TF1" prefHeight="30.0" prefWidth="215.0" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <Button fx:id="addcar_CheckCust_btn" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
+                              <Button fx:id="addcar_CheckCust_btn1" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
                                  <GridPane.margin>
-                                    <Insets left="35.0" />
+                                    <Insets left="30.0" />
                                  </GridPane.margin>
                                  <font>
-                                    <Font name="Arial" size="18.0" />
+                                    <Font name="Arial" size="16.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -457,163 +651,13 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <ComboBox fx:id="addcar_FuelType_CB" prefHeight="30.0" prefWidth="173.0" promptText="Type #1" visibleRowCount="5" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <Label text="Please fill the following:" textFill="#144465" underline="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="30.0" right="30.0" top="10.0" />
-                     </padding>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="PurchProg_pane" layoutX="6.0" layoutY="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="636.0" prefWidth="827.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
-               <children>
-                  <AnchorPane layoutX="21.0" layoutY="59.0">
-                     <children>
-                        <Label text="Please choose a program:" textFill="#144465" underline="true">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <VBox alignment="TOP_CENTER" layoutX="446.0" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
-                           <children>
-                              <ScrollPane fx:id="purchProg_ExpenProgBox_SP" prefHeight="360.0" prefWidth="360.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0">
-                                       <children>
-                                          <TextArea maxHeight="1.7976931348623157E308" prefHeight="193.0" prefWidth="358.0" text="program details&#10;" />
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <RadioButton fx:id="purchProg_ExpenProg_RB" mnemonicParsing="false" text="Expensive Program">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="two" />
-                                 </toggleGroup>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <GridPane layoutX="20.0" layoutY="419.0" prefHeight="56.0" prefWidth="743.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="48.0" minHeight="30.0" prefHeight="48.0" />
-                          </rowConstraints>
-                           <children>
-                              <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Fuel Company #1" GridPane.halignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label disable="true" text="Fuel Company #2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label disable="true" text="Fuel Company #3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="purchProg_FuelComp1_CB" prefWidth="150.0" promptText="#1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="purchProg_FuelComp2_CB" disable="true" prefWidth="150.0" promptText="#2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="purchProg_FuelComp3_CB" disable="true" prefWidth="150.0" promptText="#3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                           </children>
-                        </GridPane>
-                        <Button fx:id="purchProg_SavePurch_btn" layoutX="260.0" layoutY="510.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="264.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Purchasing Program" textFill="WHITE">
-                           <font>
-                              <Font name="Calibri" size="20.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../pics/v.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <VBox alignment="TOP_CENTER" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
-                           <children>
-                              <ScrollPane fx:id="purchProg_ExpenProgBox_SP1" prefHeight="360.0" prefWidth="360.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0">
-                                       <children>
-                                          <TextArea maxHeight="1.7976931348623157E308" prefWidth="358.0" text="when you click the radio button the program&#10;border change to green color&#10;" />
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <RadioButton fx:id="purchProg_ExpenProg_RB1" mnemonicParsing="false" selected="true" text="Single Program">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="two1" />
-                                 </toggleGroup>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <Label layoutY="382.0" text="Please choose ONE fuel company:" textFill="#144465" underline="true">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
-                  <GridPane layoutX="28.0" layoutY="11.0" prefHeight="45.0" prefWidth="616.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="124.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="235.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="194.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Customer ID">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="addcar_CustID_TF1" prefHeight="30.0" prefWidth="215.0" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </TextField>
-                        <Button fx:id="addcar_CheckCust_btn1" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="30.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../pics/eye.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </GridPane>
+                  <Label layoutX="621.0" layoutY="5.0" text="Customer Registration Step 3/3 " textFill="#0000ff">
+                     <font>
+                        <Font name="Calibri Italic" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="pricingModel_pane" layoutX="6.0" layoutY="11.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="534.0" prefWidth="830.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
@@ -756,6 +800,169 @@
                         <ToggleButton layoutX="41.0" layoutY="226.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" styleClass="task-toggle-button" stylesheets="@../pics/style.css" text="Choose" toggleGroup="$three" />
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="updateCustomer_pane" layoutX="6.0" layoutY="12.0" prefHeight="600.0" prefWidth="824.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Customer Information">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="5.0" layoutX="-5.0" layoutY="17.0" prefHeight="534.0" prefWidth="820.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" vgap="5.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="427.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="427.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="52.0" minHeight="10.0" percentHeight="0.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="33.0" minHeight="14.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="29.0" percentHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="28.0" minHeight="17.0" percentHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="39.0" minHeight="31.0" percentHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="27.0" minHeight="18.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="41.0" minHeight="29.0" percentHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="27.0" minHeight="16.0" percentHeight="0.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="35.0" percentHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="19.0" percentHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="61.0" minHeight="36.0" percentHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="125.0" minHeight="100.0" percentHeight="0.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane prefHeight="30.0" prefWidth="773.0" GridPane.columnSpan="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="124.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="235.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="194.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Customer ID">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcar_CustID_TF11" prefHeight="30.0" prefWidth="215.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Button fx:id="addcar_CheckCust_btn11" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="30.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/eye.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="150.0" />
+                           </GridPane.margin>
+                        </GridPane>
+                        <Label text="Customer ID" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Customer Type " GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Surname" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Email" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Credit Card No." GridPane.columnIndex="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="addcust_Credit_TF1" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="addcust_CustID_TF1" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="addcust_FirstName_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="addcust_Surname_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="addcust_Email_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                           <GridPane.margin>
+                              <Insets right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="addcust_CustType_CB1" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <AnchorPane GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="11">
+                           <children>
+                              <Button fx:id="addcust_Save_btn1" layoutX="146.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="218.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Customer" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Calibri" size="19.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/v.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="addcust_Save_btn11" layoutX="427.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="218.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Customer" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Calibri" size="19.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/x.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </GridPane>
                </children>
             </AnchorPane>
          </children>
