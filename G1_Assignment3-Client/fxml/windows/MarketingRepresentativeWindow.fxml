@@ -3,10 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -24,7 +27,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="main_pane" minHeight="700.0" prefHeight="764.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.MarketingRepresentativeWindow">
+<BorderPane fx:id="main_pane" minHeight="700.0" prefHeight="764.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.MarketingRepresentativeWindow">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
          <children>
@@ -50,14 +53,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ToggleButton fx:id="sidebar_btn5" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Update_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Update Customer" textFill="WHITE" GridPane.rowIndex="5">
+                  <ToggleButton fx:id="sidebar_btn5" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Update_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Create Sales Pattern" textFill="WHITE" GridPane.rowIndex="5">
                      <font>
-                        <Font name="Leelawadee UI" size="18.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="-1.0" layoutY="-2.0">
+                              <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="3.0" layoutY="-2.0">
                                  <image>
                                     <Image url="@../pics/UpdateCustomer.png" />
                                  </image>
@@ -69,14 +72,14 @@
                         <ToggleGroup fx:id="one" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE" toggleGroup="$one">
+                  <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE" toggleGroup="$one">
                      <font>
-                        <Font name="Calibri" size="20.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
                            <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-1.0">
                                  <image>
                                     <Image url="@../pics/home.png" />
                                  </image>
@@ -85,9 +88,9 @@
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Add Customer" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Add\Edit Customer" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Calibri" size="20.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
@@ -101,14 +104,14 @@
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Car" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Add Car" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Add_Car" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Add\Edit Car" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Leelawadee UI" size="18.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-1.0" layoutY="5.0">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-2.0" layoutY="5.0">
                                  <image>
                                     <Image url="@../pics/addcar.png" />
                                  </image>
@@ -122,7 +125,7 @@
                   </ToggleButton>
                   <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Purchase_Prog" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Set Purchasing Program" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Leelawadee UI" size="18.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
@@ -138,7 +141,7 @@
                   </ToggleButton>
                   <ToggleButton fx:id="sidebar_btn4" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Pricing_Model" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Set Pricing Model" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="4">
                      <font>
-                        <Font name="Leelawadee UI" size="18.0" />
+                        <Font name="Calibri" size="18.0" />
                      </font>
                      <graphic>
                         <Pane>
@@ -265,12 +268,12 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="619.0" layoutY="-2.0" text="Customer Registration Step 1/3 " textFill="#0000ff">
+                  <Label fx:id="step1" layoutX="619.0" layoutY="-2.0" text="Customer Registration Step 1/3 " textFill="#0000ff">
                      <font>
                         <Font name="Calibri Italic" size="16.0" />
                      </font>
                   </Label>
-                  <GridPane hgap="5.0" layoutX="-5.0" layoutY="17.0" prefHeight="422.0" prefWidth="790.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" vgap="5.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
+                  <GridPane hgap="5.0" layoutX="-5.0" layoutY="17.0" prefHeight="545.0" prefWidth="820.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" vgap="5.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
                     <columnConstraints>
                       <ColumnConstraints />
                         <ColumnConstraints />
@@ -278,7 +281,10 @@
                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="427.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="68.0" minHeight="10.0" percentHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="58.0" minHeight="7.0" percentHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="39.0" minHeight="8.0" percentHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="28.0" minHeight="10.0" percentHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
                         <RowConstraints percentHeight="0.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="0.0" vgrow="SOMETIMES" />
                       <RowConstraints percentHeight="0.0" vgrow="SOMETIMES" />
@@ -292,37 +298,37 @@
                         <RowConstraints percentHeight="0.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Customer ID" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="Customer ID" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Customer Type " GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label text="Customer Type " GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="6">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Surname" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <Label text="Surname" GridPane.columnIndex="2" GridPane.rowIndex="8">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Email" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                        <Label text="Email" GridPane.columnIndex="2" GridPane.rowIndex="10">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Credit Card No." GridPane.columnIndex="2" GridPane.rowIndex="9">
+                        <Label text="Credit Card No." GridPane.columnIndex="2" GridPane.rowIndex="12">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addcust_Credit_TF" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                        <TextField fx:id="addcust_Credit_TF" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000" GridPane.columnIndex="2" GridPane.rowIndex="13">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
@@ -330,30 +336,30 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="addcust_CustID_TF" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <TextField fx:id="addcust_CustID_TF" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="addcust_FirstName_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <TextField fx:id="addcust_FirstName_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="addcust_Surname_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        <TextField fx:id="addcust_Surname_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="addcust_Email_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                        <TextField fx:id="addcust_Email_TF" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets right="50.0" />
                            </GridPane.margin>
                         </TextField>
-                        <ComboBox fx:id="addcust_CustType_CB" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <VBox alignment="CENTER" prefHeight="87.0" prefWidth="784.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="11">
+                        <ComboBox fx:id="addcust_CustType_CB" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <AnchorPane prefHeight="85.0" prefWidth="804.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="14">
                            <children>
-                              <Button fx:id="addcust_Save_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Customer" textFill="WHITE" wrapText="true">
+                              <Button fx:id="addcust_Save_btn" layoutX="298.0" layoutY="27.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Customer" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Calibri" size="19.0" />
                                  </font>
@@ -366,12 +372,32 @@
                                  </graphic>
                               </Button>
                            </children>
-                        </VBox>
-                        <Label text="Please fill the following:" textFill="#144465" underline="true" GridPane.columnIndex="2" GridPane.valignment="CENTER">
+                        </AnchorPane>
+                        <Label text="Please Fill the Following (new customer):" textFill="#144465" underline="true" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
+                        <Label text="Edit Existing Customer:" textFill="#144465" underline="true" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="EditCustomer_btn" mnemonicParsing="false" prefHeight="34.0" prefWidth="189.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Edit Customer" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri" size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pics/EditCars.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
                      </children>
                      <padding>
                         <Insets top="10.0" />
@@ -379,9 +405,99 @@
                   </GridPane>
                </children>
             </AnchorPane>
+            <AnchorPane layoutX="133.0" layoutY="71.0" prefHeight="457.0" prefWidth="524.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="295.0" text="Edit Customer " underline="true">
+                     <font>
+                        <Font name="Calibri Italic" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="53.0" text="Customer ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="119.0" layoutY="48.0" prefHeight="30.0" prefWidth="172.0" />
+                  <Button layoutX="305.0" layoutY="386.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Customer">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/v.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button layoutX="63.0" layoutY="386.0" mnemonicParsing="false" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Customer">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/x.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="btnExit11" layoutX="501.0" layoutY="4.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <AnchorPane layoutX="19.0" layoutY="85.0" prefHeight="301.0" prefWidth="488.0">
+                     <children>
+                        <VBox prefHeight="266.0" prefWidth="205.0" spacing="5.0">
+                           <children>
+                              <Label text="First Name">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcust_Surname_TF11" prefHeight="30.0" />
+                              <Label text="Surname">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcust_CustID_TF11" prefHeight="30.0" prefWidth="236.0" />
+                              <Label text="Email">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcust_FirstName_TF11" prefHeight="30.0" />
+                              <Label text="Credit Card No.">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addcust_Credit_TF11" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Customer Type ">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="addcust_CustType_CB11" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="320.0" layoutY="47.0" mnemonicParsing="false" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Customer">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/eye.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="addCar_pane" layoutX="1.0" layoutY="10.0" prefHeight="429.0" prefWidth="830.0" visible="false">
                <children>
-                  <Label layoutX="618.0" layoutY="2.0" text="Customer Registration Step 2/3 " textFill="#0000ff">
+                  <Label fx:id="step2" layoutX="618.0" layoutY="2.0" text="Customer Registration Step 2/3 " textFill="#0000ff">
                      <font>
                         <Font name="Calibri Italic" size="16.0" />
                      </font>
@@ -412,7 +528,7 @@
                               <RowConstraints maxHeight="204.0" minHeight="15.0" prefHeight="86.0" valignment="CENTER" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Registration plate" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <Label text="Registration Plate" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -473,7 +589,7 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </TextField>
-                                    <Button fx:id="addcar_CheckCust_btn" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
+                                    <Button fx:id="addcar_CheckCust_btn" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets left="35.0" />
                                        </GridPane.margin>
@@ -496,6 +612,18 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
+                              <Button disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Edit Cars" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/EditCars.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                            <padding>
                               <Insets left="30.0" right="30.0" />
@@ -505,18 +633,54 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+            <AnchorPane layoutX="133.0" layoutY="109.0" prefHeight="414.0" prefWidth="552.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="295.0" text="Edit Customer Cars" underline="true">
+                     <font>
+                        <Font name="Calibri Italic" size="23.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="19.0" layoutY="91.0" prefHeight="200.0" prefWidth="506.0">
+                    <columns>
+                      <TableColumn prefWidth="160.0" text="Registration Plate" />
+                      <TableColumn prefWidth="195.0" text="Owner Name" />
+                        <TableColumn prefWidth="150.0" text="Fuel Type" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="53.0" text="Customer ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="119.0" layoutY="48.0" prefHeight="30.0" prefWidth="172.0" />
+                  <TextField layoutX="19.0" layoutY="305.0" prefHeight="30.0" promptText="Registration Plate" />
+                  <TextField layoutX="199.0" layoutY="305.0" prefHeight="30.0" promptText="Owner Name" />
+                  <ComboBox layoutX="375.0" layoutY="305.0" prefHeight="30.0" prefWidth="150.0" promptText="Fuel Type" />
+                  <Button layoutX="304.0" layoutY="358.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Car" />
+                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Car" />
+                  <Button fx:id="btnExit1" layoutX="526.0" layoutY="4.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="PurchProg_pane" layoutX="6.0" layoutY="4.0" prefHeight="660.0" prefWidth="827.0" visible="false">
                <children>
                   <AnchorPane layoutY="23.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="636.0" prefWidth="827.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
                         <AnchorPane layoutX="21.0" layoutY="59.0">
                            <children>
-                              <Label text="Please choose a program:" textFill="#144465" underline="true">
+                              <Label text="Please Choose a Program:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <VBox alignment="TOP_CENTER" layoutX="446.0" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
+                              <VBox alignment="TOP_CENTER" layoutX="444.0" layoutY="29.0" prefHeight="340.0" prefWidth="340.0">
                                  <children>
                                     <ScrollPane fx:id="purchProg_ExpenProgBox_SP" prefHeight="360.0" prefWidth="360.0">
                                        <content>
@@ -607,7 +771,7 @@
                                     </RadioButton>
                                  </children>
                               </VBox>
-                              <Label layoutY="382.0" text="Please choose ONE fuel company:" textFill="#144465" underline="true">
+                              <Label layoutY="382.0" text="Please Choose --- Fuel Company:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -653,7 +817,7 @@
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="621.0" layoutY="5.0" text="Customer Registration Step 3/3 " textFill="#0000ff">
+                  <Label fx:id="step3" layoutX="621.0" layoutY="5.0" text="Customer Registration Step 3/3 " textFill="#0000ff">
                      <font>
                         <Font name="Calibri Italic" size="16.0" />
                      </font>
@@ -711,7 +875,7 @@
                         </Button>
                      </children>
                   </GridPane>
-                  <Label layoutX="22.0" layoutY="87.0" text="Please choose a pricing model:" textFill="#144465" underline="true">
+                  <Label layoutX="22.0" layoutY="87.0" text="Please Choose a Pricing Model:" textFill="#144465" underline="true">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -802,167 +966,130 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="updateCustomer_pane" layoutX="6.0" layoutY="12.0" prefHeight="600.0" prefWidth="824.0">
+            <AnchorPane fx:id="updateCustomer_pane" layoutX="6.0" layoutY="12.0" prefHeight="678.0" prefWidth="681.0">
                <children>
-                  <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Customer Information">
+                  <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Sale Pattern Information:">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane hgap="5.0" layoutX="-5.0" layoutY="17.0" prefHeight="534.0" prefWidth="820.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" vgap="5.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
-                     <columnConstraints>
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="427.0" />
-                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="577.0" minWidth="10.0" prefWidth="427.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="52.0" minHeight="10.0" percentHeight="0.0" prefHeight="52.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="33.0" minHeight="14.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="29.0" percentHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="28.0" minHeight="17.0" percentHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="39.0" minHeight="31.0" percentHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="27.0" minHeight="18.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="41.0" minHeight="29.0" percentHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="27.0" minHeight="16.0" percentHeight="0.0" prefHeight="21.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="50.0" minHeight="35.0" percentHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="19.0" percentHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="61.0" minHeight="36.0" percentHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="125.0" minHeight="100.0" percentHeight="0.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <AnchorPane layoutX="5.0" layoutY="15.0" prefHeight="658.0" prefWidth="591.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
-                        <GridPane prefHeight="30.0" prefWidth="773.0" GridPane.columnSpan="4">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="124.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="235.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="194.0" />
-                           </columnConstraints>
-                           <rowConstraints>
+                        <TableView layoutX="23.0" layoutY="313.0" prefHeight="320.0" prefWidth="541.0">
+                          <columns>
+                            <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer ID" />
+                            <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer Type Rank" />
+                              <TableColumn minWidth="-1.0" prefWidth="135.0" text="Fueling Hours Rank" />
+                              <TableColumn minWidth="-1.0" prefWidth="135.0" text="Fuel Types Rank" />
+                          </columns>
+                        </TableView>
+                        <GridPane layoutX="23.0" layoutY="38.0" prefHeight="185.0" prefWidth="375.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="126.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="26.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="234.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <Label text="Customer ID">
+                              <Label text="Duration">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="addcar_CustID_TF11" prefHeight="30.0" prefWidth="215.0" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Button fx:id="addcar_CheckCust_btn11" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Check Customer" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="30.0" />
-                                 </GridPane.margin>
+                              <Label GridPane.rowIndex="1" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="225.0" spacing="3.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+                                 <children>
+                                    <TextField prefHeight="30.0" prefWidth="65.0" promptText="HH:MM" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <Label text="\%">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="3.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Label text="Diesel " GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../pics/eye.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
+                              </Label>
+                              <Label text="Gasoline " GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Motorbike Fuel " GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <Label text="\%">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="3.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <Label text="\%">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="3.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
-                           <GridPane.margin>
-                              <Insets left="10.0" right="150.0" />
-                           </GridPane.margin>
                         </GridPane>
-                        <Label text="Customer ID" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="pricingModel_SaveModel_btn1" layoutX="111.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Create Pattern" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../pics/v.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label layoutX="20.0" layoutY="12.0" text="Please Fill the Following:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Customer Type " GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label layoutX="23.0" layoutY="283.0" text="Sales Analysis:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Surname" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Email" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Credit Card No." GridPane.columnIndex="2" GridPane.rowIndex="9">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="addcust_Credit_TF1" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000" GridPane.columnIndex="2" GridPane.rowIndex="10">
-                           <GridPane.margin>
-                              <Insets right="50.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="addcust_CustID_TF1" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="addcust_FirstName_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                           <GridPane.margin>
-                              <Insets right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="addcust_Surname_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="addcust_Email_TF1" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                           <GridPane.margin>
-                              <Insets right="50.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <ComboBox fx:id="addcust_CustType_CB1" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <AnchorPane GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="11">
-                           <children>
-                              <Button fx:id="addcust_Save_btn1" layoutX="146.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="218.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Customer" textFill="WHITE" wrapText="true">
-                                 <font>
-                                    <Font name="Calibri" size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../pics/v.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="addcust_Save_btn11" layoutX="427.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="218.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Customer" textFill="WHITE" wrapText="true">
-                                 <font>
-                                    <Font name="Calibri" size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../pics/x.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </AnchorPane>
                      </children>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </GridPane>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

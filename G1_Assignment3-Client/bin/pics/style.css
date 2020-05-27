@@ -62,7 +62,6 @@
 .side-bar-toggle-button {
   -fx-transition-duration: 0.4s;
   -fx-background-color: #1e262c;
-  -fx-font-family: Calibri;
   -fx-text-fill: #ffffff;
 }
 

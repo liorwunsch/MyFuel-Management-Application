@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -28,8 +29,9 @@ import javafx.stage.WindowEvent;
  * @author Elroy, Lior
  */
 public abstract class UserWindow extends AFXML {
-	
-	@FXML	private AnchorPane mainwindow_pane;
+
+	@FXML	protected BorderPane main_pane;
+	@FXML	protected AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
 	@FXML	protected Button btnSignOut;

@@ -115,12 +115,12 @@ public class LoginWindow extends AFXML {
 			newWindowPath = "/windows/CustomerWindow.fxml";
 			newWindowTitle = "MyFuel Customer";
 		}
-		
+
 		if (role.equals("MarketingRepresentative")) {
 			newWindowPath = "/windows/MarketingRepresentativeWindow.fxml";
 			newWindowTitle = "MyFuel Marketing Representative";
 		}
-		
+
 		if (role.equals("FuelStationManager")) {
 			newWindowPath = "/windows/FuelStationManagerWindow.fxml";
 			newWindowTitle = "MyFuel Fuel Station Manager";
@@ -210,5 +210,5 @@ public class LoginWindow extends AFXML {
 	public void closeTopBar(ActionEvent event) {
 		System.exit(0);
 	}
-	
+
 }

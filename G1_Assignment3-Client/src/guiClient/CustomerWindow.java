@@ -21,10 +21,10 @@ import javafx.stage.Window;
 public class CustomerWindow extends UserWindow {
 
 	@FXML	private ToggleGroup one;
-	@FXML	private ToggleButton sidebar_btn11;
+	@FXML	private ToggleButton sidebar_btn0;
 	@FXML	private ToggleButton sidebar_btn1;
 	@FXML	private ToggleButton sidebar_btn3;
-	
+
 	@FXML	private Label lblTitleFillFields;
 	@FXML	private AnchorPane pricingModel_pane;
 	@FXML	private TextField tfDiscout;
@@ -45,7 +45,7 @@ public class CustomerWindow extends UserWindow {
 	void initialize() { // will change
 		this.controller = MarketingRepresentativeController.getInstance();
 	}
-	
+
 	@Override
 	public Window getWindow() {
 		return this.btnConfirmHomeFuelOrder.getScene().getWindow();
@@ -58,7 +58,7 @@ public class CustomerWindow extends UserWindow {
 			if (message.startsWith("sign out"))
 				this.handleSignOutFromServer(message, this.getWindow());
 		}
-		
+
 		/**
 		 * 
 		 */

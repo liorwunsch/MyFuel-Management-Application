@@ -16,13 +16,13 @@ import javafx.stage.Window;
 public class FuelStationManagerWindow extends UserWindow {
 
 	@FXML	private ToggleGroup one;
-	@FXML	private ToggleButton sidebar_btn11;
+	@FXML	private ToggleButton sidebar_btn0;
 	@FXML	private ToggleButton sidebar_btn1;
 	@FXML	private ToggleButton sidebar_btn2;
 	@FXML	private ToggleButton sidebar_btn3;
-	
+
 	@FXML	private Button btnConfirmAssess;
-	
+
 	@FXML
 	void initialize() { // will change
 		this.controller = MarketingRepresentativeController.getInstance();
