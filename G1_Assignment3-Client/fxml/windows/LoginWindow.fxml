@@ -20,7 +20,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="login-main-pane" stylesheets="@../pics/loginWindow.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.LoginWindow">
+
+<VBox styleClass="login-main-pane" stylesheets="@../pics/loginWindow.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.LoginWindow">
    <children>
       <AnchorPane fx:id="titleBar" minHeight="30.0" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" prefHeight="30.0" prefWidth="460.0" styleClass="title-bar" stylesheets="@../pics/loginWindow.css">
          <children>
@@ -63,91 +64,7 @@
       </AnchorPane>
       <AnchorPane>
          <children>
-            <AnchorPane fx:id="ServerPane" prefHeight="655.0" prefWidth="460.0">
-               <children>
-                  <Pane layoutY="5.0" prefHeight="40.0" prefWidth="452.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="29.0" layoutY="-5.0" prefHeight="50.0" prefWidth="105.0" styleClass="signIn-label" stylesheets="@../pics/loginWindow.css" text="Server Connection">
-                           <font>
-                              <Font name="Leelawadee UI" size="12.0" />
-                           </font>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Pane>
-                  <Separator layoutX="2.0" layoutY="48.0" maxWidth="1.7976931348623157E308" prefHeight="6.0" prefWidth="460.0" />
-                  <TextField editable="false" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="0.1" prefWidth="0.1" />
-                  <Label layoutX="35.0" layoutY="103.0" text="Please Enter Server IP">
-                     <font>
-                        <Font name="Leelawadee UI" size="24.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="30.0" layoutY="153.0" prefHeight="108.0" prefWidth="395.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="28.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="173.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="200.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" />
-                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Pane prefHeight="29.0" prefWidth="27.0">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-5.0" layoutY="22.0">
-                                 <image>
-                                    <Image url="@../pics/ServerIp.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Pane>
-                        <TextField fx:id="tfServerIP" prefHeight="32.0" prefWidth="369.0" promptText="* Server IP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </GridPane>
-                  <Label fx:id="lblError1" layoutX="35.0" layoutY="292.0" prefHeight="20.0" prefWidth="388.0" text="Label" textFill="RED" visible="false">
-                     <font>
-                        <Font name="Leelawadee UI" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-                  <Button fx:id="btnSignIn1" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#signIn" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Continue" textFill="WHITE">
-                     <font>
-                        <Font name="Leelawadee UI" size="16.0" />
-                     </font>
-                  </Button>
-                  <Pane layoutY="360.0" prefHeight="295.0" prefWidth="452.0">
-                     <children>
-                        <Group layoutX="125.0" layoutY="26.0">
-                           <children>
-                              <ImageView fitHeight="200.0" fitWidth="180.0" layoutX="15.0">
-                                 <image>
-                                    <Image url="@../pics/logo.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="44.0" layoutY="181.0" prefWidth="124.0" text="MyFuel">
-                                 <font>
-                                    <Font name="Century Gothic" size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Group>
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="loginPane" prefHeight="655.0" prefWidth="460.0" visible="false">
+            <AnchorPane fx:id="loginPane" prefHeight="655.0" prefWidth="460.0">
                <children>
                   <Pane layoutY="5.0" prefHeight="40.0" prefWidth="460.0">
                      <children>
@@ -183,7 +100,7 @@
                         <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="tfLoginUserName" prefHeight="40.0" prefWidth="347.0" promptText="* Username" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
+                        <TextField fx:id="tfLoginUserName" prefHeight="40.0" prefWidth="347.0" promptText="Email or Username*" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets right="6.0" />
                            </GridPane.margin>
@@ -191,7 +108,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </TextField>
-                        <PasswordField fx:id="tfLoginPassword" prefHeight="40.0" prefWidth="373.0" promptText="* Password" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <PasswordField fx:id="tfLoginPassword" prefHeight="40.0" prefWidth="373.0" promptText="Password*" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -242,6 +159,94 @@
                      </font>
                   </Button>
                   <Pane layoutY="360.0" prefHeight="295.0" prefWidth="460.0">
+                     <children>
+                        <Group layoutX="125.0" layoutY="26.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="180.0" layoutX="15.0">
+                                 <image>
+                                    <Image url="@../pics/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="44.0" layoutY="181.0" prefWidth="124.0" text="MyFuel">
+                                 <font>
+                                    <Font name="Century Gothic" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ServerPane" prefHeight="655.0" prefWidth="460.0" visible="false">
+               <children>
+                  <Pane layoutY="5.0" prefHeight="40.0" prefWidth="452.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="29.0" layoutY="-5.0" prefHeight="50.0" prefWidth="105.0" styleClass="signIn-label" stylesheets="@../pics/loginWindow.css" text="Server Connection">
+                           <font>
+                              <Font name="Leelawadee UI" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Pane>
+                  <Separator layoutX="2.0" layoutY="48.0" maxWidth="1.7976931348623157E308" prefHeight="6.0" prefWidth="460.0" />
+                  <TextField editable="false" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="0.1" prefWidth="0.1" />
+                  <Label layoutX="35.0" layoutY="103.0" text="Please Enter Server IP">
+                     <font>
+                        <Font name="Leelawadee UI" size="24.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="30.0" layoutY="153.0" prefHeight="108.0" prefWidth="395.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="28.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="173.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="200.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" />
+                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextField fx:id="tfLoginUserName1" prefHeight="40.0" prefWidth="347.0" promptText="Email or Username*" text="Server IP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets right="6.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </TextField>
+                        <Pane prefHeight="29.0" prefWidth="27.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-5.0" layoutY="17.0">
+                                 <image>
+                                    <Image url="@../pics/ServerIp.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="37.0" prefWidth="27.0" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="lblError1" layoutX="35.0" layoutY="292.0" prefHeight="20.0" prefWidth="388.0" text="Label" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Leelawadee UI" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="btnSignIn1" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#signIn" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Continue" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="16.0" />
+                     </font>
+                  </Button>
+                  <Pane layoutY="360.0" prefHeight="295.0" prefWidth="452.0">
                      <children>
                         <Group layoutX="125.0" layoutY="26.0">
                            <children>

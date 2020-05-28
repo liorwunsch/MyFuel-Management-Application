@@ -3,3 +3,14 @@
   -fx-border-color: #698396;
   -fx-border-width:3px 3px 3px 3px;
 }
+
+.home
+{
+-fx-background-color:#dbe9f5;
+}
+
+.reports{
+  -fx-background-color:#ffffff;
+  -fx-border-color: #000000;
+  -fx-border-width:2px;
+}
