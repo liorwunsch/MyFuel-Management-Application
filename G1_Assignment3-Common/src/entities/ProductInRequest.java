@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.ProductName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInRequest implements Serializable {
 
@@ -13,6 +16,12 @@ public class ProductInRequest implements Serializable {
 	// fields
 	private double requestedRate;
 
+	/**
+	 * 
+	 * @param productRatesUpdateRequestID
+	 * @param productName
+	 * @param requestedRate
+	 */
 	public ProductInRequest(int productRatesUpdateRequestID, ProductName productName, double requestedRate) {
 		super();
 		this.productRatesUpdateRequestID = productRatesUpdateRequestID;

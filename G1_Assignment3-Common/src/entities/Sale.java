@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Sale implements Serializable {
 
@@ -17,6 +20,13 @@ public class Sale implements Serializable {
 	private Date startTime;
 	private Date endTime;
 
+	/**
+	 * w/o saleID auto-inc
+	 * @param salesPatternID
+	 * @param active
+	 * @param startTime
+	 * @param endTime
+	 */
 	public Sale(int salesPatternID, boolean active, Date startTime, Date endTime) {
 		super();
 
@@ -26,6 +36,14 @@ public class Sale implements Serializable {
 		this.endTime = endTime;
 	}
 
+	/**
+	 * 
+	 * @param saleID
+	 * @param salesPatternID
+	 * @param active
+	 * @param startTime
+	 * @param endTime
+	 */
 	public Sale(int saleID, int salesPatternID, boolean active, Date startTime, Date endTime) {
 		super();
 		this.saleID = saleID;

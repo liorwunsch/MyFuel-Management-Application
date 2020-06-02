@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 public enum Affiliation {
 	Management {
 		public String toString() {

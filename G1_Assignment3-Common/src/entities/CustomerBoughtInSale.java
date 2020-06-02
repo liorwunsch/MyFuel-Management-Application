@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class CustomerBoughtInSale implements Serializable {
 
@@ -12,6 +15,12 @@ public class CustomerBoughtInSale implements Serializable {
 	// fields
 	private double amountPaid;
 
+	/**
+	 * 
+	 * @param saleID
+	 * @param customerID
+	 * @param amountPaid
+	 */
 	public CustomerBoughtInSale(int saleID, String customerID, double amountPaid) {
 		super();
 		this.saleID = saleID;

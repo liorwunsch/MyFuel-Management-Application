@@ -61,6 +61,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private TextField tfECUCredit;
 	@FXML	private ComboBox<?> cobECUCustType;
 	@FXML	private Button btnECUShow;
+	@FXML	private Button btnECUBack;
 
 	@FXML	private AnchorPane addEditCarPane;
 	@FXML	private Label step2;
@@ -71,6 +72,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Button btnAECACheck;
 	@FXML	private ComboBox<?> cobAECAFuelType;
 	@FXML	private Button btnAECAEdit;
+	@FXML	private Button btnAECABack;
 	
 	@FXML	private AnchorPane editCarPane;
 	@FXML	private TableView<?> tvECACarDetails;
@@ -82,14 +84,14 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Button btnECADelete;
 	@FXML	private Button btnExit1;
 	@FXML	private ImageView btnECAClose;
+	@FXML	private Button btnECABack;
+	@FXML	private Button btnECAShow;
 	
 	@FXML	private AnchorPane setPurchasingPane;
 	@FXML	private Label step3;
 	@FXML	private VBox vbSPPMagicbox2;
 	@FXML	private ScrollPane purchProg_ExpenProgBox_SP;
 	@FXML	private TextArea taSPPExpensiveDetails;
-	@FXML	private RadioButton rbSPPExpensive;
-	@FXML	private ToggleGroup two;
 	@FXML	private ComboBox<?> cobSPPFuelCompany1;
 	@FXML	private ComboBox<?> cobSPPFuelCompany2;
 	@FXML	private ComboBox<?> cobSPPFuelCompany3;
@@ -97,10 +99,13 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private VBox vbSPPMagicbox1;
 	@FXML	private ScrollPane purchProg_ExpenProgBox_SP1;
 	@FXML	private TextArea taSPPSingleDetails;
-	@FXML	private RadioButton rbSPPSingle;
+	@FXML	private ToggleGroup two;
+	@FXML	private RadioButton rbSPPStandard;
+	@FXML	private RadioButton rbSPPPremium;
 	@FXML	private Label lblSPPChooseCompany;
 	@FXML	private TextField tfSPPCustID;
 	@FXML	private Button btnSPPCheck;
+	@FXML	private Button btnSPPBack;
 
 	@FXML	private AnchorPane pricingModelPane;
 	@FXML	private Button btnSPMSet;
@@ -108,7 +113,10 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Button btnSPMCheck;
 	@FXML	private Label lblSPMPriceModel1;
 	@FXML	private Text txSPMModel1Details;
-	@FXML	private ToggleButton btnSPMChoose;
+	@FXML	private ToggleButton btnSPMChoose1;
+	@FXML	private ToggleButton btnSPMChoose2;
+	@FXML	private ToggleButton btnSPMChoose3;
+	@FXML	private ToggleButton btnSPMChoose4;
 	@FXML	private ToggleGroup three;
 	@FXML	private Label lblSPMModel1Discount;
 	@FXML	private Label lblSPMPriceModel2;
@@ -120,6 +128,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Label lblSPMPriceModel4;
 	@FXML	private Text txSPMModel4Details;
 	@FXML	private Label lblSPMModel4Discount;
+	@FXML	private Button btnSPMBack;
 	
 	@FXML	private AnchorPane createSalePatternPane;
 	@FXML	private TableView<?> tvCSPAnalysis;

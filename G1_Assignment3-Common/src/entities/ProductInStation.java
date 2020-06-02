@@ -2,6 +2,9 @@ package entities;
 
 import enums.ProductName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInStation extends Product {
 
@@ -16,6 +19,16 @@ public class ProductInStation extends Product {
 	private int capacity;
 	private int thresholdLevel;
 
+	/**
+	 * w/0 productInStationID auto-inc
+	 * 
+	 * @param productName
+	 * @param maxPrice
+	 * @param currentPrice
+	 * @param fuelStationID
+	 * @param capacity
+	 * @param thresholdLevel
+	 */
 	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, int fuelStationID,
 			int capacity, int thresholdLevel) {
 		super(productName, maxPrice, currentPrice);
@@ -24,7 +37,17 @@ public class ProductInStation extends Product {
 		this.thresholdLevel = thresholdLevel;
 	}
 
-	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, int productInStationID,
+	/**
+	 * 
+	 * @param productName
+	 * @param maxPrice
+	 * @param currentPrice
+	 * @param productInStationID
+	 * @param fuelStationID
+	 * @param capacity
+	 * @param thresholdLevel
+	 */
+	public ProductInStation(int productInStationID, ProductName productName, double maxPrice, double currentPrice,
 			int fuelStationID, int capacity, int thresholdLevel) {
 		super(productName, maxPrice, currentPrice);
 		this.productInStationID = productInStationID;

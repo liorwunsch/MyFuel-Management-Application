@@ -2,6 +2,9 @@ package entities;
 
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class FuelStationOrder extends Orders {
 
@@ -18,6 +21,15 @@ public class FuelStationOrder extends Orders {
 	private boolean supplied;
 	private Date timeSupplied; // can be NULL
 
+	/**
+	 * without ordersID auto-inc, approved, reasonDismissal and timeSupplied
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param supplied
+	 */
 	public FuelStationOrder(Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean supplied) {
 		super(orderTime, amountBought, address);
@@ -26,6 +38,16 @@ public class FuelStationOrder extends Orders {
 		this.supplied = supplied;
 	}
 
+	/**
+	 * without approved, reasonDismissal and timeSupplied
+	 * @param ordersID
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param supplied
+	 */
 	public FuelStationOrder(int ordersID, Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean supplied) {
 		super(ordersID, orderTime, amountBought, address);
@@ -34,6 +56,17 @@ public class FuelStationOrder extends Orders {
 		this.supplied = supplied;
 	}
 
+	/**
+	 * without ordersID auto-inc, timeSupplied
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param approved
+	 * @param reasonDismissal
+	 * @param supplied
+	 */
 	public FuelStationOrder(Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean approved, String reasonDismissal, boolean supplied) {
 		super(orderTime, amountBought, address);
@@ -44,6 +77,18 @@ public class FuelStationOrder extends Orders {
 		this.supplied = supplied;
 	}
 
+	/**
+	 * without timeSupplied
+	 * @param ordersID
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param approved
+	 * @param reasonDismissal
+	 * @param supplied
+	 */
 	public FuelStationOrder(int ordersID, Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean approved, String reasonDismissal, boolean supplied) {
 		super(ordersID, orderTime, amountBought, address);
@@ -54,6 +99,18 @@ public class FuelStationOrder extends Orders {
 		this.supplied = supplied;
 	}
 
+	/**
+	 * all without ordersID auto-inc
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param approved
+	 * @param reasonDismissal
+	 * @param supplied
+	 * @param timeSupplied
+	 */
 	public FuelStationOrder(Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean approved, String reasonDismissal, boolean supplied, Date timeSupplied) {
 		super(orderTime, amountBought, address);
@@ -65,6 +122,19 @@ public class FuelStationOrder extends Orders {
 		this.timeSupplied = timeSupplied;
 	}
 
+	/**
+	 * all
+	 * @param ordersID
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param productInStaionID
+	 * @param assessed
+	 * @param approved
+	 * @param reasonDismissal
+	 * @param supplied
+	 * @param timeSupplied
+	 */
 	public FuelStationOrder(int ordersID, Date orderTime, double amountBought, String address, int productInStaionID,
 			boolean assessed, boolean approved, String reasonDismissal, boolean supplied, Date timeSupplied) {
 		super(ordersID, orderTime, amountBought, address);

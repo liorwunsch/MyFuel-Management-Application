@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.CustomerWindow">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.CustomerWindow">
    <children>
       <AnchorPane layoutX="44.0" layoutY="64.0" prefHeight="576.0" prefWidth="1014.0" visible="false">
          <children>
@@ -264,11 +264,12 @@
                               </Label>
                               <TableView fx:id="tvHomeActivity" layoutX="68.0" layoutY="353.0" prefHeight="200.0" prefWidth="662.0">
                                 <columns>
-                                  <TableColumn prefWidth="119.0" text="Time" />
-                                  <TableColumn prefWidth="135.0" text="Fuel Station" />
-                                    <TableColumn prefWidth="135.0" text="Fuel Type" />
-                                    <TableColumn prefWidth="135.0" text="Amount" />
-                                    <TableColumn prefWidth="135.0" text="Price" />
+                                  <TableColumn prefWidth="83.0" text="Time" />
+                                  <TableColumn prefWidth="117.0" text="Registration Plate" />
+                                    <TableColumn prefWidth="135.0" text="Fuel Station" />
+                                    <TableColumn prefWidth="121.0" text="Fuel Type" />
+                                    <TableColumn prefWidth="109.0" text="Amount" />
+                                    <TableColumn prefWidth="109.0" text="Price" />
                                 </columns>
                               </TableView>
                               <ComboBox fx:id="cobHomeMonth" layoutX="350.0" layoutY="315.0" prefHeight="30.0" prefWidth="150.0" promptText="[This month]" visibleRowCount="12" />
@@ -439,13 +440,14 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="7.0" layoutY="73.0" text="estimated delivery time: 5-10 Days">
+                                                      <Label layoutX="7.0" layoutY="73.0" text="estimated delivery time:">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Label fx:id="lblOHFShipmentPrice1" layoutX="107.0" layoutY="14.0" text="Label" />
                                                       <Label fx:id="lblOHFShipmentMul1" layoutX="135.0" layoutY="40.0" text="Label" />
+                                                      <Label fx:id="lblOHFShipmentDelivery1" layoutX="158.0" layoutY="73.0" text="Label" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
@@ -479,13 +481,14 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="8.0" layoutY="75.0" text="estimated delivery time: 6 Hours">
+                                                      <Label layoutX="8.0" layoutY="75.0" text="estimated delivery time:">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Label fx:id="lblOHFShipmentPrice2" layoutX="110.0" layoutY="16.0" text="Label" />
                                                       <Label fx:id="lblOHFShipmentMul2" layoutX="139.0" layoutY="46.0" text="Label" />
+                                                      <Label fx:id="lblOHFShipmentDelivery2" layoutX="161.0" layoutY="75.0" text="Label" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>

@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.CustomerType;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Customer implements Serializable {
 
@@ -17,14 +20,14 @@ public class Customer implements Serializable {
 	private CustomerType customerType;
 	private boolean deleted;
 
-	public Customer(String username, String creditCard, CustomerType customerType, boolean deleted) {
-		super();
-		this.username = username;
-		this.creditCard = creditCard;
-		this.customerType = customerType;
-		this.deleted = deleted;
-	}
-
+	/**
+	 * with customerID
+	 * @param customerID
+	 * @param username
+	 * @param creditCard
+	 * @param customerType
+	 * @param deleted
+	 */
 	public Customer(String customerID, String username, String creditCard, CustomerType customerType, boolean deleted) {
 		super();
 		this.customerID = customerID;

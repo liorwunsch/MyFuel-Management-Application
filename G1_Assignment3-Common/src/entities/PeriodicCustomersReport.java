@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class PeriodicCustomersReport implements Serializable {
 
@@ -13,6 +16,12 @@ public class PeriodicCustomersReport implements Serializable {
 	// fields
 	private Date dateCreated;
 
+	/**
+	 * 
+	 * @param dateFrom
+	 * @param dateTo
+	 * @param dateCreated
+	 */
 	public PeriodicCustomersReport(Date dateFrom, Date dateTo, Date dateCreated) {
 		super();
 		this.dateFrom = dateFrom;

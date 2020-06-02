@@ -12,8 +12,8 @@ import javafx.stage.WindowEvent;
  * <p>
  * loads server window
  * 
+ * @version Final
  * @author Elroy, Lior
- * @category Final
  */
 public class MainServer extends Application {
 

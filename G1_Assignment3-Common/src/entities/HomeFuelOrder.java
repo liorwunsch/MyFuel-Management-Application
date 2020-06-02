@@ -5,6 +5,9 @@ import java.util.Date;
 import enums.ProductName;
 import enums.ShipmentType;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class HomeFuelOrder extends Orders {
 
@@ -20,6 +23,17 @@ public class HomeFuelOrder extends Orders {
 	private Date dueTime;
 	private double finalPrice;
 
+	/**
+	 * without odersID auto-inc
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param customerID
+	 * @param productName
+	 * @param shipmentMethod
+	 * @param dueTime
+	 * @param finalPrice
+	 */
 	public HomeFuelOrder(Date orderTime, double amountBought, String address, String customerID,
 			ProductName productName, ShipmentType shipmentMethod, Date dueTime, double finalPrice) {
 		super(orderTime, amountBought, address);
@@ -30,6 +44,18 @@ public class HomeFuelOrder extends Orders {
 		this.finalPrice = finalPrice;
 	}
 
+	/**
+	 * 
+	 * @param ordersID
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 * @param customerID
+	 * @param productName
+	 * @param shipmentMethod
+	 * @param dueTime
+	 * @param finalPrice
+	 */
 	public HomeFuelOrder(int ordersID, Date orderTime, double amountBought, String address, String customerID,
 			ProductName productName, ShipmentType shipmentMethod, Date dueTime, double finalPrice) {
 		super(ordersID, orderTime, amountBought, address);

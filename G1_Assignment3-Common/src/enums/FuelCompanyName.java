@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 public enum FuelCompanyName {
 	Sonol {
 		public String toString() {

@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class RankingSheet implements Serializable {
 
@@ -15,6 +18,14 @@ public class RankingSheet implements Serializable {
 	private double fuelTypesRank;
 	private Date updatedForDate;
 
+	/**
+	 * 
+	 * @param customerID
+	 * @param customerTypeRank
+	 * @param fuelingHoursRank
+	 * @param fuelTypesRank
+	 * @param updatedForDate
+	 */
 	public RankingSheet(String customerID, double customerTypeRank, double fuelingHoursRank, double fuelTypesRank,
 			Date updatedForDate) {
 		super();

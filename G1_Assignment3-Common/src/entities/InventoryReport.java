@@ -2,6 +2,9 @@ package entities;
 
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class InventoryReport extends QuarterlyReport {
 
@@ -10,6 +13,13 @@ public class InventoryReport extends QuarterlyReport {
 	/* private String repYear; */
 	/* private int fuelStationID; */
 
+	/**
+	 * 
+	 * @param repQuarter
+	 * @param repYear
+	 * @param fuelStationID
+	 * @param dateCreated
+	 */
 	public InventoryReport(int repQuarter, String repYear, int fuelStationID, Date dateCreated) {
 		super(repQuarter, repYear, fuelStationID, dateCreated);
 	}

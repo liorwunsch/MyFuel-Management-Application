@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Activity implements Serializable {
 
@@ -15,7 +18,13 @@ public class Activity implements Serializable {
 	// fields
 	private Date time;
 	private String action;
-
+	
+	/**
+	 * without activityID auto-inc
+	 * @param employeeID
+	 * @param time
+	 * @param action
+	 */
 	public Activity(int employeeID, Date time, String action) {
 		super();
 		this.employeeID = employeeID;
@@ -23,6 +32,13 @@ public class Activity implements Serializable {
 		this.action = action;
 	}
 
+	/**
+	 * with activityID
+	 * @param activityID
+	 * @param employeeID
+	 * @param time
+	 * @param action
+	 */
 	public Activity(int activityID, int employeeID, Date time, String action) {
 		super();
 		this.activityID = activityID;

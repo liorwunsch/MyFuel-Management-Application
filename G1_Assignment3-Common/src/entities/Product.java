@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import enums.ProductName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Product implements Serializable {
 
@@ -14,6 +17,12 @@ public class Product implements Serializable {
 	private double maxPrice;
 	private double currentPrice;
 
+	/**
+	 * 
+	 * @param productName
+	 * @param maxPrice
+	 * @param currentPrice
+	 */
 	public Product(ProductName productName, double maxPrice, double currentPrice) {
 		super();
 		this.productName = productName;

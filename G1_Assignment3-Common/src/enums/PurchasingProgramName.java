@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 public enum PurchasingProgramName {
 	Standard {
 		@Override

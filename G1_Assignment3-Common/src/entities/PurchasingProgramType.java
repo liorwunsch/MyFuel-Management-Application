@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.PurchasingProgramName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class PurchasingProgramType implements Serializable {
 
@@ -13,6 +16,12 @@ public class PurchasingProgramType implements Serializable {
 	private String description;
 	private double monthlyPrice;
 
+	/**
+	 * 
+	 * @param purchasingProgramName
+	 * @param description
+	 * @param monthlyPrice
+	 */
 	public PurchasingProgramType(PurchasingProgramName purchasingProgramName, String description, double monthlyPrice) {
 		super();
 		this.purchasingProgramName = purchasingProgramName;

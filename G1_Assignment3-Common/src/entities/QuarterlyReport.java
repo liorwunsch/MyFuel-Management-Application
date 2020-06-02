@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class QuarterlyReport implements Serializable {
 
@@ -14,6 +17,13 @@ public class QuarterlyReport implements Serializable {
 	// fields
 	private Date dateCreated;
 
+	/**
+	 * 
+	 * @param repQuarter
+	 * @param repYear
+	 * @param fuelStationID
+	 * @param dateCreated
+	 */
 	public QuarterlyReport(int repQuarter, String repYear, int fuelStationID, Date dateCreated) {
 		super();
 		this.repQuarter = repQuarter;

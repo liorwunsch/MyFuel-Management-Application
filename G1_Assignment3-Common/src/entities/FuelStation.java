@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.FuelCompanyName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class FuelStation implements Serializable {
 
@@ -17,6 +20,13 @@ public class FuelStation implements Serializable {
 	private String stationName; // unique
 	private String address;
 
+	/**
+	 * without fuelStationID auto-inc
+	 * @param fuelCompanyName
+	 * @param employeeID
+	 * @param stationName
+	 * @param address
+	 */
 	public FuelStation(FuelCompanyName fuelCompanyName, int employeeID, String stationName, String address) {
 		super();
 		this.fuelCompanyName = fuelCompanyName;
@@ -25,6 +35,14 @@ public class FuelStation implements Serializable {
 		this.address = address;
 	}
 
+	/**
+	 * 
+	 * @param fuelStationID
+	 * @param fuelCompanyName
+	 * @param employeeID
+	 * @param stationName
+	 * @param address
+	 */
 	public FuelStation(int fuelStationID, FuelCompanyName fuelCompanyName, int employeeID, String stationName,
 			String address) {
 		super();

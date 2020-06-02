@@ -5,6 +5,9 @@ import java.util.Date;
 
 import enums.FuelCompanyName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class CustomerBoughtFromCompany implements Serializable {
 
@@ -17,6 +20,14 @@ public class CustomerBoughtFromCompany implements Serializable {
 	private double amountBoughtFromCompany;
 	private double amountPaidCompany;
 
+	/**
+	 * 
+	 * @param customerID
+	 * @param fuelCompanyName
+	 * @param dateOfPurchase
+	 * @param amountBoughtFromCompany
+	 * @param amountPaidCompany
+	 */
 	public CustomerBoughtFromCompany(String customerID, FuelCompanyName fuelCompanyName, Date dateOfPurchase,
 			double amountBoughtFromCompany, double amountPaidCompany) {
 		super();

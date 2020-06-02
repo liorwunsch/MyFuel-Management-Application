@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class SaleCommentsReport implements Serializable {
 
@@ -14,6 +17,13 @@ public class SaleCommentsReport implements Serializable {
 	private double sumOfPurchases;
 	private Date dateCreated;
 
+	/**
+	 * 
+	 * @param saleID
+	 * @param numberOfCustomersBoughtInSale
+	 * @param sumOfPurchases
+	 * @param dateCreated
+	 */
 	public SaleCommentsReport(int saleID, int numberOfCustomersBoughtInSale, double sumOfPurchases, Date dateCreated) {
 		super();
 		this.saleID = saleID;

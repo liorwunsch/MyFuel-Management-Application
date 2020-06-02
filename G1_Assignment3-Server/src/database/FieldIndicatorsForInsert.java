@@ -1,5 +1,9 @@
 package database;
 
+/**
+ * indicates the values of input of a query
+ * @author Lior, Vlad, Elroy
+ */
 public class FieldIndicatorsForInsert {
 
 	public static String[] Activity() {

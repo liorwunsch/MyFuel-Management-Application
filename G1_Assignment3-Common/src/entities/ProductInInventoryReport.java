@@ -1,5 +1,8 @@
 package entities;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInInventoryReport extends ProductInQuarterlyReport {
 
@@ -8,6 +11,15 @@ public class ProductInInventoryReport extends ProductInQuarterlyReport {
 	private double amountBegin;
 	private double amountEnd;
 
+	/**
+	 * 
+	 * @param productInStationID
+	 * @param repQuarter
+	 * @param repYear
+	 * @param amountSold
+	 * @param amountBegin
+	 * @param amountEnd
+	 */
 	public ProductInInventoryReport(int productInStationID, int repQuarter, String repYear, double amountSold,
 			double amountBegin, double amountEnd) {
 		super(productInStationID, repQuarter, repYear);

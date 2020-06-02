@@ -8,10 +8,23 @@ import java.sql.Statement;
 
 import database.FieldIndicatorsForInsert;
 
+/**
+ * executes insert queries by predetermined values and indication
+ * @author Elroy, Lior, Vlad
+ */
 public class TableInserts {
 
 	/******************* genral insert table *******************/
 
+	/**
+	 * 
+	 * @param con
+	 * @param tableName
+	 * @param fields
+	 * @param values
+	 * @return value of auto-inced member if there is one
+	 * @throws SQLException
+	 */
 	private static int insertRow(Connection con, String tableName, String[] fields, Object[] values)
 			throws SQLException {
 		int res = -1;

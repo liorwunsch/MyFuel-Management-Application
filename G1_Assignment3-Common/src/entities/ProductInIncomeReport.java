@@ -1,5 +1,8 @@
 package entities;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInIncomeReport extends ProductInQuarterlyReport {
 
@@ -7,6 +10,14 @@ public class ProductInIncomeReport extends ProductInQuarterlyReport {
 	private double incomePerProduct;
 	private double avgPrice;
 
+	/**
+	 * 
+	 * @param productInStationID
+	 * @param repQuarter
+	 * @param repYear
+	 * @param incomePerProduct
+	 * @param avgPrice
+	 */
 	public ProductInIncomeReport(int productInStationID, int repQuarter, String repYear, double incomePerProduct,
 			double avgPrice) {
 		super(productInStationID, repQuarter, repYear);

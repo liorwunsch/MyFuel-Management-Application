@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class SalesPattern implements Serializable {
 
@@ -11,6 +14,21 @@ public class SalesPattern implements Serializable {
 	// fields
 	private int durationInMinutes;
 
+	/**
+	 * w/o salesPatternID auto-inc
+	 * 
+	 * @param durationInMinutes
+	 */
+	public SalesPattern(int durationInMinutes) {
+		super();
+		this.durationInMinutes = durationInMinutes;
+	}
+
+	/**
+	 * 
+	 * @param salesPatternID
+	 * @param durationInMinutes
+	 */
 	public SalesPattern(int salesPatternID, int durationInMinutes) {
 		super();
 		this.salesPatternID = salesPatternID;

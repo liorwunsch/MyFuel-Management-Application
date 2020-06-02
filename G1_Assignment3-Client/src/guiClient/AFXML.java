@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 /**
  * all boundaries extend this
  * 
+ * @version Final
  * @author Elroy, Lior
- * @category Almost Final
  */
 public abstract class AFXML {
 

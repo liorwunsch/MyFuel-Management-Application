@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.ProductName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Car implements Serializable {
 
@@ -17,6 +20,14 @@ public class Car implements Serializable {
 	private String ownerName;
 	private boolean deleted;
 
+	/**
+	 * 
+	 * @param registrationPlate
+	 * @param customerID
+	 * @param productName
+	 * @param ownerName
+	 * @param deleted
+	 */
 	public Car(String registrationPlate, String customerID, ProductName productName, String ownerName,
 			boolean deleted) {
 		super();

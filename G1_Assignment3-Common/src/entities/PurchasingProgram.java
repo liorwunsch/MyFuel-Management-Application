@@ -4,6 +4,9 @@ import java.io.Serializable;
 import enums.FuelCompanyName;
 import enums.PurchasingProgramName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class PurchasingProgram implements Serializable {
 
@@ -16,6 +19,13 @@ public class PurchasingProgram implements Serializable {
 	private FuelCompanyName fuelCompanyName2; // can be NULL
 	private FuelCompanyName fuelCompanyName3; // can be NULL
 
+	/**
+	 * w/o fuelCompanyName2, fuelCompanyName3
+	 * 
+	 * @param customerID
+	 * @param purchasingProgramName
+	 * @param fuelCompanyName1
+	 */
 	public PurchasingProgram(String customerID, PurchasingProgramName purchasingProgramName,
 			FuelCompanyName fuelCompanyName1) {
 		super();
@@ -24,6 +34,14 @@ public class PurchasingProgram implements Serializable {
 		this.fuelCompanyName1 = fuelCompanyName1;
 	}
 
+	/**
+	 * w/o fuelCompanyName3
+	 * 
+	 * @param customerID
+	 * @param purchasingProgramName
+	 * @param fuelCompanyName1
+	 * @param fuelCompanyName2
+	 */
 	public PurchasingProgram(String customerID, PurchasingProgramName purchasingProgramName,
 			FuelCompanyName fuelCompanyName1, FuelCompanyName fuelCompanyName2) {
 		super();
@@ -33,6 +51,14 @@ public class PurchasingProgram implements Serializable {
 		this.fuelCompanyName2 = fuelCompanyName2;
 	}
 
+	/**
+	 * 
+	 * @param customerID
+	 * @param purchasingProgramName
+	 * @param fuelCompanyName1
+	 * @param fuelCompanyName2
+	 * @param fuelCompanyName3
+	 */
 	public PurchasingProgram(String customerID, PurchasingProgramName purchasingProgramName,
 			FuelCompanyName fuelCompanyName1, FuelCompanyName fuelCompanyName2, FuelCompanyName fuelCompanyName3) {
 		super();

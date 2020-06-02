@@ -14,9 +14,20 @@ import enums.ProductName;
 import enums.PurchasingProgramName;
 import enums.ShipmentType;
 
+/**
+ * fills the database with predetermined "true" information
+ * 
+ * @author Elroy, Lior, Vlad
+ */
 @SuppressWarnings("deprecation")
 public class DefaultTableInserts {
 
+	/**
+	 * 
+	 * @param con
+	 * @return message for server window
+	 * @throws SQLException
+	 */
 	public static String InsertDefaultTables(Connection con) throws SQLException {
 		try {
 			insertDefaultUser(con);
@@ -62,24 +73,29 @@ public class DefaultTableInserts {
 		return "Filling tables succeeded";
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @param tableName
+	 * @return true if table is empty
+	 * @throws SQLException
+	 */
 	private static boolean checkTableEmpty(Connection con, String tableName) throws SQLException {
-		try {
-			PreparedStatement pStmt = con.prepareStatement("SELECT COUNT(*) FROM " + tableName);
-			ResultSet rs1 = pStmt.executeQuery();
-			rs1.next();
-			int count = rs1.getInt(1);
-			rs1.close();
-			if (count == 0)
-				return true;
-		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("VendorError: " + e.getErrorCode());
-			throw new SQLException(e.getMessage());
-		}
+		PreparedStatement pStmt = con.prepareStatement("SELECT COUNT(*) FROM " + tableName);
+		ResultSet rs1 = pStmt.executeQuery();
+		rs1.next();
+		int count = rs1.getInt(1);
+		rs1.close();
+		if (count == 0)
+			return true;
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultUser(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "user") == false)
 			return;
@@ -119,6 +135,11 @@ public class DefaultTableInserts {
 		TableInserts.insertUser(con, values11);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultEmployee(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "employee") == false)
 			return;
@@ -147,6 +168,11 @@ public class DefaultTableInserts {
 		TableInserts.insertEmployee(con, values9);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultCustomer(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer") == false)
 			return;
@@ -159,6 +185,11 @@ public class DefaultTableInserts {
 		TableInserts.insertCustomer(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultSalesPattern(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sales_pattern") == false)
 			return;
@@ -170,6 +201,11 @@ public class DefaultTableInserts {
 		TableInserts.insertSalesPattern(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultFuelStationManager(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station_manager") == false)
 			return;
@@ -182,6 +218,11 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStationManager(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProduct(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product") == false)
 			return;
@@ -196,6 +237,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProduct(con, values4);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInSalesPattern(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_sales_pattern") == false)
 			return;
@@ -208,6 +254,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInSalesPattern(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultSale(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sale") == false)
 			return;
@@ -218,6 +269,11 @@ public class DefaultTableInserts {
 		TableInserts.insertSale(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductRatesUpdateRequest(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_rates_update_request") == false)
 			return;
@@ -231,6 +287,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductRatesUpdateRequest2(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInRequest(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_request") == false)
 			return;
@@ -251,6 +312,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInRequest(con, values7);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultFuelCompany(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_company") == false)
 			return;
@@ -263,6 +329,11 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelCompany(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultFuelStation(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station") == false)
 			return;
@@ -275,6 +346,11 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStation(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInStation(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_station") == false)
 			return;
@@ -299,6 +375,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInStation(con, values9);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultQuarterlyReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "quarterly_report") == false)
 			return;
@@ -311,6 +392,11 @@ public class DefaultTableInserts {
 		TableInserts.insertQuarterlyReport(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultIncomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "income_report") == false)
 			return;
@@ -323,6 +409,11 @@ public class DefaultTableInserts {
 		TableInserts.insertIncomeReport(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInIncomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_income_report") == false)
 			return;
@@ -348,6 +439,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInIncomeReport(con, values9);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultOutcomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "outcome_report") == false)
 			return;
@@ -360,6 +456,11 @@ public class DefaultTableInserts {
 		TableInserts.insertOutcomeReport(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInOutcomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_outcome_report") == false)
 			return;
@@ -385,6 +486,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInOutcomeReport(con, values9);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultInventoryReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "inventory_report") == false)
 			return;
@@ -397,6 +503,11 @@ public class DefaultTableInserts {
 		TableInserts.insertInventoryReport(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultProductInInventoryReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_inventory_report") == false)
 			return;
@@ -422,6 +533,11 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInInventoryReport(con, values9);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultCustomerBoughtInSale(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer_bought_in_sale") == false)
 			return;
@@ -434,6 +550,11 @@ public class DefaultTableInserts {
 		TableInserts.insertCustomerBoughtInSale(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultSaleCommentsReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sale_comments_report") == false)
 			return;
@@ -444,6 +565,11 @@ public class DefaultTableInserts {
 		TableInserts.insertSaleCommentsReport(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultCar(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "car") == false)
 			return;
@@ -467,6 +593,11 @@ public class DefaultTableInserts {
 		TableInserts.insertCar(con, values8);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultRankingSheet(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "ranking_sheet") == false)
 			return;
@@ -478,6 +609,11 @@ public class DefaultTableInserts {
 		TableInserts.insertRankingSheet(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultPricingModelType(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "pricing_model_type") == false)
 			return;
@@ -504,6 +640,11 @@ public class DefaultTableInserts {
 		TableInserts.insertPricingModelType(con, values4);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultPricingModel(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "pricing_model") == false)
 			return;
@@ -516,6 +657,11 @@ public class DefaultTableInserts {
 		TableInserts.insertPricingModel2(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultNotification(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "notification") == false)
 			return;
@@ -530,6 +676,11 @@ public class DefaultTableInserts {
 		TableInserts.insertNotification(con, values4);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultShipmentMethod(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "shipment_method") == false)
 			return;
@@ -540,6 +691,11 @@ public class DefaultTableInserts {
 		TableInserts.insertShipmentMethod(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultOrders(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "orders") == false)
 			return;
@@ -572,6 +728,11 @@ public class DefaultTableInserts {
 		TableInserts.insertOrders(con, values13);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultFuelStationOrder(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station_order") == false)
 			return;
@@ -604,6 +765,11 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStationOrder1(con, values11);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultPurchasingProgramType(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "purchasing_program_type") == false)
 			return;
@@ -616,6 +782,11 @@ public class DefaultTableInserts {
 		TableInserts.insertPurchasingProgramType(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultHomeFuelOrder(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "home_fuel_order") == false)
 			return;
@@ -629,6 +800,11 @@ public class DefaultTableInserts {
 		TableInserts.insertHomeFuelOrder(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultPurchasingProgram(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "purchasing_program") == false)
 			return;
@@ -642,6 +818,11 @@ public class DefaultTableInserts {
 		TableInserts.insertPurchasingProgram3(con, values2);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertCustomerBoughtFromCompany(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer_bought_from_company") == false)
 			return;
@@ -655,6 +836,11 @@ public class DefaultTableInserts {
 		TableInserts.insertCustomerBoughtFromCompany(con, values3);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultPeriodicCustomersReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "periodic_customers_report") == false)
 			return;
@@ -663,32 +849,80 @@ public class DefaultTableInserts {
 		TableInserts.insertPeriodicCustomersReport(con, values1);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultActivity(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "activity") == false)
 			return;
 		// "FK_employeeID", "time", "action"
-		Object[] values1 = { "4", new Date(119, 4, 28), "added person customer with ID = 111111111" };
+		Object[] values1 = { "4", new Date(119, 4, 28, 9, 00), "added person customer with ID = 111111111" };
 		TableInserts.insertActivity(con, values1);
-		Object[] values2 = { "4", new Date(119, 4, 28), "added company customer with ID = 222222222" };
+		Object[] values2 = { "4", new Date(119, 4, 28, 9, 00), "added company customer with ID = 222222222" };
 		TableInserts.insertActivity(con, values2);
-		Object[] values3 = { "4", new Date(119, 4, 28), "added car with registration plate = 9959599" };
+		Object[] values3 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9959599" };
 		TableInserts.insertActivity(con, values3);
-		Object[] values4 = { "4", new Date(119, 4, 28), "added car with registration plate = 9958599" };
+		Object[] values4 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9958599" };
 		TableInserts.insertActivity(con, values4);
-		Object[] values5 = { "4", new Date(119, 4, 28), "added car with registration plate = 9957599" };
+		Object[] values5 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9957599" };
 		TableInserts.insertActivity(con, values5);
-		Object[] values6 = { "4", new Date(119, 4, 28), "added car with registration plate = 9956599" };
+		Object[] values6 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9956599" };
 		TableInserts.insertActivity(con, values6);
-		Object[] values7 = { "4", new Date(119, 4, 28), "added car with registration plate = 9955599" };
+		Object[] values7 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9955599" };
 		TableInserts.insertActivity(con, values7);
-		Object[] values8 = { "4", new Date(119, 4, 28), "added car with registration plate = 9954599" };
+		Object[] values8 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9954599" };
 		TableInserts.insertActivity(con, values8);
-		Object[] values9 = { "4", new Date(119, 4, 28), "added car with registration plate = 9953599" };
+		Object[] values9 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9953599" };
 		TableInserts.insertActivity(con, values9);
-		Object[] values10 = { "4", new Date(119, 4, 28), "added car with registration plate = 9951599" };
+		Object[] values10 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9951599" };
 		TableInserts.insertActivity(con, values10);
+		Object[] values11 = { "1", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		TableInserts.insertActivity(con, values11);
+		Object[] values12 = { "2", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		TableInserts.insertActivity(con, values12);
+		Object[] values13 = { "9", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		TableInserts.insertActivity(con, values13);
+		Object[] values14 = { "3", new Date(119, 5, 7, 18, 30), "initiated sale with salespatternid 1" };
+		TableInserts.insertActivity(con, values14);
+		Object[] values15 = { "3", new Date(119, 5, 7, 12, 00), "initiated sale with salespatternid 1" };
+		TableInserts.insertActivity(con, values15);
+		Object[] values16 = { "5", new Date(119, 5, 14, 12, 00), "declined rates update request 2" };
+		TableInserts.insertActivity(con, values16);
+		Object[] values17 = { "5", new Date(119, 5, 5, 15, 00), "approved rates update request 3" };
+		TableInserts.insertActivity(con, values17);
+		Object[] values18 = { "1", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		TableInserts.insertActivity(con, values18);
+		Object[] values19 = { "2", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		TableInserts.insertActivity(con, values19);
+		Object[] values20 = { "9", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		TableInserts.insertActivity(con, values20);
+		Object[] values21 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 1" };
+		TableInserts.insertActivity(con, values21);
+		Object[] values22 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 2" };
+		TableInserts.insertActivity(con, values22);
+		Object[] values23 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 3" };
+		TableInserts.insertActivity(con, values23);
+		Object[] values24 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 4" };
+		TableInserts.insertActivity(con, values24);
+		Object[] values25 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 5" };
+		TableInserts.insertActivity(con, values25);
+		Object[] values26 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 6" };
+		TableInserts.insertActivity(con, values26);
+		Object[] values27 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 7" };
+		TableInserts.insertActivity(con, values27);
+		Object[] values28 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 8" };
+		TableInserts.insertActivity(con, values28);
+		Object[] values29 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 9" };
+		TableInserts.insertActivity(con, values29);
 	}
 
+	/**
+	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
 	private static void insertDefaultFastFuel(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fast_fuel") == false)
 			return;

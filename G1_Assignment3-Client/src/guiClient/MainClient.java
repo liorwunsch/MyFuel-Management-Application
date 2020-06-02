@@ -11,8 +11,8 @@ import javafx.stage.StageStyle;
  * <p>
  * loads login window
  * 
+ * @version Final
  * @author Elroy, Lior
- * @category Final
  */
 public class MainClient extends Application {
 

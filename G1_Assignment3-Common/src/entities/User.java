@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
@@ -10,7 +13,7 @@ public class User implements Serializable {
 
 	// fields
 	private String password;
-	private boolean connected;
+	private Boolean connected;
 	private String email;
 	private String firstName;
 	private String surname;
@@ -18,15 +21,36 @@ public class User implements Serializable {
 	// java additions
 	private String function; /* what the server will do to this */
 
+	/**
+	 * w/o password, connected, email, firstName, surname
+	 * 
+	 * @param username
+	 */
 	public User(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * w/o connected, email, firstName, surname
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
+	/**
+	 * all
+	 * 
+	 * @param username
+	 * @param password
+	 * @param connected
+	 * @param email
+	 * @param firstName
+	 * @param surname
+	 */
 	public User(String username, String password, boolean connected, String email, String firstName, String surname) {
 		super();
 		this.username = username;
@@ -91,8 +115,15 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", connected=" + connected + ", email=" + email
-				+ ", firstName=" + firstName + ", surname=" + surname + ", function=" + function + "]";
+		String str = "User [username=" + username;
+		if (password != null)
+			str += ", password=" + password;
+		if (connected != null)
+			str += ", connected=" + connected + ", email=" + email + ", firstName=" + firstName + ", surname="
+					+ surname;
+		if (function != null)
+			str += ", function=" + function;
+		return str + "]";
 	}
 
 	@Override

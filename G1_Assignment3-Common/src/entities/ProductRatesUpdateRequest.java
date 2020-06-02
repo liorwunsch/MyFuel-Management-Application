@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductRatesUpdateRequest implements Serializable {
 
@@ -14,12 +17,23 @@ public class ProductRatesUpdateRequest implements Serializable {
 	private boolean assessed;
 	private Boolean approved; // can be NULL
 
+	/**
+	 * w/o updateRateRequestID auto-inc, approved
+	 * @param requestDate
+	 * @param assessed
+	 */
 	public ProductRatesUpdateRequest(Date requestDate, boolean assessed) {
 		super();
 		this.requestDate = requestDate;
 		this.assessed = assessed;
 	}
 
+	/**
+	 * w/o updateRateRequestID auto-inc
+	 * @param requestDate
+	 * @param assessed
+	 * @param approved
+	 */
 	public ProductRatesUpdateRequest(Date requestDate, boolean assessed, boolean approved) {
 		super();
 		this.requestDate = requestDate;
@@ -27,6 +41,12 @@ public class ProductRatesUpdateRequest implements Serializable {
 		this.approved = approved;
 	}
 
+	/**
+	 * w/o approved optional
+	 * @param updateRateRequestID
+	 * @param requestDate
+	 * @param assessed
+	 */
 	public ProductRatesUpdateRequest(int updateRateRequestID, Date requestDate, boolean assessed) {
 		super();
 		this.updateRateRequestID = updateRateRequestID;
@@ -34,6 +54,13 @@ public class ProductRatesUpdateRequest implements Serializable {
 		this.assessed = assessed;
 	}
 
+	/**
+	 * 
+	 * @param updateRateRequestID
+	 * @param requestDate
+	 * @param assessed
+	 * @param approved
+	 */
 	public ProductRatesUpdateRequest(int updateRateRequestID, Date requestDate, boolean assessed, boolean approved) {
 		super();
 		this.updateRateRequestID = updateRateRequestID;

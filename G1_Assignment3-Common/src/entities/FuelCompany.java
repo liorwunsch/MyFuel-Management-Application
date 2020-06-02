@@ -4,6 +4,9 @@ package entities;
 import java.io.Serializable;
 import enums.FuelCompanyName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class FuelCompany implements Serializable {
 
@@ -13,6 +16,11 @@ public class FuelCompany implements Serializable {
 	// foreign keys
 	private int employeeID; // supplier
 
+	/**
+	 * 
+	 * @param fuelCompanyName
+	 * @param employeeID
+	 */
 	public FuelCompany(FuelCompanyName fuelCompanyName, int employeeID) {
 		super();
 		this.fuelCompanyName = fuelCompanyName;

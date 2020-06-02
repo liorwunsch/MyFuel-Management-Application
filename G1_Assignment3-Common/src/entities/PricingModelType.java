@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.PricingModelName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class PricingModelType implements Serializable {
 
@@ -13,6 +16,12 @@ public class PricingModelType implements Serializable {
 	private String description;
 	private double defaultDiscount;
 
+	/**
+	 * 
+	 * @param pricingModelName
+	 * @param description
+	 * @param defaultDiscount
+	 */
 	public PricingModelType(PricingModelName pricingModelName, String description, double defaultDiscount) {
 		super();
 		this.pricingModelName = pricingModelName;

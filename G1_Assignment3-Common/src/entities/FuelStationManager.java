@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class FuelStationManager implements Serializable {
 
@@ -11,6 +14,11 @@ public class FuelStationManager implements Serializable {
 	// fields
 	private String phoneNo;
 
+	/**
+	 * 
+	 * @param employeeID
+	 * @param phoneNo
+	 */
 	public FuelStationManager(int employeeID, String phoneNo) {
 		super();
 		this.employeeID = employeeID;

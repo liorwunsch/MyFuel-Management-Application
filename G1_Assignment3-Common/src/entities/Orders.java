@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public abstract class Orders implements Serializable {
 
@@ -14,6 +17,12 @@ public abstract class Orders implements Serializable {
 	private double amountBought;
 	private String address;
 
+	/**
+	 * w/o ordersID auto-inc
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 */
 	public Orders(Date orderTime, double amountBought, String address) {
 		super();
 		this.orderTime = orderTime;
@@ -21,6 +30,13 @@ public abstract class Orders implements Serializable {
 		this.address = address;
 	}
 
+	/**
+	 * 
+	 * @param ordersID
+	 * @param orderTime
+	 * @param amountBought
+	 * @param address
+	 */
 	public Orders(int ordersID, Date orderTime, double amountBought, String address) {
 		super();
 		this.ordersID = ordersID;

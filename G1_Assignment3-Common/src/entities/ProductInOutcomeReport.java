@@ -1,11 +1,21 @@
 package entities;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInOutcomeReport extends ProductInQuarterlyReport {
 
 	// fields
 	private double amountBoughtFromSupplier;
 
+	/**
+	 * 
+	 * @param productInStationID
+	 * @param repQuarter
+	 * @param repYear
+	 * @param amountBoughtFromSupplier
+	 */
 	public ProductInOutcomeReport(int productInStationID, int repQuarter, String repYear,
 			double amountBoughtFromSupplier) {
 		super(productInStationID, repQuarter, repYear);

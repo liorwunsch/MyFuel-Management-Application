@@ -2,6 +2,9 @@ package entities;
 
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class IncomeReport extends QuarterlyReport {
 
@@ -13,6 +16,14 @@ public class IncomeReport extends QuarterlyReport {
 	// fields
 	private double totalIncome;
 
+	/**
+	 * 
+	 * @param repQuarter
+	 * @param repYear
+	 * @param fuelStationID
+	 * @param dateCreated
+	 * @param totalIncome
+	 */
 	public IncomeReport(int repQuarter, String repYear, int fuelStationID, Date dateCreated, double totalIncome) {
 		super(repQuarter, repYear, fuelStationID, dateCreated);
 		this.totalIncome = totalIncome;

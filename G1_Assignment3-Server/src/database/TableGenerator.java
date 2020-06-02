@@ -4,8 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * generates all tables in database that don't exist
+ * 
+ * @author Vlad, Elroy, Lior
+ */
 public class TableGenerator { // creating the tables if they are not exists
 
+	/**
+	 * @param con
+	 * @return message for server window
+	 * @throws SQLException
+	 */
 	public static String GenerateTables(Connection con) throws SQLException {
 		try {
 			generateUser(con);
@@ -53,6 +63,13 @@ public class TableGenerator { // creating the tables if they are not exists
 
 	/******************* genral generate table *******************/
 
+	/**
+	 *
+	 * @param con
+	 * @param tableName
+	 * @param values
+	 * @throws SQLException
+	 */
 	private static void generateTable(Connection con, String tableName, String values) throws SQLException {
 		PreparedStatement pst;
 		String table = "CREATE TABLE IF NOT EXISTS " + tableName + values;

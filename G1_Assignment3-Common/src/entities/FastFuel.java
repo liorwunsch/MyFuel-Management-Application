@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class FastFuel implements Serializable {
 
@@ -19,6 +22,15 @@ public class FastFuel implements Serializable {
 	private double amountBought;
 	private double finalPrice;
 
+	/**
+	 * without fastFuelID auto-inc
+	 * @param registrationPlate
+	 * @param customerID
+	 * @param productInStaionID
+	 * @param fastFuelTime
+	 * @param amountBought
+	 * @param finalPrice
+	 */
 	public FastFuel(String registrationPlate, String customerID, int productInStaionID, Date fastFuelTime,
 			double amountBought, double finalPrice) {
 		super();
@@ -30,6 +42,16 @@ public class FastFuel implements Serializable {
 		this.finalPrice = finalPrice;
 	}
 
+	/**
+	 * with fastFuelID
+	 * @param registrationPlate
+	 * @param fastFuelID
+	 * @param customerID
+	 * @param productInStaionID
+	 * @param fastFuelTime
+	 * @param amountBought
+	 * @param finalPrice
+	 */
 	public FastFuel(String registrationPlate, int fastFuelID, String customerID, int productInStaionID,
 			Date fastFuelTime, double amountBought, double finalPrice) {
 		super();

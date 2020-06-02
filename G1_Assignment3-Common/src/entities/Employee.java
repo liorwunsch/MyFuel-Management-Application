@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.Affiliation;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Employee implements Serializable {
 
@@ -16,6 +19,12 @@ public class Employee implements Serializable {
 	private String role;
 	private Affiliation affiliation;
 
+	/**
+	 * without employeeID auto-inc
+	 * @param username
+	 * @param role
+	 * @param affiliation
+	 */
 	public Employee(String username, String role, Affiliation affiliation) {
 		super();
 		this.username = username;
@@ -23,6 +32,13 @@ public class Employee implements Serializable {
 		this.affiliation = affiliation;
 	}
 
+	/**
+	 * with employeeID
+	 * @param employeeID
+	 * @param username
+	 * @param role
+	 * @param affiliation
+	 */
 	public Employee(int employeeID, String username, String role, Affiliation affiliation) {
 		super();
 		this.employeeID = employeeID;

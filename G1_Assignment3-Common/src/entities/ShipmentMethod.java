@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.ShipmentType;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ShipmentMethod implements Serializable {
 
@@ -14,6 +17,13 @@ public class ShipmentMethod implements Serializable {
 	private double shipmentMultiplier;
 	private String deliveryTime;
 
+	/**
+	 * 
+	 * @param shipmentType
+	 * @param shipmentPrice
+	 * @param shipmentMultiplier
+	 * @param deliveryTime
+	 */
 	public ShipmentMethod(ShipmentType shipmentType, double shipmentPrice, double shipmentMultiplier,
 			String deliveryTime) {
 		super();

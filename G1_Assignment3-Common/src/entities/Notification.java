@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class Notification implements Serializable {
 
@@ -17,6 +20,13 @@ public class Notification implements Serializable {
 	private boolean dismissed;
 	private Date dateCreated;
 
+	/**
+	 * without notificationID auto-inc
+	 * @param employeeID
+	 * @param message
+	 * @param dismissed
+	 * @param dateCreated
+	 */
 	public Notification(int employeeID, String message, boolean dismissed, Date dateCreated) {
 		super();
 		this.employeeID = employeeID;
@@ -25,6 +35,14 @@ public class Notification implements Serializable {
 		this.dateCreated = dateCreated;
 	}
 
+	/**
+	 * 
+	 * @param notificationID
+	 * @param employeeID
+	 * @param message
+	 * @param dismissed
+	 * @param dateCreated
+	 */
 	public Notification(int notificationID, int employeeID, String message, boolean dismissed, Date dateCreated) {
 		super();
 		this.notificationID = notificationID;

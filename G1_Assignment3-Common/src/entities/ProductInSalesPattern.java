@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import enums.ProductName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class ProductInSalesPattern implements Serializable {
 
@@ -14,6 +17,12 @@ public class ProductInSalesPattern implements Serializable {
 	// fields
 	private double salesDiscount;
 
+	/**
+	 * 
+	 * @param salesPatternID
+	 * @param productName
+	 * @param salesDiscount
+	 */
 	public ProductInSalesPattern(int salesPatternID, ProductName productName, double salesDiscount) {
 		super();
 		this.salesPatternID = salesPatternID;

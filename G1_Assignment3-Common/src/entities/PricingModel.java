@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import enums.PricingModelName;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public class PricingModel implements Serializable {
 
@@ -16,6 +19,12 @@ public class PricingModel implements Serializable {
 	private double currentDiscount;
 	private double lastMonthUtilization; // can be NULL
 
+	/**
+	 * w/o lastMonthUtilization optional
+	 * @param customerID
+	 * @param pricingModelName
+	 * @param currentDiscount
+	 */
 	public PricingModel(String customerID, PricingModelName pricingModelName, double currentDiscount) {
 		super();
 		this.customerID = customerID;
@@ -23,6 +32,13 @@ public class PricingModel implements Serializable {
 		this.currentDiscount = currentDiscount;
 	}
 
+	/**
+	 * 
+	 * @param customerID
+	 * @param pricingModelName
+	 * @param currentDiscount
+	 * @param lastMonthUtilization
+	 */
 	public PricingModel(String customerID, PricingModelName pricingModelName, double currentDiscount,
 			double lastMonthUtilization) {
 		super();

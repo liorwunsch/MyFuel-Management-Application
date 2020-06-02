@@ -3,8 +3,10 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import guiServer.ServerWindow;
 
@@ -12,12 +14,13 @@ import guiServer.ServerWindow;
  * controller for database
  * 
  * @version N Methods To Final
+ * @see activityLogger()
  * @author Elroy, Lior
  */
 public class DatabaseController {
 
 	private static DatabaseController instance;
-	private Connection con;
+	private Connection connection;
 
 	/**
 	 * singleton class constructor initialize connection to the database
@@ -34,23 +37,23 @@ public class DatabaseController {
 		}
 
 		try {
-			this.con = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST", dbUsername,
+			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST", dbUsername,
 					dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
 
-			Statement stmt = this.con.createStatement();
+			Statement stmt = this.connection.createStatement();
 			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + schema
 					+ " DEFAULT CHARACTER SET utf8 \n DEFAULT COLLATE utf8_general_ci");
 			serverWindow.updateArea("Database connection succeeded");
 
-			this.con = DriverManager.getConnection("jdbc:mysql://" + host + "/" + schema + "?serverTimezone=IST",
+			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + schema + "?serverTimezone=IST",
 					dbUsername, dbPassword);
 
-			serverWindow.updateArea(TableGenerator.GenerateTables(this.con));
-			serverWindow.updateArea(DefaultTableInserts.InsertDefaultTables(this.con));
+			serverWindow.updateArea(TableGenerator.GenerateTables(this.connection));
+			serverWindow.updateArea(DefaultTableInserts.InsertDefaultTables(this.connection));
 
 			PreparedStatement pStmt;
-			pStmt = this.con.prepareStatement("UPDATE User SET connected = ?");
+			pStmt = this.connection.prepareStatement("UPDATE User SET connected = ?");
 			pStmt.setString(1, "0");
 			pStmt.executeUpdate();
 
@@ -72,12 +75,41 @@ public class DatabaseController {
 		return instance;
 	}
 
-	public String loginSequence(String username, String password, String type) {
-		return DatabaseUserController.getInstance(con).loginSequence(username, password, type);
+	/**
+	 * insert to database activity table - the current action of employee
+	 * 
+	 * @param username
+	 * @param action
+	 * @throws SQLException
+	 */
+	@SuppressWarnings({ "unused" })
+	private void activityLogger(String username, String action) throws SQLException {
+		PreparedStatement pStmt;
+		pStmt = this.connection.prepareStatement("SELECT employeeID FROM employee WHERE FK_userName = ?");
+		pStmt.setString(1, username);
+		ResultSet rs1 = pStmt.executeQuery();
+		int employeeID = rs1.getInt(1);
+
+		Object[] values1 = { employeeID, new Date(), action };
+		TableInserts.insertActivity(connection, values1);
 	}
 
+	/**
+	 * @param username
+	 * @param password
+	 * @param type
+	 * @return message for server
+	 */
+	public String loginSequence(String username, String password, String type) {
+		return DatabaseUserController.getInstance(connection).loginSequence(username, password, type);
+	}
+
+	/**
+	 * @param username
+	 * @return message for server
+	 */
 	public String signOutSequence(String username) {
-		return DatabaseUserController.getInstance(con).signOutSequence(username);
+		return DatabaseUserController.getInstance(connection).signOutSequence(username);
 	}
 
 }

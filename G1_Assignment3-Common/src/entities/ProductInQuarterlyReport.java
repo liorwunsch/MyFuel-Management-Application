@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 @SuppressWarnings("serial")
 public abstract class ProductInQuarterlyReport implements Serializable {
 
@@ -10,6 +13,12 @@ public abstract class ProductInQuarterlyReport implements Serializable {
 	private int repQuarter;
 	private String repYear;
 
+	/**
+	 * 
+	 * @param productInStationID
+	 * @param repQuarter
+	 * @param repYear
+	 */
 	public ProductInQuarterlyReport(int productInStationID, int repQuarter, String repYear) {
 		super();
 		this.productInStationID = productInStationID;

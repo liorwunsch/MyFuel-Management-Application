@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * @author Elroy, Vlad, Lior
+ */
 public enum ShipmentType {
 	Regular {
 		public String toString() {
