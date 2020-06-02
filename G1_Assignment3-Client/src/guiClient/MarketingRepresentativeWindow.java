@@ -61,7 +61,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private TextField tfECUCredit;
 	@FXML	private ComboBox<?> cobECUCustType;
 	@FXML	private Button btnECUShow;
-	@FXML	private Button btnECUBack;
+	@FXML	private Button btnECUClear;
 
 	@FXML	private AnchorPane addEditCarPane;
 	@FXML	private Label step2;
@@ -72,7 +72,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Button btnAECACheck;
 	@FXML	private ComboBox<?> cobAECAFuelType;
 	@FXML	private Button btnAECAEdit;
-	@FXML	private Button btnAECABack;
+	@FXML	private Button btnAECAClear;
 	
 	@FXML	private AnchorPane editCarPane;
 	@FXML	private TableView<?> tvECACarDetails;
@@ -84,7 +84,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Button btnECADelete;
 	@FXML	private Button btnExit1;
 	@FXML	private ImageView btnECAClose;
-	@FXML	private Button btnECABack;
+	@FXML	private Button btnECAClear;
 	@FXML	private Button btnECAShow;
 	
 	@FXML	private AnchorPane setPurchasingPane;
@@ -105,7 +105,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Label lblSPPChooseCompany;
 	@FXML	private TextField tfSPPCustID;
 	@FXML	private Button btnSPPCheck;
-	@FXML	private Button btnSPPBack;
+	@FXML	private Button btnSPPClear;
 
 	@FXML	private AnchorPane pricingModelPane;
 	@FXML	private Button btnSPMSet;
@@ -128,7 +128,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private Label lblSPMPriceModel4;
 	@FXML	private Text txSPMModel4Details;
 	@FXML	private Label lblSPMModel4Discount;
-	@FXML	private Button btnSPMBack;
+	@FXML	private Button btnSPMClear;
 	
 	@FXML	private AnchorPane createSalePatternPane;
 	@FXML	private TableView<?> tvCSPAnalysis;
@@ -144,6 +144,7 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML
 	void initialize() {
 		this.visableNow = homePane;
+//		sidebar_btn0.requestFocus();
 		this.controller = MarketingRepresentativeController.getInstance();
 	}
 
@@ -198,10 +199,11 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	}
 
 	@FXML
-	void Update_Customer(ActionEvent event) {
-		/**
-		 *
-		 */
+	void Create_Sale_Pattern(ActionEvent event) {
+		visableNow.setVisible(false);
+		createSalePatternPane.setVisible(true);
+		visableNow = createSalePatternPane;
+		topbar_window_label.setText("Create Sales Pattern");
 	}
 
 }

@@ -139,5 +139,13 @@ public abstract class UserWindow extends AFXML {
 		if (!this.signOutClicked(this.getWindow()))
 			event.consume();
 	}
+	
+	@FXML
+	void Home(ActionEvent event) {
+		visableNow.setVisible(false);
+		homePane.setVisible(true);
+		visableNow = homePane;
+		topbar_window_label.setText("Home");
+	}
 
 }
