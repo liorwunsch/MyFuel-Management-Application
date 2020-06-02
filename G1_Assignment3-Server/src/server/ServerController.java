@@ -1,5 +1,6 @@
 package server;
 
+import database.DatabaseController;
 import entities.User;
 import guiServer.ServerWindow;
 import ocsf.server.AbstractServer;

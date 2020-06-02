@@ -70,7 +70,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ToggleButton fx:id="sidebar_btn11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
+                        <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -95,7 +95,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </ToggleButton>
-                        <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -114,7 +114,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </ToggleButton>
-                        <ToggleButton fx:id="sidebar_btn3" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Order Home Fuel" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                        <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Order Home Fuel" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -252,17 +252,17 @@
                         </ImageView>
                         <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="610.0" prefWidth="802.0">
                            <children>
-                              <Label layoutX="275.0" layoutY="42.0" text="Welcome &lt;UserName&gt;!" underline="true">
+                              <Label layoutX="306.0" layoutY="41.0" text="Welcome to MyFuel" underline="true">
                                  <font>
                                     <Font name="Calibri" size="30.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="351.0" layoutY="81.0" text="To MyFuel" underline="true">
+                              <Label fx:id="lblHomeUserName" layoutX="351.0" layoutY="81.0" text="&lt;userName&gt;!" underline="true">
                                  <font>
                                     <Font name="Calibri" size="30.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="68.0" layoutY="353.0" prefHeight="200.0" prefWidth="662.0">
+                              <TableView fx:id="tvHomeActivity" layoutX="68.0" layoutY="353.0" prefHeight="200.0" prefWidth="662.0">
                                 <columns>
                                   <TableColumn prefWidth="119.0" text="Time" />
                                   <TableColumn prefWidth="135.0" text="Fuel Station" />
@@ -271,13 +271,13 @@
                                     <TableColumn prefWidth="135.0" text="Price" />
                                 </columns>
                               </TableView>
-                              <ComboBox layoutX="350.0" layoutY="315.0" prefHeight="30.0" prefWidth="150.0" promptText="[This month]" visibleRowCount="12" />
+                              <ComboBox fx:id="cobHomeMonth" layoutX="350.0" layoutY="315.0" prefHeight="30.0" prefWidth="150.0" promptText="[This month]" visibleRowCount="12" />
                               <Label layoutX="289.0" layoutY="320.0" text="Month:">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="116.0" layoutY="315.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Year]" visibleRowCount="12" />
+                              <ComboBox fx:id="cobHomeYear" layoutX="116.0" layoutY="315.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Year]" visibleRowCount="12" />
                               <Label layoutX="69.0" layoutY="320.0" text="Year:">
                                  <font>
                                     <Font name="Arial" size="16.0" />
@@ -298,12 +298,12 @@
                                     <Font name="Calibri Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="235.0" layoutY="220.0" prefHeight="28.0" prefWidth="512.0" text="&lt;THIS month sum of rows' price+membership cost&gt; $">
+                              <Label fx:id="lblHomePayment" layoutX="235.0" layoutY="220.0" prefHeight="28.0" prefWidth="512.0" text="&lt;THIS month sum of rows' price+membership cost&gt; $">
                                  <font>
                                     <Font name="Calibri" size="21.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
+                              <TextField fx:id="tfHomeTotal" layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
                               <Label layoutX="545.0" layoutY="565.0" text="Total:">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
@@ -319,7 +319,7 @@
                                     <Font name="Calibri Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="235.0" layoutY="170.0" prefHeight="28.0" prefWidth="471.0" text="&lt;purchasing program type&gt; (0.00)$ per month">
+                              <Label fx:id="lblHomeMember" layoutX="235.0" layoutY="170.0" prefHeight="28.0" prefWidth="471.0" text="&lt;purchasing program type&gt; (0.00)$ per month">
                                  <font>
                                     <Font name="Calibri" size="21.0" />
                                  </font>
@@ -328,7 +328,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="12.0" layoutY="3.0" prefHeight="631.0" prefWidth="815.0" visible="false">
+                  <AnchorPane fx:id="orderHomeFuelPane" layoutX="12.0" layoutY="3.0" prefHeight="631.0" prefWidth="815.0" visible="false">
                      <children>
                         <AnchorPane layoutX="1.0" layoutY="5.0" prefHeight="309.0" prefWidth="802.0">
                            <children>
@@ -344,7 +344,7 @@
                                  <children>
                                     <VBox layoutX="10.0" layoutY="19.0" prefHeight="224.0" prefWidth="189.0">
                                        <children>
-                                          <Label text="Please fill the following:" textFill="#144465" underline="true">
+                                          <Label text="Please Fill the Following:" textFill="#144465" underline="true">
                                              <font>
                                                 <Font name="Arial" size="16.0" />
                                              </font>
@@ -352,7 +352,7 @@
                                                 <Insets bottom="15.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Label prefHeight="21.0" prefWidth="129.0" text="Fuel Amount :">
+                                          <Label prefHeight="21.0" prefWidth="129.0" text="Amount of Fuel:">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -360,11 +360,23 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="tfDiscout" prefHeight="30.0" prefWidth="76.0">
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </TextField>
+                                          <HBox>
+                                             <children>
+                                                <TextField fx:id="tfOHFAmount1" prefHeight="30.0" prefWidth="143.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Label prefHeight="27.0" prefWidth="51.0" text="Liter">
+                                                   <font>
+                                                      <Font name="Arial" size="16.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                           <Label prefHeight="21.0" prefWidth="129.0" text="Home Address:">
                                              <opaqueInsets>
                                                 <Insets />
@@ -376,12 +388,12 @@
                                                 <Insets top="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField fx:id="tfAddress" prefHeight="30.0" prefWidth="76.0">
+                                          <TextField fx:id="tfOHFAddress" prefHeight="30.0" prefWidth="76.0">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
                                           </TextField>
-                                          <Label prefHeight="21.0" prefWidth="129.0" text="Current fuel price:">
+                                          <Label prefHeight="30.0" prefWidth="140.0" text="Current Fuel Price:">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -394,12 +406,12 @@
                                           </Label>
                                           <HBox alignment="CENTER">
                                              <children>
-                                                <TextField fx:id="tfAddress1" editable="false" prefHeight="30.0" prefWidth="143.0">
+                                                <TextField fx:id="tfOHFPrice1" editable="false" prefHeight="30.0" prefWidth="143.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
                                                 </TextField>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="/ Liter">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="\\ Liter">
                                                    <font>
                                                       <Font name="Arial" size="16.0" />
                                                    </font>
@@ -432,11 +444,13 @@
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Label fx:id="lblOHFShipmentPrice1" layoutX="107.0" layoutY="14.0" text="Label" />
+                                                      <Label fx:id="lblOHFShipmentMul1" layoutX="135.0" layoutY="40.0" text="Label" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
                                           </ScrollPane>
-                                          <RadioButton fx:id="purchProg_SingleProg_RB" mnemonicParsing="false" selected="true" text="Shipment Method #1">
+                                          <RadioButton fx:id="rbOHFShipment1" mnemonicParsing="false" selected="true" text="Shipment Method #1">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -453,7 +467,7 @@
                                        <children>
                                           <ScrollPane fx:id="purchProg_SingleProgBox_SP1" prefHeight="123.0" prefWidth="210.0">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="205.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="243.0">
                                                    <children>
                                                       <Label layoutX="8.0" layoutY="14.0" text="added price #2:">
                                                          <font>
@@ -470,11 +484,13 @@
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Label fx:id="lblOHFShipmentPrice2" layoutX="110.0" layoutY="16.0" text="Label" />
+                                                      <Label fx:id="lblOHFShipmentMul2" layoutX="139.0" layoutY="46.0" text="Label" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
                                           </ScrollPane>
-                                          <RadioButton fx:id="purchProg_SingleProg_RB1" mnemonicParsing="false" text="Shipment Method #2" toggleGroup="$three">
+                                          <RadioButton fx:id="rbOHFShipment2" mnemonicParsing="false" text="Shipment Method #2" toggleGroup="$three">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -484,7 +500,7 @@
                                           </RadioButton>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="btnShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
+                                    <Button fx:id="btnOHFShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
                                        <graphic>
                                           <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -510,7 +526,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                              <AnchorPane fx:id="paneOHFOrderDetails" layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
                                     <VBox layoutX="58.0" layoutY="14.0" prefHeight="223.0" prefWidth="196.0">
                                        <children>
@@ -524,7 +540,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfAmountOrderDetails11" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFDate" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -541,7 +557,7 @@
                                           </Label>
                                           <HBox prefHeight="32.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfFinalPriceValueOrderDetails" prefHeight="25.0" prefWidth="147.0">
+                                                <TextField fx:id="tfOHFFinalPrice" prefHeight="25.0" prefWidth="147.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -566,7 +582,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfAmountOrderDetails" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFAmount2" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -591,7 +607,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfAmountOrderDetails1" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFShipmentReview" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -600,7 +616,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="btnConfirmHomeFuelOrder" layoutX="59.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
+                                    <Button fx:id="btnOHFConfirm" layoutX="59.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -633,12 +649,12 @@
                                           <Font name="Arial" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="23.0" layoutY="26.0" text="Amount between 600 to 800 liters: " textFill="#3b33d3">
+                                    <Label layoutX="23.0" layoutY="26.0" text="Fuel amount between 600 to 800 liters: " textFill="#3b33d3">
                                        <font>
                                           <Font name="Arial" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="23.0" layoutY="89.0" text="Amount more than 800 liters:  " textFill="#3b33d3">
+                                    <Label layoutX="23.0" layoutY="89.0" text="Fuel amount over 800 liters:  " textFill="#3b33d3">
                                        <font>
                                           <Font name="Arial" size="18.0" />
                                        </font>
@@ -679,11 +695,11 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="14.0" prefHeight="584.0" prefWidth="837.0" visible="false">
+                  <AnchorPane fx:id="viewOrderPane" layoutY="14.0" prefHeight="584.0" prefWidth="837.0" visible="false">
                      <children>
                         <AnchorPane layoutX="2.0" layoutY="24.0" prefHeight="427.0" prefWidth="836.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                            <children>
-                              <TableView layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0">
+                              <TableView fx:id="tvVODetails" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0">
                                 <columns>
                                   <TableColumn minWidth="-1.0" prefWidth="60.0" text="ID" />
                                     <TableColumn minWidth="-1.0" prefWidth="107.0" text="Order Time" />

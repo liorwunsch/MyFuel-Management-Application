@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 
+import database.DatabaseController;
 import entities.User;
 import guiServer.ServerWindow;
 import ocsf.server.ConnectionToClient;

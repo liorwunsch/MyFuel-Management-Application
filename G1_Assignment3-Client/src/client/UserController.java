@@ -34,8 +34,7 @@ public abstract class UserController extends ClientController {
 
 			/* construct a new user */
 			/* determine what the server will do with it */
-			User user = new User();
-			user.setUsername(splitMsg[1]);
+			User user = new User(splitMsg[1]);
 			user.setFunction("sign out");
 
 			/* announce and send the user to the server */

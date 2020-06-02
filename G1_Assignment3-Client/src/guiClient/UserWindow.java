@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -34,6 +35,9 @@ public abstract class UserWindow extends AFXML {
 	@FXML	protected AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
+	@FXML	protected AnchorPane homePane;
+	@FXML	protected Label lblHomeUserName;
+	@FXML	protected TableView<?> tvHomeActivity;
 	@FXML	protected Button btnSignOut;
 
 	protected AnchorPane visableNow;

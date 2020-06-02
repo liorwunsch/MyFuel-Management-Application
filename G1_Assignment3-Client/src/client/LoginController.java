@@ -44,9 +44,7 @@ public class LoginController extends ClientController {
 			String[] splitMsg = message.split(" ");
 
 			/* construct a new user */
-			User user = new User();
-			user.setUsername(splitMsg[1]);
-			user.setPassword(splitMsg[2]);
+			User user = new User(splitMsg[1], splitMsg[2]);
 
 			/* determine what the server will do with it */
 			if (splitMsg[3].equals("Employee"))

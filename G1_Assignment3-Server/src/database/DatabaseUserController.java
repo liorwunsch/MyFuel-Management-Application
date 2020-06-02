@@ -1,4 +1,4 @@
-package server;
+package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,9 +49,9 @@ public class DatabaseUserController {
 
 		try {
 			if (type.equals("Employee"))
-				pStmt = this.connection.prepareStatement("SELECT * FROM Employee WHERE fkUsername = ?");
+				pStmt = this.connection.prepareStatement("SELECT * FROM employee WHERE FK_userName = ?");
 			if (type.equals("Customer"))
-				pStmt = this.connection.prepareStatement("SELECT * FROM Customer WHERE fkUsername = ?");
+				pStmt = this.connection.prepareStatement("SELECT * FROM customer WHERE FK_userName = ?");
 
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
@@ -62,7 +62,7 @@ public class DatabaseUserController {
 
 			rs1.close();
 
-			pStmt = this.connection.prepareStatement("SELECT password, connected FROM User WHERE username = ?");
+			pStmt = this.connection.prepareStatement("SELECT password, connected FROM user WHERE username = ?");
 			pStmt.setString(1, username);
 			ResultSet rs2 = pStmt.executeQuery();
 
@@ -83,13 +83,13 @@ public class DatabaseUserController {
 			rs2.close();
 
 			// user is valid - update connected to true
-			pStmt = this.connection.prepareStatement("UPDATE User SET connected = ? WHERE userName = ?");
+			pStmt = this.connection.prepareStatement("UPDATE user SET connected = ? WHERE username = ?");
 			pStmt.setString(1, "1");
 			pStmt.setString(2, username);
 			pStmt.executeUpdate();
 
 			if (type.equals("Employee")) {
-				pStmt = this.connection.prepareStatement("SELECT role FROM Employee WHERE fkUsername = ?");
+				pStmt = this.connection.prepareStatement("SELECT role FROM Employee WHERE FK_userName = ?");
 				pStmt.setString(1, username);
 				ResultSet rs4 = pStmt.executeQuery();
 
@@ -120,12 +120,12 @@ public class DatabaseUserController {
 		try {
 			// update connected to false for user
 			PreparedStatement pStmt = this.connection
-					.prepareStatement("UPDATE User SET connected = ? WHERE username = ?");
+					.prepareStatement("UPDATE user SET connected = ? WHERE username = ?");
 			pStmt.setString(1, "0");
 			pStmt.setString(2, username);
 			pStmt.executeUpdate();
 
-			pStmt = this.connection.prepareStatement("SELECT connected FROM User WHERE username = ?");
+			pStmt = this.connection.prepareStatement("SELECT connected FROM user WHERE username = ?");
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
 

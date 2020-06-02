@@ -12,6 +12,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,7 +24,13 @@ import javafx.stage.StageStyle;
  * @author Elroy, Lior
  */
 public class LoginWindow extends AFXML {
+	
+	@FXML	private AnchorPane ServerPane;
+	@FXML	private TextField tfLoginServerIP;
+	@FXML	private Label lblError1;
+	@FXML	private Button btnContinue;
 
+	@FXML	private AnchorPane loginPane;
 	@FXML	private TextField tfLoginUserName;
 	@FXML	private PasswordField tfLoginPassword;
 	@FXML	private ToggleGroup rb1;
@@ -111,21 +118,10 @@ public class LoginWindow extends AFXML {
 		String newWindowPath = "";
 		String newWindowTitle = "";
 
-		if (role.equals("Customer")) {
-			newWindowPath = "/windows/CustomerWindow.fxml";
-			newWindowTitle = "MyFuel Customer";
-		}
-
 		if (role.equals("MarketingRepresentative")) {
 			newWindowPath = "/windows/MarketingRepresentativeWindow.fxml";
 			newWindowTitle = "MyFuel Marketing Representative";
 		}
-
-		if (role.equals("FuelStationManager")) {
-			newWindowPath = "/windows/FuelStationManagerWindow.fxml";
-			newWindowTitle = "MyFuel Fuel Station Manager";
-		}
-
 		/**
 		 * 
 		 */

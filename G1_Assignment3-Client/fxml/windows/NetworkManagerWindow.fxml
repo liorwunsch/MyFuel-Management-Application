@@ -121,6 +121,9 @@
                      </children>
                   </Group>
                </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
             </Pane>
             <Pane>
                <VBox.margin>
@@ -189,7 +192,7 @@
                            </font>
                         </Label>
                      </children></Pane>
-                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Order Home Fuel">
+                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Home">
                      <font>
                         <Font name="Arial" size="26.0" />
                      </font>
@@ -205,13 +208,59 @@
    <center>
       <AnchorPane fx:id="mainwindow_pane" prefHeight="630.0" prefWidth="840.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="12.0" layoutY="11.0" prefHeight="543.0" prefWidth="639.0">
+            <AnchorPane fx:id="homePane" layoutX="19.0" layoutY="10.0" prefHeight="594.0" prefWidth="803.0" styleClass="home" stylesheets="@../pics/gridPaneStyle.css">
+               <children>
+                  <ImageView fitHeight="595.0" fitWidth="803.0" layoutY="3.0">
+                     <image>
+                        <Image url="@../pics/HomeBackground.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="594.0" prefWidth="802.0">
+                     <children>
+                        <Label layoutX="311.0" layoutY="41.0" text="Welcome to MyFuel" underline="true">
+                           <font>
+                              <Font name="Calibri" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblHomeUserName" layoutX="351.0" layoutY="81.0" text="&lt;userName&gt;!" underline="true">
+                           <font>
+                              <Font name="Calibri" size="30.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvHomeActivity" layoutX="108.0" layoutY="318.0" prefHeight="235.0" prefWidth="587.0">
+                           <columns>
+                              <TableColumn prefWidth="119.0" text="Date" />
+                              <TableColumn prefWidth="119.0" text="Time" />
+                              <TableColumn prefWidth="348.0" text="Action" />
+                           </columns>
+                        </TableView>
+                        <ComboBox fx:id="cobHomeWeek" layoutX="161.0" layoutY="274.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Week]" visibleRowCount="12" />
+                        <Label layoutX="107.0" layoutY="279.0" text="Week:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="127.0" fitWidth="150.0" layoutX="133.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/iconfinder_avatar_1814089.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="236.0" text="Your Weekly Activity:" textFill="#144465" underline="true">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="assessProductRatesUpdatePane" layoutX="12.0" layoutY="11.0" prefHeight="543.0" prefWidth="639.0" visible="false">
                <children>
                   <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="454.0" prefWidth="638.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
                         <HBox layoutX="174.0" layoutY="385.0" prefHeight="47.0" prefWidth="291.0">
                            <children>
-                              <Button fx:id="btnConfirmAssess" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm ">
+                              <Button fx:id="btnAPRURConfirm" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm ">
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin>
@@ -223,7 +272,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Decline" textFill="WHITE">
+                              <Button fx:id="btnAPRURDecline" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Decline" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="19.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -247,11 +296,11 @@
                                     <Insets bottom="1.0" />
                                  </padding>
                               </Label>
-                              <ComboBox prefHeight="30.0" prefWidth="150.0" promptText="Select ID" />
+                              <ComboBox fx:id="cobAPRURRequestID" prefHeight="30.0" prefWidth="150.0" promptText="Select ID" />
                            </children>
                         </VBox>
                         <Label layoutX="207.0" layoutY="23.0" text="No Station Orders To Assess" textFill="RED" visible="false" />
-                        <Button layoutX="198.0" layoutY="67.0" mnemonicParsing="false" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Request">
+                        <Button fx:id="btnAPRURShow" layoutX="198.0" layoutY="67.0" mnemonicParsing="false" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Request">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -260,7 +309,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <TableView layoutX="13.0" layoutY="142.0" prefHeight="200.0" prefWidth="613.0">
+                        <TableView fx:id="tvAPRURDetails" layoutX="13.0" layoutY="142.0" prefHeight="200.0" prefWidth="613.0">
                           <columns>
                             <TableColumn prefWidth="120.0" text="Request ID" />
                             <TableColumn prefWidth="173.0" text="Product 1 Current Rate" />
@@ -275,14 +324,14 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="7.0" layoutY="31.0" text="Please Choose an Unassessed Request:" textFill="#144465" underline="true">
+                  <Label layoutX="7.0" layoutY="31.0" text="Please Choose a Request for Update:" textFill="#144465" underline="true">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="6.0" layoutY="14.0" prefHeight="357.0" prefWidth="358.0" visible="false">
+            <AnchorPane fx:id="viewQuarterReportPane" layoutX="6.0" layoutY="14.0" prefHeight="357.0" prefWidth="358.0" visible="false">
                <children>
                   <Label layoutX="8.0" text=" Quarter Reports:">
                      <font>
@@ -307,8 +356,8 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ComboBox prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ComboBox prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cobVQRYear" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cobVQRQuarter" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Year:" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Arial" size="16.0" />
@@ -319,7 +368,7 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cobVQRFuelStation" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
                               <Label text="Fuel Station:">
                                  <font>
                                     <Font name="Arial" size="16.0" />
@@ -327,7 +376,7 @@
                               </Label>
                            </children>
                         </GridPane>
-                        <Button layoutX="81.0" layoutY="237.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
+                        <Button fx:id="btnVQRView" layoutX="81.0" layoutY="237.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -341,6 +390,110 @@
                         </Button>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="quarterReportPane" layoutX="58.0" layoutY="25.0" prefHeight="541.0" prefWidth="725.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="13.0" text="Quarter report" underline="true">
+                     <font>
+                        <Font name="Arial Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="84.0" text="Year:">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="151.0" layoutY="85.0" text="Quarter:">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="198.0" layoutY="18.0" text="Date Created:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQRDateCreated" layoutX="305.0" layoutY="18.0" text="00/00/0000">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQRYear" layoutX="60.0" layoutY="86.0" text="0000">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQRQuarter" layoutX="220.0" layoutY="87.0" text="00">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnQRNext" layoutX="668.0" layoutY="502.0" mnemonicParsing="false" text="Next" />
+                  <Button fx:id="btnQRPrevious" disable="true" layoutX="14.0" layoutY="502.0" mnemonicParsing="false" text="Previous" />
+                  <AnchorPane fx:id="paneQRPart1" layoutX="13.0" layoutY="118.0" prefHeight="373.0" prefWidth="701.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label fx:id="lblQRTitle1" layoutX="14.0" layoutY="6.0" text="Label" />
+                        <TableView fx:id="tvQRDetails1" layoutX="25.0" layoutY="47.0" prefHeight="251.0" prefWidth="651.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="paneQRPart2" layoutX="13.0" layoutY="88.0" prefHeight="407.0" prefWidth="701.0" style="-fx-border-color: black;" visible="false">
+                     <children>
+                        <Label fx:id="lblQRTitle2" layoutX="14.0" layoutY="6.0" text="Label" />
+                        <TableView fx:id="tvQRDetails2" layoutX="26.0" layoutY="38.0" prefHeight="251.0" prefWidth="651.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="paneQRPart3" layoutX="13.0" layoutY="84.0" prefHeight="407.0" prefWidth="701.0" style="-fx-border-color: black;" visible="false">
+                     <children>
+                        <Label fx:id="lblQRTitle3" layoutX="14.0" layoutY="6.0" text="Label" />
+                        <TableView fx:id="tvQRDetails3" layoutX="25.0" layoutY="43.0" prefHeight="251.0" prefWidth="651.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="btnQRClose" layoutX="691.0" layoutY="7.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="13.0" layoutY="51.0" text="Fuel Station Name:">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQRFuelStationName" layoutX="174.0" layoutY="53.0" text="&lt;Name&gt;">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQRPageNum" layoutX="352.0" layoutY="505.0" text="1/3">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

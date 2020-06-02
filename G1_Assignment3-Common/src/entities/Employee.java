@@ -1,114 +1,79 @@
 package entities;
 
+import java.io.Serializable;
 import enums.Affiliation;
 
-/**
- * @version Final
- * @author Lior
- */
 @SuppressWarnings("serial")
-public class Employee extends User {
+public class Employee implements Serializable {
 
-	private String employeeID;
+	// primary keys
+	private Integer employeeID;
+
+	// foreign keys
+	private String username; // unique
+
+	// fields
 	private String role;
 	private Affiliation affiliation;
 
-	public Employee() {
+	public Employee(String username, String role, Affiliation affiliation) {
 		super();
-	}
-
-	/**
-	 * @param employeeID
-	 * @param role
-	 * @param affiliation
-	 */
-	public Employee(String employeeID, String role, Affiliation affiliation) {
-		super();
-		this.employeeID = employeeID;
+		this.username = username;
 		this.role = role;
 		this.affiliation = affiliation;
 	}
 
-	/**
-	 * @return employeeID
-	 */
-	public String getEmployeeID() {
+	public Employee(int employeeID, String username, String role, Affiliation affiliation) {
+		super();
+		this.employeeID = employeeID;
+		this.username = username;
+		this.role = role;
+		this.affiliation = affiliation;
+	}
+
+	public int getEmployeeID() {
 		return employeeID;
 	}
 
-	/**
-	 * @param employeeID
-	 */
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
+	public String getUsername() {
+		return username;
 	}
 
-	/**
-	 * @return role
-	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getRole() {
 		return role;
 	}
 
-	/**
-	 * @param role
-	 */
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-	/**
-	 * @return affiliation
-	 */
 	public Affiliation getAffiliation() {
 		return affiliation;
 	}
 
-	/**
-	 * @param affiliation
-	 */
 	public void setAffiliation(Affiliation affiliation) {
 		this.affiliation = affiliation;
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((affiliation == null) ? 0 : affiliation.hashCode());
-		result = prime * result + ((employeeID == null) ? 0 : employeeID.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		return result;
+	public String toString() {
+		String str = "Employee [";
+		if (employeeID != null)
+			str += "employeeID=" + employeeID + ", ";
+		str += "username=" + username + ", role=" + role + ", affiliation=" + affiliation + "]";
+		return str;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Employee))
 			return false;
 		Employee other = (Employee) obj;
-		if (affiliation != other.affiliation)
-			return false;
-		if (employeeID == null) {
-			if (other.employeeID != null)
-				return false;
-		} else if (!employeeID.equals(other.employeeID))
-			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [employeeID=" + employeeID + ", role=" + role + ", affiliation=" + affiliation
-				+ ", toString()=" + super.toString() + "]";
+		return this.username.equals(other.username);
 	}
 
 }

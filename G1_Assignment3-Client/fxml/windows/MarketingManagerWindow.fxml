@@ -69,7 +69,7 @@
                         <ToggleGroup fx:id="one" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn4" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="294.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Request Product Rates Update" textFill="WHITE" toggleGroup="$one" wrapText="true" GridPane.rowIndex="4">
+                  <ToggleButton fx:id="sidebar_btn4" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="294.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Request Product Rate Update" textFill="WHITE" toggleGroup="$one" wrapText="true" GridPane.rowIndex="4">
                      <font>
                         <Font name="Calibri" size="18.0" />
                      </font>
@@ -120,7 +120,7 @@
                         </Pane>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#Update_Customer" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Create Sales Pattern" textFill="WHITE" GridPane.rowIndex="2">
+                  <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Create Sales Pattern" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="Calibri" size="18.0" />
                      </font>
@@ -229,7 +229,7 @@
                            </font>
                         </Label>
                      </children></Pane>
-                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Order Home Fuel">
+                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Home ">
                      <font>
                         <Font name="Arial" size="26.0" />
                      </font>
@@ -245,7 +245,7 @@
    <center>
       <AnchorPane fx:id="mainwindow_pane" prefHeight="630.0" prefWidth="840.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="homePane" layoutX="18.0" layoutY="9.0" prefHeight="620.0" prefWidth="800.0" styleClass="home" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+            <AnchorPane fx:id="homePane" layoutX="18.0" layoutY="9.0" prefHeight="620.0" prefWidth="800.0" styleClass="home" stylesheets="@../pics/gridPaneStyle.css">
                <children>
                   <ImageView fitHeight="620.0" fitWidth="803.0" layoutY="3.0">
                      <image>
@@ -254,25 +254,25 @@
                   </ImageView>
                   <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="610.0" prefWidth="802.0">
                      <children>
-                        <Label layoutX="275.0" layoutY="42.0" text="Welcome &lt;UserName&gt;!" underline="true">
+                        <Label layoutX="311.0" layoutY="41.0" text="Welcome to MyFuel" underline="true">
                            <font>
                               <Font name="Calibri" size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="351.0" layoutY="81.0" text="To MyFuel" underline="true">
+                        <Label fx:id="lblHomeUserName" layoutX="351.0" layoutY="81.0" text="&lt;userName&gt;!" underline="true">
                            <font>
                               <Font name="Calibri" size="30.0" />
                            </font>
                         </Label>
-                        <TableView layoutX="108.0" layoutY="318.0" prefHeight="256.0" prefWidth="587.0">
+                        <TableView fx:id="tvHomeActivity" layoutX="106.0" layoutY="289.0" prefHeight="256.0" prefWidth="587.0">
                            <columns>
                               <TableColumn prefWidth="119.0" text="Date" />
                               <TableColumn prefWidth="119.0" text="Time" />
                               <TableColumn prefWidth="348.0" text="Action" />
                            </columns>
                         </TableView>
-                        <ComboBox layoutX="161.0" layoutY="274.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Week]" visibleRowCount="12" />
-                        <Label layoutX="107.0" layoutY="279.0" text="Week:">
+                        <ComboBox fx:id="cobHomeWeek" layoutX="161.0" layoutY="245.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Week]" visibleRowCount="12" />
+                        <Label layoutX="107.0" layoutY="250.0" text="Week:">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -282,34 +282,43 @@
                               <Image url="@../pics/iconfinder_avatar_1814089.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="33.0" layoutY="236.0" text="Your Weekly Activity:" textFill="#144465" underline="true">
+                        <Label layoutX="33.0" layoutY="207.0" text="Your Weekly Activity:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
+                        <Button fx:id="btnHomeGenerateAnalysis" layoutX="257.0" layoutY="561.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Generate This Week's Analysis">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pics/EditCars.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="505.0" prefWidth="672.0" visible="false">
+            <AnchorPane fx:id="initiateSalePane" layoutX="12.0" layoutY="14.0" prefHeight="505.0" prefWidth="813.0" visible="false">
                <children>
                   <Label layoutY="2.0" prefHeight="21.0" prefWidth="215.0" text="Sales Information:">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutY="21.0" prefHeight="470.0" prefWidth="659.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                  <AnchorPane layoutY="21.0" prefHeight="470.0" prefWidth="810.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
-                        <TableView layoutX="34.0" layoutY="166.0" prefHeight="233.0" prefWidth="589.0">
+                        <TableView fx:id="tvISSalesPattern" layoutX="34.0" layoutY="166.0" prefHeight="233.0" prefWidth="745.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Pattern ID" />
-                            <TableColumn prefWidth="87.0" text="Duration" />
-                              <TableColumn prefWidth="133.0" text="Diesel Discount" />
-                              <TableColumn prefWidth="140.0" text="Gasoline Discount" />
-                              <TableColumn prefWidth="152.0" text="Motorbike Fuel Discount" />
+                            <TableColumn prefWidth="110.0" text="Pattern ID" />
+                            <TableColumn prefWidth="155.0" text="Duration" />
+                              <TableColumn prefWidth="160.0" text="Diesel Discount" />
+                              <TableColumn prefWidth="160.0" text="Gasoline Discount" />
+                              <TableColumn prefWidth="160.0" text="Motorbike Fuel Discount" />
                           </columns>
                         </TableView>
-                        <Button fx:id="pricingModel_SaveModel_btn11" layoutX="229.0" layoutY="414.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Initiate Sale" textFill="WHITE">
+                        <Button fx:id="btnISInitiate" layoutX="307.0" layoutY="412.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Initiate Sale" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="20.0" />
                            </font>
@@ -321,24 +330,24 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <DatePicker layoutX="103.0" layoutY="48.0" prefHeight="30.0" />
-                        <TextField layoutX="103.0" layoutY="86.0" prefHeight="30.0" prefWidth="172.0" promptText="HH:MM" />
-                        <Label layoutX="39.0" layoutY="90.0" text="Time">
+                        <DatePicker fx:id="dpISDate" layoutX="103.0" layoutY="86.0" prefHeight="30.0" />
+                        <TextField fx:id="tfISTime" layoutX="103.0" layoutY="47.0" prefHeight="30.0" prefWidth="172.0" promptText="HH:MM" />
+                        <Label layoutX="39.0" layoutY="51.0" text="Time">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="39.0" layoutY="52.0" text="Date">
+                        <Label layoutX="39.0" layoutY="90.0" text="Date">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="14.0" text="Please choose time and date to start sale:" textFill="#144465" underline="true">
+                        <Label layoutX="14.0" layoutY="14.0" text="Please Choose Time and Date to Start Sale:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="132.0" text="Please choose requested sale pattern:" textFill="#144465" underline="true">
+                        <Label layoutX="14.0" layoutY="132.0" text="Please Choose Your Desired Sale Pattern:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -347,7 +356,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="updateCustomer_pane" layoutX="5.0" layoutY="7.0" prefHeight="626.0" prefWidth="605.0" visible="false">
+            <AnchorPane fx:id="createSalePatternPane" layoutX="5.0" layoutY="7.0" prefHeight="626.0" prefWidth="605.0" visible="false">
                <children>
                   <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="215.0" text="Sale Pattern Information:">
                      <font>
@@ -356,7 +365,7 @@
                   </Label>
                   <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="605.0" prefWidth="591.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
-                        <TableView layoutX="23.0" layoutY="292.0" prefHeight="299.0" prefWidth="541.0">
+                        <TableView fx:id="tvCSPAnalysis" layoutX="23.0" layoutY="292.0" prefHeight="299.0" prefWidth="541.0">
                            <columns>
                               <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer ID" />
                               <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer Type Rank" />
@@ -385,7 +394,7 @@
                               <Label GridPane.rowIndex="1" />
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="225.0" spacing="3.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
                                  <children>
-                                    <TextField prefHeight="30.0" prefWidth="65.0" promptText="HH:MM" />
+                                    <TextField fx:id="tfCSPDuration" prefHeight="30.0" prefWidth="65.0" promptText="HH:MM" />
                                  </children>
                               </HBox>
                               <Label text="Diesel " GridPane.rowIndex="1">
@@ -403,12 +412,12 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="cbCSPDiesel" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbCSPGasoline" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPDiesel" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -421,7 +430,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPGasoline" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -434,7 +443,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
-                                    <TextField prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPMotorbike" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -447,7 +456,7 @@
                               </HBox>
                            </children>
                         </GridPane>
-                        <Button fx:id="pricingModel_SaveModel_btn1" layoutX="132.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Create Pattern" textFill="WHITE">
+                        <Button fx:id="btnCSPCreate" layoutX="132.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Create Pattern" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="20.0" />
                            </font>
@@ -459,7 +468,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label layoutX="20.0" layoutY="12.0" text="Please fill the following:" textFill="#144465" underline="true">
+                        <Label layoutX="20.0" layoutY="12.0" text="Please Fill in the Following:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -473,7 +482,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="6.0" layoutY="11.0" prefHeight="614.0" prefWidth="827.0" visible="false">
+            <AnchorPane fx:id="generateReportPane" layoutX="6.0" layoutY="11.0" prefHeight="614.0" prefWidth="827.0" visible="false">
                <children>
                   <Label layoutX="9.0" layoutY="-3.0" text="Marketing Reports:">
                      <font>
@@ -484,33 +493,36 @@
                      <children>
                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="120.0" prefWidth="370.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                            <children>
-                              <Button layoutX="271.0" layoutY="80.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Next">
+                              <Button fx:id="btnGMRNext" layoutX="271.0" layoutY="80.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Next">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <RadioButton layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="Periodic Customers Report">
+                              <RadioButton fx:id="rbGMRPeriodicReport" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="Periodic Customers Report">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="two" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rbGMRCommentReport" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="Sale Comments Report" toggleGroup="$two">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="Sale Comments Report">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </RadioButton>
-                              <Label layoutX="7.0" layoutY="5.0" text="Please choose one of the following:" textFill="#144465" underline="true">
+                              <Label layoutX="7.0" layoutY="5.0" text="Please Choose One of the Following:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="15.0" layoutY="140.0" prefHeight="373.0" prefWidth="778.0" visible="false">
+                        <AnchorPane fx:id="paneGMRCommentNext" layoutX="15.0" layoutY="142.0" prefHeight="394.0" prefWidth="778.0" visible="false">
                            <children>
                               <AnchorPane layoutY="35.0" prefHeight="361.0" prefWidth="778.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
-                                    <Button layoutX="320.0" layoutY="308.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
+                                    <Button fx:id="btnGMRViewReport" layoutX="320.0" layoutY="308.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
                                        <font>
                                           <Font size="36.0" />
                                        </font>
@@ -522,7 +534,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <TableView layoutX="64.0" layoutY="49.0" prefHeight="237.0" prefWidth="651.0">
+                                    <TableView fx:id="tvGMRPickSale" layoutX="64.0" layoutY="49.0" prefHeight="237.0" prefWidth="651.0">
                                       <columns>
                                         <TableColumn prefWidth="75.0" text="ID" />
                                         <TableColumn prefWidth="75.0" text="Start Time" />
@@ -546,11 +558,11 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="15.0" layoutY="140.0" prefHeight="284.0" prefWidth="778.0">
+                        <AnchorPane fx:id="paneGMRPeriodicNext" layoutX="15.0" layoutY="140.0" prefHeight="284.0" prefWidth="778.0">
                            <children>
                               <AnchorPane layoutY="32.0" prefHeight="232.0" prefWidth="773.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
-                                    <Button layoutX="317.0" layoutY="179.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
+                                    <Button fx:id="btnGMRViewReport" layoutX="317.0" layoutY="179.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="task-button" stylesheets="@../pics/style.css" text="View Report">
                                        <font>
                                           <Font size="36.0" />
                                        </font>
@@ -562,7 +574,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Label layoutX="14.0" layoutY="14.0" text="Please enter dates:" textFill="#144465" underline="true">
+                                    <Label layoutX="14.0" layoutY="14.0" text="Please Enter Dates:" textFill="#144465" underline="true">
                                        <font>
                                           <Font name="Arial" size="16.0" />
                                        </font>
@@ -582,13 +594,13 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker prefHeight="30.0" GridPane.columnIndex="1" />
+                                          <DatePicker fx:id="dpGMRStartDate" prefHeight="30.0" GridPane.columnIndex="1" />
                                           <Label text="End Date:" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <DatePicker fx:id="dpGMREndDate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -604,7 +616,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="57.0" layoutY="34.0" prefHeight="541.0" prefWidth="725.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+            <AnchorPane fx:id="saleCommentReportPane" layoutX="57.0" layoutY="34.0" prefHeight="541.0" prefWidth="725.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">
                <children>
                   <Label layoutX="14.0" layoutY="10.0" text="Sale Comments Report" underline="true">
                      <font>
@@ -647,22 +659,22 @@
                               <Insets top="10.0" />
                            </padding>
                         </Label>
-                        <TextField GridPane.columnIndex="1">
+                        <TextField fx:id="tfSCRSaleID" prefHeight="30.0" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets right="20.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="tfSCRNumberOf" alignment="CENTER" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets right="20.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <TextField fx:id="tfSCREndTime" prefHeight="30.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="tfSCRStartTime" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="20.0" />
                            </GridPane.margin>
@@ -672,7 +684,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="tfSCRSumPurchase" prefHeight="30.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Label layoutX="285.0" layoutY="15.0" text="Date Created:">
@@ -680,12 +692,12 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="388.0" layoutY="15.0" text="00/00/0000">
+                  <Label fx:id="lblSCRDateCreated" layoutX="388.0" layoutY="15.0" text="00/00/0000">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnExit1" layoutX="691.0" layoutY="7.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+                  <Button fx:id="btnSCRClose" layoutX="691.0" layoutY="7.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -699,7 +711,7 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="70.0" layoutY="295.0" prefHeight="208.0" prefWidth="243.0">
+                  <TableView fx:id="tvSCRDetails" layoutX="70.0" layoutY="295.0" prefHeight="208.0" prefWidth="243.0">
                      <columns>
                         <TableColumn prefWidth="124.0" text="Customer ID" />
                         <TableColumn prefWidth="119.0" text="Paid" />
@@ -707,7 +719,72 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="581.0" prefWidth="498.0" visible="false">
+            <AnchorPane fx:id="periodicReportPane" layoutX="57.0" layoutY="79.0" prefHeight="483.0" prefWidth="725.0" styleClass="reports" stylesheets="@../pics/gridPaneStyle.css" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" text="Periodic Customers Report:" underline="true">
+                     <font>
+                        <Font name="Arial Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="22.0" layoutY="69.0" prefHeight="83.0" prefWidth="273.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="201.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="From:">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="To:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfPCRTo" prefHeight="30.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfPCRFrom" prefHeight="30.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="307.0" layoutY="15.0" text="Date Created:">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPCRDateCreated" layoutX="410.0" layoutY="15.0" text="00/00/0000">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnPCRClose" layoutX="691.0" layoutY="7.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="22.0" layoutY="171.0" text="Details:" underline="true">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tvPCRDetails" layoutX="111.0" layoutY="203.0" prefHeight="268.0" prefWidth="497.0">
+                     <columns>
+                        <TableColumn prefWidth="124.0" text="Customer ID" />
+                        <TableColumn prefWidth="119.0" text="Fuel Company" />
+                        <TableColumn prefWidth="131.0" text="Amount Bought" />
+                        <TableColumn prefWidth="122.0" text="Paid" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="requestRateUpdatePane" layoutX="14.0" layoutY="14.0" prefHeight="581.0" prefWidth="498.0" visible="false">
                <children>
                   <AnchorPane layoutX="2.0" layoutY="19.0" prefHeight="550.0" prefWidth="490.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
@@ -724,10 +801,10 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" />
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="cbRPRUDiesel" mnemonicParsing="false" GridPane.columnIndex="1" />
+                              <CheckBox fx:id="cbRPRUGasoline" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbRPRUMotorbike" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbRPRUHomeFuel" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Diesel">
                                  <font>
                                     <Font name="Arial" size="16.0" />
@@ -762,7 +839,7 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUDiesel2" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -775,7 +852,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUGasoline2" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -788,7 +865,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUHomeFuel2" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -801,7 +878,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUMotorbike2" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -831,7 +908,7 @@
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUDiesel1" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -876,7 +953,7 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUGasoline1" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -889,7 +966,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUMotorbike1" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -902,7 +979,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
-                                    <TextField editable="false" prefHeight="30.0" promptText="-0.00" />
+                                    <TextField fx:id="tfRPRUHomeFuel1" editable="false" prefHeight="30.0" promptText="-0.00" />
                                     <Label text="\$/Liter">
                                        <font>
                                           <Font name="Arial" size="16.0" />
@@ -920,12 +997,12 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="25.0" layoutY="251.0" text="Please Fill New Product Rates:" textFill="#144465" underline="true">
+                        <Label layoutX="25.0" layoutY="251.0" text="Please Fill in New Product Rates:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <Button layoutX="165.0" layoutY="492.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Send Request">
+                        <Button fx:id="btnRPRUSend" layoutX="165.0" layoutY="492.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Send Request">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -941,71 +1018,6 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="57.0" layoutY="79.0" prefHeight="483.0" prefWidth="725.0" styleClass="reports" stylesheets="@../pics/gridPaneStyle.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="10.0" text="Periodic Customers Report:" underline="true">
-                     <font>
-                        <Font name="Arial Bold Italic" size="20.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="22.0" layoutY="69.0" prefHeight="83.0" prefWidth="273.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="60.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="201.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="From:">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="To:" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="30.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField prefHeight="30.0" GridPane.columnIndex="1" />
-                     </children>
-                  </GridPane>
-                  <Label layoutX="307.0" layoutY="15.0" text="Date Created:">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="410.0" layoutY="15.0" text="00/00/0000">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnExit11" layoutX="691.0" layoutY="7.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pics/close.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="22.0" layoutY="171.0" text="Details:" underline="true">
-                     <font>
-                        <Font name="Arial" size="18.0" />
-                     </font>
-                  </Label>
-                  <TableView layoutX="111.0" layoutY="203.0" prefHeight="268.0" prefWidth="497.0">
-                     <columns>
-                        <TableColumn prefWidth="124.0" text="Customer ID" />
-                        <TableColumn prefWidth="119.0" text="Fuel Company" />
-                        <TableColumn prefWidth="131.0" text="Amount Bought" />
-                        <TableColumn prefWidth="117.0" text="Paid" />
-                     </columns>
-                  </TableView>
                </children>
             </AnchorPane>
          </children>

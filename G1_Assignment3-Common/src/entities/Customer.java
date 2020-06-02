@@ -1,92 +1,91 @@
 package entities;
 
-/**
- * @version Final
- * @author Lior
- */
+import java.io.Serializable;
+import enums.CustomerType;
+
 @SuppressWarnings("serial")
-public class Customer extends User {
+public class Customer implements Serializable {
 
+	// primary keys
 	private String customerID;
-	private String creditCard;
 
-	public Customer() {
+	// foreign keys
+	private String username; // unique
+
+	// fields
+	private String creditCard;
+	private CustomerType customerType;
+	private boolean deleted;
+
+	public Customer(String username, String creditCard, CustomerType customerType, boolean deleted) {
 		super();
+		this.username = username;
+		this.creditCard = creditCard;
+		this.customerType = customerType;
+		this.deleted = deleted;
 	}
 
-	/**
-	 * @param customerID
-	 * @param creditCard
-	 */
-	public Customer(String customerID, String creditCard) {
+	public Customer(String customerID, String username, String creditCard, CustomerType customerType, boolean deleted) {
 		super();
 		this.customerID = customerID;
+		this.username = username;
 		this.creditCard = creditCard;
+		this.customerType = customerType;
+		this.deleted = deleted;
 	}
 
-	/**
-	 * @return customerID
-	 */
 	public String getCustomerID() {
 		return customerID;
 	}
 
-	/**
-	 * @param customerID
-	 */
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public String getUsername() {
+		return username;
 	}
 
-	/**
-	 * @return creditCard
-	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getCreditCard() {
 		return creditCard;
 	}
 
-	/**
-	 * @param creditCard
-	 */
 	public void setCreditCard(String creditCard) {
 		this.creditCard = creditCard;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((creditCard == null) ? 0 : creditCard.hashCode());
-		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
-		return result;
+	public CustomerType getCustomerType() {
+		return customerType;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Customer other = (Customer) obj;
-		if (creditCard == null) {
-			if (other.creditCard != null)
-				return false;
-		} else if (!creditCard.equals(other.creditCard))
-			return false;
-		if (customerID == null) {
-			if (other.customerID != null)
-				return false;
-		} else if (!customerID.equals(other.customerID))
-			return false;
-		return true;
+	public void setCustomerType(CustomerType customerType) {
+		this.customerType = customerType;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [customerID=" + customerID + ", creditCard=" + creditCard + ", toString()=" + super.toString()
-				+ "]";
+		String str = "Customer [";
+		if (customerID != null)
+			str += "customerID=" + customerID + ", ";
+		str += "username=" + username + ", creditCard=" + creditCard + ", customerType=" + customerType + ", deleted="
+				+ deleted + "]";
+		return str;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Customer))
+			return false;
+		Customer other = (Customer) obj;
+		return this.username.equals(other.username);
 	}
 
 }

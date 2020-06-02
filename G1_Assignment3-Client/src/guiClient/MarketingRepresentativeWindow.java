@@ -4,14 +4,20 @@ import client.MarketingRepresentativeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Window;
 
 /**
@@ -30,56 +36,111 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML	private ToggleButton sidebar_btn4;
 	@FXML	private ToggleButton sidebar_btn5;
 
-	@FXML	private AnchorPane addCustomer_pane;
-	@FXML	private TextField addcust_Credit_TF;
-	@FXML	private TextField addcust_CustID_TF;
-	@FXML	private TextField addcust_FirstName_TF;
-	@FXML	private TextField addcust_Surname_TF;
-	@FXML	private TextField addcust_Email_TF;
-	@FXML	private ComboBox<?> addcust_CustType_CB;
-	@FXML	private Button addcust_Save_btn;
+	@FXML	private ComboBox<?> cobHomeWeek;
+	@FXML	private Button btnHomeGenerateAnalysis;
 
-	@FXML	private AnchorPane addCar_pane;
-	@FXML	private TextField addcar_RegPlate_TF;
-	@FXML	private TextField addcar_OwnerName_TF;
-	@FXML	private Button addcar_SaveCar_btn;
-	@FXML	private TextField addcar_CustID_TF;
-	@FXML	private Button addcar_CheckCust_btn;
-	@FXML	private ComboBox<?> addcar_FuelType_CB;
+	@FXML	private AnchorPane addEditCustomerPane;
+	@FXML	private Label step1;
+	@FXML	private TextField tfAECUCredit;
+	@FXML	private TextField tfAECUCustID;
+	@FXML	private TextField tfAECUFirstName;
+	@FXML	private TextField tfAECUSurname;
+	@FXML	private TextField tfAECUEmail;
+	@FXML	private ComboBox<?> cobAECUCustType;
+	@FXML	private Button btnAECUSave;
+	@FXML	private Button btnAECUEdit;
+
+	@FXML	private AnchorPane editCustomerPane;
+	@FXML	private TextField tfACUCustID;
+	@FXML	private Button btnECUUpdate;
+	@FXML	private Button btnECUDelete;
+	@FXML	private Button btnECUClose;
+	@FXML	private TextField tfECUFirstName;
+	@FXML	private TextField tfECUSurname;
+	@FXML	private TextField tfECUEmail;
+	@FXML	private TextField tfECUCredit;
+	@FXML	private ComboBox<?> cobECUCustType;
+	@FXML	private Button btnECUShow;
+
+	@FXML	private AnchorPane addEditCarPane;
 	@FXML	private Label step2;
-
-	@FXML	private AnchorPane PurchProg_pane;
-	@FXML	private ScrollPane purchProg_ExpenProgBox_SP;
-	@FXML	private RadioButton purchProg_ExpenProg_RB;
-	@FXML	private ToggleGroup two;
-	@FXML	private ComboBox<?> purchProg_FuelComp1_CB;
-	@FXML	private ComboBox<?> purchProg_FuelComp2_CB;
-	@FXML	private ComboBox<?> purchProg_FuelComp3_CB;
-	@FXML	private Button purchProg_SavePurch_btn;
-	@FXML	private ScrollPane purchProg_ExpenProgBox_SP1;
-	@FXML	private RadioButton purchProg_ExpenProg_RB1;
-	@FXML	private ToggleGroup two1;
-	@FXML	private TextField addcar_CustID_TF1;
-	@FXML	private Button addcar_CheckCust_btn1;
+	@FXML	private TextField tfAECARegistration;
+	@FXML	private TextField tfAECAOwner;
+	@FXML	private Button btnAECASave;
+	@FXML	private TextField tfAECACustID;
+	@FXML	private Button btnAECACheck;
+	@FXML	private ComboBox<?> cobAECAFuelType;
+	@FXML	private Button btnAECAEdit;
+	
+	@FXML	private AnchorPane editCarPane;
+	@FXML	private TableView<?> tvECACarDetails;
+	@FXML	private TextField tfECACustID;
+	@FXML	private TextField tfECARegistration;
+	@FXML	private TextField tfECAOwner;
+	@FXML	private ComboBox<?> cobECAFuelType;
+	@FXML	private Button btnECAUpdate;
+	@FXML	private Button btnECADelete;
+	@FXML	private Button btnExit1;
+	@FXML	private ImageView btnECAClose;
+	
+	@FXML	private AnchorPane setPurchasingPane;
 	@FXML	private Label step3;
+	@FXML	private VBox vbSPPMagicbox2;
+	@FXML	private ScrollPane purchProg_ExpenProgBox_SP;
+	@FXML	private TextArea taSPPExpensiveDetails;
+	@FXML	private RadioButton rbSPPExpensive;
+	@FXML	private ToggleGroup two;
+	@FXML	private ComboBox<?> cobSPPFuelCompany1;
+	@FXML	private ComboBox<?> cobSPPFuelCompany2;
+	@FXML	private ComboBox<?> cobSPPFuelCompany3;
+	@FXML	private Button btnSPPSave;
+	@FXML	private VBox vbSPPMagicbox1;
+	@FXML	private ScrollPane purchProg_ExpenProgBox_SP1;
+	@FXML	private TextArea taSPPSingleDetails;
+	@FXML	private RadioButton rbSPPSingle;
+	@FXML	private Label lblSPPChooseCompany;
+	@FXML	private TextField tfSPPCustID;
+	@FXML	private Button btnSPPCheck;
 
-	@FXML	private AnchorPane pricingModel_pane;
-	@FXML	private Button pricingModel_SaveModel_btn;
-	@FXML	private TextField addcar_CustID_TF2;
-	@FXML	private Button addcar_CheckCust_btn2;
+	@FXML	private AnchorPane pricingModelPane;
+	@FXML	private Button btnSPMSet;
+	@FXML	private TextField tfSPMCustID;
+	@FXML	private Button btnSPMCheck;
+	@FXML	private Label lblSPMPriceModel1;
+	@FXML	private Text txSPMModel1Details;
+	@FXML	private ToggleButton btnSPMChoose;
 	@FXML	private ToggleGroup three;
-
-	@FXML	private AnchorPane updateCustomer_pane;
+	@FXML	private Label lblSPMModel1Discount;
+	@FXML	private Label lblSPMPriceModel2;
+	@FXML	private Text txSPMModel2Details;
+	@FXML	private Label lblSPMModel2Discount;
+	@FXML	private Label lblSPMPriceModel3;
+	@FXML	private Text txSPMModel3Details;
+	@FXML	private Label lblSPMModel3Discount;
+	@FXML	private Label lblSPMPriceModel4;
+	@FXML	private Text txSPMModel4Details;
+	@FXML	private Label lblSPMModel4Discount;
+	
+	@FXML	private AnchorPane createSalePatternPane;
+	@FXML	private TableView<?> tvCSPAnalysis;
+	@FXML	private TextField tfCSPDuration;
+	@FXML	private TextField tfCSPDieselDisc;
+	@FXML	private CheckBox cbCSPDiesel;
+	@FXML	private CheckBox cbCSPGasoline;
+	@FXML	private CheckBox cbCSPMotorbike;
+	@FXML	private TextField tfCSPGasolineDisc;
+	@FXML	private TextField tfCSPMotorbikeDisc;
+	@FXML	private Button btnCSPCreate;
 
 	@FXML
 	void initialize() {
-		this.visableNow = addCustomer_pane;
+		this.visableNow = homePane;
 		this.controller = MarketingRepresentativeController.getInstance();
 	}
 
 	@Override
 	public Window getWindow() {
-		return this.addCustomer_pane.getScene().getWindow();
+		return this.btnCSPCreate.getScene().getWindow();
 	}
 
 	@Override
@@ -98,41 +159,40 @@ public class MarketingRepresentativeWindow extends UserWindow {
 	@FXML
 	void Add_Customer(ActionEvent event) {
 		visableNow.setVisible(false);
-		addCustomer_pane.setVisible(true);
-		visableNow = addCustomer_pane;
+		addEditCustomerPane.setVisible(true);
+		visableNow = addEditCustomerPane;
 		topbar_window_label.setText("Add Customer");
 	}
 
 	@FXML
 	void Add_Car(ActionEvent event) {
 		visableNow.setVisible(false);
-		addCar_pane.setVisible(true);
-		visableNow = addCar_pane;
+		addEditCarPane.setVisible(true);
+		visableNow = addEditCarPane;
 		topbar_window_label.setText("Add Car");
 	}
 
 	@FXML
 	void Purchase_Prog(ActionEvent event) {
 		visableNow.setVisible(false);
-		PurchProg_pane.setVisible(true);
-		visableNow = PurchProg_pane;
+		setPurchasingPane.setVisible(true);
+		visableNow = setPurchasingPane;
 		topbar_window_label.setText("Purchasing Program");
 	}
 
 	@FXML
 	void Pricing_Model(ActionEvent event) {
 		visableNow.setVisible(false);
-		pricingModel_pane.setVisible(true);
-		visableNow = pricingModel_pane;
+		pricingModelPane.setVisible(true);
+		visableNow = pricingModelPane;
 		topbar_window_label.setText("Pricing Model");
 	}
 
 	@FXML
 	void Update_Customer(ActionEvent event) {
-		visableNow.setVisible(false);
-		updateCustomer_pane.setVisible(true);
-		visableNow = updateCustomer_pane;
-		topbar_window_label.setText("Update Customer");
+		/**
+		 *
+		 */
 	}
 
 }

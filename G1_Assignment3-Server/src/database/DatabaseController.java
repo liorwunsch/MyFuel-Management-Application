@@ -1,9 +1,10 @@
-package server;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import guiServer.ServerWindow;
 
@@ -16,7 +17,7 @@ import guiServer.ServerWindow;
 public class DatabaseController {
 
 	private static DatabaseController instance;
-	private Connection connection;
+	private Connection con;
 
 	/**
 	 * singleton class constructor initialize connection to the database
@@ -33,12 +34,23 @@ public class DatabaseController {
 		}
 
 		try {
-			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + schema + "?serverTimezone=IST",
-					dbUsername, dbPassword);
+			this.con = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST", dbUsername,
+					dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
 
+			Statement stmt = this.con.createStatement();
+			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + schema
+					+ " DEFAULT CHARACTER SET utf8 \n DEFAULT COLLATE utf8_general_ci");
+			serverWindow.updateArea("Database connection succeeded");
+
+			this.con = DriverManager.getConnection("jdbc:mysql://" + host + "/" + schema + "?serverTimezone=IST",
+					dbUsername, dbPassword);
+
+			serverWindow.updateArea(TableGenerator.GenerateTables(this.con));
+			serverWindow.updateArea(DefaultTableInserts.InsertDefaultTables(this.con));
+
 			PreparedStatement pStmt;
-			pStmt = this.connection.prepareStatement("UPDATE User SET connected = ?");
+			pStmt = this.con.prepareStatement("UPDATE User SET connected = ?");
 			pStmt.setString(1, "0");
 			pStmt.executeUpdate();
 
@@ -61,11 +73,11 @@ public class DatabaseController {
 	}
 
 	public String loginSequence(String username, String password, String type) {
-		return DatabaseUserController.getInstance(connection).loginSequence(username, password, type);
+		return DatabaseUserController.getInstance(con).loginSequence(username, password, type);
 	}
 
 	public String signOutSequence(String username) {
-		return DatabaseUserController.getInstance(connection).signOutSequence(username);
+		return DatabaseUserController.getInstance(con).signOutSequence(username);
 	}
 
 }
