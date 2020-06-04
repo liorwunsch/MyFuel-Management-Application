@@ -6,7 +6,7 @@ package client;
  * @version Basic
  * @author Lior
  */
-public class MarketingRepresentativeController extends UserController {
+public class MarketingRepresentativeController extends MarketingDepWorkerController {
 
 	private static MarketingRepresentativeController instance;
 

@@ -26,7 +26,7 @@ import javafx.stage.Window;
  * @version Basic
  * @author Elroy, Lior
  */
-public class MarketingRepresentativeWindow extends UserWindow {
+public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML	private ToggleGroup one;
 	@FXML	private ToggleButton sidebar_btn0;

@@ -1,14 +1,8 @@
 package guiClient;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-import entities.Activity;
-import entities.ActivityList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,16 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-import javafx.util.Callback;
 
 /**
  * boundary for sign out requests
@@ -42,7 +31,6 @@ import javafx.util.Callback;
  */
 public abstract class UserWindow extends AFXML {
 
-	@FXML	protected BorderPane main_pane;
 	@FXML	protected AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
@@ -52,7 +40,6 @@ public abstract class UserWindow extends AFXML {
 	@FXML	protected ComboBox<Integer> cobHomeYear;
 	@FXML	protected ComboBox<Integer> cobHomeMonth;
 	@FXML	protected Button btnHomeUpdate;
-	@FXML	protected TableView<Activity> tvHomeActivity;
 	@FXML	protected Button btnSignOut;
 
 	protected String username; // the username of the current user of the window
@@ -64,11 +51,10 @@ public abstract class UserWindow extends AFXML {
 	public abstract Window getWindow();
 
 	/**
-	 * updates <Code>username</Code> to that of the one connnected
-	 * 
+	 * initialize all components shared by all users
 	 * @param username
 	 */
-	@SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
+	@SuppressWarnings({ "deprecation" })
 	public void setUserComponents(String username) {
 		this.username = username;
 		this.lblHelloUser.setText("Hello, " + username);
@@ -80,18 +66,6 @@ public abstract class UserWindow extends AFXML {
 		this.cobHomeMonth.getItems().removeAll((Collection<?>) this.cobHomeMonth.getItems());
 		this.cobHomeMonth.getItems().addAll(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
 		this.cobHomeMonth.setValue(new java.util.Date().getMonth() + 1);
-
-		final TableColumn<Activity, Date> timeColumn = (TableColumn<Activity, Date>) new TableColumn("Date");
-		timeColumn.setCellValueFactory((Callback) new PropertyValueFactory("time"));
-		timeColumn.impl_setWidth(200);
-		this.tvHomeActivity.getColumns().add(timeColumn);
-		final TableColumn<Activity, String> actionColumn = (TableColumn<Activity, String>) new TableColumn("Action");
-		actionColumn.setCellValueFactory((Callback) new PropertyValueFactory("action"));
-		actionColumn.impl_setWidth(442);
-		this.tvHomeActivity.getColumns().add(actionColumn);
-
-		this.controller.handleMessageFromClientUI(("activity get " + username + " "
-				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
 	}
 
 	/*********************** button listeners ***********************/
@@ -156,36 +130,8 @@ public abstract class UserWindow extends AFXML {
 			if (message.startsWith("sign out"))
 				handleSignOutFromServer(message, this.getWindow());
 		}
-		if (lastMsgFromServer instanceof ActivityList) {
-			ActivityList activityList = (ActivityList) lastMsgFromServer;
-			handleGetActivityListFromServer(activityList);
-		}
 	}
-
-	public void logActivity() {
-		/**
-		 * 
-		 */
-	}
-
-	/**
-	 * fills the tableview in home with activities
-	 * 
-	 * @param activityList
-	 */
-	public void handleGetActivityListFromServer(ActivityList activityList) {
-		final ObservableList<Activity> list = FXCollections.observableArrayList();
-		for (int i = 0; i < this.tvHomeActivity.getItems().size(); ++i) {
-			this.tvHomeActivity.getItems().clear();
-		}
-
-		ArrayList<Activity> activities = activityList.getActivities();
-		for (Activity activity : activities) {
-			list.add(activity);
-		}
-		this.tvHomeActivity.setItems(list);
-	}
-
+	
 	/**
 	 * @param lastMsgFromServer
 	 * @param window

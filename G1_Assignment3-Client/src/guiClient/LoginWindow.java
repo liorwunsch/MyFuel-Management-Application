@@ -19,8 +19,7 @@ import javafx.stage.StageStyle;
 /**
  * boundary for login window
  * 
- * @version 1 Method To Final
- * @see successLogin()
+ * @version Final
  * @author Elroy, Lior
  */
 public class LoginWindow extends AFXML {
@@ -140,13 +139,30 @@ public class LoginWindow extends AFXML {
 		String newWindowPath = "";
 		String newWindowTitle = "";
 
+		if (role.equals("Customer")) {
+			newWindowPath = "/windows/CustomerWindow.fxml";
+			newWindowTitle = "MyFuel Customer";
+		}
+		if (role.equals("FuelStationManager")) {
+			newWindowPath = "/windows/FuelStationManagerWindow.fxml";
+			newWindowTitle = "MyFuel Fuel Station Manager";
+		}
+		if (role.equals("MarketingManager")) {
+			newWindowPath = "/windows/MarketingManagerWindow.fxml";
+			newWindowTitle = "MyFuel Marketing Manager";
+		}
 		if (role.equals("MarketingRepresentative")) {
 			newWindowPath = "/windows/MarketingRepresentativeWindow.fxml";
 			newWindowTitle = "MyFuel Marketing Representative";
 		}
-		/**
-		 * 
-		 */
+		if (role.equals("NetworkManager")) {
+			newWindowPath = "/windows/NetworkManagerWindow.fxml";
+			newWindowTitle = "MyFuel Network Manager";
+		}
+		if (role.equals("Supplier")) {
+			newWindowPath = "/windows/SupplierWindow.fxml";
+			newWindowTitle = "MyFuel Supplier";
+		}
 
 		try {
 			FXMLLoader loader = new FXMLLoader();
