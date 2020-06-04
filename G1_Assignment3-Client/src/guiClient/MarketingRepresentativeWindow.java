@@ -4,7 +4,6 @@ import client.MarketingRepresentativeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -35,8 +34,6 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	@FXML	private ToggleButton sidebar_btn3;
 	@FXML	private ToggleButton sidebar_btn4;
 	@FXML	private ToggleButton sidebar_btn5;
-
-	@FXML	private Button btnHomeGenerateAnalysis;
 
 	@FXML	private AnchorPane addEditCustomerPane;
 	@FXML	private Label step1;
@@ -128,17 +125,6 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	@FXML	private Text txSPMModel4Details;
 	@FXML	private Label lblSPMModel4Discount;
 	@FXML	private Button btnSPMClear;
-	
-	@FXML	private AnchorPane createSalePatternPane;
-	@FXML	private TableView<?> tvCSPAnalysis;
-	@FXML	private TextField tfCSPDuration;
-	@FXML	private TextField tfCSPDieselDisc;
-	@FXML	private CheckBox cbCSPDiesel;
-	@FXML	private CheckBox cbCSPGasoline;
-	@FXML	private CheckBox cbCSPMotorbike;
-	@FXML	private TextField tfCSPGasolineDisc;
-	@FXML	private TextField tfCSPMotorbikeDisc;
-	@FXML	private Button btnCSPCreate;
 
 	@FXML
 	void initialize() {
@@ -149,7 +135,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@Override
 	public Window getWindow() {
-		return this.btnCSPCreate.getScene().getWindow();
+		return this.addEditCustomerPane.getScene().getWindow();
 	}
 
 	@Override

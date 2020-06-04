@@ -7,17 +7,35 @@ import entities.Activity;
 import entities.ActivityList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 
 public abstract class EmployeeWindow extends UserWindow {
 
-	@FXML	protected BorderPane main_pane;
 	@FXML	protected TableView<Activity> tvHomeActivity;
+
+	/*********************** button listeners ***********************/
+
+	@FXML
+	void btnHomeUpdatePressed(ActionEvent event) {
+		this.controller.handleMessageFromClientUI(("activity get " + username + " " + cobHomeYear.getValue().toString()
+				+ " " + cobHomeMonth.getValue().toString()));
+	}
+
+	/*************** boundary "logic" - window changes ***************/
+
+	@Override
+	public void callAfterMessage(Object lastMsgFromServer) {
+		super.callAfterMessage(lastMsgFromServer);
+		if (lastMsgFromServer instanceof ActivityList) {
+			ActivityList activityList = (ActivityList) lastMsgFromServer;
+			handleGetActivityListFromServer(activityList);
+		}
+	}
 
 	@Override
 	@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
@@ -36,21 +54,6 @@ public abstract class EmployeeWindow extends UserWindow {
 				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
 	}
 
-	@Override
-	public void callAfterMessage(Object lastMsgFromServer) {
-		super.callAfterMessage(lastMsgFromServer);
-		if (lastMsgFromServer instanceof ActivityList) {
-			ActivityList activityList = (ActivityList) lastMsgFromServer;
-			handleGetActivityListFromServer(activityList);
-		}
-	}
-
-	public void logActivity() {
-		/**
-		 * 
-		 */
-	}
-
 	/**
 	 * fills the tableview in home with activities
 	 * 
@@ -67,6 +70,12 @@ public abstract class EmployeeWindow extends UserWindow {
 			list.add(activity);
 		}
 		this.tvHomeActivity.setItems(list);
+	}
+	
+	public void logActivity() {
+		/**
+		 * 
+		 */
 	}
 
 }

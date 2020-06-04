@@ -147,7 +147,7 @@ public class DatabaseUserController {
 
 			// if there are no rows and table is empty
 			if (!rs2.next())
-				;
+				return activityList;
 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			do {

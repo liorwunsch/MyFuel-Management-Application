@@ -85,12 +85,6 @@ public abstract class UserWindow extends AFXML {
 	}
 
 	@FXML
-	void btnHomeUpdatePressed(ActionEvent event) {
-		this.controller.handleMessageFromClientUI(("activity get " + username + " " + cobHomeYear.getValue().toString()
-				+ " " + cobHomeMonth.getValue().toString()));
-	}
-
-	@FXML
 	void btnSignOutClicked(ActionEvent event) {
 		this.signOutClicked(this.getWindow());
 	}

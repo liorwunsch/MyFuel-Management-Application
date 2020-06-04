@@ -1,5 +1,5 @@
 package client;
 
-public abstract class MarketingDepWorkerController extends EmployeeController {
+public abstract class MarketingDepWorkerController extends UserController {
 
 }

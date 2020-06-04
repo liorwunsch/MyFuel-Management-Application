@@ -447,7 +447,7 @@
                               <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <TextField fx:id="tfCSPDiesel" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPDieselDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -460,7 +460,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <TextField fx:id="tfCSPGasoline" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPGasolineDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -473,7 +473,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
-                                    <TextField fx:id="tfCSPMotorbike" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
+                                    <TextField fx:id="tfCSPMotorbikeDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
                                     <Label text="\%">
                                        <font>
                                           <Font size="18.0" />

@@ -1,6 +1,7 @@
 package guiClient;
 
 import client.CustomerController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,11 +16,11 @@ import javafx.stage.Window;
 
 public class CustomerWindow extends UserWindow {
 
-	@FXML	protected AnchorPane main_pane;
 	@FXML	private ToggleGroup one;
 	@FXML	private ToggleButton sidebar_btn0;
 	@FXML	private ToggleButton sidebar_btn1;
 	@FXML	private ToggleButton sidebar_btn2;
+	
 	@FXML	private Label lblHomePayment;
 	@FXML	private TextField tfHomeTotal;
 	@FXML	private Label lblHomeMember;
@@ -68,6 +69,13 @@ public class CustomerWindow extends UserWindow {
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
+		/**
+		 * 
+		 */
+	}
+	
+	@FXML
+	void btnHomeUpdatePressed(ActionEvent event) {
 		/**
 		 * 
 		 */
