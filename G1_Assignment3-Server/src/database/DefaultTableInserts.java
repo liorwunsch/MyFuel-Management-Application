@@ -91,11 +91,6 @@ public class DefaultTableInserts {
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultUser(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "user") == false)
 			return;
@@ -135,11 +130,6 @@ public class DefaultTableInserts {
 		TableInserts.insertUser(con, values11);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultEmployee(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "employee") == false)
 			return;
@@ -168,11 +158,6 @@ public class DefaultTableInserts {
 		TableInserts.insertEmployee(con, values9);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultCustomer(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer") == false)
 			return;
@@ -185,11 +170,6 @@ public class DefaultTableInserts {
 		TableInserts.insertCustomer(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultSalesPattern(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sales_pattern") == false)
 			return;
@@ -201,11 +181,6 @@ public class DefaultTableInserts {
 		TableInserts.insertSalesPattern(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultFuelStationManager(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station_manager") == false)
 			return;
@@ -218,11 +193,6 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStationManager(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProduct(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product") == false)
 			return;
@@ -237,11 +207,6 @@ public class DefaultTableInserts {
 		TableInserts.insertProduct(con, values4);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInSalesPattern(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_sales_pattern") == false)
 			return;
@@ -254,44 +219,31 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInSalesPattern(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultSale(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sale") == false)
 			return;
 		// "FK_salesPatternID", "active", "startTime", "endTime"
-		Object[] values1 = { "1", false, new Date(119, 5, 7, 18, 30), new Date(119, 5, 7, 19, 00) };
+		Object[] values1 = { "1", false, new Date(2019 - 1900, 5 - 1, 7, 18 - 2, 30 - 30),
+				new Date(2019 - 1900, 5 - 1, 7, 19 - 2, 00 - 30) };
 		TableInserts.insertSale(con, values1);
-		Object[] values2 = { "2", false, new Date(119, 5, 7, 12, 00), new Date(119, 5, 14, 13, 00) };
+		Object[] values2 = { "2", false, new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 00 - 30),
+				new Date(2019 - 1900, 5 - 1, 14, 13 - 2, 00 - 30) };
 		TableInserts.insertSale(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductRatesUpdateRequest(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_rates_update_request") == false)
 			return;
 		// 1 - "requestDate", "assessed"
 		// 2 - "requestDate", "assessed", "approved"
-		Object[] values1 = { new Date(119, 5, 16), false };
+		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 16), false };
 		TableInserts.insertProductRatesUpdateRequest1(con, values1);
-		Object[] values2 = { new Date(119, 5, 13), true, false };
+		Object[] values2 = { new Date(2019 - 1900, 5 - 1, 13), true, false };
 		TableInserts.insertProductRatesUpdateRequest2(con, values2);
-		Object[] values3 = { new Date(119, 5, 5), true, true };
+		Object[] values3 = { new Date(2019 - 1900, 5 - 1, 5), true, true };
 		TableInserts.insertProductRatesUpdateRequest2(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInRequest(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_request") == false)
 			return;
@@ -312,11 +264,6 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInRequest(con, values7);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultFuelCompany(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_company") == false)
 			return;
@@ -329,11 +276,6 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelCompany(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultFuelStation(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station") == false)
 			return;
@@ -346,11 +288,6 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStation(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInStation(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_station") == false)
 			return;
@@ -375,28 +312,18 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInStation(con, values9);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultQuarterlyReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "quarterly_report") == false)
 			return;
 		// "repQuarter", "repYear", "FK_fuelStationID", "dateCreated"
-		Object[] values1 = { 2, "2019", "1", new Date(119, 7, 1) };
+		Object[] values1 = { 2, "2019", "1", new Date(2019 - 1900, 7 - 1, 1) };
 		TableInserts.insertQuarterlyReport(con, values1);
-		Object[] values2 = { 2, "2019", "2", new Date(119, 7, 1) };
+		Object[] values2 = { 2, "2019", "2", new Date(2019 - 1900, 7 - 1, 1) };
 		TableInserts.insertQuarterlyReport(con, values2);
-		Object[] values3 = { 2, "2019", "3", new Date(119, 7, 1) };
+		Object[] values3 = { 2, "2019", "3", new Date(2019 - 1900, 7 - 1, 1) };
 		TableInserts.insertQuarterlyReport(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultIncomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "income_report") == false)
 			return;
@@ -409,11 +336,6 @@ public class DefaultTableInserts {
 		TableInserts.insertIncomeReport(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInIncomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_income_report") == false)
 			return;
@@ -439,11 +361,6 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInIncomeReport(con, values9);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultOutcomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "outcome_report") == false)
 			return;
@@ -456,11 +373,6 @@ public class DefaultTableInserts {
 		TableInserts.insertOutcomeReport(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInOutcomeReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_outcome_report") == false)
 			return;
@@ -486,11 +398,6 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInOutcomeReport(con, values9);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultInventoryReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "inventory_report") == false)
 			return;
@@ -503,11 +410,6 @@ public class DefaultTableInserts {
 		TableInserts.insertInventoryReport(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultProductInInventoryReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "product_in_inventory_report") == false)
 			return;
@@ -533,11 +435,6 @@ public class DefaultTableInserts {
 		TableInserts.insertProductInInventoryReport(con, values9);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultCustomerBoughtInSale(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer_bought_in_sale") == false)
 			return;
@@ -550,26 +447,16 @@ public class DefaultTableInserts {
 		TableInserts.insertCustomerBoughtInSale(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultSaleCommentsReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sale_comments_report") == false)
 			return;
 		// "FK_saleID", "numberOfCustomersBought", "sumOfPurchases", "dateCreated"
-		Object[] values1 = { "1", 2, 380, new Date(119, 5, 28) };
+		Object[] values1 = { "1", 2, 380, new Date(2019 - 1900, 5 - 1, 28) };
 		TableInserts.insertSaleCommentsReport(con, values1);
-		Object[] values2 = { "2", 1, 188, new Date(119, 5, 28) };
+		Object[] values2 = { "2", 1, 188, new Date(2019 - 1900, 5 - 1, 28) };
 		TableInserts.insertSaleCommentsReport(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultCar(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "car") == false)
 			return;
@@ -593,27 +480,17 @@ public class DefaultTableInserts {
 		TableInserts.insertCar(con, values8);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultRankingSheet(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "ranking_sheet") == false)
 			return;
 		// "FK_customerID", "customerTypeRank", "fuelingHoursRank", "fuelTypesRank",
 		// "updatedForDate"
-		Object[] values1 = { "111111111", "8", "6", "5", new Date(119, 12, 28) };
+		Object[] values1 = { "111111111", "8", "6", "5", new Date(2019 - 1900, 12 - 1, 28) };
 		TableInserts.insertRankingSheet(con, values1);
-		Object[] values2 = { "222222222", "10", "10", "9", new Date(119, 12, 28) };
+		Object[] values2 = { "222222222", "10", "10", "9", new Date(2019 - 1900, 12 - 1, 28) };
 		TableInserts.insertRankingSheet(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultPricingModelType(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "pricing_model_type") == false)
 			return;
@@ -640,11 +517,6 @@ public class DefaultTableInserts {
 		TableInserts.insertPricingModelType(con, values4);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultPricingModel(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "pricing_model") == false)
 			return;
@@ -657,30 +529,20 @@ public class DefaultTableInserts {
 		TableInserts.insertPricingModel2(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultNotification(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "notification") == false)
 			return;
 		// "FK_employeeID", "message", "dismissed", "dateCreated"
-		Object[] values1 = { "1", "a station order is ready to be assessed", true, new Date(119, 5, 25) };
+		Object[] values1 = { "1", "a station order is ready to be assessed", true, new Date(2019 - 1900, 5 - 1, 25) };
 		TableInserts.insertNotification(con, values1);
-		Object[] values2 = { "2", "a station order is ready to be assessed", true, new Date(119, 6, 4) };
+		Object[] values2 = { "2", "a station order is ready to be assessed", true, new Date(2019 - 1900, 6 - 1, 4) };
 		TableInserts.insertNotification(con, values2);
-		Object[] values3 = { "9", "a station order is ready to be assessed", true, new Date(119, 6, 18) };
+		Object[] values3 = { "9", "a station order is ready to be assessed", true, new Date(2019 - 1900, 6 - 1, 18) };
 		TableInserts.insertNotification(con, values3);
-		Object[] values4 = { "1", "a station order is ready to be assessed", false, new Date(119, 5, 26) };
+		Object[] values4 = { "1", "a station order is ready to be assessed", false, new Date(2019 - 1900, 5 - 1, 26) };
 		TableInserts.insertNotification(con, values4);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultShipmentMethod(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "shipment_method") == false)
 			return;
@@ -691,48 +553,38 @@ public class DefaultTableInserts {
 		TableInserts.insertShipmentMethod(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultOrders(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "orders") == false)
 			return;
 		// "orderTime", "amountBought", "address"
-		Object[] values1 = { new Date(119, 5, 4, 12, 30), 600, "4th Hertzel St, Haifa" }; // Regular
+		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 4, 12 - 2, 30 - 30), 600, "4th Hertzel St, Haifa" }; // Regular
 		TableInserts.insertOrders(con, values1);
-		Object[] values2 = { new Date(119, 6, 24, 12, 30), 400, "4th Hertzel St, Haifa" }; // Urgent
+		Object[] values2 = { new Date(2019 - 1900, 6 - 1, 24, 12 - 2, 30 - 30), 400, "4th Hertzel St, Haifa" }; // Urgent
 		TableInserts.insertOrders(con, values2);
-		Object[] values3 = { new Date(119, 5, 25, 12, 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values3 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values3);
-		Object[] values4 = { new Date(119, 5, 25, 12, 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values4 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values4);
-		Object[] values5 = { new Date(119, 5, 25, 12, 30), 3420, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values5 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 3420, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values5);
-		Object[] values6 = { new Date(119, 6, 4, 12, 30), 17100, "Road 6" }; // fsmanager2
+		Object[] values6 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 17100, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values6);
-		Object[] values7 = { new Date(119, 6, 4, 12, 30), 14250, "Road 6" }; // fsmanager2
+		Object[] values7 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 14250, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values7);
-		Object[] values8 = { new Date(119, 6, 4, 12, 30), 11400, "Road 6" }; // fsmanager2
+		Object[] values8 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 11400, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values8);
-		Object[] values9 = { new Date(119, 6, 18, 12, 30), 3420, "Dror St, Karmiel" }; // fsmanager3
+		Object[] values9 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 3420, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values9);
-		Object[] values10 = { new Date(119, 6, 18, 12, 30), 2850, "Dror St, Karmiel" }; // fsmanager3
+		Object[] values10 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 2850, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values10);
-		Object[] values11 = { new Date(119, 6, 18, 12, 30), 2280, "Dror St, Karmiel" }; // fsmanager3
+		Object[] values11 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 2280, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values11);
-		Object[] values12 = { new Date(119, 5, 26, 12, 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values12 = { new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values12);
-		Object[] values13 = { new Date(119, 7, 2, 12, 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values13 = { new Date(2019 - 1900, 7 - 1, 2, 12 - 2, 30 - 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values13);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultFuelStationOrder(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fuel_station_order") == false)
 			return;
@@ -741,23 +593,23 @@ public class DefaultTableInserts {
 		// "reasonDismissal", "supplied"
 		// 3 - "FK_ordersID", "FK_productInStationID", "assessed", "approved",
 		// "reasonDismissal", "supplied", "timeSupplied"
-		Object[] values1 = { "3", "1", true, true, "Nan", true, new Date(119, 5, 26, 12, 30) };
+		Object[] values1 = { "3", "1", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values1);
-		Object[] values2 = { "4", "2", true, true, "Nan", true, new Date(119, 5, 26, 12, 30) };
+		Object[] values2 = { "4", "2", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values2);
-		Object[] values3 = { "5", "3", true, true, "Nan", true, new Date(119, 5, 26, 12, 30) };
+		Object[] values3 = { "5", "3", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values3);
-		Object[] values4 = { "6", "4", true, true, "Nan", true, new Date(119, 6, 5, 12, 30) };
+		Object[] values4 = { "6", "4", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values4);
-		Object[] values5 = { "7", "5", true, true, "Nan", true, new Date(119, 6, 5, 12, 30) };
+		Object[] values5 = { "7", "5", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values5);
-		Object[] values6 = { "8", "6", true, true, "Nan", true, new Date(119, 6, 5, 12, 30) };
+		Object[] values6 = { "8", "6", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values6);
-		Object[] values7 = { "9", "7", true, true, "Nan", true, new Date(119, 6, 19, 12, 30) };
+		Object[] values7 = { "9", "7", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values7);
-		Object[] values8 = { "10", "8", true, true, "Nan", true, new Date(119, 6, 19, 12, 30) };
+		Object[] values8 = { "10", "8", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values8);
-		Object[] values9 = { "11", "9", true, true, "Nan", true, new Date(119, 6, 19, 12, 30) };
+		Object[] values9 = { "11", "9", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
 		TableInserts.insertFuelStationOrder3(con, values9);
 		Object[] values10 = { "12", "1", true, false, "supply already on route", false };
 		TableInserts.insertFuelStationOrder2(con, values10);
@@ -765,11 +617,6 @@ public class DefaultTableInserts {
 		TableInserts.insertFuelStationOrder1(con, values11);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultPurchasingProgramType(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "purchasing_program_type") == false)
 			return;
@@ -782,29 +629,19 @@ public class DefaultTableInserts {
 		TableInserts.insertPurchasingProgramType(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultHomeFuelOrder(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "home_fuel_order") == false)
 			return;
 		// "FK_ordersID", "FK_customerID", "FK_product_Name", "FK_shipmentType",
 		// "duetime", "finalPrice"
 		Object[] values1 = { "1", "111111111", ProductName.HomeFuel.toString(), ShipmentType.Regular.toString(),
-				new Date(110, 5, 14, 12, 30), 1169.34 };
+				new Date(2019 - 1900, 5 - 1, 14, 12 - 2, 30 - 30), 1169.34 };
 		TableInserts.insertHomeFuelOrder(con, values1);
 		Object[] values2 = { "2", "111111111", ProductName.HomeFuel.toString(), ShipmentType.Urgent.toString(),
-				new Date(110, 6, 24, 18, 30), 821.5 };
+				new Date(2019 - 1900, 6 - 1, 24, 18 - 2, 30 - 30), 821.5 };
 		TableInserts.insertHomeFuelOrder(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultPurchasingProgram(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "purchasing_program") == false)
 			return;
@@ -818,133 +655,156 @@ public class DefaultTableInserts {
 		TableInserts.insertPurchasingProgram3(con, values2);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertCustomerBoughtFromCompany(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "customer_bought_from_company") == false)
 			return;
 		// "FK_customerID", "FK_fuelCompanyName", "dateOfPurchase",
 		// "amountBoughtFromCompany", "amountPaidCompany"
-		Object[] values1 = { "111111111", FuelCompanyName.Paz.toString(), new Date(119, 5, 7), 3791.67, 875 };
+		Object[] values1 = { "111111111", FuelCompanyName.Paz.toString(), new Date(2019 - 1900, 5 - 1, 7), 3791.67,
+				875 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values1);
-		Object[] values2 = { "222222222", FuelCompanyName.Sonol.toString(), new Date(119, 5, 7), 1971.67, 455 };
+		Object[] values2 = { "222222222", FuelCompanyName.Sonol.toString(), new Date(2019 - 1900, 5 - 1, 7), 1971.67,
+				455 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values2);
-		Object[] values3 = { "222222222", FuelCompanyName.Delek.toString(), new Date(119, 5, 7), 4823, 1113 };
+		Object[] values3 = { "222222222", FuelCompanyName.Delek.toString(), new Date(2019 - 1900, 5 - 1, 7), 4823,
+				1113 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values3);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultPeriodicCustomersReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "periodic_customers_report") == false)
 			return;
 		// "dateFrom", "dateTo", "dateCreated"
-		Object[] values1 = { new Date(119, 5, 1), new Date(119, 5, 28), new Date(119, 5, 28) };
+		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 1), new Date(2019 - 1900, 5 - 1, 28),
+				new Date(2019 - 1900, 5 - 1, 28) };
 		TableInserts.insertPeriodicCustomersReport(con, values1);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultActivity(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "activity") == false)
 			return;
 		// "FK_employeeID", "time", "action"
-		Object[] values1 = { "4", new Date(119, 4, 28, 9, 00), "added person customer with ID = 111111111" };
+		// sql adds 2:30 hours to input
+		Object[] values1 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 30),
+				"added person customer with ID = 111111111" };
 		TableInserts.insertActivity(con, values1);
-		Object[] values2 = { "4", new Date(119, 4, 28, 9, 00), "added company customer with ID = 222222222" };
+		Object[] values2 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 29),
+				"added company customer with ID = 222222222" };
 		TableInserts.insertActivity(con, values2);
-		Object[] values3 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9959599" };
+		Object[] values3 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 28),
+				"added car with registration plate = 9959599" };
 		TableInserts.insertActivity(con, values3);
-		Object[] values4 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9958599" };
+		Object[] values4 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 27),
+				"added car with registration plate = 9958599" };
 		TableInserts.insertActivity(con, values4);
-		Object[] values5 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9957599" };
+		Object[] values5 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 26),
+				"added car with registration plate = 9957599" };
 		TableInserts.insertActivity(con, values5);
-		Object[] values6 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9956599" };
+		Object[] values6 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 25),
+				"added car with registration plate = 9956599" };
 		TableInserts.insertActivity(con, values6);
-		Object[] values7 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9955599" };
+		Object[] values7 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 24),
+				"added car with registration plate = 9955599" };
 		TableInserts.insertActivity(con, values7);
-		Object[] values8 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9954599" };
+		Object[] values8 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 23),
+				"added car with registration plate = 9954599" };
 		TableInserts.insertActivity(con, values8);
-		Object[] values9 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9953599" };
+		Object[] values9 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 22),
+				"added car with registration plate = 9953599" };
 		TableInserts.insertActivity(con, values9);
-		Object[] values10 = { "4", new Date(119, 4, 28, 9, 00), "added car with registration plate = 9951599" };
+		Object[] values10 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 21),
+				"added car with registration plate = 9951599" };
 		TableInserts.insertActivity(con, values10);
-		Object[] values11 = { "1", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		Object[] values11 = { "1", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
+				"generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values11);
-		Object[] values12 = { "2", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		Object[] values12 = { "2", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
+				"generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values12);
-		Object[] values13 = { "9", new Date(119, 7, 1, 9, 00), "generated quarterly report for 2019 quarter 2" };
+		Object[] values13 = { "9", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
+				"generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values13);
-		Object[] values14 = { "3", new Date(119, 5, 7, 18, 30), "initiated sale with salespatternid 1" };
+		Object[] values14 = { "3", new Date(2019 - 1900, 5 - 1, 7, 18 - 2, 30 - 30),
+				"initiated sale with salespatternid 1" };
 		TableInserts.insertActivity(con, values14);
-		Object[] values15 = { "3", new Date(119, 5, 7, 12, 00), "initiated sale with salespatternid 1" };
+		Object[] values15 = { "3", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 00 - 30),
+				"initiated sale with salespatternid 1" };
 		TableInserts.insertActivity(con, values15);
-		Object[] values16 = { "5", new Date(119, 5, 14, 12, 00), "declined rates update request 2" };
+		Object[] values16 = { "5", new Date(2019 - 1900, 5 - 1, 14, 12 - 2, 00 - 30),
+				"declined rates update request 2" };
 		TableInserts.insertActivity(con, values16);
-		Object[] values17 = { "5", new Date(119, 5, 5, 15, 00), "approved rates update request 3" };
+		Object[] values17 = { "5", new Date(2019 - 1900, 5 - 1, 5, 15 - 2, 00 - 30),
+				"approved rates update request 3" };
 		TableInserts.insertActivity(con, values17);
-		Object[] values18 = { "1", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		Object[] values18 = { "1", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
+				"updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values18);
-		Object[] values19 = { "2", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		Object[] values19 = { "2", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
+				"updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values19);
-		Object[] values20 = { "9", new Date(119, 5, 1, 9, 00), "updated minimum storage threshold" };
+		Object[] values20 = { "9", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
+				"updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values20);
-		Object[] values21 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 1" };
+		Object[] values21 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 30),
+				"applied supplyment of fuelstationorder 1" };
 		TableInserts.insertActivity(con, values21);
-		Object[] values22 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 2" };
+		Object[] values22 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 29),
+				"applied supplyment of fuelstationorder 2" };
 		TableInserts.insertActivity(con, values22);
-		Object[] values23 = { "6", new Date(119, 5, 27, 9, 00), "applied supplyment of fuelstationorder 3" };
+		Object[] values23 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 28),
+				"applied supplyment of fuelstationorder 3" };
 		TableInserts.insertActivity(con, values23);
-		Object[] values24 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 4" };
+		Object[] values24 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 30),
+				"applied supplyment of fuelstationorder 4" };
 		TableInserts.insertActivity(con, values24);
-		Object[] values25 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 5" };
+		Object[] values25 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 29),
+				"applied supplyment of fuelstationorder 5" };
 		TableInserts.insertActivity(con, values25);
-		Object[] values26 = { "7", new Date(119, 6, 6, 9, 00), "applied supplyment of fuelstationorder 6" };
+		Object[] values26 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 28),
+				"applied supplyment of fuelstationorder 6" };
 		TableInserts.insertActivity(con, values26);
-		Object[] values27 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 7" };
+		Object[] values27 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 30),
+				"applied supplyment of fuelstationorder 7" };
 		TableInserts.insertActivity(con, values27);
-		Object[] values28 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 8" };
+		Object[] values28 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 29),
+				"applied supplyment of fuelstationorder 8" };
 		TableInserts.insertActivity(con, values28);
-		Object[] values29 = { "8", new Date(119, 6, 20, 9, 00), "applied supplyment of fuelstationorder 9" };
+		Object[] values29 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 28),
+				"applied supplyment of fuelstationorder 9" };
 		TableInserts.insertActivity(con, values29);
 	}
 
-	/**
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
 	private static void insertDefaultFastFuel(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "fast_fuel") == false)
 			return;
 		// "FK_registrationPlate", "FK_customerID", "FK_productInStationID",
 		// "fastFuelTime", "amountBought", "finalPrice"
-		Object[] values1 = { "9959599", "111111111", "4", new Date(119, 5, 7, 12, 30), 455 / 3 / 3.5, 455 / 3 }; // Paz
+		Object[] values1 = { "9959599", "111111111", "4", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
+				455 / 3 / 3.5, 455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values1);
-		Object[] values2 = { "9957599", "222222222", "5", new Date(119, 5, 7, 12, 30), 455 / 3 / 3, 455 / 3 }; // Paz
+		Object[] values2 = { "9957599", "222222222", "5", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30), 455 / 3 / 3,
+				455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values2);
-		Object[] values3 = { "9951599", "222222222", "6", new Date(119, 5, 7, 12, 30), 455 / 3 / 6.5, 455 / 3 }; // Paz
+		Object[] values3 = { "9951599", "222222222", "6", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
+				455 / 3 / 6.5, 455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values3);
-		Object[] values4 = { "9958599", "222222222", "1", new Date(119, 5, 7, 12, 30), 875 / 3 / 3.5, 875 / 3 }; // Sonol
+		Object[] values4 = { "9958599", "222222222", "1", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
+				875 / 3 / 3.5, 875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values4);
-		Object[] values5 = { "9955599", "222222222", "2", new Date(119, 5, 7, 12, 30), 875 / 3 / 3, 875 / 3 }; // Sonol
+		Object[] values5 = { "9955599", "222222222", "2", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30), 875 / 3 / 3,
+				875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values5);
-		Object[] values6 = { "9953599", "222222222", "3", new Date(119, 5, 7, 12, 30), 875 / 3 / 6.5, 875 / 3 }; // Sonol
+		Object[] values6 = { "9953599", "222222222", "3", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
+				875 / 3 / 6.5, 875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values6);
-		Object[] values7 = { "9954599", "222222222", "7", new Date(119, 5, 7, 12, 30), 1113 / 3 / 3.5, 1113 / 3 }; // Delek
+		Object[] values7 = { "9954599", "222222222", "7", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
+				1113 / 3 / 3.5, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values7);
-		Object[] values8 = { "9957599", "222222222", "8", new Date(119, 5, 7, 12, 20), 1113 / 3 / 3, 1113 / 3 }; // Delek
+		Object[] values8 = { "9957599", "222222222", "8", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 20 - 30),
+				1113 / 3 / 3, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values8);
-		Object[] values9 = { "9953599", "222222222", "9", new Date(119, 5, 7, 12, 20), 1113 / 3 / 6.5, 1113 / 3 }; // Delek
+		Object[] values9 = { "9953599", "222222222", "9", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 20 - 30),
+				1113 / 3 / 6.5, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values9);
 	}
 

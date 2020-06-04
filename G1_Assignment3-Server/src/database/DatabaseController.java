@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
+import entities.ActivityList;
 import guiServer.ServerWindow;
 
 /**
@@ -53,8 +54,9 @@ public class DatabaseController {
 			serverWindow.updateArea(DefaultTableInserts.InsertDefaultTables(this.connection));
 
 			PreparedStatement pStmt;
-			pStmt = this.connection.prepareStatement("UPDATE User SET connected = ?");
-			pStmt.setString(1, "0");
+			pStmt = this.connection.prepareStatement("SET SQL_SAFE_UPDATES = 0");
+			pStmt.executeUpdate();
+			pStmt = this.connection.prepareStatement("UPDATE user SET connected = 0");
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -104,6 +106,14 @@ public class DatabaseController {
 		return DatabaseUserController.getInstance(connection).loginSequence(username, password, type);
 	}
 
+	/**
+	 * @param username
+	 * @return activity list for server
+	 */
+	public ActivityList getActivitiesSequence(String username, String year, String month) {
+		return DatabaseUserController.getInstance(connection).getActivitiesSequence(username, year, month);
+	}
+	
 	/**
 	 * @param username
 	 * @return message for server

@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="700.0" prefHeight="650.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.FuelStationManagerWindow">
+<BorderPane minHeight="700.0" prefHeight="650.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.FuelStationManagerWindow">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
          <children>
@@ -240,16 +240,27 @@
                   </ImageView>
                   <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="610.0" prefWidth="802.0">
                      <children>
-                        <Label layoutX="311.0" layoutY="41.0" text="Welcome to MyFuel" underline="true">
-                           <font>
-                              <Font name="Calibri" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblHomeUserName" layoutX="351.0" layoutY="81.0" text="&lt;userName&gt;!" underline="true">
-                           <font>
-                              <Font name="Calibri" size="30.0" />
-                           </font>
-                        </Label>
+                        <GridPane layoutX="311.0" layoutY="41.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to MyFuel" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Calibri" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblHomeUserName" alignment="CENTER" contentDisplay="CENTER" text="&lt;userName&gt;!" underline="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Calibri" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
                         <TableView fx:id="tvHomeActivity" layoutX="108.0" layoutY="318.0" prefHeight="256.0" prefWidth="587.0">
                            <columns>
                               <TableColumn prefWidth="119.0" text="Date" />
@@ -257,22 +268,41 @@
                               <TableColumn prefWidth="348.0" text="Action" />
                            </columns>
                         </TableView>
-                        <ComboBox fx:id="cobHomeWeek" layoutX="161.0" layoutY="274.0" prefHeight="30.0" prefWidth="150.0" promptText="[This Week]" visibleRowCount="12" />
-                        <Label layoutX="107.0" layoutY="279.0" text="Week:">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                        </Label>
                         <ImageView fitHeight="127.0" fitWidth="150.0" layoutX="133.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../pics/iconfinder_avatar_1814089.png" />
+                              <Image url="@../pics/avatar.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="33.0" layoutY="236.0" text="Your Weekly Activity:" textFill="#144465" underline="true">
+                        <Label layoutX="33.0" layoutY="236.0" text="Your Monthly Activity:" textFill="#144465" underline="true">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
+                        <GridPane layoutX="108.0" layoutY="275.0" prefHeight="30.0" prefWidth="562.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="200.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="cobHomeMonth" prefHeight="30.0" prefWidth="150.0" promptText="[This Month]" visibleRowCount="12" GridPane.columnIndex="3" />
+                              <Label text="Month:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="cobHomeYear" prefHeight="30.0" prefWidth="150.0" promptText="[This Year]" visibleRowCount="12" GridPane.columnIndex="1" />
+                              <Label text="Year:">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
                      </children>
                   </AnchorPane>
                </children>

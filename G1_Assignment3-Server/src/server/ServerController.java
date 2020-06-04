@@ -1,5 +1,9 @@
 package server;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import database.DatabaseController;
 import entities.User;
 import guiServer.ServerWindow;
@@ -53,14 +57,36 @@ public class ServerController extends AbstractServer {
 	 * @param client
 	 */
 	public void handleMessageFromClient(Object object, ConnectionToClient client) {
-		System.out.println(client + ": sent request to server");
-		if (object instanceof User) {
-			User user = (User) object;
-			System.out.println(client + ": login with user : " + user);
-			String function = user.getFunction();
-			if (function.startsWith("login") || function.startsWith("sign out"))
-				ServerUserController.getInstance(serverWindow, databaseController, lock).handleMessageFromClient(user,
-						client);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Date date = new Date();
+		try {
+			System.out.println(client + " : sent request to server");
+
+			if (object instanceof User) {
+				User user = (User) object;
+				this.serverWindow.updateArea(formatter.format(date) + " : " + client
+						+ " : request : login with username " + user.getUsername());
+				String function = user.getFunction();
+				if (function.startsWith("login") || function.startsWith("sign out"))
+					ServerUserController.getInstance(serverWindow, databaseController, lock)
+							.handleMessageFromClient(user, client);
+			}
+
+			if (object instanceof String) {
+				String str = (String) object;
+				this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : request : " + str);
+				if (str.startsWith("ack")) {
+					client.sendToClient("ack");
+				}
+				if (str.startsWith("activity")) {
+					ServerUserController.getInstance(serverWindow, databaseController, lock)
+							.handleMessageFromClient(str, client);
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			this.serverWindow.updateArea(formatter.format(date) + " : " + e.getMessage());
 		}
 	}
 

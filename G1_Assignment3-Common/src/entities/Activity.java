@@ -13,14 +13,28 @@ public class Activity implements Serializable {
 	private Integer activityID;
 
 	// foreign keys
-	private int employeeID;
+	private Integer employeeID;
 
 	// fields
 	private Date time;
 	private String action;
-	
+
+	/**
+	 * without activityID auto-inc, employeeID
+	 * 
+	 * @param employeeID
+	 * @param time
+	 * @param action
+	 */
+	public Activity(Date time, String action) {
+		super();
+		this.time = time;
+		this.action = action;
+	}
+
 	/**
 	 * without activityID auto-inc
+	 * 
 	 * @param employeeID
 	 * @param time
 	 * @param action
@@ -34,6 +48,7 @@ public class Activity implements Serializable {
 
 	/**
 	 * with activityID
+	 * 
 	 * @param activityID
 	 * @param employeeID
 	 * @param time
@@ -80,8 +95,10 @@ public class Activity implements Serializable {
 		String str = "Activity [";
 		if (activityID != null)
 			str += "activityID=" + activityID + ", ";
-		str += "employeeID=" + employeeID + ", time=" + time + ", action=" + action + "]";
-		return str;
+		if (employeeID != null)
+			str += "employeeID=" + employeeID + ", ";
+		str += "time=" + time + ", action=" + action;
+		return str + "]";
 	}
 
 	@Override

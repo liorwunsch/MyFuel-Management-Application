@@ -63,7 +63,7 @@
       </AnchorPane>
       <AnchorPane>
          <children>
-            <AnchorPane fx:id="ServerPane" prefHeight="655.0" prefWidth="460.0" visible="false">
+            <AnchorPane fx:id="ServerPane" prefHeight="655.0" prefWidth="460.0">
                <children>
                   <Pane layoutY="5.0" prefHeight="40.0" prefWidth="452.0">
                      <children>
@@ -82,7 +82,7 @@
                   </Pane>
                   <Separator layoutX="2.0" layoutY="48.0" maxWidth="1.7976931348623157E308" prefHeight="6.0" prefWidth="460.0" />
                   <TextField editable="false" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="0.1" prefWidth="0.1" />
-                  <Label layoutX="35.0" layoutY="103.0" text="Please Enter Server IP">
+                  <Label layoutX="35.0" layoutY="103.0" text="Please Enter Server Details">
                      <font>
                         <Font name="Leelawadee UI" size="24.0" />
                      </font>
@@ -98,7 +98,7 @@
                         <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="tfLoginServerIP" prefHeight="40.0" prefWidth="347.0" promptText="Server IP" text="localhost" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
+                        <TextField fx:id="tfLoginServerHost" onKeyPressed="#enterKeyContinue" prefHeight="40.0" prefWidth="371.0" promptText="Server IP" text="localhost" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets right="6.0" />
                            </GridPane.margin>
@@ -110,15 +110,23 @@
                            <children>
                               <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-5.0" layoutY="17.0">
                                  <image>
-                                    <Image url="@../pics/ServerIp.png" />
+                                    <Image url="@../pics/host.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </Pane>
                         <Pane prefHeight="37.0" prefWidth="27.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfLoginServerPort" onKeyPressed="#enterKeyContinue" prefHeight="40.0" prefWidth="371.0" promptText="Server IP" text="5555" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets right="6.0" />
+                           </GridPane.margin>
+                        </TextField>
                      </children>
                   </GridPane>
-                  <Label fx:id="lblError1" layoutX="35.0" layoutY="292.0" prefHeight="20.0" prefWidth="388.0" text="Label" textFill="RED" visible="false">
+                  <Label layoutX="35.0" layoutY="292.0" prefHeight="20.0" prefWidth="388.0" text="Label" textFill="RED" visible="false">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
@@ -126,7 +134,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnContinue" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#signIn" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Continue" textFill="WHITE">
+                  <Button fx:id="btnContinue" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#btnContinuePressed" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Continue" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="16.0" />
                      </font>
@@ -149,9 +157,18 @@
                         </Group>
                      </children>
                   </Pane>
+                  <Pane layoutX="24.0" layoutY="210.0" prefHeight="29.0" prefWidth="27.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-1.0">
+                           <image>
+                              <Image url="@../pics/port.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="loginPane" prefHeight="655.0" prefWidth="460.0">
+            <AnchorPane fx:id="loginPane" prefHeight="655.0" prefWidth="460.0" visible="false">
                <children>
                   <Pane layoutY="5.0" prefHeight="40.0" prefWidth="460.0">
                      <children>
@@ -240,7 +257,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnSignIn" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#signIn" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Sign in" textFill="WHITE">
+                  <Button fx:id="btnSignIn" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#btnSignInPressed" prefHeight="38.0" prefWidth="399.0" styleClass="signIn-button" stylesheets="@../pics/loginWindow.css" text="Sign in" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="16.0" />
                      </font>

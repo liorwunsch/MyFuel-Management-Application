@@ -16,6 +16,12 @@ public abstract class ClientController extends AbstractClient {
 	protected static boolean awaitResponse = false;
 	protected AFXML currentWindow;
 	protected Object lastMsgFromServer;
+	private static String m_host;
+	private static int m_port;
+
+	public ClientController() {
+		super(m_host, m_port);
+	}
 
 	/**
 	 * super class constructor
@@ -23,9 +29,10 @@ public abstract class ClientController extends AbstractClient {
 	 * @param host = "localhost"
 	 * @param port = 5555
 	 */
-	public ClientController() {
-//		super("85.64.28.161", 5555);
-		super("localhost", 5555);
+	public ClientController(String host, int port) {
+		super(host, port);
+		m_host = host;
+		m_port = port;
 	}
 
 	/**
@@ -43,7 +50,8 @@ public abstract class ClientController extends AbstractClient {
 	 * updates <code>awaitResponse</code> so
 	 * <code>handleMessageFromClientUI()</code> will continue
 	 * <p>
-	 * updates <code>lastMsgFromServer</code> so <code>callAfterMessage()</code> will use it
+	 * updates <code>lastMsgFromServer</code> so <code>callAfterMessage()</code>
+	 * will use it
 	 * 
 	 * @param object
 	 */

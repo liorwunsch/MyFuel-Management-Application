@@ -2,14 +2,15 @@ package guiClient;
 
 import java.util.Optional;
 
+import client.ClientController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -24,7 +25,10 @@ public abstract class AFXML {
 	@FXML	protected AnchorPane titleBar;
 	@FXML	protected Button btnMini;
 	@FXML	protected Button btnExit;
-
+	
+	protected AnchorPane visableNow;
+	protected ClientController controller;
+	
 	/**
 	 * executes window methods according to input
 	 * 

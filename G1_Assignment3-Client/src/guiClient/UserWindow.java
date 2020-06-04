@@ -1,8 +1,14 @@
 package guiClient;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
-import client.UserController;
+import entities.Activity;
+import entities.ActivityList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,16 +16,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+import javafx.util.Callback;
 
 /**
  * boundary for sign out requests
@@ -27,6 +37,7 @@ import javafx.stage.WindowEvent;
  * all boundaries except login extend this
  * 
  * @version Almost Final
+ * @see logActivity(), ...
  * @author Elroy, Lior
  */
 public abstract class UserWindow extends AFXML {
@@ -35,15 +46,21 @@ public abstract class UserWindow extends AFXML {
 	@FXML	protected AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
+
 	@FXML	protected AnchorPane homePane;
 	@FXML	protected Label lblHomeUserName;
-	@FXML	protected TableView<?> tvHomeActivity;
+	@FXML	protected ComboBox<Integer> cobHomeYear;
+	@FXML	protected ComboBox<Integer> cobHomeMonth;
+	@FXML	protected Button btnHomeUpdate;
+	@FXML	protected TableView<Activity> tvHomeActivity;
 	@FXML	protected Button btnSignOut;
 
-	protected AnchorPane visableNow;
-	protected String username;
-	protected UserController controller;
+	protected String username; // the username of the current user of the window
 
+	/**
+	 * @param username
+	 * @return the window of the boundary
+	 */
 	public abstract Window getWindow();
 
 	/**
@@ -51,15 +68,60 @@ public abstract class UserWindow extends AFXML {
 	 * 
 	 * @param username
 	 */
-	public void setUsername(String username) {
+	@SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
+	public void setUserComponents(String username) {
 		this.username = username;
 		this.lblHelloUser.setText("Hello, " + username);
+		this.lblHomeUserName.setText(username + " !");
+
+		this.cobHomeYear.getItems().removeAll((Collection<?>) this.cobHomeYear.getItems());
+		this.cobHomeYear.getItems().addAll(new Integer[] { 2019, 2020 });
+		this.cobHomeYear.setValue(new java.util.Date().getYear() + 1900);
+		this.cobHomeMonth.getItems().removeAll((Collection<?>) this.cobHomeMonth.getItems());
+		this.cobHomeMonth.getItems().addAll(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
+		this.cobHomeMonth.setValue(new java.util.Date().getMonth() + 1);
+
+		final TableColumn<Activity, Date> timeColumn = (TableColumn<Activity, Date>) new TableColumn("Date");
+		timeColumn.setCellValueFactory((Callback) new PropertyValueFactory("time"));
+		timeColumn.impl_setWidth(200);
+		this.tvHomeActivity.getColumns().add(timeColumn);
+		final TableColumn<Activity, String> actionColumn = (TableColumn<Activity, String>) new TableColumn("Action");
+		actionColumn.setCellValueFactory((Callback) new PropertyValueFactory("action"));
+		actionColumn.impl_setWidth(442);
+		this.tvHomeActivity.getColumns().add(actionColumn);
+
+		this.controller.handleMessageFromClientUI(("activity get " + username + " "
+				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
 	}
 
-	/**
-	 * @param username
-	 * @return the window of the boundary
-	 */
+	/*********************** button listeners ***********************/
+
+	@FXML
+	public void closeTopBar(ActionEvent event) {
+		if (!this.signOutClicked(this.getWindow()))
+			event.consume();
+	}
+
+	@FXML
+	void Home(ActionEvent event) {
+		visableNow.setVisible(false);
+		homePane.setVisible(true);
+		visableNow = homePane;
+		topbar_window_label.setText("Home");
+	}
+
+	@FXML
+	void btnHomeUpdatePressed(ActionEvent event) {
+		this.controller.handleMessageFromClientUI(("activity get " + username + " " + cobHomeYear.getValue().toString()
+				+ " " + cobHomeMonth.getValue().toString()));
+	}
+
+	@FXML
+	void btnSignOutClicked(ActionEvent event) {
+		this.signOutClicked(this.getWindow());
+	}
+
+	/*********************** button functions ***********************/
 
 	/**
 	 * if signout request confirmed, send username to the appropriate controller
@@ -76,13 +138,52 @@ public abstract class UserWindow extends AFXML {
 		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == buttonTypeOne) {
-			controller.setCurrentWindow(this);
-			controller.handleMessageFromClientUI("signout " + username);
+			this.controller.setCurrentWindow(this);
+			this.controller.handleMessageFromClientUI("signout " + this.username);
 			return true;
 		}
 		if (result.get() == buttonTypeTwo)
 			alert.hide();
 		return false;
+	}
+
+	/*************** boundary "logic" - window changes ***************/
+
+	@Override
+	public void callAfterMessage(Object lastMsgFromServer) {
+		if (lastMsgFromServer instanceof String) {
+			String message = (String) lastMsgFromServer;
+			if (message.startsWith("sign out"))
+				handleSignOutFromServer(message, this.getWindow());
+		}
+		if (lastMsgFromServer instanceof ActivityList) {
+			ActivityList activityList = (ActivityList) lastMsgFromServer;
+			handleGetActivityListFromServer(activityList);
+		}
+	}
+
+	public void logActivity() {
+		/**
+		 * 
+		 */
+	}
+
+	/**
+	 * fills the tableview in home with activities
+	 * 
+	 * @param activityList
+	 */
+	public void handleGetActivityListFromServer(ActivityList activityList) {
+		final ObservableList<Activity> list = FXCollections.observableArrayList();
+		for (int i = 0; i < this.tvHomeActivity.getItems().size(); ++i) {
+			this.tvHomeActivity.getItems().clear();
+		}
+
+		ArrayList<Activity> activities = activityList.getActivities();
+		for (Activity activity : activities) {
+			list.add(activity);
+		}
+		this.tvHomeActivity.setItems(list);
 	}
 
 	/**
@@ -127,25 +228,6 @@ public abstract class UserWindow extends AFXML {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@FXML
-	void btnSignOutClicked(ActionEvent event) {
-		this.signOutClicked(this.getWindow());
-	}
-
-	@FXML
-	public void closeTopBar(ActionEvent event) {
-		if (!this.signOutClicked(this.getWindow()))
-			event.consume();
-	}
-	
-	@FXML
-	void Home(ActionEvent event) {
-		visableNow.setVisible(false);
-		homePane.setVisible(true);
-		visableNow = homePane;
-		topbar_window_label.setText("Home");
 	}
 
 }

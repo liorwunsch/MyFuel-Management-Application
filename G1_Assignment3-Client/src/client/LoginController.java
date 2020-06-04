@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ConnectException;
 
 import entities.User;
+import guiClient.AFXML;
 
 /**
  * controller for login window
@@ -17,17 +18,41 @@ public class LoginController extends ClientController {
 
 	/**
 	 * singleton class constructor
+	 * checks connection to server
 	 */
-	private LoginController() {
-		super();
+	private LoginController(String host, int port, AFXML currentWindow) {
+		super(host, port);
+		try {
+			this.setCurrentWindow(currentWindow);
+			this.openConnection();
+			awaitResponse = true;
+			sendToServer("ack request");
+
+			/* wait for ack or data from the server */
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ie) {
+					ie.printStackTrace();
+				}
+			}
+
+			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+			
+		} catch (ConnectException ce) {
+			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			ce.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	/**
 	 * @return instance of this class
 	 */
-	public static LoginController getInstance() {
+	public static LoginController getInstance(String host, int port, AFXML currentWindow) {
 		if (instance == null) {
-			instance = new LoginController();
+			instance = new LoginController(host, port, currentWindow);
 		}
 		return instance;
 	}
@@ -39,7 +64,7 @@ public class LoginController extends ClientController {
 				throw new IOException("LoginController should have got login request but got " + message);
 
 			System.out.println("message from clientUI : " + message);
-			this.openConnection();
+			openConnection();
 			awaitResponse = true;
 			String[] splitMsg = message.split(" ");
 
@@ -54,7 +79,7 @@ public class LoginController extends ClientController {
 
 			/* announce and send the user to the server */
 			System.out.println("sending to server : " + user);
-			this.sendToServer(user);
+			sendToServer(user);
 
 			/* wait for ack or data from the server */
 			while (awaitResponse) {
