@@ -56,6 +56,7 @@ public class ServerController extends AbstractServer {
 	 * @param object
 	 * @param client
 	 */
+	@Override
 	public void handleMessageFromClient(Object object, ConnectionToClient client) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date date = new Date();

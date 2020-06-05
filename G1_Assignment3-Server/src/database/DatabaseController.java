@@ -15,7 +15,7 @@ import guiServer.ServerWindow;
  * controller for database
  * 
  * @version N Methods To Final
- * @see activityLogger()
+ * @see activityLogger(), + methods of other database controllers
  * @author Elroy, Lior
  */
 public class DatabaseController {

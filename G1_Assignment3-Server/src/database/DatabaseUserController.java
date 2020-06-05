@@ -56,7 +56,7 @@ public class DatabaseUserController {
 			if (type.equals("Employee"))
 				pStmt = this.connection.prepareStatement("SELECT * FROM employee WHERE FK_userName = ?");
 			if (type.equals("Customer"))
-				pStmt = this.connection.prepareStatement("SELECT * FROM customer WHERE FK_userName = ?");
+				pStmt = this.connection.prepareStatement("SELECT * FROM customer WHERE FK_userName = ? AND deleted = 0");
 
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
