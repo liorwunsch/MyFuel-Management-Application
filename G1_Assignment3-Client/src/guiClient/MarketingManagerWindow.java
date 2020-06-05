@@ -74,7 +74,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void initialize() {
-		this.visableNow = homePane;
+		this.visibleNow = this.homePane;
 		this.controller = MarketingManagerController.getInstance();
 		this.controller.setCurrentWindow(this);
 	}

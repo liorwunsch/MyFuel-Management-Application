@@ -2,9 +2,11 @@ package client;
 
 import java.io.IOException;
 import java.net.ConnectException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import entities.User;
-import guiClient.AFXML;
+import guiClient.LoginWindow;
 
 /**
  * controller for login window
@@ -17,14 +19,13 @@ public class LoginController extends ClientController {
 	private static LoginController instance;
 
 	/**
-	 * singleton class constructor
-	 * checks connection to server
+	 * singleton class constructor checks connection to server
 	 */
-	private LoginController(String host, int port, AFXML currentWindow) {
+	private LoginController(String host, int port, LoginWindow loginWindow) {
 		super(host, port);
 		try {
-			this.setCurrentWindow(currentWindow);
-			this.openConnection();
+			System.out.println("sending ack request to host '" + host + "' at port '" + port + "'");
+			openConnection();
 			awaitResponse = true;
 			sendToServer("ack request");
 
@@ -37,23 +38,37 @@ public class LoginController extends ClientController {
 				}
 			}
 
-			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
-			
+			loginWindow.callAfterMessage(this.lastMsgFromServer);
+			loginWindow.setVisibleNow(false);
+
+		} catch (IllegalArgumentException iae) {
+			loginWindow.openErrorAlert("Server Error", "Port Not Valid");
+			iae.printStackTrace();
+		} catch (UnknownHostException uhe) {
+			loginWindow.openErrorAlert("Server Error", "Host Not Valid");
+			uhe.printStackTrace();
 		} catch (ConnectException ce) {
-			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
 			ce.printStackTrace();
+		} catch (SocketException se) {
+			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			se.printStackTrace();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 	}
 
 	/**
-	 * @return instance of this class
+	 * @return instance of this class for parameter host port
 	 */
-	public static LoginController getInstance(String host, int port, AFXML currentWindow) {
+	public static LoginController getInstance(String host, int port, LoginWindow loginWindow) {
 		if (instance == null) {
-			instance = new LoginController(host, port, currentWindow);
+			instance = new LoginController(host, port, loginWindow);
 		}
+		return instance;
+	}
+
+	public static LoginController getInstance() {
 		return instance;
 	}
 

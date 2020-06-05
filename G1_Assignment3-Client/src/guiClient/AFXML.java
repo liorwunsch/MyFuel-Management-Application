@@ -26,7 +26,7 @@ public abstract class AFXML {
 	@FXML	protected Button btnMini;
 	@FXML	protected Button btnExit;
 	
-	protected AnchorPane visableNow;
+	protected AnchorPane visibleNow;
 	protected ClientController controller;
 	
 	/**

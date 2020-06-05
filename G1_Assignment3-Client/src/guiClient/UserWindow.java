@@ -78,9 +78,9 @@ public abstract class UserWindow extends AFXML {
 
 	@FXML
 	void Home(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		homePane.setVisible(true);
-		visableNow = homePane;
+		visibleNow = homePane;
 		topbar_window_label.setText("Home");
 	}
 
@@ -154,6 +154,9 @@ public abstract class UserWindow extends AFXML {
 			Scene newScene = new Scene(loader.load());
 			Stage newStage = new Stage();
 
+			LoginWindow loginWindow = (LoginWindow) loader.getController();
+			loginWindow.setVisibleNow(true);
+			
 			newStage.setResizable(false);
 			newStage.setScene(newScene);
 			newStage.setTitle("MyFuel Login");

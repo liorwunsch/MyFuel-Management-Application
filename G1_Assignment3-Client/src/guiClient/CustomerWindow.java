@@ -56,7 +56,7 @@ public class CustomerWindow extends UserWindow {
 
 	@FXML
 	void initialize() {
-		this.visableNow = homePane;
+		this.visibleNow = this.homePane;
 		this.controller = CustomerController.getInstance();
 		this.controller.setCurrentWindow(this);
 	}

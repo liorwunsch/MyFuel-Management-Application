@@ -63,7 +63,7 @@
       </AnchorPane>
       <AnchorPane>
          <children>
-            <AnchorPane fx:id="ServerPane" prefHeight="655.0" prefWidth="460.0">
+            <AnchorPane fx:id="serverPane" prefHeight="655.0" prefWidth="460.0">
                <children>
                   <Pane layoutY="5.0" prefHeight="40.0" prefWidth="452.0">
                      <children>
@@ -108,7 +108,7 @@
                         </TextField>
                         <Pane prefHeight="29.0" prefWidth="27.0">
                            <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-5.0" layoutY="17.0">
+                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-3.0" layoutY="18.0">
                                  <image>
                                     <Image url="@../pics/host.png" />
                                  </image>
@@ -159,13 +159,21 @@
                   </Pane>
                   <Pane layoutX="24.0" layoutY="210.0" prefHeight="29.0" prefWidth="27.0">
                      <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-1.0">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1.0" layoutY="-2.0">
                            <image>
                               <Image url="@../pics/port.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
+                  <Label fx:id="lblError1" layoutX="38.0" layoutY="282.0" prefHeight="20.0" prefWidth="395.0" text="Label" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Leelawadee UI" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="loginPane" prefHeight="655.0" prefWidth="460.0" visible="false">

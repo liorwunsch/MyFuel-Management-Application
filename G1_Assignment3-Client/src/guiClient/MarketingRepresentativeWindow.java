@@ -128,7 +128,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void initialize() {
-		this.visableNow = homePane;
+		this.visibleNow = this.homePane;
 		this.controller = MarketingRepresentativeController.getInstance();
 		this.controller.setCurrentWindow(this);
 	}
@@ -148,41 +148,41 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void Add_Customer(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		addEditCustomerPane.setVisible(true);
-		visableNow = addEditCustomerPane;
+		visibleNow = addEditCustomerPane;
 		topbar_window_label.setText("Add Customer");
 	}
 
 	@FXML
 	void Add_Car(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		addEditCarPane.setVisible(true);
-		visableNow = addEditCarPane;
+		visibleNow = addEditCarPane;
 		topbar_window_label.setText("Add Car");
 	}
 
 	@FXML
 	void Purchase_Prog(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		setPurchasingPane.setVisible(true);
-		visableNow = setPurchasingPane;
+		visibleNow = setPurchasingPane;
 		topbar_window_label.setText("Purchasing Program");
 	}
 
 	@FXML
 	void Pricing_Model(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		pricingModelPane.setVisible(true);
-		visableNow = pricingModelPane;
+		visibleNow = pricingModelPane;
 		topbar_window_label.setText("Pricing Model");
 	}
 
 	@FXML
 	void Create_Sale_Pattern(ActionEvent event) {
-		visableNow.setVisible(false);
+		visibleNow.setVisible(false);
 		createSalePatternPane.setVisible(true);
-		visableNow = createSalePatternPane;
+		visibleNow = createSalePatternPane;
 		topbar_window_label.setText("Create Sales Pattern");
 	}
 

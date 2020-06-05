@@ -24,23 +24,52 @@ import javafx.stage.StageStyle;
  */
 public class LoginWindow extends AFXML {
 
-	@FXML	private AnchorPane ServerPane;
-	@FXML	private TextField tfLoginServerHost;
-	@FXML	private TextField tfLoginServerPort;
-	@FXML	private Button btnContinue;
+	@FXML
+	private AnchorPane serverPane;
+	@FXML
+	private TextField tfLoginServerHost;
+	@FXML
+	private TextField tfLoginServerPort;
+	@FXML
+	private Label lblError1;
+	@FXML
+	private Button btnContinue;
 
-	@FXML	private AnchorPane loginPane;
-	@FXML	private TextField tfLoginUserName;
-	@FXML	private PasswordField tfLoginPassword;
-	@FXML	private ToggleGroup rb1;
-	@FXML	private RadioButton rbEmployee;
-	@FXML	private RadioButton rbCustomer;
-	@FXML	private Label lblError;
-	@FXML	private Button btnSignIn;
+	@FXML
+	private AnchorPane loginPane;
+	@FXML
+	private TextField tfLoginUserName;
+	@FXML
+	private PasswordField tfLoginPassword;
+	@FXML
+	private ToggleGroup rb1;
+	@FXML
+	private RadioButton rbEmployee;
+	@FXML
+	private RadioButton rbCustomer;
+	@FXML
+	private Label lblError;
+	@FXML
+	private Button btnSignIn;
 
 	@FXML
 	void initialize() {
-		this.visableNow = ServerPane;
+		this.visibleNow = this.serverPane;
+	}
+
+	/**
+	 * true if called from user window
+	 * 
+	 * @param flag
+	 */
+	public void setVisibleNow(boolean flag) {
+		if (flag == true) {
+			this.controller = LoginController.getInstance();
+			this.controller.setCurrentWindow(this);
+		}
+		this.visibleNow.setVisible(false);
+		this.loginPane.setVisible(true);
+		this.visibleNow = this.loginPane;
 	}
 
 	/*********************** button listeners ***********************/
@@ -62,13 +91,22 @@ public class LoginWindow extends AFXML {
 	 * controller
 	 */
 	private void myContinue() {
-		this.controller = LoginController.getInstance(tfLoginServerHost.getText(),
-				Integer.parseInt(tfLoginServerPort.getText()), this);
+		String host = this.tfLoginServerHost.getText();
+		String port = this.tfLoginServerPort.getText();
+		if (port.isEmpty() || port.matches(".*[a-z].*")
+				|| (!host.equals("localhost") && (!host.startsWith("192.168.") || host.matches(".*[a-z].*")))) {
+			this.lblError1.setText("Syntax Error");
+			this.lblError1.setVisible(true);
+			this.tfLoginServerHost.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+			this.tfLoginServerPort.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+			return;
+		}
+		this.lblError1.setVisible(false);
+		this.tfLoginServerHost.setStyle("-fx-border-style: none;");
+		this.tfLoginServerPort.setStyle("-fx-border-style: none;");
+
+		this.controller = LoginController.getInstance(host, Integer.parseInt(port), this);
 		this.controller.setCurrentWindow(this);
-		
-		visableNow.setVisible(false);
-		loginPane.setVisible(true);
-		visableNow = loginPane;
 	}
 
 	/**
@@ -77,8 +115,8 @@ public class LoginWindow extends AFXML {
 	 * as a string
 	 */
 	private void mySignIn() {
-		String username = tfLoginUserName.getText();
-		String password = tfLoginPassword.getText();
+		String username = this.tfLoginUserName.getText();
+		String password = this.tfLoginPassword.getText();
 		String userType;
 
 		if (username.isEmpty() || password.isEmpty()) {
@@ -88,7 +126,6 @@ public class LoginWindow extends AFXML {
 			this.tfLoginPassword.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return;
 		}
-
 		this.lblError.setVisible(false);
 		this.tfLoginUserName.setStyle("-fx-border-style: none;");
 		this.tfLoginPassword.setStyle("-fx-border-style: none;");
@@ -113,6 +150,7 @@ public class LoginWindow extends AFXML {
 	public void callAfterMessage(Object lastMsgFromServer) {
 		if (lastMsgFromServer instanceof String) {
 			String message = lastMsgFromServer.toString();
+
 			if (message.startsWith("login succeeded")) {
 				String[] splitMsg = message.split(" ");
 				successLogin(splitMsg[2]);
@@ -120,7 +158,6 @@ public class LoginWindow extends AFXML {
 
 			if (message.startsWith("login failed"))
 				failedLogin();
-
 			if (message.startsWith("login already connected"))
 				alreadyConnectedLogin();
 		}
