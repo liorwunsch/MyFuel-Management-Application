@@ -147,7 +147,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	}
 
 	@FXML
-	void Add_Customer(ActionEvent event) {
+	void openAddEditCustomer(ActionEvent event) {
 		visibleNow.setVisible(false);
 		addEditCustomerPane.setVisible(true);
 		visibleNow = addEditCustomerPane;
@@ -155,7 +155,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	}
 
 	@FXML
-	void Add_Car(ActionEvent event) {
+	void openAddEditCar(ActionEvent event) {
 		visibleNow.setVisible(false);
 		addEditCarPane.setVisible(true);
 		visibleNow = addEditCarPane;
@@ -163,7 +163,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	}
 
 	@FXML
-	void Purchase_Prog(ActionEvent event) {
+	void openSetPurchasingProgram(ActionEvent event) {
 		visibleNow.setVisible(false);
 		setPurchasingPane.setVisible(true);
 		visibleNow = setPurchasingPane;
@@ -171,7 +171,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	}
 
 	@FXML
-	void Pricing_Model(ActionEvent event) {
+	void openSetPricingModel(ActionEvent event) {
 		visibleNow.setVisible(false);
 		pricingModelPane.setVisible(true);
 		visibleNow = pricingModelPane;
@@ -179,7 +179,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	}
 
 	@FXML
-	void Create_Sale_Pattern(ActionEvent event) {
+	void openCreateSalesPattern(ActionEvent event) {
 		visibleNow.setVisible(false);
 		createSalePatternPane.setVisible(true);
 		visibleNow = createSalePatternPane;

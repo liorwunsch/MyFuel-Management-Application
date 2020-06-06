@@ -1,8 +1,6 @@
 package client;
 
 /**
- * @note this needs to extend something else
- * @see class diagram
  * @version Basic
  * @author Lior
  */

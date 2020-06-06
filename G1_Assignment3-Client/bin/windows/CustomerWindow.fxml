@@ -46,7 +46,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <BorderPane minHeight="676.0" prefHeight="703.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css">
+      <BorderPane fx:id="mainBorderPane" minHeight="676.0" prefHeight="703.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css">
          <left>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
                <children>
@@ -70,7 +70,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
+                        <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#openHome" prefHeight="188.0" prefWidth="347.0" selected="true" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -95,7 +95,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </ToggleButton>
-                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#openViewOrders" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -114,7 +114,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </ToggleButton>
-                        <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Order Home Fuel" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                        <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#openOrderHomeFuel" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Order Home Fuel" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>

@@ -1,26 +1,22 @@
 package client;
 
-/**
- * @version Basic
- * @author Lior
- */
-public class MarketingManagerController extends MarketingDepWorkerController {
+public class FuelStationManagerController extends UserController {
 
-	private static MarketingManagerController instance;
+	private static FuelStationManagerController instance;
 
 	/**
 	 * singleton class constructor
 	 */
-	private MarketingManagerController() {
+	private FuelStationManagerController() {
 		super();
 	}
 
 	/**
 	 * @return instance of this class
 	 */
-	public static MarketingManagerController getInstance() {
+	public static FuelStationManagerController getInstance() {
 		if (instance == null) {
-			instance = new MarketingManagerController();
+			instance = new FuelStationManagerController();
 		}
 		return instance;
 	}

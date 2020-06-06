@@ -1,26 +1,22 @@
 package client;
 
-/**
- * @version Basic
- * @author Lior
- */
-public class MarketingManagerController extends MarketingDepWorkerController {
+public class SupplierController extends UserController {
 
-	private static MarketingManagerController instance;
+	private static SupplierController instance;
 
 	/**
 	 * singleton class constructor
 	 */
-	private MarketingManagerController() {
+	private SupplierController() {
 		super();
 	}
 
 	/**
 	 * @return instance of this class
 	 */
-	public static MarketingManagerController getInstance() {
+	public static SupplierController getInstance() {
 		if (instance == null) {
-			instance = new MarketingManagerController();
+			instance = new SupplierController();
 		}
 		return instance;
 	}

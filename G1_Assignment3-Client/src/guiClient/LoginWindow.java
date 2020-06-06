@@ -24,33 +24,20 @@ import javafx.stage.StageStyle;
  */
 public class LoginWindow extends AFXML {
 
-	@FXML
-	private AnchorPane serverPane;
-	@FXML
-	private TextField tfLoginServerHost;
-	@FXML
-	private TextField tfLoginServerPort;
-	@FXML
-	private Label lblError1;
-	@FXML
-	private Button btnContinue;
+	@FXML	private AnchorPane serverPane;
+	@FXML	private TextField tfLoginServerHost;
+	@FXML	private TextField tfLoginServerPort;
+	@FXML	private Label lblError1;
+	@FXML	private Button btnContinue;
 
-	@FXML
-	private AnchorPane loginPane;
-	@FXML
-	private TextField tfLoginUserName;
-	@FXML
-	private PasswordField tfLoginPassword;
-	@FXML
-	private ToggleGroup rb1;
-	@FXML
-	private RadioButton rbEmployee;
-	@FXML
-	private RadioButton rbCustomer;
-	@FXML
-	private Label lblError;
-	@FXML
-	private Button btnSignIn;
+	@FXML	private AnchorPane loginPane;
+	@FXML	private TextField tfLoginUserName;
+	@FXML	private PasswordField tfLoginPassword;
+	@FXML	private ToggleGroup rb1;
+	@FXML	private RadioButton rbEmployee;
+	@FXML	private RadioButton rbCustomer;
+	@FXML	private Label lblError;
+	@FXML	private Button btnSignIn;
 
 	@FXML
 	void initialize() {

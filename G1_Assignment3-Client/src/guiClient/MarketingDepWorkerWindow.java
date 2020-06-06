@@ -7,6 +7,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * boundary for marketing department workers' windows
+ * 
+ * @version Almost Final
+ * @author Lior, Liad
+ */
 public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 
 	@FXML	protected Button btnHomeGenerateAnalysis;

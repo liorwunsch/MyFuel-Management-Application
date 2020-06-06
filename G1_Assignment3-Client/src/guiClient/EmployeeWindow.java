@@ -14,6 +14,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+/**
+ * boundary for activities of employees in windows
+ * <p>
+ * all boundaries except login and customer extend this
+ * 
+ * @version Almost Final
+ * @see logActivity()
+ * @author Lior
+ */
 public abstract class EmployeeWindow extends UserWindow {
 
 	@FXML	protected TableView<Activity> tvHomeActivity;

@@ -15,6 +15,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -26,11 +27,11 @@ import javafx.stage.WindowEvent;
  * all boundaries except login extend this
  * 
  * @version Almost Final
- * @see logActivity(), ...
  * @author Elroy, Lior
  */
 public abstract class UserWindow extends AFXML {
 
+	@FXML	protected BorderPane mainBorderPane;
 	@FXML	protected AnchorPane mainwindow_pane;
 	@FXML	protected Label lblHelloUser;
 	@FXML	protected Label topbar_window_label;
@@ -77,11 +78,11 @@ public abstract class UserWindow extends AFXML {
 	}
 
 	@FXML
-	void Home(ActionEvent event) {
-		visibleNow.setVisible(false);
-		homePane.setVisible(true);
-		visibleNow = homePane;
-		topbar_window_label.setText("Home");
+	void openHome(ActionEvent event) {
+		this.visibleNow.setVisible(false);
+		this.homePane.setVisible(true);
+		this.visibleNow = homePane;
+		this.topbar_window_label.setText("Home");
 	}
 
 	@FXML
