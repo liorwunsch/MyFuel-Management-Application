@@ -56,7 +56,8 @@ public class DatabaseUserController {
 			if (type.equals("Employee"))
 				pStmt = this.connection.prepareStatement("SELECT * FROM employee WHERE FK_userName = ?");
 			if (type.equals("Customer"))
-				pStmt = this.connection.prepareStatement("SELECT * FROM customer WHERE FK_userName = ? AND deleted = 0");
+				pStmt = this.connection
+						.prepareStatement("SELECT * FROM customer WHERE FK_userName = ? AND deleted = 0");
 
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
@@ -116,16 +117,41 @@ public class DatabaseUserController {
 	}
 
 	/**
-	 * returns a list of all the activities of the employee in a predetermined year
-	 * and month
+	 * insert to database activity table - the current action of employee
 	 * 
 	 * @param username
+	 * @param action
+	 * @return message for server
+	 */
+	public String activityLogger(String username, String action) {
+		try {
+			PreparedStatement pStmt;
+			pStmt = this.connection.prepareStatement("SELECT employeeID FROM employee WHERE FK_userName = ?");
+			pStmt.setString(1, username);
+			ResultSet rs1 = pStmt.executeQuery();
+			int employeeID = rs1.getInt(1);
+
+			Object[] values1 = { employeeID, new Date(), action };
+			TableInserts.insertActivity(connection, values1);
+			return "activityLogger succeeded";
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "activityLogger failed";
+		}
+	}
+
+	/**
+	 * returns a list of all the activities of the employee in year and month
+	 * 
+	 * @param username
+	 * @param year
+	 * @param month
 	 * @return activity list of username
 	 */
 	public ActivityList getActivitiesSequence(String username, String year, String month) {
 		try {
 			ActivityList activityList = new ActivityList();
-			Activity activity;
 			PreparedStatement pStmt = this.connection
 					.prepareStatement("SELECT employeeID FROM employee WHERE FK_userName = ?");
 			pStmt.setString(1, username);
@@ -153,10 +179,11 @@ public class DatabaseUserController {
 			do {
 				Date time = formatter.parse(rs2.getString(1));
 				String action = rs2.getString(2);
-				activity = new Activity(time, action);
+				Activity activity = new Activity(time, action);
 				activityList.add(activity);
 			} while (rs2.next());
 			rs2.close();
+
 			return activityList;
 
 		} catch (SQLException e) {

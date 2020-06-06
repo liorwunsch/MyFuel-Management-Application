@@ -83,6 +83,10 @@ public class ServerController extends AbstractServer {
 					ServerUserController.getInstance(serverWindow, databaseController, lock)
 							.handleMessageFromClient(str, client);
 				}
+				if (str.startsWith("fastfuel")) {
+					ServerCustomerController.getInstance(serverWindow, databaseController, lock)
+							.handleMessageFromClient(str, client);
+				}
 			}
 
 		} catch (IOException e) {

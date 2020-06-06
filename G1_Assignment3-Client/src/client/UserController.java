@@ -23,13 +23,9 @@ public abstract class UserController extends ClientController {
 			System.out.println("message from clientUI : " + message);
 			this.openConnection();
 			awaitResponse = true;
+			boolean flag = true;
 
 			String[] splitMsg = message.split(" ");
-
-			if (!splitMsg[0].equals("signout") && !splitMsg[0].equals("activity")) {
-				System.out.println("expected signout or activity but got: " + message);
-				return;
-			}
 
 			if (splitMsg[0].equals("signout")) {
 				/* construct a new user */
@@ -40,23 +36,25 @@ public abstract class UserController extends ClientController {
 				/* announce and send the user to the server */
 				System.out.println("sending to server : " + user);
 				this.sendToServer(user);
-			}
-
-			if (splitMsg[0].equals("activity")) {
+			} else if (splitMsg[0].equals("activity")) {
 				System.out.println("sending to server : " + message);
 				this.sendToServer(message);
+			} else {
+				flag = false;
+				awaitResponse = false;
 			}
 
-			/* wait for ack or data from the server */
-			while (awaitResponse) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException ie) {
-					ie.printStackTrace();
+			if (flag == true) {
+				/* wait for ack or data from the server */
+				while (awaitResponse) {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException ie) {
+						ie.printStackTrace();
+					}
 				}
+				this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 			}
-
-			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 
 		} catch (ConnectException ce) {
 			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");

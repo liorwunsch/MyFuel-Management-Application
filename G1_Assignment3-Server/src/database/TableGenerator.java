@@ -436,7 +436,7 @@ public class TableGenerator { // creating the tables if they are not exists
 		String tableName = "product_in_station";
 		String values = "( " + " productInStationID INT NOT NULL AUTO_INCREMENT ,"
 				+ " FK_productName varchar(32) NOT NULL ," + " FK_fuelStationID INT NOT NULL ,"
-				+ " capacity INT NOT NULL ," + " threshold INT NOT NULL ," + " PRIMARY KEY (productInStationID) ,"
+				+ " capacity DOUBLE(32,2) NOT NULL ," + " threshold DOUBLE(32,2) NOT NULL ," + " PRIMARY KEY (productInStationID) ,"
 				// fk1
 				+ " KEY product_in_station_ibfk_1 (FK_productName) ,"
 				+ " CONSTRAINT product_in_station_ibfk_1 FOREIGN KEY (FK_productName) "

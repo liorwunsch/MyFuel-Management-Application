@@ -16,8 +16,8 @@ public class ProductInStation extends Product {
 	private int fuelStationID;
 
 	// fields
-	private int capacity;
-	private int thresholdLevel;
+	private double capacity;
+	private double threshold; // was renamed
 
 	/**
 	 * w/0 productInStationID auto-inc
@@ -27,14 +27,14 @@ public class ProductInStation extends Product {
 	 * @param currentPrice
 	 * @param fuelStationID
 	 * @param capacity
-	 * @param thresholdLevel
+	 * @param threshold
 	 */
 	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, int fuelStationID,
-			int capacity, int thresholdLevel) {
+			double capacity, double threshold) {
 		super(productName, maxPrice, currentPrice);
 		this.fuelStationID = fuelStationID;
 		this.capacity = capacity;
-		this.thresholdLevel = thresholdLevel;
+		this.threshold = threshold;
 	}
 
 	/**
@@ -45,15 +45,15 @@ public class ProductInStation extends Product {
 	 * @param productInStationID
 	 * @param fuelStationID
 	 * @param capacity
-	 * @param thresholdLevel
+	 * @param threshold
 	 */
 	public ProductInStation(int productInStationID, ProductName productName, double maxPrice, double currentPrice,
-			int fuelStationID, int capacity, int thresholdLevel) {
+			int fuelStationID, double capacity, double threshold) {
 		super(productName, maxPrice, currentPrice);
 		this.productInStationID = productInStationID;
 		this.fuelStationID = fuelStationID;
 		this.capacity = capacity;
-		this.thresholdLevel = thresholdLevel;
+		this.threshold = threshold;
 	}
 
 	public int getProductInStationID() {
@@ -68,20 +68,20 @@ public class ProductInStation extends Product {
 		this.fuelStationID = fuelStationID;
 	}
 
-	public int getCapacity() {
+	public double getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(double capacity) {
 		this.capacity = capacity;
 	}
 
-	public int getThresholdLevel() {
-		return thresholdLevel;
+	public double getThreshold() {
+		return threshold;
 	}
 
-	public void setThresholdLevel(int thresholdLevel) {
-		this.thresholdLevel = thresholdLevel;
+	public void setThreshold(double threshold) {
+		this.threshold = threshold;
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class ProductInStation extends Product {
 		String str = "ProductInStation [" + super.toString() + ", ";
 		if (productInStationID != null)
 			str += "productInStationID=" + productInStationID + ", ";
-		str += ", fuelStationID=" + fuelStationID + ", capacity=" + capacity + ", thresholdLevel=" + thresholdLevel
+		str += ", fuelStationID=" + fuelStationID + ", capacity=" + capacity + ", thresholdLevel=" + threshold
 				+ "]";
 		return str;
 	}

@@ -1,5 +1,6 @@
 package guiClient;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -30,4 +31,12 @@ public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 	/**
 	 * handle analysis
 	 */
+	
+	@FXML
+	void openCreateSalesPattern(ActionEvent event) {
+		this.visibleNow.setVisible(false);
+		this.createSalePatternPane.setVisible(true);
+		this.visibleNow = this.createSalePatternPane;
+		this.topbar_window_label.setText("Create Sales Pattern");
+	}
 }

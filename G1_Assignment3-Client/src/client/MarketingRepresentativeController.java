@@ -1,6 +1,8 @@
 package client;
 
 /**
+ * logic controller for marketing representative
+ * 
  * @version Basic
  * @author Lior
  */

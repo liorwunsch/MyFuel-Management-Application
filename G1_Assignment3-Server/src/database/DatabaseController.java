@@ -3,12 +3,11 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 
 import entities.ActivityList;
+import entities.FastFuelList;
 import guiServer.ServerWindow;
 
 /**
@@ -77,24 +76,7 @@ public class DatabaseController {
 		return instance;
 	}
 
-	/**
-	 * insert to database activity table - the current action of employee
-	 * 
-	 * @param username
-	 * @param action
-	 * @throws SQLException
-	 */
-	@SuppressWarnings({ "unused" })
-	private void activityLogger(String username, String action) throws SQLException {
-		PreparedStatement pStmt;
-		pStmt = this.connection.prepareStatement("SELECT employeeID FROM employee WHERE FK_userName = ?");
-		pStmt.setString(1, username);
-		ResultSet rs1 = pStmt.executeQuery();
-		int employeeID = rs1.getInt(1);
-
-		Object[] values1 = { employeeID, new Date(), action };
-		TableInserts.insertActivity(connection, values1);
-	}
+	/*********************** user controller methods ***********************/
 
 	/**
 	 * @param username
@@ -107,19 +89,43 @@ public class DatabaseController {
 	}
 
 	/**
+	 * 
 	 * @param username
+	 * @param action
+	 * @return message for server
+	 */
+	public String activityLogger(String username, String action) throws SQLException {
+		return DatabaseUserController.getInstance(connection).activityLogger(username, action);
+	}
+
+	/**
+	 * @param username
+	 * @param year
+	 * @param month
 	 * @return activity list for server
 	 */
 	public ActivityList getActivitiesSequence(String username, String year, String month) {
 		return DatabaseUserController.getInstance(connection).getActivitiesSequence(username, year, month);
 	}
-	
+
 	/**
 	 * @param username
 	 * @return message for server
 	 */
 	public String signOutSequence(String username) {
 		return DatabaseUserController.getInstance(connection).signOutSequence(username);
+	}
+
+	/*********************** user controller methods ***********************/
+
+	/**
+	 * @param username
+	 * @param year
+	 * @param month
+	 * @return fast fuel list for server
+	 */
+	public FastFuelList getFastFuelsSequence(String username, String year, String month) {
+		return DatabaseCustomerController.getInstance(connection).getFastFuelsSequence(username, year, month);
 	}
 
 }

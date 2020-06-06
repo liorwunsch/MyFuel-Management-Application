@@ -40,23 +40,27 @@ public abstract class EmployeeWindow extends UserWindow {
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
+		
 		if (lastMsgFromServer instanceof ActivityList) {
 			ActivityList activityList = (ActivityList) lastMsgFromServer;
 			handleGetActivityListFromServer(activityList);
 		}
 	}
 
+	/**
+	 * initialized tableview in home of employees
+	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
 	public void setUserComponents(String username) {
 		super.setUserComponents(username);
 		final TableColumn<Activity, Date> timeColumn = (TableColumn<Activity, Date>) new TableColumn("Date");
 		timeColumn.setCellValueFactory((Callback) new PropertyValueFactory("time"));
-		timeColumn.impl_setWidth(200);
+		timeColumn.impl_setWidth(170);
 		this.tvHomeActivity.getColumns().add(timeColumn);
 		final TableColumn<Activity, String> actionColumn = (TableColumn<Activity, String>) new TableColumn("Action");
 		actionColumn.setCellValueFactory((Callback) new PropertyValueFactory("action"));
-		actionColumn.impl_setWidth(442);
+		actionColumn.impl_setWidth(472);
 		this.tvHomeActivity.getColumns().add(actionColumn);
 
 		this.controller.handleMessageFromClientUI(("activity get " + username + " "

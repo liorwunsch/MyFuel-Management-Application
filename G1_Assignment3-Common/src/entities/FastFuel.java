@@ -3,6 +3,8 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import enums.ProductName;
+
 /**
  * @author Elroy, Vlad, Lior
  */
@@ -10,33 +12,38 @@ import java.util.Date;
 public class FastFuel implements Serializable {
 
 	// primary keys
-	private Integer fastFuelID;
+	private Integer fastFuelID; // auto-inc
 
 	// foreign keys
 	private String registrationPlate;
 	private String customerID;
-	private int productInStaionID;
+	private int productInStationID; // was renamed
 
 	// fields
 	private Date fastFuelTime;
 	private double amountBought;
 	private double finalPrice;
 
+	// added in java - can be null
+	private ProductName fuelType; // == productName
+	private String fuelStationName;
+
 	/**
 	 * without fastFuelID auto-inc
+	 * 
 	 * @param registrationPlate
 	 * @param customerID
-	 * @param productInStaionID
+	 * @param productInStationID
 	 * @param fastFuelTime
 	 * @param amountBought
 	 * @param finalPrice
 	 */
-	public FastFuel(String registrationPlate, String customerID, int productInStaionID, Date fastFuelTime,
+	public FastFuel(String registrationPlate, String customerID, int productInStationID, Date fastFuelTime,
 			double amountBought, double finalPrice) {
 		super();
 		this.registrationPlate = registrationPlate;
 		this.customerID = customerID;
-		this.productInStaionID = productInStaionID;
+		this.productInStationID = productInStationID;
 		this.fastFuelTime = fastFuelTime;
 		this.amountBought = amountBought;
 		this.finalPrice = finalPrice;
@@ -44,21 +51,22 @@ public class FastFuel implements Serializable {
 
 	/**
 	 * with fastFuelID
+	 * 
 	 * @param registrationPlate
 	 * @param fastFuelID
 	 * @param customerID
-	 * @param productInStaionID
+	 * @param productInStationID
 	 * @param fastFuelTime
 	 * @param amountBought
 	 * @param finalPrice
 	 */
-	public FastFuel(String registrationPlate, int fastFuelID, String customerID, int productInStaionID,
+	public FastFuel(String registrationPlate, int fastFuelID, String customerID, int productInStationID,
 			Date fastFuelTime, double amountBought, double finalPrice) {
 		super();
 		this.registrationPlate = registrationPlate;
 		this.fastFuelID = fastFuelID;
 		this.customerID = customerID;
-		this.productInStaionID = productInStaionID;
+		this.productInStationID = productInStationID;
 		this.fastFuelTime = fastFuelTime;
 		this.amountBought = amountBought;
 		this.finalPrice = finalPrice;
@@ -84,12 +92,12 @@ public class FastFuel implements Serializable {
 		this.customerID = customerID;
 	}
 
-	public int getProductInStaionID() {
-		return productInStaionID;
+	public int getProductInStationID() {
+		return productInStationID;
 	}
 
-	public void setProductInStaionID(int productInStaionID) {
-		this.productInStaionID = productInStaionID;
+	public void setProductInStationID(int productInStationID) {
+		this.productInStationID = productInStationID;
 	}
 
 	public Date getFastFuelTime() {
@@ -116,13 +124,29 @@ public class FastFuel implements Serializable {
 		this.finalPrice = finalPrice;
 	}
 
+	public ProductName getFuelType() {
+		return fuelType;
+	}
+
+	public void setFuelType(ProductName fuelType) {
+		this.fuelType = fuelType;
+	}
+
+	public String getFuelStationName() {
+		return fuelStationName;
+	}
+
+	public void setFuelStationName(String fuelStationName) {
+		this.fuelStationName = fuelStationName;
+	}
+
 	@Override
 	public String toString() {
 		String str = "FastFuel [";
 		if (fastFuelID != null)
 			str += "fastFuelID=" + fastFuelID + ", ";
 		str += "registrationPlate=" + registrationPlate + ", customerID=" + customerID + ", productInStaionID="
-				+ productInStaionID + ", fastFuelTime=" + fastFuelTime + ", amountBought=" + amountBought
+				+ productInStationID + ", fastFuelTime=" + fastFuelTime + ", amountBought=" + amountBought
 				+ ", finalPrice=" + finalPrice + "]";
 		return str;
 	}

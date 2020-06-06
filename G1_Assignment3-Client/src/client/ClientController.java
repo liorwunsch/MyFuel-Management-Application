@@ -58,6 +58,14 @@ public abstract class ClientController extends AbstractClient {
 	@Override
 	public void handleMessageFromServer(Object object) {
 		System.out.println("message from server : " + object.toString());
+		
+		/**
+		 * if deleted customer connected, dont proceed and handle it instead
+		 */
+		
+		
+		
+		
 		awaitResponse = false;
 		this.lastMsgFromServer = object;
 	}

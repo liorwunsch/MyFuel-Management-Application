@@ -9,11 +9,11 @@ public class ActivityList implements Serializable {
 	private ArrayList<Activity> activities;
 
 	public ActivityList() {
-		activities = new ArrayList<Activity>();
+		this.activities = new ArrayList<Activity>();
 	}
 
 	public ArrayList<Activity> getActivities() {
-		return activities;
+		return this.activities;
 	}
 
 	public void setActivities(ArrayList<Activity> activities) {
@@ -21,7 +21,7 @@ public class ActivityList implements Serializable {
 	}
 
 	public void add(Activity activity) {
-		activities.add(activity);
+		this.activities.add(activity);
 	}
 
 }

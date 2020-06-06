@@ -27,9 +27,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.CustomerWindow">
    <children>
-      <AnchorPane layoutX="44.0" layoutY="64.0" prefHeight="576.0" prefWidth="1014.0" visible="false">
+      <AnchorPane fx:id="fastFuelPane" layoutX="44.0" layoutY="64.0" prefHeight="576.0" prefWidth="1014.0" visible="false">
          <children>
-            <Label layoutX="419.0" layoutY="282.0" text="0.00">
+            <Label fx:id="lblFFPricePerLiter" layoutX="419.0" layoutY="282.0" text="0.00">
                <font>
                   <Font size="96.0" />
                </font>
@@ -288,12 +288,12 @@
                                     <Font name="Calibri Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblHomePayment" layoutX="235.0" layoutY="220.0" prefHeight="28.0" prefWidth="512.0" text="&lt;THIS month sum of rows' price+membership cost&gt; $">
+                              <Label fx:id="lblHomePayment" layoutX="235.0" layoutY="220.0" prefHeight="28.0" prefWidth="463.0" text="&lt;THIS month sum of rows' price+membership cost&gt; $">
                                  <font>
                                     <Font name="Calibri" size="21.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tfHomeTotal" layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
+                              <TextField fx:id="tfHomeTotal" editable="false" layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
                               <Label layoutX="545.0" layoutY="565.0" text="Total:">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
@@ -316,15 +316,7 @@
                               </Label>
                               <AnchorPane layoutX="75.0" layoutY="309.0">
                                  <children>
-                                    <TableView fx:id="tvHomeActivity" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="643.0">
-                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="Time" />
-                                          <TableColumn prefWidth="120.0" text="Registrartion Plate" />
-                                          <TableColumn prefWidth="90.0" text="Fuel Station" />
-                                          <TableColumn prefWidth="90.0" text="Fuel Type" />
-                                          <TableColumn minWidth="0.0" prefWidth="83.0" text="Amount" />
-                                          <TableColumn prefWidth="67.0" text="Price" />
-                                       </columns></TableView>
+                                    <TableView fx:id="tvHomeFastFuel" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="643.0" />
                                     <GridPane layoutX="2.0" prefHeight="30.0" prefWidth="562.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
@@ -362,7 +354,7 @@
                      <children>
                         <AnchorPane layoutX="1.0" layoutY="5.0" prefHeight="309.0" prefWidth="802.0">
                            <children>
-                              <Label fx:id="lblTitleFillFields" layoutX="-1.0" layoutY="-5.0" prefHeight="21.0" prefWidth="231.0" text="Purchase Information:">
+                              <Label layoutX="-1.0" layoutY="-5.0" prefHeight="21.0" prefWidth="231.0" text="Purchase Information:">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -370,7 +362,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <AnchorPane fx:id="pricingModel_pane" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="797.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                              <AnchorPane layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="797.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
                                     <VBox layoutX="10.0" layoutY="19.0" prefHeight="224.0" prefWidth="189.0">
                                        <children>
@@ -455,21 +447,21 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" layoutX="263.0" layoutY="54.0" prefHeight="140.0" prefWidth="245.0">
                                        <children>
-                                          <ScrollPane fx:id="purchProg_SingleProgBox_SP" prefHeight="115.0" prefWidth="210.0">
+                                          <ScrollPane prefHeight="115.0" prefWidth="210.0">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="241.0">
                                                    <children>
-                                                      <Label layoutX="7.0" layoutY="11.0" text="added price #1:">
+                                                      <Label layoutX="7.0" layoutY="11.0" text="Added price #1:">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Text layoutX="7.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #1 : " wrappingWidth="136.548828125">
+                                                      <Text layoutX="7.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers #1 : " wrappingWidth="136.548828125">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="7.0" layoutY="73.0" text="estimated delivery time:">
+                                                      <Label layoutX="7.0" layoutY="73.0" text="Estimated delivery time:">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
@@ -481,7 +473,7 @@
                                                 </AnchorPane>
                                              </content>
                                           </ScrollPane>
-                                          <RadioButton fx:id="rbOHFShipment1" mnemonicParsing="false" selected="true" text="Shipment Method #1">
+                                          <RadioButton fx:id="rbOHFShipment1" mnemonicParsing="false" selected="true" text="Regular Shipment">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -489,28 +481,28 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                              <toggleGroup>
-                                                <ToggleGroup fx:id="three" />
+                                                <ToggleGroup fx:id="two" />
                                              </toggleGroup>
                                           </RadioButton>
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" layoutX="528.0" layoutY="54.0" prefHeight="140.0" prefWidth="245.0">
                                        <children>
-                                          <ScrollPane fx:id="purchProg_SingleProgBox_SP1" prefHeight="123.0" prefWidth="210.0">
+                                          <ScrollPane prefHeight="123.0" prefWidth="210.0">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="243.0">
                                                    <children>
-                                                      <Label layoutX="8.0" layoutY="14.0" text="added price #2:">
+                                                      <Label layoutX="8.0" layoutY="14.0" text="Added price #2:">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Text layoutX="8.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price multipliers #2 : " wrappingWidth="208.548828125">
+                                                      <Text layoutX="8.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers #2 : " wrappingWidth="208.548828125">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="8.0" layoutY="75.0" text="estimated delivery time:">
+                                                      <Label layoutX="8.0" layoutY="75.0" text="Estimated delivery time:">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
@@ -522,7 +514,7 @@
                                                 </AnchorPane>
                                              </content>
                                           </ScrollPane>
-                                          <RadioButton fx:id="rbOHFShipment2" mnemonicParsing="false" text="Shipment Method #2" toggleGroup="$three">
+                                          <RadioButton fx:id="rbOHFShipment2" mnemonicParsing="false" text="Urgent Shipment" toggleGroup="$two">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -550,7 +542,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="1.0" layoutY="318.0" prefHeight="320.0" prefWidth="303.0">
                            <children>
-                              <Label fx:id="lblTitleOrderDetails" layoutX="-1.0" layoutY="-2.0" prefHeight="21.0" prefWidth="137.0" text="Order Details:">
+                              <Label layoutX="-1.0" layoutY="-2.0" prefHeight="21.0" prefWidth="137.0" text="Order Details:">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -558,7 +550,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <AnchorPane fx:id="paneOHFOrderDetails" layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                              <AnchorPane layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
                                     <VBox layoutX="58.0" layoutY="14.0" prefHeight="223.0" prefWidth="196.0">
                                        <children>
@@ -572,7 +564,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFDate" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFDate" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -589,7 +581,7 @@
                                           </Label>
                                           <HBox prefHeight="32.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFFinalPrice" prefHeight="25.0" prefWidth="147.0">
+                                                <TextField fx:id="tfOHFFinalPrice" disable="true" editable="false" prefHeight="25.0" prefWidth="147.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -614,7 +606,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFAmount2" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFAmount2" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -639,7 +631,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFShipmentReview" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFShipmentReview" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -666,7 +658,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="349.0" layoutY="318.0" prefHeight="257.0" prefWidth="446.0">
                            <children>
-                              <Label fx:id="lblTitleOrderDetails1" layoutX="-1.0" layoutY="-2.0" prefHeight="21.0" prefWidth="137.0" text="Discounts:">
+                              <Label layoutX="-1.0" layoutY="-2.0" prefHeight="21.0" prefWidth="137.0" text="Discounts:">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

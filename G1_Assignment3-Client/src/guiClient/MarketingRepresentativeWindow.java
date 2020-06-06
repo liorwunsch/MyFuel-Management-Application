@@ -148,42 +148,34 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openAddEditCustomer(ActionEvent event) {
-		visibleNow.setVisible(false);
-		addEditCustomerPane.setVisible(true);
-		visibleNow = addEditCustomerPane;
-		topbar_window_label.setText("Add Customer");
+		this.visibleNow.setVisible(false);
+		this.addEditCustomerPane.setVisible(true);
+		this.visibleNow = this.addEditCustomerPane;
+		this.topbar_window_label.setText("Add\\Edit Customer");
 	}
 
 	@FXML
 	void openAddEditCar(ActionEvent event) {
-		visibleNow.setVisible(false);
-		addEditCarPane.setVisible(true);
-		visibleNow = addEditCarPane;
-		topbar_window_label.setText("Add Car");
+		this.visibleNow.setVisible(false);
+		this.addEditCarPane.setVisible(true);
+		this.visibleNow = this.addEditCarPane;
+		this.topbar_window_label.setText("Add\\Edit Car");
 	}
 
 	@FXML
 	void openSetPurchasingProgram(ActionEvent event) {
-		visibleNow.setVisible(false);
-		setPurchasingPane.setVisible(true);
-		visibleNow = setPurchasingPane;
-		topbar_window_label.setText("Purchasing Program");
+		this.visibleNow.setVisible(false);
+		this.setPurchasingPane.setVisible(true);
+		this.visibleNow = this.setPurchasingPane;
+		this.topbar_window_label.setText("Set Purchasing Program");
 	}
 
 	@FXML
 	void openSetPricingModel(ActionEvent event) {
-		visibleNow.setVisible(false);
-		pricingModelPane.setVisible(true);
-		visibleNow = pricingModelPane;
-		topbar_window_label.setText("Pricing Model");
-	}
-
-	@FXML
-	void openCreateSalesPattern(ActionEvent event) {
-		visibleNow.setVisible(false);
-		createSalePatternPane.setVisible(true);
-		visibleNow = createSalePatternPane;
-		topbar_window_label.setText("Create Sales Pattern");
+		this.visibleNow.setVisible(false);
+		this.pricingModelPane.setVisible(true);
+		this.visibleNow = this.pricingModelPane;
+		this.topbar_window_label.setText("Set Pricing Model");
 	}
 
 }
