@@ -1,12 +1,10 @@
 package server;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import database.DatabaseController;
 import entities.FastFuelList;
-import guiServer.ServerWindow;
+import entities.HomeFuelOrder;
 import ocsf.server.ConnectionToClient;
 
 /**
@@ -18,28 +16,22 @@ import ocsf.server.ConnectionToClient;
 public class ServerCustomerController {
 
 	private static ServerCustomerController instance;
-
-	private Object lock;
-	private ServerWindow serverWindow;
 	private DatabaseController databaseController;
 
 	/**
 	 * singleton class constructor
 	 */
-	private ServerCustomerController(ServerWindow serverWindow, DatabaseController databaseController, Object lock) {
+	private ServerCustomerController(DatabaseController databaseController) {
 		super();
-		this.lock = lock;
-		this.serverWindow = serverWindow;
 		this.databaseController = databaseController;
 	}
 
 	/**
 	 * @return instance of this class
 	 */
-	public static ServerCustomerController getInstance(ServerWindow serverWindow, DatabaseController databaseController,
-			Object lock) {
+	public static ServerCustomerController getInstance(DatabaseController databaseController) {
 		if (instance == null) {
-			instance = new ServerCustomerController(serverWindow, databaseController, lock);
+			instance = new ServerCustomerController(databaseController);
 		}
 		return instance;
 	}
@@ -51,25 +43,31 @@ public class ServerCustomerController {
 	 */
 	public void handleMessageFromClient(Object object, ConnectionToClient client) {
 		try {
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			Date date = new Date();
-			
+
 			if (object instanceof String) {
 				String[] splitMsg = ((String) object).split(" ");
 				if (splitMsg[0].equals("fastfuel")) {
 					if (splitMsg[1].equals("get")) {
 						FastFuelList fastFuelList = this.databaseController.getFastFuelsSequence(splitMsg[2],
 								splitMsg[3], splitMsg[4]);
-						synchronized (this.lock) {
-							this.serverWindow
-									.updateArea(formatter.format(date) + " : " + client + " : fastfuel list fetched");
-							this.lock.notifyAll();
-						}
 
 						/* send message back to client */
 						client.sendToClient(fastFuelList);
 					}
 				}
+				if (splitMsg[0].equals("homefuel")) {
+					if (splitMsg[1].equals("get")) {
+						if (splitMsg[2].equals("price")) {
+							Double homeFuelPrice = this.databaseController.getHomeFuelPriceSequence();
+							client.sendToClient(homeFuelPrice);
+						}
+					}
+				}
+			}
+
+			if (object instanceof HomeFuelOrder) {
+				String str = this.databaseController.setNewHomeFuelSequence((HomeFuelOrder) object);
+				client.sendToClient(str);
 			}
 
 		} catch (IOException e) {

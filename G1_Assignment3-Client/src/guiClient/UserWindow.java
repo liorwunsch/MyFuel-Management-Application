@@ -120,6 +120,9 @@ public abstract class UserWindow extends AFXML {
 
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
+		if(lastMsgFromServer == null)
+			openErrorAlert("Error", "Something went Wrong");
+		
 		if (lastMsgFromServer instanceof String) {
 			String message = (String) lastMsgFromServer;
 			if (message.startsWith("sign out"))

@@ -52,7 +52,7 @@ public class LoginWindow extends AFXML {
 	public void setVisibleNow(boolean flag) {
 		if (flag == true) {
 			this.controller = LoginController.getInstance();
-			this.controller.setCurrentWindow(this);
+//			this.controller.setCurrentWindow(this);
 		}
 		this.visibleNow.setVisible(false);
 		this.loginPane.setVisible(true);
@@ -80,8 +80,8 @@ public class LoginWindow extends AFXML {
 	private void myContinue() {
 		String host = this.tfLoginServerHost.getText();
 		String port = this.tfLoginServerPort.getText();
-		if (port.isEmpty() || port.matches(".*[a-z].*")
-				|| (!host.equals("localhost") && (!host.startsWith("192.168.") || host.matches(".*[a-z].*")))) {
+		if (port.isEmpty() || port.matches(".*[A-z].*")
+				|| (!host.equals("localhost") && (!host.startsWith("192.168.") || host.matches(".*[A-z].*")))) {
 			this.lblError1.setText("Syntax Error");
 			this.lblError1.setVisible(true);
 			this.tfLoginServerHost.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -122,6 +122,7 @@ public class LoginWindow extends AFXML {
 		else
 			userType = this.rbCustomer.getText();
 
+		this.controller.setCurrentWindow(this);
 		this.controller.handleMessageFromClientUI(("login" + " " + username + " " + password + " " + userType));
 	}
 
