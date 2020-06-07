@@ -35,7 +35,7 @@ public class TableInserts {
 			}
 
 			if (values.length != fields.length)
-				throw new SQLException("ERROR: more values than columns in table " + tableName);
+				throw new SQLException("Error: more values than columns in table " + tableName);
 
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO " + tableName + " (");

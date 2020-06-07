@@ -1,7 +1,5 @@
 package guiClient;
 
-import java.util.Optional;
-
 import client.ClientController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,10 +23,10 @@ public abstract class AFXML {
 	@FXML	protected AnchorPane titleBar;
 	@FXML	protected Button btnMini;
 	@FXML	protected Button btnExit;
-	
+
 	protected AnchorPane visibleNow;
 	protected ClientController controller;
-	
+
 	/**
 	 * executes window methods according to input
 	 * 
@@ -49,9 +47,11 @@ public abstract class AFXML {
 		alert.show();
 		ButtonType buttonTypeOne = new ButtonType("OK");
 		alert.getButtonTypes().setAll(buttonTypeOne);
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne)
+
+		final Button btn = (Button) alert.getDialogPane().lookupButton(buttonTypeOne);
+		btn.setOnAction(event -> {
 			alert.hide();
+		});
 	}
 
 	/* methods for functionality of the top bar close, minimize, drag window */

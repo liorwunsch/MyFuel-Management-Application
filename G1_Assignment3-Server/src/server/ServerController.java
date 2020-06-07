@@ -120,7 +120,7 @@ public class ServerController extends AbstractServer {
 			this.listen();
 		} catch (Exception e) {
 			synchronized (this.lock) {
-				this.serverWindow.updateArea("ERROR - Could not listen for connections");
+				this.serverWindow.updateArea("Error - Could not listen for connections");
 				this.lock.notifyAll();
 			}
 		}

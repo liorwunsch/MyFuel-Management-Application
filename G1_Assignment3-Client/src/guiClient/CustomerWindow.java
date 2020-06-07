@@ -1,9 +1,9 @@
 package guiClient;
 
-import java.util.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import client.CustomerController;
 import entities.FastFuel;
@@ -15,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -37,64 +36,37 @@ import javafx.util.Callback;
  */
 public class CustomerWindow extends UserWindow {
 
-	@FXML
-	private ToggleGroup one;
-	@FXML
-	private ToggleButton sidebar_btn0;
-	@FXML
-	private ToggleButton sidebar_btn1;
-	@FXML
-	private ToggleButton sidebar_btn2;
+	@FXML	private ToggleGroup one;
+	@FXML	private ToggleButton sidebar_btn0;
+	@FXML	private ToggleButton sidebar_btn1;
+	@FXML	private ToggleButton sidebar_btn2;
 
-	@FXML
-	private Label lblHomeMember;
-	@FXML
-	private Label lblHomePayment;
-	@FXML
-	private TableView<FastFuel> tvHomeFastFuel;
-	@FXML
-	private TextField tfHomeTotal;
+	@FXML	private Label lblHomeMember;
+	@FXML	private Label lblHomePayment;
+	@FXML	private TableView<FastFuel> tvHomeFastFuel;
+	@FXML	private TextField tfHomeTotal;
 
-	@FXML
-	private AnchorPane orderHomeFuelPane;
-	@FXML
-	private AnchorPane apOHFPurchaseInfo;
-	@FXML
-	private TextField tfOHFAmount1;
-	@FXML
-	private TextField tfOHFAddress;
-	@FXML
-	private TextField tfOHFPrice1;
-	@FXML
-	private ToggleGroup two;
-	@FXML
-	private RadioButton rbOHFShipment1;
-	@FXML
-	private RadioButton rbOHFShipment2;
-	@FXML
-	private Button btnOHFShowPrice;
-	@FXML
-	private AnchorPane apOHFOrderDetails;
-	@FXML
-	private TextField tfOHFDate;
-	@FXML
-	private TextField tfOHFFinalPrice;
-	@FXML
-	private TextField tfOHFAmount2;
-	@FXML
-	private TextField tfOHFShipmentReview;
-	@FXML
-	private Button btnOHFConfirm;
+	@FXML	private AnchorPane orderHomeFuelPane;
+	@FXML	private AnchorPane apOHFPurchaseInfo;
+	@FXML	private TextField tfOHFAmount1;
+	@FXML	private TextField tfOHFAddress;
+	@FXML	private TextField tfOHFPrice1;
+	@FXML	private ToggleGroup two;
+	@FXML	private RadioButton rbOHFShipment1;
+	@FXML	private RadioButton rbOHFShipment2;
+	@FXML	private Button btnOHFShowPrice;
+	@FXML	private AnchorPane apOHFOrderDetails;
+	@FXML	private TextField tfOHFDate;
+	@FXML	private TextField tfOHFFinalPrice;
+	@FXML	private TextField tfOHFAmount2;
+	@FXML	private TextField tfOHFShipmentReview;
+	@FXML	private Button btnOHFConfirm;
 
-	@FXML
-	private AnchorPane viewOrderPane;
-	@FXML
-	private TableView<HomeFuelOrder> tvVODetails;
+	@FXML	private AnchorPane viewOrderPane;
+	@FXML	private TableView<HomeFuelOrder> tvVODetails;
 
-	@FXML
-	private AnchorPane fastFuelPane;
-	@FXML
-	private Label lblFFPricePerLiter;
+	@FXML	private AnchorPane fastFuelPane;
+	@FXML	private Label lblFFPricePerLiter;
 
 	@FXML
 	void initialize() {
@@ -128,11 +100,13 @@ public class CustomerWindow extends UserWindow {
 		this.controller.handleMessageFromClientUI("homefuel get price");
 		this.apOHFPurchaseInfo.setDisable(false);
 		this.apOHFOrderDetails.setDisable(true);
-		for (Node node : orderHomeFuelPane.getChildren()) {
-			if (node instanceof TextField) {
-				((TextField) node).setText("");
-			}
-		}
+		this.tfOHFAmount1.clear();
+		this.tfOHFAddress.clear();
+		this.tfOHFDate.clear();
+		this.tfOHFFinalPrice.clear();
+		this.tfOHFAmount2.clear();
+		this.tfOHFShipmentReview.clear();
+		this.rbOHFShipment1.setSelected(true);
 	}
 
 	@FXML
@@ -141,8 +115,14 @@ public class CustomerWindow extends UserWindow {
 		String address = this.tfOHFAddress.getText();
 		ShipmentType shipmentType;
 
-		if (amount.isEmpty() || address.isEmpty() || amount.matches(".*[A-z].*")) {
-			openErrorAlert("ERROR", "Missing Required Fields");
+		if (amount.isEmpty() || address.isEmpty() ) {
+			openErrorAlert("Error", "Missing Required Fields");
+			this.tfOHFAmount1.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+			return;
+		}
+		if(amount.matches(".*[A-z].*")) {
+			openErrorAlert("Error", "Amount Not Valid");
 			this.tfOHFAmount1.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return;
@@ -206,17 +186,12 @@ public class CustomerWindow extends UserWindow {
 				this.tfOHFShipmentReview.setText(this.rbOHFShipment1.getText());
 		}
 		if (lastMsgFromServer instanceof String) {
-			if (((String) lastMsgFromServer).equals("set homefuelorder success"))
+			if (((String) lastMsgFromServer).equals("set homefuelorder success")) {
 				openErrorAlert("Success", "Order Saved");
-			if (((String) lastMsgFromServer).equals("set homefuelorder fail"))
-				openErrorAlert("ERROR", "Order Failed");
-			this.apOHFPurchaseInfo.setDisable(false);
-			this.apOHFOrderDetails.setDisable(true);
-			for (Node node : orderHomeFuelPane.getChildren()) {
-				if (node instanceof TextField) {
-					((TextField) node).setText("");
-				}
+				this.apOHFOrderDetails.setDisable(true);
 			}
+			if (((String) lastMsgFromServer).equals("set homefuelorder fail"))
+				openErrorAlert("Error", "Order Failed");
 		}
 	}
 

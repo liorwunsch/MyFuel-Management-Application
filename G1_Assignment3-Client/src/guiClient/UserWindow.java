@@ -143,7 +143,7 @@ public abstract class UserWindow extends AFXML {
 
 		if (lastMsgFromServer.startsWith("sign out failed")) {
 			Alert a = new Alert(Alert.AlertType.ERROR);
-			a.setContentText("ERROR - sign out failed");
+			a.setContentText("Error - sign out failed");
 			a.show();
 		}
 	}
