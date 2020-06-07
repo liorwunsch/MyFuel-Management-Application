@@ -1,10 +1,20 @@
 package guiClient;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
+
 import client.SupplierController;
+import entities.FastFuelList;
+import entities.FuelStationOrder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -55,11 +65,18 @@ public class SupplierWindow extends EmployeeWindow {
 		/**
 		 * 
 		 */
+		/*
+		 * if (lastMsgFromServer instanceof FuelStationOrder[]) { FuelStationOrder[] fso
+		 * = (FuelStationOrder[])lastMsgFromServer; tvASFSODetails.getColumns().add(e);
+		 * }
+		 */
 	}
 
 	@FXML
 	void openApproveSupplied(ActionEvent event) {
-
+		this.homePane.setVisible(false);
+		approveSuppliedPane.setVisible(true);
+		
 	}
-
+	
 }

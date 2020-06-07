@@ -1,9 +1,14 @@
 package client;
 
+import java.util.List;
+
+import entities.FuelStationOrder;
+
 public class SupplierController extends UserController {
 
 	private static SupplierController instance;
-
+	//set only in successful login
+	public String username;
 	/**
 	 * singleton class constructor
 	 */
@@ -28,5 +33,9 @@ public class SupplierController extends UserController {
 		 * 
 		 */
 	}
-
+	
+	private FuelStationOrder[] getFuelStationOrder(){
+		System.out.println(username);
+		return null;
+	}
 }

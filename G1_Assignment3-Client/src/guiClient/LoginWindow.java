@@ -1,6 +1,7 @@
 package guiClient;
 
 import client.LoginController;
+import client.SupplierController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,9 @@ public class LoginWindow extends AFXML {
 	@FXML	private RadioButton rbCustomer;
 	@FXML	private Label lblError;
 	@FXML	private Button btnSignIn;
-
+	//vlad added
+	private String username;
+	
 	@FXML
 	void initialize() {
 		this.visibleNow = this.serverPane;
@@ -102,7 +105,7 @@ public class LoginWindow extends AFXML {
 	 * as a string
 	 */
 	private void mySignIn() {
-		String username = this.tfLoginUserName.getText();
+		username = this.tfLoginUserName.getText();
 		String password = this.tfLoginPassword.getText();
 		String userType;
 
@@ -140,7 +143,8 @@ public class LoginWindow extends AFXML {
 
 			if (message.startsWith("login succeeded")) {
 				String[] splitMsg = message.split(" ");
-				successLogin(splitMsg[2]);
+				//vlad added
+				successLogin(splitMsg[2],splitMsg[3]);
 			}
 
 			if (message.startsWith("login failed"))
@@ -157,7 +161,7 @@ public class LoginWindow extends AFXML {
 	 * 
 	 * @param role
 	 */
-	private void successLogin(String role) {
+	private void successLogin(String role, String username) {
 		this.lblError.setVisible(false);
 
 		String newWindowPath = "";
@@ -186,6 +190,8 @@ public class LoginWindow extends AFXML {
 		if (role.equals("Supplier")) {
 			newWindowPath = "/windows/SupplierWindow.fxml";
 			newWindowTitle = "MyFuel Supplier";
+			//vlad added
+			SupplierController.getInstance().username = username;
 		}
 
 		try {
