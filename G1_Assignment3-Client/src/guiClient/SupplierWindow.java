@@ -9,6 +9,7 @@ import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import client.SupplierController;
 import entities.FastFuelList;
+import entities.FuelStation;
 import entities.FuelStationOrder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,16 +40,20 @@ public class SupplierWindow extends EmployeeWindow {
 	private Button btnASFSOApprove;
 
 	@FXML
-	private ComboBox<?> cobASFSOFuelStationID;
+	private ComboBox<FuelStation> cobASFSOFuelStationID;
 
 	@FXML
 	private Button btnASFSOShow;
 
 	@FXML
 	private TableView<?> tvASFSODetails;
-
+	
+	private FuelStation[] fs;
+	
 	@FXML
 	void initialize() {
+		//fs = SupplierController.getInstance().getFuelStation();
+		//cobASFSOFuelStationID.getItems().addAll(Arrays.asList(fs));
 		this.visibleNow = this.homePane;
 		this.controller = SupplierController.getInstance();
 		this.controller.setCurrentWindow(this);

@@ -1,8 +1,8 @@
 package client;
 
-import java.util.List;
-
+import entities.FuelStation;
 import entities.FuelStationOrder;
+import enums.FuelCompanyName;
 
 public class SupplierController extends UserController {
 
@@ -37,5 +37,10 @@ public class SupplierController extends UserController {
 	private FuelStationOrder[] getFuelStationOrder(){
 		System.out.println(username);
 		return null;
+	}
+	
+	public FuelStation[] getFuelStation() {
+		FuelStation[] fs = {new FuelStation(1, FuelCompanyName.Paz, 1, "paz","hi"),new FuelStation(2, FuelCompanyName.Paz, 2, "pazi","hi")};
+		return fs;
 	}
 }

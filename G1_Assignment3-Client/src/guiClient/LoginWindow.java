@@ -144,8 +144,7 @@ public class LoginWindow extends AFXML {
 
 			if (message.startsWith("login succeeded")) {
 				String[] splitMsg = message.split(" ");
-				//vlad added
-				successLogin(splitMsg[2],splitMsg[3]);
+				successLogin(splitMsg[2]);
 			}
 
 			if (message.startsWith("login failed"))
@@ -162,7 +161,7 @@ public class LoginWindow extends AFXML {
 	 * 
 	 * @param role
 	 */
-	private void successLogin(String role, String username) {
+	private void successLogin(String role) {
 		this.lblError.setVisible(false);
 
 		String newWindowPath = "";
