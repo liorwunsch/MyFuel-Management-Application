@@ -299,7 +299,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="722.0" layoutY="560.0" text="\$">
+                              <Label layoutX="722.0" layoutY="560.0" text="\$" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
@@ -346,6 +346,11 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
+                              <Label layoutX="556.0" layoutY="592.0" text="(excluding membership fee)" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
