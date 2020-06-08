@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import entities.ActivityList;
 import entities.FastFuelList;
+import entities.HomeFuelOrder;
 import guiServer.ServerWindow;
 
 /**
@@ -116,7 +117,7 @@ public class DatabaseController {
 		return DatabaseUserController.getInstance(connection).signOutSequence(username);
 	}
 
-	/*********************** user controller methods ***********************/
+	/*********************** customer controller methods ***********************/
 
 	/**
 	 * @param username
@@ -126,6 +127,23 @@ public class DatabaseController {
 	 */
 	public FastFuelList getFastFuelsSequence(String username, String year, String month) {
 		return DatabaseCustomerController.getInstance(connection).getFastFuelsSequence(username, year, month);
+	}
+
+	/**
+	 * 
+	 * @return home fuel price for server
+	 */
+	public Double getHomeFuelPriceSequence() {
+		return DatabaseCustomerController.getInstance(connection).getHomeFuelPriceSequence();
+	}
+
+	/**
+	 * 
+	 * @param homeFuelOrder
+	 * @return string of success or fail
+	 */
+	public String setNewHomeFuelSequence(HomeFuelOrder homeFuelOrder) {
+		return DatabaseCustomerController.getInstance(connection).setNewHomeFuelSequence(homeFuelOrder);
 	}
 
 }

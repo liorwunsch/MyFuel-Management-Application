@@ -24,7 +24,7 @@ public class HomeFuelOrder extends Orders {
 	private double finalPrice;
 
 	/**
-	 * without odersID auto-inc
+	 * without ordersID auto-inc
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address

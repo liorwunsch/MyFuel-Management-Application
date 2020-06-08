@@ -95,7 +95,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </ToggleButton>
-                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#openViewOrders" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#openViewOrders" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Home Fuel Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -294,12 +294,12 @@
                                  </font>
                               </Label>
                               <TextField fx:id="tfHomeTotal" editable="false" layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
-                              <Label layoutX="545.0" layoutY="565.0" text="Total:">
+                              <Label layoutX="545.0" layoutY="565.0" text="Total:" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="722.0" layoutY="560.0" text="\$">
+                              <Label layoutX="722.0" layoutY="560.0" text="\$" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
@@ -346,6 +346,11 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
+                              <Label layoutX="556.0" layoutY="592.0" text="(excluding membership fee)" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
@@ -362,7 +367,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="797.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                              <AnchorPane fx:id="apOHFPurchaseInfo" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="797.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
                                     <VBox layoutX="10.0" layoutY="19.0" prefHeight="224.0" prefWidth="189.0">
                                        <children>
@@ -384,7 +389,7 @@
                                           </Label>
                                           <HBox>
                                              <children>
-                                                <TextField fx:id="tfOHFAmount1" prefHeight="30.0" prefWidth="143.0">
+                                                <TextField fx:id="tfOHFAmount1" prefHeight="30.0" prefWidth="143.0" promptText="*">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -410,7 +415,7 @@
                                                 <Insets top="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField fx:id="tfOHFAddress" prefHeight="30.0" prefWidth="76.0">
+                                          <TextField fx:id="tfOHFAddress" prefHeight="30.0" prefWidth="76.0" promptText="*">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -449,28 +454,40 @@
                                        <children>
                                           <ScrollPane prefHeight="115.0" prefWidth="210.0">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="241.0">
+                                                <GridPane>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
                                                    <children>
-                                                      <Label layoutX="7.0" layoutY="11.0" text="Added price #1:">
+                                                      <Label text="Added price :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Text layoutX="7.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers #1 : " wrappingWidth="136.548828125">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers : " wrappingWidth="136.548828125" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="7.0" layoutY="73.0" text="Estimated delivery time:">
+                                                      <Label text="Estimated delivery time:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblOHFShipmentPrice1" layoutX="107.0" layoutY="14.0" text="Label" />
-                                                      <Label fx:id="lblOHFShipmentMul1" layoutX="135.0" layoutY="40.0" text="Label" />
-                                                      <Label fx:id="lblOHFShipmentDelivery1" layoutX="158.0" layoutY="73.0" text="Label" />
+                                                      <Label text="5.5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label text="100%" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                      <Label text="5-10 Days" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                    </children>
-                                                </AnchorPane>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </GridPane>
                                              </content>
                                           </ScrollPane>
                                           <RadioButton fx:id="rbOHFShipment1" mnemonicParsing="false" selected="true" text="Regular Shipment">
@@ -490,28 +507,40 @@
                                        <children>
                                           <ScrollPane prefHeight="123.0" prefWidth="210.0">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="97.0" prefWidth="243.0">
+                                                <GridPane>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
                                                    <children>
-                                                      <Label layoutX="8.0" layoutY="14.0" text="Added price #2:">
+                                                      <Label text="Added price :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Text layoutX="8.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers #2 : " wrappingWidth="208.548828125">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price multipliers : " wrappingWidth="136.548828125" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Text>
-                                                      <Label layoutX="8.0" layoutY="75.0" text="Estimated delivery time:">
+                                                      <Label text="Estimated delivery time:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                          <font>
                                                             <Font name="Arial" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="lblOHFShipmentPrice2" layoutX="110.0" layoutY="16.0" text="Label" />
-                                                      <Label fx:id="lblOHFShipmentMul2" layoutX="139.0" layoutY="46.0" text="Label" />
-                                                      <Label fx:id="lblOHFShipmentDelivery2" layoutX="161.0" layoutY="75.0" text="Label" />
+                                                      <Label text="5.5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label text="102%" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                      <Label text="6 Hours" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                    </children>
-                                                </AnchorPane>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </GridPane>
                                              </content>
                                           </ScrollPane>
                                           <RadioButton fx:id="rbOHFShipment2" mnemonicParsing="false" text="Urgent Shipment" toggleGroup="$two">
@@ -524,7 +553,7 @@
                                           </RadioButton>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="btnOHFShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
+                                    <Button fx:id="btnOHFShowPrice" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" onAction="#btnOHFShowPricePressed" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
                                        <graphic>
                                           <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -550,7 +579,7 @@
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                              <AnchorPane fx:id="apOHFOrderDetails" layoutY="17.0" prefHeight="296.0" prefWidth="300.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                  <children>
                                     <VBox layoutX="58.0" layoutY="14.0" prefHeight="223.0" prefWidth="196.0">
                                        <children>
@@ -564,7 +593,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFDate" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFDate" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -581,7 +610,7 @@
                                           </Label>
                                           <HBox prefHeight="32.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFFinalPrice" disable="true" editable="false" prefHeight="25.0" prefWidth="147.0">
+                                                <TextField fx:id="tfOHFFinalPrice" editable="false" prefHeight="25.0" prefWidth="147.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -606,7 +635,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFAmount2" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFAmount2" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -631,7 +660,7 @@
                                           </Label>
                                           <HBox prefHeight="35.0" prefWidth="196.0">
                                              <children>
-                                                <TextField fx:id="tfOHFShipmentReview" disable="true" editable="false" prefHeight="25.0" prefWidth="145.0">
+                                                <TextField fx:id="tfOHFShipmentReview" editable="false" prefHeight="25.0" prefWidth="145.0">
                                                    <opaqueInsets>
                                                       <Insets />
                                                    </opaqueInsets>
@@ -640,7 +669,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="btnOHFConfirm" layoutX="59.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
+                                    <Button fx:id="btnOHFConfirm" layoutX="59.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnOHFConfirmPressed" prefHeight="30.0" prefWidth="180.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm Order">
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>

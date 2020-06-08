@@ -9,6 +9,7 @@ import java.util.Date;
 
 import entities.FastFuel;
 import entities.FastFuelList;
+import entities.HomeFuelOrder;
 import enums.ProductName;
 
 /**
@@ -20,7 +21,6 @@ import enums.ProductName;
 public class DatabaseCustomerController {
 
 	private static DatabaseCustomerController instance;
-
 	private Connection connection;
 
 	/**
@@ -97,7 +97,7 @@ public class DatabaseCustomerController {
 				if (!rs3.next())
 					return new FastFuelList();
 
-				String productName = rs3.getString(1).replaceAll("\\s","");
+				String productName = rs3.getString(1).replaceAll("\\s", "");
 				ProductName fuelType = ProductName.valueOf(productName);
 				fastFuel.setFuelType(fuelType);
 
@@ -117,10 +117,84 @@ public class DatabaseCustomerController {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return new FastFuelList();
+			return null;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return new FastFuelList();
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * @return home fuel price for server
+	 */
+	public Double getHomeFuelPriceSequence() {
+		try {
+			PreparedStatement pStmt = this.connection
+					.prepareStatement("SELECT currentPrice FROM product WHERE productName = ?");
+			pStmt.setString(1, "Home Fuel");
+			ResultSet rs1 = pStmt.executeQuery();
+
+			// check if exists in database
+			if (!rs1.next())
+				throw new SQLException("no home fuel product in db");
+
+			Double price = rs1.getDouble(1);
+			rs1.close();
+
+			return price;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * @param homeFuelOrder
+	 * @return string of success or fail
+	 */
+	public String setNewHomeFuelSequence(HomeFuelOrder homeFuelOrder) {
+		try {
+			PreparedStatement pStmt = this.connection
+					.prepareStatement("SELECT customerID FROM customer WHERE FK_username = ?");
+			pStmt.setString(1, homeFuelOrder.getCustomerID());
+			ResultSet rs1 = pStmt.executeQuery();
+			if (!rs1.next())
+				return "set homefuelorder fail";
+			String customerID = rs1.getString(1);
+			rs1.close();
+
+			// "orderTime", "amountBought", "address"
+			Object[] values1 = { homeFuelOrder.getOrderTime(), homeFuelOrder.getAmountBought(),
+					homeFuelOrder.getAddress() };
+			TableInserts.insertOrders(connection, values1);
+
+			pStmt = this.connection.prepareStatement("SELECT MAX(ordersID) FROM orders");
+			ResultSet rs2 = pStmt.executeQuery();
+			if (!rs2.next())
+				return "set homefuelorder fail";
+			int ordersID = rs2.getInt(1);
+			rs2.close();
+
+			// "FK_ordersID", "FK_customerID", "FK_product_Name", "FK_shipmentType",
+			// "duetime", "finalPrice"
+			Object[] values2 = { ordersID, customerID, homeFuelOrder.getProductName().toString(),
+					homeFuelOrder.getShipmentMethod().toString(), homeFuelOrder.getDueTime(),
+					homeFuelOrder.getFinalPrice() };
+			TableInserts.insertHomeFuelOrder(connection, values2);
+			return "set homefuelorder success";
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "set homefuelorder fail";
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "set homefuelorder fail";
 		}
 	}
 

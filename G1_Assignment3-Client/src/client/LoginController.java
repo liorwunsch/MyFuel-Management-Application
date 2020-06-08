@@ -43,18 +43,14 @@ public class LoginController extends ClientController {
 
 		} catch (IllegalArgumentException iae) {
 			loginWindow.openErrorAlert("Server Error", "Port Not Valid");
-			iae.printStackTrace();
 		} catch (UnknownHostException uhe) {
 			loginWindow.openErrorAlert("Server Error", "Host Not Valid");
-			uhe.printStackTrace();
 		} catch (ConnectException ce) {
 			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
-			ce.printStackTrace();
 		} catch (SocketException se) {
 			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
-			se.printStackTrace();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			loginWindow.openErrorAlert("Error", "IOException");
 		}
 	}
 

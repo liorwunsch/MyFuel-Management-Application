@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import database.DatabaseController;
+import entities.HomeFuelOrder;
 import entities.User;
 import guiServer.ServerWindow;
 import ocsf.server.AbstractServer;
@@ -73,6 +74,14 @@ public class ServerController extends AbstractServer {
 							.handleMessageFromClient(user, client);
 			}
 
+			if (object instanceof HomeFuelOrder) {
+				HomeFuelOrder homeFuelOrder = (HomeFuelOrder) object;
+				this.serverWindow
+						.updateArea(formatter.format(date) + " : " + client + " : request : save homefuel order");
+				ServerCustomerController.getInstance(databaseController)
+						.handleMessageFromClient(homeFuelOrder, client);
+			}
+
 			if (object instanceof String) {
 				String str = (String) object;
 				this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : request : " + str);
@@ -84,7 +93,11 @@ public class ServerController extends AbstractServer {
 							.handleMessageFromClient(str, client);
 				}
 				if (str.startsWith("fastfuel")) {
-					ServerCustomerController.getInstance(serverWindow, databaseController, lock)
+					ServerCustomerController.getInstance(databaseController)
+							.handleMessageFromClient(str, client);
+				}
+				if (str.startsWith("homefuel")) {
+					ServerCustomerController.getInstance(databaseController)
 							.handleMessageFromClient(str, client);
 				}
 			}
@@ -107,7 +120,7 @@ public class ServerController extends AbstractServer {
 			this.listen();
 		} catch (Exception e) {
 			synchronized (this.lock) {
-				this.serverWindow.updateArea("ERROR - Could not listen for connections");
+				this.serverWindow.updateArea("Error - Could not listen for connections");
 				this.lock.notifyAll();
 			}
 		}
