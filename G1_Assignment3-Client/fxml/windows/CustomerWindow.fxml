@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -54,7 +53,7 @@
                      <children>
                         <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="35.0" prefWidth="232.0" text="Hello, Julia" textFill="WHITE">
                            <font>
-                              <Font name="Leelawadee UI" size="24.0" />
+                              <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -752,19 +751,7 @@
                      <children>
                         <AnchorPane layoutX="2.0" layoutY="24.0" prefHeight="427.0" prefWidth="836.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                            <children>
-                              <TableView fx:id="tvVODetails" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0">
-                                <columns>
-                                  <TableColumn minWidth="-1.0" prefWidth="60.0" text="ID" />
-                                    <TableColumn minWidth="-1.0" prefWidth="107.0" text="Order Time" />
-                                    <TableColumn minWidth="-1.0" prefWidth="92.0" text="Address" />
-                                    <TableColumn minWidth="-1.0" prefWidth="95.0" text="Product Name" />
-                                    <TableColumn minWidth="-1.0" prefWidth="90.0" text="Amount" />
-                                    <TableColumn minWidth="-1.0" prefWidth="117.0" text="Shipment Method" />
-                                    <TableColumn minWidth="-1.0" prefWidth="84.0" text="Status" />
-                                    <TableColumn minWidth="-1.0" prefWidth="86.0" text="Arrival Time" />
-                                    <TableColumn minWidth="-1.0" prefWidth="91.0" text="Total Price" />
-                                </columns>
-                              </TableView>
+                              <TableView fx:id="tvVODetails" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0" />
                               <Label layoutX="14.0" layoutY="14.0" text="Your MyFuel Orders:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />

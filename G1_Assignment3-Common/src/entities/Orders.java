@@ -10,12 +10,12 @@ import java.util.Date;
 public abstract class Orders implements Serializable {
 
 	// primary keys
-	private Integer ordersID;
+	protected Integer ordersID; // auto-inc
 
 	// fields
-	private Date orderTime;
-	private double amountBought;
-	private String address;
+	protected Date orderTime;
+	protected double amountBought;
+	protected String address;
 
 	/**
 	 * w/o ordersID auto-inc

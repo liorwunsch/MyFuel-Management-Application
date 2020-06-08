@@ -20,15 +20,18 @@ import javafx.stage.Stage;
  */
 public abstract class AFXML {
 
-	@FXML	protected AnchorPane titleBar;
-	@FXML	protected Button btnMini;
-	@FXML	protected Button btnExit;
+	@FXML
+	protected AnchorPane titleBar;
+	@FXML
+	protected Button btnMini;
+	@FXML
+	protected Button btnExit;
 
 	protected AnchorPane visibleNow;
 	protected ClientController controller;
 
 	/**
-	 * executes window methods according to input
+	 * changes the window after server returned an answer to client's request
 	 * 
 	 * @param lastMsgFromServer
 	 */

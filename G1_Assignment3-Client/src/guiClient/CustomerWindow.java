@@ -9,6 +9,8 @@ import client.CustomerController;
 import entities.FastFuel;
 import entities.FastFuelList;
 import entities.HomeFuelOrder;
+import entities.HomeFuelOrderList;
+import entities.PurchasingProgramType;
 import enums.ProductName;
 import enums.ShipmentType;
 import javafx.collections.FXCollections;
@@ -36,37 +38,64 @@ import javafx.util.Callback;
  */
 public class CustomerWindow extends UserWindow {
 
-	@FXML	private ToggleGroup one;
-	@FXML	private ToggleButton sidebar_btn0;
-	@FXML	private ToggleButton sidebar_btn1;
-	@FXML	private ToggleButton sidebar_btn2;
+	@FXML
+	private ToggleGroup one;
+	@FXML
+	private ToggleButton sidebar_btn0;
+	@FXML
+	private ToggleButton sidebar_btn1;
+	@FXML
+	private ToggleButton sidebar_btn2;
 
-	@FXML	private Label lblHomeMember;
-	@FXML	private Label lblHomePayment;
-	@FXML	private TableView<FastFuel> tvHomeFastFuel;
-	@FXML	private TextField tfHomeTotal;
+	@FXML
+	private Label lblHomeMember;
+	@FXML
+	private Label lblHomePayment;
+	@FXML
+	private TableView<FastFuel> tvHomeFastFuel;
+	@FXML
+	private TextField tfHomeTotal;
 
-	@FXML	private AnchorPane orderHomeFuelPane;
-	@FXML	private AnchorPane apOHFPurchaseInfo;
-	@FXML	private TextField tfOHFAmount1;
-	@FXML	private TextField tfOHFAddress;
-	@FXML	private TextField tfOHFPrice1;
-	@FXML	private ToggleGroup two;
-	@FXML	private RadioButton rbOHFShipment1;
-	@FXML	private RadioButton rbOHFShipment2;
-	@FXML	private Button btnOHFShowPrice;
-	@FXML	private AnchorPane apOHFOrderDetails;
-	@FXML	private TextField tfOHFDate;
-	@FXML	private TextField tfOHFFinalPrice;
-	@FXML	private TextField tfOHFAmount2;
-	@FXML	private TextField tfOHFShipmentReview;
-	@FXML	private Button btnOHFConfirm;
+	@FXML
+	private AnchorPane orderHomeFuelPane;
+	@FXML
+	private AnchorPane apOHFPurchaseInfo;
+	@FXML
+	private TextField tfOHFAmount1;
+	@FXML
+	private TextField tfOHFAddress;
+	@FXML
+	private TextField tfOHFPrice1;
+	@FXML
+	private ToggleGroup two;
+	@FXML
+	private RadioButton rbOHFShipment1;
+	@FXML
+	private RadioButton rbOHFShipment2;
+	@FXML
+	private Button btnOHFShowPrice;
+	@FXML
+	private AnchorPane apOHFOrderDetails;
+	@FXML
+	private TextField tfOHFDate;
+	@FXML
+	private TextField tfOHFFinalPrice;
+	@FXML
+	private TextField tfOHFAmount2;
+	@FXML
+	private TextField tfOHFShipmentReview;
+	@FXML
+	private Button btnOHFConfirm;
 
-	@FXML	private AnchorPane viewOrderPane;
-	@FXML	private TableView<HomeFuelOrder> tvVODetails;
+	@FXML
+	private AnchorPane viewOrderPane;
+	@FXML
+	private TableView<HomeFuelOrder> tvVODetails;
 
-	@FXML	private AnchorPane fastFuelPane;
-	@FXML	private Label lblFFPricePerLiter;
+	@FXML
+	private AnchorPane fastFuelPane;
+	@FXML
+	private Label lblFFPricePerLiter;
 
 	@FXML
 	void initialize() {
@@ -115,13 +144,13 @@ public class CustomerWindow extends UserWindow {
 		String address = this.tfOHFAddress.getText();
 		ShipmentType shipmentType;
 
-		if (amount.isEmpty() || address.isEmpty() ) {
+		if (amount.isEmpty() || address.isEmpty()) {
 			openErrorAlert("Error", "Missing Required Fields");
 			this.tfOHFAmount1.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return;
 		}
-		if(amount.matches(".*[A-z].*")) {
+		if (amount.matches(".*[A-z].*")) {
 			openErrorAlert("Error", "Amount Not Valid");
 			this.tfOHFAmount1.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -156,6 +185,8 @@ public class CustomerWindow extends UserWindow {
 		this.viewOrderPane.setVisible(true);
 		this.visibleNow = this.viewOrderPane;
 		this.topbar_window_label.setText("View Home Fuel Orders");
+
+		this.controller.handleMessageFromClientUI("homefuel get " + username);
 	}
 
 	/*************** boundary "logic" - window changes ***************/
@@ -164,15 +195,26 @@ public class CustomerWindow extends UserWindow {
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
 
-		if (lastMsgFromServer instanceof FastFuelList) {
+		if (lastMsgFromServer instanceof HomeFuelOrderList) {
+			HomeFuelOrderList homeFuelOrderList = (HomeFuelOrderList) lastMsgFromServer;
+			handleGetHomeFuelOrderListFromServer(homeFuelOrderList);
+
+		} else if (lastMsgFromServer instanceof FastFuelList) {
 			FastFuelList fastFuelList = (FastFuelList) lastMsgFromServer;
 			handleGetFastFuelListFromServer(fastFuelList);
-		}
-		if (lastMsgFromServer instanceof Double) {
+
+		} else if (lastMsgFromServer instanceof PurchasingProgramType) {
+			PurchasingProgramType purchasingProgramType = (PurchasingProgramType) lastMsgFromServer;
+			this.lblHomeMember.setText(purchasingProgramType.getPurchasingProgramName().toString() + " - "
+					+ purchasingProgramType.getMonthlyPrice() + "$ per month");
+			this.lblHomePayment.setText(((Double) (Double.parseDouble(this.tfHomeTotal.getText())
+					+ purchasingProgramType.getMonthlyPrice())).toString() + " $");
+
+		} else if (lastMsgFromServer instanceof Double) {
 			DecimalFormat df = new DecimalFormat("#.##");
 			this.tfOHFPrice1.setText(df.format((Double) lastMsgFromServer));
-		}
-		if (lastMsgFromServer instanceof Float) {
+
+		} else if (lastMsgFromServer instanceof Float) {
 			DecimalFormat df = new DecimalFormat("#.##");
 			this.tfOHFFinalPrice.setText(df.format((Float) lastMsgFromServer));
 			this.apOHFPurchaseInfo.setDisable(true);
@@ -184,13 +226,13 @@ public class CustomerWindow extends UserWindow {
 				this.tfOHFShipmentReview.setText(this.rbOHFShipment1.getText());
 			else
 				this.tfOHFShipmentReview.setText(this.rbOHFShipment1.getText());
-		}
-		if (lastMsgFromServer instanceof String) {
+
+		} else if (lastMsgFromServer instanceof String) {
 			if (((String) lastMsgFromServer).equals("set homefuelorder success")) {
 				openErrorAlert("Success", "Order Saved");
 				this.apOHFOrderDetails.setDisable(true);
-			}
-			if (((String) lastMsgFromServer).equals("set homefuelorder fail"))
+
+			} else if (((String) lastMsgFromServer).equals("set homefuelorder fail"))
 				openErrorAlert("Error", "Order Failed");
 		}
 	}
@@ -227,8 +269,41 @@ public class CustomerWindow extends UserWindow {
 		priceColumn.setCellValueFactory((Callback) new PropertyValueFactory("finalPrice"));
 		this.tvHomeFastFuel.getColumns().add(priceColumn);
 
+		final TableColumn<HomeFuelOrder, Integer> orderIDColumn = (TableColumn<HomeFuelOrder, Integer>) new TableColumn(
+				"Order ID");
+		orderIDColumn.setCellValueFactory((Callback) new PropertyValueFactory("ordersID"));
+		this.tvVODetails.getColumns().add(orderIDColumn);
+		final TableColumn<HomeFuelOrder, Date> orderTimeColumn = (TableColumn<HomeFuelOrder, Date>) new TableColumn(
+				"Time Bought");
+		orderTimeColumn.impl_setWidth(170);
+		orderTimeColumn.setCellValueFactory((Callback) new PropertyValueFactory("orderTime"));
+		this.tvVODetails.getColumns().add(orderTimeColumn);
+		final TableColumn<HomeFuelOrder, String> orderAddress = (TableColumn<HomeFuelOrder, String>) new TableColumn(
+				"Address");
+		orderAddress.setCellValueFactory((Callback) new PropertyValueFactory("address"));
+		this.tvVODetails.getColumns().add(orderAddress);
+		final TableColumn<HomeFuelOrder, Double> orderAmount = (TableColumn<HomeFuelOrder, Double>) new TableColumn(
+				"Amount");
+		orderAmount.setCellValueFactory((Callback) new PropertyValueFactory("amountBought"));
+		this.tvVODetails.getColumns().add(orderAmount);
+		final TableColumn<HomeFuelOrder, ShipmentType> orderShipment = (TableColumn<HomeFuelOrder, ShipmentType>) new TableColumn(
+				"Shipment Method");
+		orderShipment.setCellValueFactory((Callback) new PropertyValueFactory("shipmentMethod"));
+		this.tvVODetails.getColumns().add(orderShipment);
+		final TableColumn<HomeFuelOrder, Date> orderDueTimeColumn = (TableColumn<HomeFuelOrder, Date>) new TableColumn(
+				"Due Time");
+		orderDueTimeColumn.impl_setWidth(170);
+		orderDueTimeColumn.setCellValueFactory((Callback) new PropertyValueFactory("dueTime"));
+		this.tvVODetails.getColumns().add(orderDueTimeColumn);
+		final TableColumn<HomeFuelOrder, Double> orderPrice = (TableColumn<HomeFuelOrder, Double>) new TableColumn(
+				"Total Price");
+		orderPrice.setCellValueFactory((Callback) new PropertyValueFactory("finalPrice"));
+		this.tvVODetails.getColumns().add(orderPrice);
+
 		this.controller.handleMessageFromClientUI(("fastfuel get " + username + " "
 				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
+
+		this.controller.handleMessageFromClientUI("getcustomerpurchasingprogram " + username);
 	}
 
 	/**
@@ -251,6 +326,19 @@ public class CustomerWindow extends UserWindow {
 		this.tvHomeFastFuel.setItems(list);
 		DecimalFormat df = new DecimalFormat("#.##");
 		this.tfHomeTotal.setText(df.format(total));
+	}
+
+	private void handleGetHomeFuelOrderListFromServer(HomeFuelOrderList homeFuelOrderList) {
+		final ObservableList<HomeFuelOrder> list = FXCollections.observableArrayList();
+		for (int i = 0; i < this.tvVODetails.getItems().size(); ++i) {
+			this.tvVODetails.getItems().clear();
+		}
+
+		ArrayList<HomeFuelOrder> homeFuelOrders = homeFuelOrderList.getHomeFuelOrders();
+		for (HomeFuelOrder homeFuelOrder : homeFuelOrders) {
+			list.add(homeFuelOrder);
+		}
+		this.tvVODetails.setItems(list);
 	}
 
 }

@@ -1,6 +1,6 @@
 package guiClient;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import entities.Activity;
@@ -19,13 +19,13 @@ import javafx.util.Callback;
  * <p>
  * all boundaries except login and customer extend this
  * 
- * @version Almost Final
- * @see logActivity()
+ * @version Final
  * @author Lior
  */
 public abstract class EmployeeWindow extends UserWindow {
 
-	@FXML	protected TableView<Activity> tvHomeActivity;
+	@FXML
+	protected TableView<Activity> tvHomeActivity;
 
 	/*********************** button listeners ***********************/
 
@@ -40,7 +40,7 @@ public abstract class EmployeeWindow extends UserWindow {
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
-		
+
 		if (lastMsgFromServer instanceof ActivityList) {
 			ActivityList activityList = (ActivityList) lastMsgFromServer;
 			handleGetActivityListFromServer(activityList);
@@ -83,12 +83,6 @@ public abstract class EmployeeWindow extends UserWindow {
 			list.add(activity);
 		}
 		this.tvHomeActivity.setItems(list);
-	}
-	
-	public void logActivity() {
-		/**
-		 * 
-		 */
 	}
 
 }

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import entities.ActivityList;
 import entities.FastFuelList;
 import entities.HomeFuelOrder;
+import entities.HomeFuelOrderList;
+import entities.PurchasingProgramType;
 import guiServer.ServerWindow;
 
 /**
@@ -95,7 +97,7 @@ public class DatabaseController {
 	 * @param action
 	 * @return message for server
 	 */
-	public String activityLogger(String username, String action) throws SQLException {
+	public String activityLogger(String username, String[] action) {
 		return DatabaseUserController.getInstance(connection).activityLogger(username, action);
 	}
 
@@ -144,6 +146,24 @@ public class DatabaseController {
 	 */
 	public String setNewHomeFuelSequence(HomeFuelOrder homeFuelOrder) {
 		return DatabaseCustomerController.getInstance(connection).setNewHomeFuelSequence(homeFuelOrder);
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @return purchasing program of customer with that username
+	 */
+	public PurchasingProgramType getPurchasingProgramSequence(String username) {
+		return DatabaseCustomerController.getInstance(connection).getPurchasingProgramSequence(username);
+	}
+
+	/**
+	 * 
+	 * @param string
+	 * @return home fuel orders of customer with that username
+	 */
+	public HomeFuelOrderList getHomeFuelOrdersSequence(String username) {
+		return DatabaseCustomerController.getInstance(connection).getHomeFuelOrdersSequence(username);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.net.ConnectException;
 import java.util.Date;
 
 import entities.HomeFuelOrder;
+import entities.User;
 import enums.ProductName;
 import enums.ShipmentType;
 
@@ -47,19 +48,27 @@ public class CustomerController extends UserController {
 		}
 
 		try {
-			this.openConnection();
+			openConnection();
 			awaitResponse = true;
 			boolean flag = true;
 
-			if (splitMsg[0].equals("fastfuel")) {
+			if (splitMsg[0].equals("getcustomerpurchasingprogram")) {
+				User user = new User(splitMsg[1]);
+				user.setFunction("get purchasing program");
+
+				System.out.println("sending to server : " + user);
+				this.sendToServer(user);
+
+			} else if (splitMsg[0].equals("fastfuel")) {
 				System.out.println("sending to server : " + message);
 				this.sendToServer(message);
+
 			} else if (splitMsg[0].equals("homefuel")) {
 				if (splitMsg[1].equals("get")) {
 					System.out.println("sending to server : " + message);
 					this.sendToServer(message);
-				}
-				if (splitMsg[1].equals("set")) {
+
+				} else if (splitMsg[1].equals("set")) {
 					Date now = new Date();
 					now.setHours(now.getHours() - 3);
 					now.setMinutes(now.getMinutes() + 30);
@@ -75,6 +84,7 @@ public class CustomerController extends UserController {
 							Double.parseDouble(splitMsg[4]));
 					this.sendToServer(homeFuelOrder);
 				}
+
 			} else {
 				flag = false;
 				awaitResponse = false;
@@ -103,10 +113,11 @@ public class CustomerController extends UserController {
 	private void calculateHomeFuelOrderFinalPrice(String amount, String price, String shipmentType) {
 		double amountDiscount = 0;
 		double amountToBuy = Double.parseDouble(amount);
-		if (amountToBuy >= 600 && amountToBuy <= 800)
+		if (amountToBuy >= 600 && amountToBuy <= 800) {
 			amountDiscount = 0.03;
-		if (amountToBuy > 800)
+		} else if (amountToBuy > 800) {
 			amountDiscount = 0.04;
+		}
 
 		double shipmentMul = 1;
 		if (shipmentType.equals("Urgent"))

@@ -222,7 +222,7 @@ public class MarketingManagerWindow extends EmployeeWindow {
 		 * 
 		 */
 	}
-	
+
 	@FXML
 	void openCreateSalesPattern(ActionEvent event) {
 

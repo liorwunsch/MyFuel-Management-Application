@@ -49,7 +49,7 @@ public class ServerUserController {
 	 * handles client request and sends it to the database controller sends result
 	 * got from database controller back to the client
 	 * 
-	 * @param user entity or string
+	 * @param user   entity or string
 	 * @param client
 	 */
 	public void handleMessageFromClient(Object object, ConnectionToClient client) {
@@ -70,9 +70,8 @@ public class ServerUserController {
 						type = "Customer";
 
 					result = this.databaseController.loginSequence(user.getUsername(), user.getPassword(), type);
-				}
 
-				if (function.equals("sign out")) {
+				} else if (function.equals("sign out")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(formatter.format(date) + " : " + client
 								+ " : request signout with username '" + user.getUsername() + "'");
@@ -88,9 +87,8 @@ public class ServerUserController {
 
 				/* send message back to client */
 				client.sendToClient(result);
-			}
 
-			if (object instanceof String) {
+			} else if (object instanceof String) {
 				String[] splitMsg = ((String) object).split(" ");
 				if (splitMsg[0].equals("activity")) {
 					if (splitMsg[1].equals("get")) {
@@ -104,6 +102,14 @@ public class ServerUserController {
 
 						/* send message back to client */
 						client.sendToClient(activityList);
+
+					} else if (splitMsg[1].equals("log")) {
+						String answer = this.databaseController.activityLogger(splitMsg[2], splitMsg);
+						synchronized (this.lock) {
+							this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : " + answer);
+							this.lock.notifyAll();
+						}
+						client.sendToClient("logging of activity : " + answer);
 					}
 				}
 			}

@@ -69,36 +69,35 @@ public class ServerController extends AbstractServer {
 				this.serverWindow.updateArea(formatter.format(date) + " : " + client
 						+ " : request : login with username " + user.getUsername());
 				String function = user.getFunction();
-				if (function.startsWith("login") || function.startsWith("sign out"))
+				if (function.startsWith("login") || function.startsWith("sign out")) {
 					ServerUserController.getInstance(serverWindow, databaseController, lock)
 							.handleMessageFromClient(user, client);
-			}
 
-			if (object instanceof HomeFuelOrder) {
+				} else if (function.equals("get purchasing program")) {
+					ServerCustomerController.getInstance(databaseController).handleMessageFromClient(user, client);
+				}
+
+			} else if (object instanceof HomeFuelOrder) {
 				HomeFuelOrder homeFuelOrder = (HomeFuelOrder) object;
 				this.serverWindow
 						.updateArea(formatter.format(date) + " : " + client + " : request : save homefuel order");
-				ServerCustomerController.getInstance(databaseController)
-						.handleMessageFromClient(homeFuelOrder, client);
-			}
+				ServerCustomerController.getInstance(databaseController).handleMessageFromClient(homeFuelOrder, client);
 
-			if (object instanceof String) {
+			} else if (object instanceof String) {
 				String str = (String) object;
 				this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : request : " + str);
 				if (str.startsWith("ack")) {
 					client.sendToClient("ack");
-				}
-				if (str.startsWith("activity")) {
+
+				} else if (str.startsWith("activity")) {
 					ServerUserController.getInstance(serverWindow, databaseController, lock)
 							.handleMessageFromClient(str, client);
-				}
-				if (str.startsWith("fastfuel")) {
-					ServerCustomerController.getInstance(databaseController)
-							.handleMessageFromClient(str, client);
-				}
-				if (str.startsWith("homefuel")) {
-					ServerCustomerController.getInstance(databaseController)
-							.handleMessageFromClient(str, client);
+
+				} else if (str.startsWith("fastfuel")) {
+					ServerCustomerController.getInstance(databaseController).handleMessageFromClient(str, client);
+
+				} else if (str.startsWith("homefuel")) {
+					ServerCustomerController.getInstance(databaseController).handleMessageFromClient(str, client);
 				}
 			}
 
