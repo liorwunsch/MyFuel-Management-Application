@@ -52,8 +52,8 @@ public class SupplierWindow extends EmployeeWindow {
 	
 	@FXML
 	void initialize() {
-		//fs = SupplierController.getInstance().getFuelStation();
-		//cobASFSOFuelStationID.getItems().addAll(Arrays.asList(fs));
+		fs = SupplierController.getInstance().getFuelStation();
+		cobASFSOFuelStationID.getItems().addAll(Arrays.asList(fs));
 		this.visibleNow = this.homePane;
 		this.controller = SupplierController.getInstance();
 		this.controller.setCurrentWindow(this);
@@ -83,5 +83,6 @@ public class SupplierWindow extends EmployeeWindow {
 		approveSuppliedPane.setVisible(true);
 		
 	}
+	
 	
 }
