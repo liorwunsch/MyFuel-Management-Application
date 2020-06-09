@@ -416,7 +416,7 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tfAECUCredit" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000" GridPane.columnIndex="2" GridPane.rowIndex="13">
+                              <TextField fx:id="tfAECUCredit" prefHeight="30.0" promptText="*" GridPane.columnIndex="2" GridPane.rowIndex="13">
                                  <GridPane.margin>
                                     <Insets right="50.0" />
                                  </GridPane.margin>
@@ -424,22 +424,22 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="tfAECUCustID" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <TextField fx:id="tfAECUCustID" prefHeight="30.0" prefWidth="236.0" promptText="*" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="tfAECUFirstName" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                              <TextField fx:id="tfAECUFirstName" prefHeight="30.0" promptText="*" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                  <GridPane.margin>
                                     <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="tfAECUSurname" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                              <TextField fx:id="tfAECUSurname" prefHeight="30.0" promptText="*" GridPane.columnIndex="2" GridPane.rowIndex="9">
                                  <GridPane.margin>
                                     <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="tfAECUEmail" prefHeight="30.0" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                              <TextField fx:id="tfAECUEmail" prefHeight="30.0" promptText="*" GridPane.columnIndex="2" GridPane.rowIndex="11">
                                  <GridPane.margin>
                                     <Insets right="50.0" />
                                  </GridPane.margin>
@@ -447,7 +447,7 @@
                               <ComboBox fx:id="cobAECUCustType" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                               <AnchorPane prefHeight="85.0" prefWidth="804.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="14">
                                  <children>
-                                    <Button fx:id="btnAECUSave" layoutX="298.0" layoutY="27.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Customer" textFill="WHITE" wrapText="true">
+                                    <Button fx:id="btnAECUSave" layoutX="298.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnAECUSavePressed" prefHeight="40.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Save Customer" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Calibri" size="19.0" />
                                        </font>
@@ -471,7 +471,7 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnAECUEdit" mnemonicParsing="false" prefHeight="34.0" prefWidth="189.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Edit Customer" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="btnAECUEdit" mnemonicParsing="false" onAction="#btnAECUEditPressed" prefHeight="34.0" prefWidth="189.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Edit Customer" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Calibri" size="19.0" />
                                  </font>
@@ -1077,31 +1077,34 @@
                   <Font name="Calibri Italic" size="23.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="53.0" text="Customer ID">
-               <font>
-                  <Font name="Arial" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tfACUCustID" disable="true" layoutX="119.0" layoutY="48.0" prefHeight="30.0" prefWidth="172.0" />
-            <Button fx:id="btnECUUpdate" disable="true" layoutX="289.0" layoutY="386.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Customer">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pics/v.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnECUDelete" disable="true" layoutX="47.0" layoutY="386.0" mnemonicParsing="false" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Customer">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pics/x.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnECUClose" layoutX="501.0" layoutY="4.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
+            <GridPane fx:id="gpECUCustomer" layoutX="14.0" layoutY="47.0" prefHeight="32.0" prefWidth="436.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="109.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="158.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="169.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Customer ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfACUCustID" prefHeight="30.0" prefWidth="161.0" promptText="*" GridPane.columnIndex="1" />
+                  <Button fx:id="btnECUShow" mnemonicParsing="false" onAction="#btnECUShowPressed" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Customer" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/eye.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+            <Button fx:id="btnECUClose" layoutX="501.0" layoutY="4.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnECUClosePressed" prefHeight="13.0" prefWidth="25.0" style="-fx-background-radius: 50; -fx-background-color: #cc0000;">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -1110,7 +1113,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <AnchorPane layoutX="19.0" layoutY="85.0" prefHeight="301.0" prefWidth="488.0">
+            <AnchorPane fx:id="apECUCustomer" disable="true" layoutX="19.0" layoutY="85.0" prefHeight="350.0" prefWidth="488.0">
                <children>
                   <VBox prefHeight="271.0" prefWidth="205.0" spacing="5.0">
                      <children>
@@ -1119,25 +1122,25 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfECUFirstName" disable="true" prefHeight="30.0" />
+                        <TextField fx:id="tfECUFirstName" prefHeight="30.0" promptText="*" />
                         <Label text="Surname:">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfECUSurname" disable="true" prefHeight="30.0" prefWidth="236.0" />
+                        <TextField fx:id="tfECUSurname" prefHeight="30.0" prefWidth="236.0" promptText="*" />
                         <Label text="Email:">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfECUEmail" disable="true" prefHeight="30.0" />
+                        <TextField fx:id="tfECUEmail" prefHeight="30.0" promptText="*" />
                         <Label text="Credit Card No.">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfECUCredit" disable="true" prefHeight="30.0" promptText="0000 - 0000 - 0000 - 0000">
+                        <TextField fx:id="tfECUCredit" prefHeight="30.0" promptText="*">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -1147,21 +1150,30 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cobECUCustType" disable="true" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" />
+                        <ComboBox fx:id="cobECUCustType" prefHeight="30.0" prefWidth="173.0" promptText="Type#1" visibleRowCount="5" />
                      </children>
                   </VBox>
+                  <Button fx:id="btnECUDelete" layoutX="54.0" layoutY="299.0" mnemonicParsing="false" onAction="#btnECUDeletePressed" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Delete Customer">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/x.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnECUUpdate" layoutX="258.0" layoutY="299.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Update Customer">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/v.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="btnECUShow" layoutX="307.0" layoutY="47.0" mnemonicParsing="false" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Customer">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pics/eye.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnECUClear" layoutX="463.0" layoutY="47.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="58.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Clear" />
+            <Button fx:id="btnECUClear" layoutX="463.0" layoutY="47.0" mnemonicParsing="false" onAction="#btnECUClearPressed" prefHeight="32.0" prefWidth="58.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Clear" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="editCarPane" layoutX="403.0" layoutY="150.0" prefHeight="414.0" prefWidth="552.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css" visible="false">

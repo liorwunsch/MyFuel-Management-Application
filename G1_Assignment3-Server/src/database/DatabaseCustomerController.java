@@ -51,11 +51,10 @@ public class DatabaseCustomerController {
 	private String getCustomerIDbyUsername(String username) {
 		try {
 			PreparedStatement pStmt = this.connection
-					.prepareStatement("SELECT customerID FROM customer WHERE FK_userName = ?");
+					.prepareStatement("SELECT customerID FROM customer WHERE FK_userName = ? AND deleted = 0");
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
 
-			// check if exists in database
 			if (!rs1.next())
 				throw new SQLException("no customerID with that username: " + username);
 
@@ -306,7 +305,7 @@ public class DatabaseCustomerController {
 			rs2.close();
 
 			return homeFuelOrderList;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

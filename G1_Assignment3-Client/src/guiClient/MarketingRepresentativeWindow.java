@@ -1,6 +1,10 @@
 package guiClient;
 
+import java.util.Collection;
+
 import client.MarketingRepresentativeController;
+import entities.Customer;
+import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +19,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
@@ -57,7 +62,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	@FXML
 	private TextField tfAECUEmail;
 	@FXML
-	private ComboBox<?> cobAECUCustType;
+	private ComboBox<String> cobAECUCustType;
 	@FXML
 	private Button btnAECUSave;
 	@FXML
@@ -65,6 +70,10 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	private AnchorPane editCustomerPane;
+	@FXML
+	private GridPane gpECUCustomer;
+	@FXML
+	private AnchorPane apECUCustomer;
 	@FXML
 	private TextField tfACUCustID;
 	@FXML
@@ -82,7 +91,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	@FXML
 	private TextField tfECUCredit;
 	@FXML
-	private ComboBox<?> cobECUCustType;
+	private ComboBox<String> cobECUCustType;
 	@FXML
 	private Button btnECUShow;
 	@FXML
@@ -220,6 +229,14 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void initialize() {
+		this.homePane.setVisible(true);
+		this.addEditCustomerPane.setVisible(false);
+		this.addEditCarPane.setVisible(false);
+		this.setPurchasingPane.setVisible(false);
+		this.pricingModelPane.setVisible(false);
+		this.createSalePatternPane.setVisible(false);
+		this.editCustomerPane.setVisible(false);
+		this.editCarPane.setVisible(false);
 		this.visibleNow = this.homePane;
 		this.controller = MarketingRepresentativeController.getInstance();
 		this.controller.setCurrentWindow(this);
@@ -230,13 +247,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		return this.addEditCustomerPane.getScene().getWindow();
 	}
 
-	@Override
-	public void callAfterMessage(Object lastMsgFromServer) {
-		super.callAfterMessage(lastMsgFromServer);
-		/**
-		 * 
-		 */
-	}
+	/*********************** button listeners ***********************/
 
 	@FXML
 	void openAddEditCustomer(ActionEvent event) {
@@ -244,6 +255,65 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.addEditCustomerPane.setVisible(true);
 		this.visibleNow = this.addEditCustomerPane;
 		this.topbar_window_label.setText("Add\\Edit Customer");
+		clearFields();
+	}
+
+	@FXML
+	void btnAECUSavePressed(ActionEvent event) {
+		String customerID = this.tfAECUCustID.getText();
+		String firstName = this.tfAECUFirstName.getText();
+		String surname = this.tfAECUSurname.getText();
+		String email = this.tfAECUEmail.getText();
+		String creditCard = this.tfAECUCredit.getText();
+		String customerType = this.cobAECUCustType.getValue();
+
+		if (customerID.isEmpty() || firstName.isEmpty() || surname.isEmpty() || email.isEmpty()
+				|| creditCard.isEmpty()) {
+			openErrorAlert("Error", "Missing Required Fields");
+			return;
+		}
+		if (customerID.matches(".*[A-z].*") || firstName.matches(".*[0-9].*") || surname.matches(".*[0-9].*")
+				|| creditCard.matches(".*[A-z].*") || creditCard.length() != 16 || customerID.length() != 9) {
+			openErrorAlert("Error", "Field Not Valid");
+			return;
+		}
+
+		this.controller.handleMessageFromClientUI("savecustomer " + customerID + " " + firstName + " " + surname + " "
+				+ email + " " + creditCard + " " + customerType);
+	}
+
+	@FXML
+	void btnAECUEditPressed(ActionEvent event) {
+		mainBorderPane.setDisable(true);
+		editCustomerPane.setVisible(true);
+	}
+
+	@FXML
+	void btnECUShowPressed(ActionEvent event) {
+		String customerID = this.tfACUCustID.getText();
+		if (customerID.isEmpty() || customerID.length() != 9 || customerID.matches(".*[A-z].*")) {
+			openErrorAlert("Error", "Field Not Valid");
+			return;
+		}
+
+		this.controller.handleMessageFromClientUI("getcustomerdetails " + customerID);
+	}
+
+	@FXML
+	void btnECUClearPressed(ActionEvent event) {
+		clearEditCustomerPane();
+	}
+
+	@FXML
+	void btnECUClosePressed(ActionEvent event) {
+		mainBorderPane.setDisable(false);
+		editCustomerPane.setVisible(false);
+		clearEditCustomerPane();
+	}
+
+	@FXML
+	void btnECUDeletePressed(ActionEvent event) {
+		this.controller.handleMessageFromClientUI("deletecustomer " + this.tfACUCustID.getText());
 	}
 
 	@FXML
@@ -252,6 +322,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.addEditCarPane.setVisible(true);
 		this.visibleNow = this.addEditCarPane;
 		this.topbar_window_label.setText("Add\\Edit Car");
+		clearFields();
 	}
 
 	@FXML
@@ -260,6 +331,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.setPurchasingPane.setVisible(true);
 		this.visibleNow = this.setPurchasingPane;
 		this.topbar_window_label.setText("Set Purchasing Program");
+		clearFields();
 	}
 
 	@FXML
@@ -268,6 +340,84 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.pricingModelPane.setVisible(true);
 		this.visibleNow = this.pricingModelPane;
 		this.topbar_window_label.setText("Set Pricing Model");
+		clearFields();
+	}
+
+	/*************** boundary "logic" - window changes ***************/
+
+	@Override
+	public void callAfterMessage(Object lastMsgFromServer) {
+		super.callAfterMessage(lastMsgFromServer);
+
+		if (lastMsgFromServer instanceof String) {
+			String str = (String) lastMsgFromServer;
+			if (str.equals("save customer success")) {
+				openErrorAlert("Success",
+						"Customer Saved\nUsername: " + this.tfAECUCustID.getText() + "\nPassword: 1234");
+
+			} else if (str.equals("save customer fail")) {
+				openErrorAlert("Error", "Add Customer Failed");
+
+			} else if (str.equals("save customer exist")) {
+				openErrorAlert("Error", "Customer Already Exists");
+
+			} else if (str.startsWith("Customer Delete")) {
+				openErrorAlert("Delete", str);
+				clearEditCustomerPane();
+			}
+
+		} else if (lastMsgFromServer instanceof Object[]) {
+			Object[] objArr = (Object[]) lastMsgFromServer;
+			if (objArr.length == 2 && objArr[0] instanceof User && objArr[1] instanceof Customer) {
+				User user = (User) objArr[0];
+				Customer customer = (Customer) objArr[1];
+				this.tfECUFirstName.setText(user.getFirstName());
+				this.tfECUSurname.setText(user.getSurname());
+				this.tfECUEmail.setText(user.getEmail());
+				this.tfECUCredit.setText(customer.getCreditCard());
+				this.cobECUCustType.setValue(customer.getCustomerType().toString());
+				this.gpECUCustomer.setDisable(true);
+				this.apECUCustomer.setDisable(false);
+			}
+		}
+	}
+
+	/**
+	 * initialized tableview in home of marketing rep only
+	 * 
+	 * @param username
+	 */
+	@Override
+	public void setUserComponents(String username) {
+		super.setUserComponents(username);
+		this.cobAECUCustType.getItems().removeAll((Collection<?>) this.cobAECUCustType.getItems());
+		this.cobAECUCustType.getItems().addAll(new String[] { "Person", "Company" });
+		this.cobAECUCustType.setValue("Person");
+		this.cobECUCustType.getItems().removeAll((Collection<?>) this.cobAECUCustType.getItems());
+		this.cobECUCustType.getItems().addAll(new String[] { "Person", "Company" });
+		this.cobECUCustType.setValue("Person");
+	}
+
+	@Override
+	public void clearFields() {
+		this.tfAECUCredit.clear();
+		this.tfAECUCustID.clear();
+		this.tfAECUFirstName.clear();
+		this.tfAECUSurname.clear();
+		this.tfAECUEmail.clear();
+		this.cobAECUCustType.setValue("Person");
+		clearEditCustomerPane();
+	}
+
+	public void clearEditCustomerPane() {
+		this.tfACUCustID.clear();
+		this.tfECUFirstName.clear();
+		this.tfECUSurname.clear();
+		this.tfECUEmail.clear();
+		this.tfECUCredit.clear();
+		this.cobECUCustType.setValue("Person");
+		this.gpECUCustomer.setDisable(false);
+		this.apECUCustomer.setDisable(true);
 	}
 
 }

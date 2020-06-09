@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import database.DatabaseController;
+import entities.Customer;
 import entities.HomeFuelOrder;
 import entities.User;
 import guiServer.ServerWindow;
@@ -98,6 +99,17 @@ public class ServerController extends AbstractServer {
 
 				} else if (str.startsWith("homefuel")) {
 					ServerCustomerController.getInstance(databaseController).handleMessageFromClient(str, client);
+
+				} else if (str.startsWith("getcustomerdetails") || str.startsWith("deletecustomer")) {
+					ServerMarketingRepresentativeController.getInstance(databaseController).handleMessageFromClient(str,
+							client);
+				}
+
+			} else if (object instanceof Object[]) {
+				Object[] objArr = (Object[]) object;
+				if (objArr.length == 2 && objArr[0] instanceof User && objArr[1] instanceof Customer) {
+					ServerMarketingRepresentativeController.getInstance(databaseController)
+							.handleMessageFromClient(object, client);
 				}
 			}
 

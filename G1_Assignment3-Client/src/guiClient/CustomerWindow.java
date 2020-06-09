@@ -102,6 +102,7 @@ public class CustomerWindow extends UserWindow {
 		this.homePane.setVisible(true);
 		this.viewOrderPane.setVisible(false);
 		this.orderHomeFuelPane.setVisible(false);
+		this.fastFuelPane.setVisible(false);
 		this.visibleNow = this.homePane;
 		this.controller = CustomerController.getInstance();
 		this.controller.setCurrentWindow(this);
@@ -129,13 +130,7 @@ public class CustomerWindow extends UserWindow {
 		this.controller.handleMessageFromClientUI("homefuel get price");
 		this.apOHFPurchaseInfo.setDisable(false);
 		this.apOHFOrderDetails.setDisable(true);
-		this.tfOHFAmount1.clear();
-		this.tfOHFAddress.clear();
-		this.tfOHFDate.clear();
-		this.tfOHFFinalPrice.clear();
-		this.tfOHFAmount2.clear();
-		this.tfOHFShipmentReview.clear();
-		this.rbOHFShipment1.setSelected(true);
+		clearFields();
 	}
 
 	@FXML
@@ -339,6 +334,17 @@ public class CustomerWindow extends UserWindow {
 			list.add(homeFuelOrder);
 		}
 		this.tvVODetails.setItems(list);
+	}
+
+	@Override
+	public void clearFields() {
+		this.tfOHFAmount1.clear();
+		this.tfOHFAddress.clear();
+		this.tfOHFDate.clear();
+		this.tfOHFFinalPrice.clear();
+		this.tfOHFAmount2.clear();
+		this.tfOHFShipmentReview.clear();
+		this.rbOHFShipment1.setSelected(true);
 	}
 
 }

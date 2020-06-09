@@ -29,7 +29,7 @@
                <children>
                   <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="35.0" prefWidth="232.0" text="Hello, Julia" textFill="WHITE">
                      <font>
-                        <Font name="Leelawadee UI" size="24.0" />
+                        <Font name="Leelawadee UI" size="18.0" />
                      </font>
                   </Label>
                </children>

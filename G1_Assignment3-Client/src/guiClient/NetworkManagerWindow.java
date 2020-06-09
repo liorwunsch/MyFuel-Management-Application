@@ -143,4 +143,10 @@ public class NetworkManagerWindow extends EmployeeWindow {
 
 	}
 
+	@Override
+	public void clearFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

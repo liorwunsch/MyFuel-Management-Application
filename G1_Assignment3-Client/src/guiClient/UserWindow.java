@@ -55,11 +55,9 @@ public abstract class UserWindow extends AFXML {
 
 	protected String username; // the username of the current user of the window
 
-	/**
-	 * @param username
-	 * @return the window of the boundary
-	 */
 	public abstract Window getWindow();
+
+	public abstract void clearFields();
 
 	/**
 	 * initialize all components shared by all users

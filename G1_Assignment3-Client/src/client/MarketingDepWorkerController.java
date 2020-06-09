@@ -2,7 +2,7 @@ package client;
 
 /**
  * @version Basic
- * @author Lior
+ * @author Lior, Elroy
  */
 public abstract class MarketingDepWorkerController extends UserController {
 

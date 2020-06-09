@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import entities.ActivityList;
+import entities.Customer;
 import entities.FastFuelList;
 import entities.HomeFuelOrder;
 import entities.HomeFuelOrderList;
 import entities.PurchasingProgramType;
+import entities.User;
 import guiServer.ServerWindow;
 
 /**
  * controller for database
  * 
  * @version N Methods To Final
- * @see activityLogger(), + methods of other database controllers
+ * @see methods of other database controllers
  * @author Elroy, Lior
  */
 public class DatabaseController {
@@ -164,6 +166,38 @@ public class DatabaseController {
 	 */
 	public HomeFuelOrderList getHomeFuelOrdersSequence(String username) {
 		return DatabaseCustomerController.getInstance(connection).getHomeFuelOrdersSequence(username);
+	}
+
+	/************* marketing representative controller methods **************/
+
+	/**
+	 * 
+	 * @param user
+	 * @param customer
+	 * @return string of success or fail
+	 */
+	public String saveNewCustomerSequence(User user, Customer customer) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).saveNewCustomerSequence(user,
+				customer);
+	}
+
+	/**
+	 * 
+	 * @param customerID
+	 * @return user and customer entities
+	 */
+	public Object[] getCustomerDetails(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).getCustomerDetails(customerID);
+	}
+
+	/**
+	 * delete customer and its username from db
+	 * 
+	 * @param customerID
+	 * @return false if failed
+	 */
+	public boolean deleteCustomer(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).deleteCustomer(customerID);
 	}
 
 }

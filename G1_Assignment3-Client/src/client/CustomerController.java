@@ -40,8 +40,8 @@ public class CustomerController extends UserController {
 	@Override
 	public void handleMessageFromClientUI(String message) {
 		super.handleMessageFromClientUI(message);
-
 		String[] splitMsg = message.split(" ");
+		
 		if (splitMsg[0].equals("gethomefuelfinalprice")) {
 			calculateHomeFuelOrderFinalPrice(splitMsg[1], splitMsg[2], splitMsg[3]);
 			return;
@@ -91,7 +91,6 @@ public class CustomerController extends UserController {
 			}
 
 			if (flag == true) {
-				/* wait for ack or data from the server */
 				while (awaitResponse) {
 					try {
 						Thread.sleep(100);

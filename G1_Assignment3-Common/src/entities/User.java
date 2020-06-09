@@ -42,7 +42,24 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * all
+	 * w/o password, connected
+	 * 
+	 * @param username
+	 * @param connected
+	 * @param email
+	 * @param firstName
+	 * @param surname
+	 */
+	public User(String username, String email, String firstName, String surname) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.firstName = firstName;
+		this.surname = surname;
+	}
+
+	/**
+	 * everything
 	 * 
 	 * @param username
 	 * @param password
