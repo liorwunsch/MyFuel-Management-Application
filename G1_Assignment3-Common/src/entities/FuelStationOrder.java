@@ -1,12 +1,13 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Elroy, Vlad, Lior
  */
 @SuppressWarnings("serial")
-public class FuelStationOrder extends Orders {
+public class FuelStationOrder extends Orders implements Serializable {
 
 	// primary keys
 	/* private Integer ordersID; */

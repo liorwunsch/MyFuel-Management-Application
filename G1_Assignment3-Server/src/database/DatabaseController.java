@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import entities.ActivityList;
 import entities.FastFuelList;
+import entities.FuelStationOrder;
 import entities.HomeFuelOrder;
 import guiServer.ServerWindow;
 
@@ -145,5 +146,14 @@ public class DatabaseController {
 	public String setNewHomeFuelSequence(HomeFuelOrder homeFuelOrder) {
 		return DatabaseCustomerController.getInstance(connection).setNewHomeFuelSequence(homeFuelOrder);
 	}
+	
+	//vlad added
+	public FuelStationOrder[] getFuelStationOrder(String username) {
+		return DatabaseSupplierController.getInstance(connection).getFuelStationOrder(username);
+	}
+	public void approveFuelStationOrder(int ordersID) {
+		DatabaseSupplierController.getInstance(connection).approveFuelStationOrder(ordersID);
+	}
+	
 
 }

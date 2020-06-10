@@ -266,7 +266,7 @@
                <children>
                   <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="454.0" prefWidth="731.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                      <children>
-                        <Button fx:id="btnASFSOApprove" layoutX="301.0" layoutY="379.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Approve">
+                        <Button fx:id="btnASFSOApprove" layoutX="301.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnASFSOApproveSPressed" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Approve">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -292,7 +292,7 @@
                            </children>
                         </VBox>
                         <Label layoutX="207.0" layoutY="23.0" text="No Station Orders To Assess" textFill="RED" visible="false" />
-                        <Button fx:id="btnASFSOShow" layoutX="198.0" layoutY="67.0" mnemonicParsing="false" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Station Orders">
+                        <Button fx:id="btnASFSOShow" layoutX="198.0" layoutY="67.0" mnemonicParsing="false" onAction="#btnASFSOShowPressed" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Station Orders">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

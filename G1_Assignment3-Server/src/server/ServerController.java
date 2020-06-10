@@ -100,6 +100,11 @@ public class ServerController extends AbstractServer {
 					ServerCustomerController.getInstance(databaseController)
 							.handleMessageFromClient(str, client);
 				}
+				
+				//vlad added
+				if (str.startsWith("fuel_station_order")) {
+					ServerSupplierController.getInstance(databaseController).handleMessageFromClient(str, client);
+				}
 			}
 
 		} catch (IOException e) {

@@ -39,6 +39,7 @@ public class LoginWindow extends AFXML {
 	@FXML	private RadioButton rbCustomer;
 	@FXML	private Label lblError;
 	@FXML	private Button btnSignIn;
+	
 	//vlad added
 	private String username;
 	
@@ -105,7 +106,9 @@ public class LoginWindow extends AFXML {
 	 * as a string
 	 */
 	private void mySignIn() {
+		//vlad edited
 		username = this.tfLoginUserName.getText();
+		//
 		String password = this.tfLoginPassword.getText();
 		String userType;
 

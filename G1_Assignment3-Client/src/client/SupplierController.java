@@ -1,5 +1,8 @@
 package client;
 
+import java.io.IOException;
+import java.net.ConnectException;
+
 import entities.FuelStation;
 import entities.FuelStationOrder;
 import enums.FuelCompanyName;
@@ -7,8 +10,9 @@ import enums.FuelCompanyName;
 public class SupplierController extends UserController {
 
 	private static SupplierController instance;
-	//set only in successful login
+	// set only in successful login
 	public String username;
+
 	/**
 	 * singleton class constructor
 	 */
@@ -33,14 +37,49 @@ public class SupplierController extends UserController {
 		 * 
 		 */
 	}
-	
-	private FuelStationOrder[] getFuelStationOrder(){
-		System.out.println(username);
-		return null;
+
+	public void getFuelStationOrder() {
+		try {
+			openConnection();
+			awaitResponse = true;
+			sendToServer("fuel_station_order " + username);
+
+			/* wait for ack or data from the server */
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ie) {
+					ie.printStackTrace();
+				}
+			}
+			// FuelStationOrder[] fsoA = (FuelStationOrder[]) this.lastMsgFromServer;
+			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+		} catch (ConnectException ce) {
+			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			ce.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
-	
-	public FuelStation[] getFuelStation() {
-		FuelStation[] fs = {new FuelStation(1, FuelCompanyName.Paz, 1, "paz","hi"),new FuelStation(2, FuelCompanyName.Paz, 2, "pazi","hi")};
-		return fs;
+
+	public void approveFuelStationOrder(int OrdersID) {
+		try {
+			openConnection();
+			awaitResponse = true;
+			sendToServer("fuel_station_order_approve " + OrdersID);
+
+			/* Doesnt need because it will be relevent for next enter 
+			 * wait for ack or data from the server while (awaitResponse) { try {
+			 * Thread.sleep(100); } catch (InterruptedException ie) { ie.printStackTrace();
+			 * } }
+			 */
+			// FuelStationOrder[] fsoA = (FuelStationOrder[]) this.lastMsgFromServer;
+			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+		} catch (ConnectException ce) {
+			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			ce.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 }
