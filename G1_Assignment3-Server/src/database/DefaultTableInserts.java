@@ -162,10 +162,10 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "customer") == false)
 			return;
 		// "customerID", "FK_userName", "creditCard", "customerType", "deleted"
-		Object[] values1 = { "111111111", "IsraelThePersonCustomer", "1111-2222-3333-4444",
+		Object[] values1 = { "111111111", "IsraelThePersonCustomer", "1111222233334444",
 				CustomerType.Person.toString(), false };
 		TableInserts.insertCustomer(con, values1);
-		Object[] values2 = { "222222222", "IsraelTheCompanyCustomer", "4444-3333-2222-1111",
+		Object[] values2 = { "222222222", "IsraelTheCompanyCustomer", "4444333322221111",
 				CustomerType.Company.toString(), false };
 		TableInserts.insertCustomer(con, values2);
 	}
@@ -507,12 +507,12 @@ public class DefaultTableInserts {
 		TableInserts.insertPricingModelType(con, values2);
 		String pricingModelType3 = PricingModelName.MonthlyProgramMultipleCars.toString();
 		String description3 = "Like 'Monthly Program Single Car' x number of cars + general discount of 10% (per liter)";
-		double defaultDiscount3 = 0.1;
+		double defaultDiscount3 = 0.14;
 		Object[] values3 = { pricingModelType3, description3, defaultDiscount3 };
 		TableInserts.insertPricingModelType(con, values3);
 		String pricingModelType4 = PricingModelName.FullProgramSingleCar.toString();
 		String description4 = "Payment every month for the amount bought in practice in the previous month, by price like 'Monthly Program Multiple Cars' + extra discount of 3% (per liter)";
-		double defaultDiscount4 = 0.13;
+		double defaultDiscount4 = 0.17;
 		Object[] values4 = { pricingModelType4, description4, defaultDiscount4 };
 		TableInserts.insertPricingModelType(con, values4);
 	}
@@ -523,9 +523,9 @@ public class DefaultTableInserts {
 		// 1 - "FK_customerID", "FK_pricingModelName", "currentDiscount"
 		// 2 - "FK_customerID", "FK_pricingModelName", "currentDiscount",
 		// "lastMonthUtillization"
-		Object[] values1 = { "222222222", PricingModelName.MonthlyProgramMultipleCars.toString(), 0.38 };
+		Object[] values1 = { "222222222", PricingModelName.MonthlyProgramMultipleCars.toString(), 0.14 };
 		TableInserts.insertPricingModel1(con, values1);
-		Object[] values2 = { "111111111", PricingModelName.FullProgramSingleCar.toString(), 0.17, 100 };
+		Object[] values2 = { "111111111", PricingModelName.FullProgramSingleCar.toString(), 0.17, 0.99 };
 		TableInserts.insertPricingModel2(con, values2);
 	}
 

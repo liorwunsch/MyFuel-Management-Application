@@ -38,13 +38,33 @@ public abstract class AFXML {
 	public abstract void callAfterMessage(Object lastMsgFromServer);
 
 	/**
-	 * opens error popup window all windows use this
+	 * opens error popup window, all windows use this
 	 * 
 	 * @param title
 	 * @param msg
 	 */
 	public void openErrorAlert(String title, String msg) {
 		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(msg);
+		alert.show();
+		ButtonType buttonTypeOne = new ButtonType("OK");
+		alert.getButtonTypes().setAll(buttonTypeOne);
+
+		final Button btn = (Button) alert.getDialogPane().lookupButton(buttonTypeOne);
+		btn.setOnAction(event -> {
+			alert.hide();
+		});
+	}
+
+	/**
+	 * opens confirmation popup window, all windows use this
+	 * 
+	 * @param title
+	 * @param msg
+	 */
+	public void openConfirmationAlert(String title, String msg) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(msg);
 		alert.show();

@@ -20,7 +20,27 @@ public class Car implements Serializable {
 	private String ownerName;
 	private boolean deleted;
 
+	// added in java
+	private String function;
+
 	/**
+	 * w/o deleted
+	 * 
+	 * @param registrationPlate
+	 * @param customerID
+	 * @param productName
+	 * @param ownerName
+	 */
+	public Car(String registrationPlate, String customerID, ProductName productName, String ownerName) {
+		super();
+		this.registrationPlate = registrationPlate;
+		this.customerID = customerID;
+		this.productName = productName;
+		this.ownerName = ownerName;
+	}
+
+	/**
+	 * everything
 	 * 
 	 * @param registrationPlate
 	 * @param customerID
@@ -72,6 +92,14 @@ public class Car implements Serializable {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public String getFunction() {
+		return function;
+	}
+
+	public void setFunction(String function) {
+		this.function = function;
 	}
 
 	@Override

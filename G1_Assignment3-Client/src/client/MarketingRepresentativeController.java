@@ -3,14 +3,21 @@ package client;
 import java.io.IOException;
 import java.net.ConnectException;
 
+import entities.Car;
 import entities.Customer;
+import entities.PricingModel;
+import entities.PurchasingProgram;
 import entities.User;
 import enums.CustomerType;
+import enums.FuelCompanyName;
+import enums.PricingModelName;
+import enums.ProductName;
+import enums.PurchasingProgramName;
 
 /**
  * logic controller for marketing representative
  * 
- * @version Basic
+ * @version Almost Final
  * @author Lior
  */
 public class MarketingRepresentativeController extends MarketingDepWorkerController {
@@ -44,7 +51,40 @@ public class MarketingRepresentativeController extends MarketingDepWorkerControl
 			awaitResponse = true;
 			boolean flag = true;
 
-			if (splitMsg[0].equals("savecustomer")) {
+			if (splitMsg[0].equals("setpricingmodel")) {
+				PricingModel pricingModel = new PricingModel(splitMsg[1], PricingModelName.valueOf(splitMsg[2]),
+						Double.parseDouble(splitMsg[3]));
+				System.out.println("sending to server : " + pricingModel);
+				this.sendToServer(pricingModel);
+
+			} else if (splitMsg[0].equals("setprogram")) {
+				PurchasingProgram purchasingProgram = new PurchasingProgram(splitMsg[1],
+						PurchasingProgramName.valueOf(splitMsg[2]), FuelCompanyName.valueOf(splitMsg[3]), null, null);
+				if (!splitMsg[4].equals("NaN"))
+					purchasingProgram.setFuelCompanyName2(FuelCompanyName.valueOf(splitMsg[4]));
+				if (!splitMsg[5].equals("NaN"))
+					purchasingProgram.setFuelCompanyName3(FuelCompanyName.valueOf(splitMsg[5]));
+
+				System.out.println("sending to server : " + purchasingProgram);
+				this.sendToServer(purchasingProgram);
+
+			} else if (splitMsg[0].equals("savecar")) {
+				Car car = new Car(splitMsg[2], splitMsg[1], ProductName.valueOf(splitMsg[4]), splitMsg[3]);
+				car.setFunction("save car");
+				System.out.println("sending to server : " + car);
+				this.sendToServer(car);
+
+			} else if (splitMsg[0].equals("updatecar")) {
+				Car car = new Car(splitMsg[2], splitMsg[1], ProductName.valueOf(splitMsg[4]), splitMsg[3]);
+				car.setFunction("update car");
+				System.out.println("sending to server : " + car);
+				this.sendToServer(car);
+
+			} else if (splitMsg[0].equals("getcustomercars") || splitMsg[0].equals("deletecar")) {
+				System.out.println("sending to server : " + message);
+				this.sendToServer(message);
+
+			} else if (splitMsg[0].equals("savecustomer")) {
 				User user = new User(splitMsg[1], splitMsg[4], splitMsg[2], splitMsg[3]);
 				Customer customer = new Customer(splitMsg[1], splitMsg[1], splitMsg[5],
 						CustomerType.valueOf(splitMsg[6]));
@@ -53,7 +93,17 @@ public class MarketingRepresentativeController extends MarketingDepWorkerControl
 				System.out.println("sending to server : " + user + "\n" + customer);
 				this.sendToServer(new Object[] { user, customer });
 
-			} else if (splitMsg[0].equals("getcustomerdetails") || splitMsg[0].equals("deletecustomer")) {
+			} else if (splitMsg[0].equals("updatecustomer")) {
+				User user = new User(splitMsg[1], splitMsg[4], splitMsg[2], splitMsg[3]);
+				Customer customer = new Customer(splitMsg[1], splitMsg[1], splitMsg[5],
+						CustomerType.valueOf(splitMsg[6]));
+				user.setFunction("update customer");
+
+				System.out.println("sending to server : " + user + "\n" + customer);
+				this.sendToServer(new Object[] { user, customer });
+
+			} else if (splitMsg[0].equals("getcustomerdetails") || splitMsg[0].equals("deletecustomer")
+					|| splitMsg[0].equals("checkcustomer")) {
 				System.out.println("sending to server : " + message);
 				this.sendToServer(message);
 

@@ -1,5 +1,7 @@
 package guiClient;
 
+import java.io.IOException;
+
 import client.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,6 +55,9 @@ public class LoginWindow extends AFXML {
 	private Button btnSignIn;
 
 	@FXML
+	private Button btnEmu;
+
+	@FXML
 	void initialize() {
 		this.visibleNow = this.serverPane;
 	}
@@ -82,6 +87,27 @@ public class LoginWindow extends AFXML {
 	@FXML
 	void btnSignInPressed(ActionEvent event) {
 		mySignIn();
+	}
+
+	@FXML
+	void btnEmuPressed(ActionEvent event) {
+		try {
+			String newWindowPath = "/windows/FastFuelWindow.fxml";
+			String newWindowTitle = "MyFuel Fast Fuel Emulator";
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(newWindowPath));
+			Scene newScene = new Scene(loader.load());
+			Stage newStage = new Stage();;
+
+			newStage.setResizable(false);
+			newStage.setScene(newScene);
+			newStage.setTitle(newWindowTitle);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+			this.btnSignIn.getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*********************** button functions ***********************/

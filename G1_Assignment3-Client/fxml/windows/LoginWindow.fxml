@@ -286,6 +286,7 @@
                               </Label>
                            </children>
                         </Group>
+                        <Button fx:id="btnEmu" layoutX="261.0" layoutY="264.0" mnemonicParsing="false" onAction="#btnEmuPressed" styleClass="task-button" stylesheets="@../pics/style.css" text="Emulate Fast Fuel (dev ops.)" />
                      </children>
                   </Pane>
                </children>

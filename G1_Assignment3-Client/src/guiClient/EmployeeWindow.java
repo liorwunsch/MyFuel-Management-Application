@@ -30,6 +30,16 @@ public abstract class EmployeeWindow extends UserWindow {
 	/*********************** button listeners ***********************/
 
 	@FXML
+	void openHome(ActionEvent event) {
+		this.visibleNow.setVisible(false);
+		this.homePane.setVisible(true);
+		this.visibleNow = homePane;
+		this.topbar_window_label.setText("Home");
+		this.controller.handleMessageFromClientUI(("activity get " + username + " " + cobHomeYear.getValue().toString()
+				+ " " + cobHomeMonth.getValue().toString()));
+	}
+
+	@FXML
 	void btnHomeUpdatePressed(ActionEvent event) {
 		this.controller.handleMessageFromClientUI(("activity get " + username + " " + cobHomeYear.getValue().toString()
 				+ " " + cobHomeMonth.getValue().toString()));

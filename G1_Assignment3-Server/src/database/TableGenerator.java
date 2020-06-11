@@ -107,10 +107,7 @@ public class TableGenerator { // creating the tables if they are not exists
 		String tableName = "customer";
 		String values = "( " + " customerID varchar(32) NOT NULL ," + " FK_username varchar(32) NOT NULL UNIQUE ,"
 				+ " creditCard varchar(32) NOT NULL ," + " customerType varchar(32) NOT NULL ,"
-				+ " deleted varchar(1) NOT NULL ," + " PRIMARY KEY (customerID) ,"
-				// fk1
-				+ " KEY customer_ibfk_1 (FK_userName) ," + " CONSTRAINT customer_ibfk_1 FOREIGN KEY (FK_userName) "
-				+ " REFERENCES user (username) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " deleted varchar(1) NOT NULL ," + " PRIMARY KEY (customerID) )";
 		generateTable(con, tableName, values);
 	}
 
@@ -436,7 +433,8 @@ public class TableGenerator { // creating the tables if they are not exists
 		String tableName = "product_in_station";
 		String values = "( " + " productInStationID INT NOT NULL AUTO_INCREMENT ,"
 				+ " FK_productName varchar(32) NOT NULL ," + " FK_fuelStationID INT NOT NULL ,"
-				+ " capacity DOUBLE(32,2) NOT NULL ," + " threshold DOUBLE(32,2) NOT NULL ," + " PRIMARY KEY (productInStationID) ,"
+				+ " capacity DOUBLE(32,2) NOT NULL ," + " threshold DOUBLE(32,2) NOT NULL ,"
+				+ " PRIMARY KEY (productInStationID) ,"
 				// fk1
 				+ " KEY product_in_station_ibfk_1 (FK_productName) ,"
 				+ " CONSTRAINT product_in_station_ibfk_1 FOREIGN KEY (FK_productName) "

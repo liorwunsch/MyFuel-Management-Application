@@ -12,7 +12,7 @@ import enums.ShipmentType;
 /**
  * logic controller for customer
  * 
- * @version Basic
+ * @version Final
  * @author Lior
  */
 public class CustomerController extends UserController {
@@ -41,7 +41,7 @@ public class CustomerController extends UserController {
 	public void handleMessageFromClientUI(String message) {
 		super.handleMessageFromClientUI(message);
 		String[] splitMsg = message.split(" ");
-		
+
 		if (splitMsg[0].equals("gethomefuelfinalprice")) {
 			calculateHomeFuelOrderFinalPrice(splitMsg[1], splitMsg[2], splitMsg[3]);
 			return;
@@ -52,7 +52,10 @@ public class CustomerController extends UserController {
 			awaitResponse = true;
 			boolean flag = true;
 
-			if (splitMsg[0].equals("getcustomerpurchasingprogram")) {
+			if (splitMsg[0].equals("updatepassword")) {
+				this.sendToServer(message);
+
+			} else if (splitMsg[0].equals("getcustomerpurchasingprogram")) {
 				User user = new User(splitMsg[1]);
 				user.setFunction("get purchasing program");
 

@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,7 +34,7 @@ import javafx.util.Callback;
 /**
  * boundary for customer window
  * 
- * @version Basic
+ * @version Final
  * @author Lior
  */
 public class CustomerWindow extends UserWindow {
@@ -55,6 +56,10 @@ public class CustomerWindow extends UserWindow {
 	private TableView<FastFuel> tvHomeFastFuel;
 	@FXML
 	private TextField tfHomeTotal;
+	@FXML
+	private PasswordField tfHomeNewPass;
+	@FXML
+	private Button btnHomeUpdatePass;
 
 	@FXML
 	private AnchorPane orderHomeFuelPane;
@@ -93,16 +98,10 @@ public class CustomerWindow extends UserWindow {
 	private TableView<HomeFuelOrder> tvVODetails;
 
 	@FXML
-	private AnchorPane fastFuelPane;
-	@FXML
-	private Label lblFFPricePerLiter;
-
-	@FXML
 	void initialize() {
 		this.homePane.setVisible(true);
 		this.viewOrderPane.setVisible(false);
 		this.orderHomeFuelPane.setVisible(false);
-		this.fastFuelPane.setVisible(false);
 		this.visibleNow = this.homePane;
 		this.controller = CustomerController.getInstance();
 		this.controller.setCurrentWindow(this);
@@ -116,9 +115,33 @@ public class CustomerWindow extends UserWindow {
 	/*********************** button listeners ***********************/
 
 	@FXML
+	void openHome(ActionEvent event) {
+		this.visibleNow.setVisible(false);
+		this.homePane.setVisible(true);
+		this.visibleNow = homePane;
+		this.topbar_window_label.setText("Home");
+		clearFields();
+	}
+
+	@FXML
 	void btnHomeUpdatePressed(ActionEvent event) {
-		this.controller.handleMessageFromClientUI(("fastfuel get " + username + " " + cobHomeYear.getValue().toString()
-				+ " " + cobHomeMonth.getValue().toString()));
+		this.controller.handleMessageFromClientUI("fastfuel get " + username + " "
+				+ this.cobHomeYear.getValue().toString() + " " + this.cobHomeMonth.getValue().toString());
+	}
+
+	@FXML
+	void btnHomeUpdatePassPressed(ActionEvent event) {
+		String pass = this.tfHomeNewPass.getText();
+		if (pass.isEmpty()) {
+			openErrorAlert("Error", "Missing Password Field");
+			return;
+		}
+		if (pass.matches(".*[ -/].*") || pass.matches(".*[:-~].*")) {
+			openErrorAlert("Error", "Password Not Valid\n Only Digits");
+			return;
+		}
+
+		this.controller.handleMessageFromClientUI("updatepassword " + username + " " + pass);
 	}
 
 	@FXML
@@ -145,14 +168,10 @@ public class CustomerWindow extends UserWindow {
 			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return;
 		}
-		if (amount.matches(".*[A-z].*")) {
+		if (amount.matches(".*[ -/].*") || amount.matches(".*[:-~].*") || amount.length() >= 5) {
 			openErrorAlert("Error", "Amount Not Valid");
-			this.tfOHFAmount1.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-			this.tfOHFAddress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return;
 		}
-		this.tfOHFAmount1.setStyle("-fx-border-style: none;");
-		this.tfOHFAddress.setStyle("-fx-border-style: none;");
 
 		if (this.rbOHFShipment1.isSelected())
 			shipmentType = ShipmentType.Regular;
@@ -223,12 +242,23 @@ public class CustomerWindow extends UserWindow {
 				this.tfOHFShipmentReview.setText(this.rbOHFShipment1.getText());
 
 		} else if (lastMsgFromServer instanceof String) {
-			if (((String) lastMsgFromServer).equals("set homefuelorder success")) {
-				openErrorAlert("Success", "Order Saved");
+			String str = (String) lastMsgFromServer;
+
+			if (str.equals("set homefuelorder success")) {
+				openConfirmationAlert("Success", "Order Saved");
 				this.apOHFOrderDetails.setDisable(true);
 
-			} else if (((String) lastMsgFromServer).equals("set homefuelorder fail"))
+			} else if (str.equals("set homefuelorder fail")) {
 				openErrorAlert("Error", "Order Failed");
+
+			} else if (str.equals("update password success")) {
+				openConfirmationAlert("Success", "Password Updated");
+				this.tfHomeNewPass.clear();
+
+			} else if (str.equals("update password fail")) {
+				openErrorAlert("Error", "Password Update Failed");
+			}
+
 		}
 	}
 
@@ -345,6 +375,7 @@ public class CustomerWindow extends UserWindow {
 		this.tfOHFAmount2.clear();
 		this.tfOHFShipmentReview.clear();
 		this.rbOHFShipment1.setSelected(true);
+		this.tfHomeNewPass.clear();
 	}
 
 }

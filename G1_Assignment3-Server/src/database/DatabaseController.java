@@ -7,10 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import entities.ActivityList;
+import entities.Car;
+import entities.CarList;
 import entities.Customer;
+import entities.FastFuel;
 import entities.FastFuelList;
 import entities.HomeFuelOrder;
 import entities.HomeFuelOrderList;
+import entities.PricingModel;
+import entities.PurchasingProgram;
 import entities.PurchasingProgramType;
 import entities.User;
 import guiServer.ServerWindow;
@@ -168,6 +173,16 @@ public class DatabaseController {
 		return DatabaseCustomerController.getInstance(connection).getHomeFuelOrdersSequence(username);
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return string of success or fail
+	 */
+	public String updatePassword(String username, String password) {
+		return DatabaseCustomerController.getInstance(connection).updatePassword(username, password);
+	}
+
 	/************* marketing representative controller methods **************/
 
 	/**
@@ -198,6 +213,100 @@ public class DatabaseController {
 	 */
 	public boolean deleteCustomer(String customerID) {
 		return DatabaseMarketingRepresentativeController.getInstance(connection).deleteCustomer(customerID);
+	}
+
+	/**
+	 * check if customerID exists, 0 if exists, 1 if deleted, 2 if doesnt exist
+	 * 
+	 * @param customerID
+	 */
+	public Integer checkCustomerExists(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).checkCustomerExists(customerID);
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param customer
+	 * @return string of success or fail
+	 */
+	public String updateCustomer(User user, Customer customer) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).updateCustomer(user, customer);
+	}
+
+	/**
+	 * 
+	 * @param car
+	 * @return string of success or fail
+	 */
+	public String saveNewCarSequence(Car car) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).saveNewCarSequence(car);
+	}
+
+	/**
+	 * 
+	 * @param customerID
+	 * @return list of cars of customer
+	 */
+	public CarList getCustomerCars(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).getCustomerCars(customerID);
+	}
+
+	/**
+	 * 
+	 * @param regPlate
+	 * @return string of success or fail
+	 */
+	public Boolean deleteCar(String regPlate) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).deleteCar(regPlate);
+	}
+
+	/**
+	 * 
+	 * @param car
+	 * @return string of success or fail
+	 */
+	public String updateCar(Car car) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).updateCar(car);
+	}
+
+	/**
+	 * 
+	 * @param purchasingProgram
+	 * @return string of success or fail
+	 */
+	public String setPurchasingProgram(PurchasingProgram purchasingProgram) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection)
+				.setPurchasingProgram(purchasingProgram);
+	}
+
+	/**
+	 * 
+	 * @param pricingModel
+	 * @return string of success or fail
+	 */
+	public String setPricingModel(PricingModel pricingModel) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).setPricingModel(pricingModel);
+	}
+
+	/************* fast fuel controller methods **************/
+
+	/**
+	 * 
+	 * @param fastFuel
+	 * @return fuel type of car and price per liter after discounts
+	 */
+	public FastFuel getFuelTypeAndPricePerLiter(FastFuel fastFuel) {
+		return DatabaseFastFuelController.getInstance(connection).getFuelTypeAndPricePerLiter(fastFuel);
+	}
+
+	/**
+	 * 
+	 * @param fastFuel
+	 * @return message of success or fail in fastFuel->function
+	 */
+	public FastFuel saveFastFuel(FastFuel fastFuel) {
+		return DatabaseFastFuelController.getInstance(connection).saveFastFuel(fastFuel);
 	}
 
 }
