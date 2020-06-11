@@ -161,6 +161,7 @@ public class DatabaseFastFuelController {
 				rs = pStmt.executeQuery();
 				if (!rs.next()) {
 					salesDiscount = 0;
+					saleID = -1;
 				} else {
 					salesDiscount = rs.getDouble(1);
 				}
@@ -334,9 +335,10 @@ public class DatabaseFastFuelController {
 			double amountBought, double amountPaid) {
 		try {
 			PreparedStatement pStmt = this.connection.prepareStatement(
-					"SELECT amountBoughtFromCompany, amountPaidCompany FROM customer_bought_from_company WHERE FK_customerID = ? AND DATE(dateOfPurchase) = ?");
+					"SELECT amountBoughtFromCompany, amountPaidCompany FROM customer_bought_from_company WHERE FK_customerID = ? AND FK_fuelCompanyName = ? AND DATE(dateOfPurchase) = ?");
 			pStmt.setString(1, customerID);
-			pStmt.setDate(2, new java.sql.Date(fastFuelTime.getTime()));
+			pStmt.setString(2, fuelCompanyName);
+			pStmt.setDate(3, new java.sql.Date(fastFuelTime.getTime()));
 			ResultSet rs = pStmt.executeQuery();
 
 			if (!rs.next()) { // doesn't already exist
@@ -350,10 +352,12 @@ public class DatabaseFastFuelController {
 				amountPaid += rs.getDouble(2);
 
 				pStmt = this.connection.prepareStatement(
-						"UPDATE customer_bought_from_company SET amountBoughtFromCompany = ?, amountPaidCompany = ? WHERE FK_customerID = ?");
+						"UPDATE customer_bought_from_company SET amountBoughtFromCompany = ?, amountPaidCompany = ? WHERE FK_customerID = ? AND FK_fuelCompanyName = ? AND DATE(dateOfPurchase) = ?");
 				pStmt.setDouble(1, amountBought);
 				pStmt.setDouble(2, amountPaid);
 				pStmt.setString(3, customerID);
+				pStmt.setString(4, fuelCompanyName);
+				pStmt.setDate(5, new java.sql.Date(fastFuelTime.getTime()));
 				pStmt.executeUpdate();
 			}
 
