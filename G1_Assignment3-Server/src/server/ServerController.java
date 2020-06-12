@@ -9,6 +9,7 @@ import entities.Car;
 import entities.Customer;
 import entities.FastFuel;
 import entities.HomeFuelOrder;
+import entities.MarketingManager;
 import entities.PricingModel;
 import entities.PurchasingProgram;
 import entities.User;
@@ -134,6 +135,15 @@ public class ServerController extends AbstractServer {
 					ServerMarketingRepresentativeController.getInstance(databaseController)
 							.handleMessageFromClient(object, client);
 				}
+
+			} else if (object instanceof MarketingManager) {
+				System.out.println(client + " requested MarketingManager ");
+				MarketingManager manager = (MarketingManager) object;
+				this.serverWindow.updateArea(formatter.format(date) + " : " + client
+						+ " : requested MarketingManager operation : " + manager.getUserName());
+				ServerMarketingManagerController.getInstance(serverWindow, databaseController, lock)
+						.handleMessageFromClient(manager, client);
+				System.out.println(client + " end MarketingManager ");
 			}
 
 		} catch (IOException e) {

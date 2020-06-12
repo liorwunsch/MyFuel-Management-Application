@@ -21,6 +21,7 @@ public class Employee implements Serializable {
 
 	/**
 	 * without employeeID auto-inc
+	 * 
 	 * @param username
 	 * @param role
 	 * @param affiliation
@@ -34,6 +35,7 @@ public class Employee implements Serializable {
 
 	/**
 	 * with employeeID
+	 * 
 	 * @param employeeID
 	 * @param username
 	 * @param role

@@ -2,6 +2,7 @@ package client;
 
 import java.io.IOException;
 import java.net.ConnectException;
+import java.util.Calendar;
 import java.util.Date;
 
 import entities.HomeFuelOrder;
@@ -36,7 +37,6 @@ public class CustomerController extends UserController {
 		return instance;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void handleMessageFromClientUI(String message) {
 		super.handleMessageFromClientUI(message);
@@ -72,15 +72,22 @@ public class CustomerController extends UserController {
 					this.sendToServer(message);
 
 				} else if (splitMsg[1].equals("set")) {
+					Calendar calendar = Calendar.getInstance();
 					Date now = new Date();
-					now.setHours(now.getHours() - 3);
-					now.setMinutes(now.getMinutes() + 30);
+					calendar.setTime(now);
+					calendar.add(Calendar.HOUR, -2);
+					calendar.add(Calendar.MINUTE, -30);
+					now = calendar.getTime();
 
 					Date dueTime = new Date();
+					calendar.setTime(dueTime);
+					calendar.add(Calendar.HOUR, -2);
+					calendar.add(Calendar.MINUTE, -30);
 					if (splitMsg[3].equals("Urgent"))
-						dueTime.setHours(now.getHours() + 6);
+						calendar.add(Calendar.HOUR, 6);
 					else
-						dueTime.setHours(now.getHours() + 240);
+						calendar.add(Calendar.HOUR, 240);
+					dueTime = calendar.getTime();
 
 					HomeFuelOrder homeFuelOrder = new HomeFuelOrder(now, Double.parseDouble(splitMsg[5]), splitMsg[6],
 							splitMsg[2], ProductName.HomeFuel, ShipmentType.valueOf(splitMsg[3]), dueTime,

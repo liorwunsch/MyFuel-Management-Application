@@ -1,5 +1,6 @@
 package guiClient;
 
+import entities.RowForRankingSheetTable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
  * boundary for marketing department workers' windows
  * 
  * @version Almost Final
- * @author Lior, Liad
+ * @author Lior, Elroy
  */
 public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 
@@ -22,7 +23,7 @@ public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 	@FXML
 	protected AnchorPane createSalePatternPane;
 	@FXML
-	protected TableView<?> tvCSPAnalysis;
+	protected TableView<RowForRankingSheetTable> tvCSPAnalysis;
 	@FXML
 	protected TextField tfCSPDuration;
 	@FXML

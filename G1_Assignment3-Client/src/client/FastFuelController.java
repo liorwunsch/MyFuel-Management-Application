@@ -68,9 +68,7 @@ public class FastFuelController extends ClientController {
 				this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 			}
 
-		} catch (
-
-		ConnectException ce) {
+		} catch (ConnectException ce) {
 			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
 			ce.printStackTrace();
 		} catch (IOException ioe) {

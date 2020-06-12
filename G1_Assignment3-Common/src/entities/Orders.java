@@ -19,6 +19,7 @@ public abstract class Orders implements Serializable {
 
 	/**
 	 * w/o ordersID auto-inc
+	 * 
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address

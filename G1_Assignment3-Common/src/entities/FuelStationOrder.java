@@ -23,6 +23,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * without ordersID auto-inc, approved, reasonDismissal and timeSupplied
+	 * 
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address
@@ -40,6 +41,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * without approved, reasonDismissal and timeSupplied
+	 * 
 	 * @param ordersID
 	 * @param orderTime
 	 * @param amountBought
@@ -58,6 +60,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * without ordersID auto-inc, timeSupplied
+	 * 
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address
@@ -79,6 +82,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * without timeSupplied
+	 * 
 	 * @param ordersID
 	 * @param orderTime
 	 * @param amountBought
@@ -101,6 +105,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * all without ordersID auto-inc
+	 * 
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address
@@ -124,6 +129,7 @@ public class FuelStationOrder extends Orders {
 
 	/**
 	 * all
+	 * 
 	 * @param ordersID
 	 * @param orderTime
 	 * @param amountBought

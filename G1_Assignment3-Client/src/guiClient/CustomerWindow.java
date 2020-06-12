@@ -3,6 +3,7 @@ package guiClient;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import client.CustomerController;
@@ -116,6 +117,7 @@ public class CustomerWindow extends UserWindow {
 
 	@FXML
 	void openHome(ActionEvent event) {
+		this.sidebar_btn0.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.homePane.setVisible(true);
 		this.visibleNow = homePane;
@@ -146,6 +148,7 @@ public class CustomerWindow extends UserWindow {
 
 	@FXML
 	void openOrderHomeFuel(ActionEvent event) {
+		this.sidebar_btn1.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.orderHomeFuelPane.setVisible(true);
 		this.visibleNow = this.orderHomeFuelPane;
@@ -195,6 +198,7 @@ public class CustomerWindow extends UserWindow {
 
 	@FXML
 	void openViewOrders(ActionEvent event) {
+		this.sidebar_btn2.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.viewOrderPane.setVisible(true);
 		this.visibleNow = this.viewOrderPane;
@@ -268,12 +272,13 @@ public class CustomerWindow extends UserWindow {
 	 * @param username
 	 */
 	@Override
-	@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void setUserComponents(String username) {
 		super.setUserComponents(username);
 		final TableColumn<FastFuel, Date> timeColumn = (TableColumn<FastFuel, Date>) new TableColumn("Time");
 		timeColumn.setCellValueFactory((Callback) new PropertyValueFactory("fastFuelTime"));
-		timeColumn.impl_setWidth(170);
+		timeColumn.setMinWidth(170);
+		timeColumn.setMaxWidth(170);
 		this.tvHomeFastFuel.getColumns().add(timeColumn);
 		final TableColumn<FastFuel, String> regPlateColumn = (TableColumn<FastFuel, String>) new TableColumn(
 				"Registration Plate");
@@ -300,7 +305,8 @@ public class CustomerWindow extends UserWindow {
 		this.tvVODetails.getColumns().add(orderIDColumn);
 		final TableColumn<HomeFuelOrder, Date> orderTimeColumn = (TableColumn<HomeFuelOrder, Date>) new TableColumn(
 				"Time Bought");
-		orderTimeColumn.impl_setWidth(170);
+		orderIDColumn.setMinWidth(170);
+		orderIDColumn.setMaxWidth(170);
 		orderTimeColumn.setCellValueFactory((Callback) new PropertyValueFactory("orderTime"));
 		this.tvVODetails.getColumns().add(orderTimeColumn);
 		final TableColumn<HomeFuelOrder, String> orderAddress = (TableColumn<HomeFuelOrder, String>) new TableColumn(
@@ -317,7 +323,8 @@ public class CustomerWindow extends UserWindow {
 		this.tvVODetails.getColumns().add(orderShipment);
 		final TableColumn<HomeFuelOrder, Date> orderDueTimeColumn = (TableColumn<HomeFuelOrder, Date>) new TableColumn(
 				"Due Time");
-		orderDueTimeColumn.impl_setWidth(170);
+		orderDueTimeColumn.setMinWidth(170);
+		orderDueTimeColumn.setMaxWidth(170);
 		orderDueTimeColumn.setCellValueFactory((Callback) new PropertyValueFactory("dueTime"));
 		this.tvVODetails.getColumns().add(orderDueTimeColumn);
 		final TableColumn<HomeFuelOrder, Double> orderPrice = (TableColumn<HomeFuelOrder, Double>) new TableColumn(
@@ -325,8 +332,12 @@ public class CustomerWindow extends UserWindow {
 		orderPrice.setCellValueFactory((Callback) new PropertyValueFactory("finalPrice"));
 		this.tvVODetails.getColumns().add(orderPrice);
 
-		this.controller.handleMessageFromClientUI(("fastfuel get " + username + " "
-				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
+		Calendar calendar = Calendar.getInstance();
+		Date now = new Date();
+		calendar.setTime(now);
+
+		this.controller.handleMessageFromClientUI(("fastfuel get " + username + " " + (calendar.get(Calendar.YEAR))
+				+ " " + (calendar.get(Calendar.MONTH) + 1)));
 
 		this.controller.handleMessageFromClientUI("getcustomerpurchasingprogram " + username);
 	}

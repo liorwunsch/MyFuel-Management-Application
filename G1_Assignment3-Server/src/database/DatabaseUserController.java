@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import entities.Activity;
@@ -123,7 +124,6 @@ public class DatabaseUserController {
 	 * @param action
 	 * @return message for server
 	 */
-	@SuppressWarnings("deprecation")
 	public String activityLogger(String username, String[] action) {
 		try {
 			PreparedStatement pStmt;
@@ -134,9 +134,12 @@ public class DatabaseUserController {
 				return "activityLogger failed";
 			int employeeID = rs1.getInt(1);
 
+			Calendar calendar = Calendar.getInstance();
 			Date now = new Date();
-			now.setHours(now.getHours() - 3);
-			now.setMinutes(now.getMinutes() + 30);
+			calendar.setTime(now);
+			calendar.add(Calendar.HOUR, -2);
+			calendar.add(Calendar.MINUTE, -30);
+			now = calendar.getTime();
 
 			StringBuilder myAction = new StringBuilder("");
 			for (int i = 3; i < action.length; i++)

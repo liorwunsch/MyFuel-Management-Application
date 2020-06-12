@@ -139,7 +139,7 @@ public class FastFuelWindow extends AFXML {
 			openConfirmationAlert("Success", "Fast Fuel Saved Successfully");
 			this.emuPane.setDisable(false);
 
-		} else if (result.contains("doesn't") || result.equals("fail")) {
+		} else if (result.contains("doesn't") || result.contains("fail")) {
 			openErrorAlert("Error", result);
 			this.emuPane.setDisable(false);
 

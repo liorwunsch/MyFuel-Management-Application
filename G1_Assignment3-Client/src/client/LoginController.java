@@ -20,38 +20,27 @@ public class LoginController extends ClientController {
 
 	/**
 	 * singleton class constructor checks connection to server
+	 * 
+	 * @throws IOException
 	 */
-	private LoginController(String host, int port, LoginWindow loginWindow) {
+	private LoginController(String host, int port, LoginWindow loginWindow) throws IOException {
 		super(host, port);
-		try {
-			System.out.println("sending ack request to host '" + host + "' at port '" + port + "'");
-			openConnection();
-			awaitResponse = true;
-			sendToServer("ack request");
+		System.out.println("sending ack request to host '" + host + "' at port '" + port + "'");
+		openConnection();
+		awaitResponse = true;
+		sendToServer("ack request");
 
-			/* wait for ack or data from the server */
-			while (awaitResponse) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException ie) {
-					ie.printStackTrace();
-				}
+		/* wait for ack or data from the server */
+		while (awaitResponse) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException ie) {
+				ie.printStackTrace();
 			}
-
-			loginWindow.callAfterMessage(this.lastMsgFromServer);
-			loginWindow.setVisibleNow(false);
-
-		} catch (IllegalArgumentException iae) {
-			loginWindow.openErrorAlert("Server Error", "Port Not Valid");
-		} catch (UnknownHostException uhe) {
-			loginWindow.openErrorAlert("Server Error", "Host Not Valid");
-		} catch (ConnectException ce) {
-			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
-		} catch (SocketException se) {
-			loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
-		} catch (IOException ioe) {
-			loginWindow.openErrorAlert("Error", "IOException");
 		}
+
+		loginWindow.callAfterMessage(this.lastMsgFromServer);
+		loginWindow.setVisibleNow(false);
 	}
 
 	/**
@@ -59,7 +48,24 @@ public class LoginController extends ClientController {
 	 */
 	public static LoginController getInstance(String host, int port, LoginWindow loginWindow) {
 		if (instance == null) {
-			instance = new LoginController(host, port, loginWindow);
+			try {
+				instance = new LoginController(host, port, loginWindow);
+			} catch (IllegalArgumentException iae) {
+				loginWindow.openErrorAlert("Server Error", "Port Not Valid");
+				instance = null;
+			} catch (UnknownHostException uhe) {
+				loginWindow.openErrorAlert("Server Error", "Host Not Valid");
+				instance = null;
+			} catch (ConnectException ce) {
+				loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
+				instance = null;
+			} catch (SocketException se) {
+				loginWindow.openErrorAlert("Server Error", "Error - No connection to server");
+				instance = null;
+			} catch (IOException ioe) {
+				loginWindow.openErrorAlert("Error", "IOException");
+				instance = null;
+			}
 		}
 		return instance;
 	}

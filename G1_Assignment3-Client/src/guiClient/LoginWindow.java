@@ -97,7 +97,8 @@ public class LoginWindow extends AFXML {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource(newWindowPath));
 			Scene newScene = new Scene(loader.load());
-			Stage newStage = new Stage();;
+			Stage newStage = new Stage();
+			;
 
 			newStage.setResizable(false);
 			newStage.setScene(newScene);
@@ -132,7 +133,8 @@ public class LoginWindow extends AFXML {
 		this.tfLoginServerPort.setStyle("-fx-border-style: none;");
 
 		this.controller = LoginController.getInstance(host, Integer.parseInt(port), this);
-		this.controller.setCurrentWindow(this);
+		if (this.controller != null)
+			this.controller.setCurrentWindow(this);
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class Customer implements Serializable {
 		this.creditCard = creditCard;
 		this.customerType = customerType;
 	}
-	
+
 	/**
 	 * w/o deleted
 	 * 

@@ -22,6 +22,7 @@ public class Sale implements Serializable {
 
 	/**
 	 * w/o saleID auto-inc
+	 * 
 	 * @param salesPatternID
 	 * @param active
 	 * @param startTime

@@ -2,6 +2,7 @@ package guiClient;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import entities.Activity;
 import entities.ActivityList;
@@ -61,20 +62,26 @@ public abstract class EmployeeWindow extends UserWindow {
 	 * initialized tableview in home of employees
 	 */
 	@Override
-	@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void setUserComponents(String username) {
 		super.setUserComponents(username);
 		final TableColumn<Activity, Date> timeColumn = (TableColumn<Activity, Date>) new TableColumn("Date");
 		timeColumn.setCellValueFactory((Callback) new PropertyValueFactory("time"));
-		timeColumn.impl_setWidth(170);
+		timeColumn.setMinWidth(170);
+		timeColumn.setMaxWidth(170);
 		this.tvHomeActivity.getColumns().add(timeColumn);
 		final TableColumn<Activity, String> actionColumn = (TableColumn<Activity, String>) new TableColumn("Action");
 		actionColumn.setCellValueFactory((Callback) new PropertyValueFactory("action"));
-		actionColumn.impl_setWidth(472);
+		actionColumn.setMinWidth(472);
+		actionColumn.setMaxWidth(472);
 		this.tvHomeActivity.getColumns().add(actionColumn);
 
-		this.controller.handleMessageFromClientUI(("activity get " + username + " "
-				+ (new java.util.Date().getYear() + 1900) + " " + (new java.util.Date().getMonth() + 1)));
+		Calendar calendar = Calendar.getInstance();
+		Date now = new Date();
+		calendar.setTime(now);
+
+		this.controller.handleMessageFromClientUI(("activity get " + username + " " + (calendar.get(Calendar.YEAR))
+				+ " " + (calendar.get(Calendar.MONTH) + 1)));
 	}
 
 	/**

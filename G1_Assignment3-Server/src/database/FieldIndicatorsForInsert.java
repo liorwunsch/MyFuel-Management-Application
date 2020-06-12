@@ -2,6 +2,7 @@ package database;
 
 /**
  * indicates the values of input of a query
+ * 
  * @author Lior, Vlad, Elroy
  */
 public class FieldIndicatorsForInsert {
@@ -32,7 +33,8 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] FastFuel() {
-		return new String[] { "FK_registrationPlate", "FK_customerID", "FK_productInStationID", "fastFuelTime", "amountBought", "finalPrice" };
+		return new String[] { "FK_registrationPlate", "FK_customerID", "FK_productInStationID", "fastFuelTime",
+				"amountBought", "finalPrice" };
 	}
 
 	public static String[] FuelCompany() {

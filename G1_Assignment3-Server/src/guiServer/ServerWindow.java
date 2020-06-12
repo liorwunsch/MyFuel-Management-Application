@@ -21,16 +21,26 @@ import server.ServerController;
  */
 public class ServerWindow {
 
-	@FXML	private Label lblStatus;
-	@FXML	private Button btnConnect;
-	@FXML	private Button btnDisconnect;
-	@FXML	private ImageView imgStatus;
-	@FXML	private TextField tfHost;
-	@FXML	private TextField tfSchema;
-	@FXML	private TextField tfPort;
-	@FXML	private TextField tfUsername;
-	@FXML	private PasswordField tfPassword;
-	@FXML	private TextArea taConsole;
+	@FXML
+	private Label lblStatus;
+	@FXML
+	private Button btnConnect;
+	@FXML
+	private Button btnDisconnect;
+	@FXML
+	private ImageView imgStatus;
+	@FXML
+	private TextField tfHost;
+	@FXML
+	private TextField tfSchema;
+	@FXML
+	private TextField tfPort;
+	@FXML
+	private TextField tfUsername;
+	@FXML
+	private PasswordField tfPassword;
+	@FXML
+	private TextArea taConsole;
 
 	private boolean connectedFlag;
 	private Object lock = new Object(); // lock on updateArea

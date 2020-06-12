@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import entities.ActivityList;
 import entities.Car;
@@ -14,9 +15,16 @@ import entities.FastFuel;
 import entities.FastFuelList;
 import entities.HomeFuelOrder;
 import entities.HomeFuelOrderList;
+import entities.PeriodicReportList;
 import entities.PricingModel;
+import entities.ProductInSalePatternList;
+import entities.ProductRateList;
 import entities.PurchasingProgram;
 import entities.PurchasingProgramType;
+import entities.RankingSheetList;
+import entities.SaleCommentReportList;
+import entities.SalesList;
+import entities.SalesPatternList;
 import entities.User;
 import guiServer.ServerWindow;
 
@@ -47,8 +55,8 @@ public class DatabaseController {
 		}
 
 		try {
-			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST", dbUsername,
-					dbPassword);
+			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=Asia/Jerusalem",
+					dbUsername, dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
 
 			Statement stmt = this.connection.createStatement();
@@ -307,6 +315,61 @@ public class DatabaseController {
 	 */
 	public FastFuel saveFastFuel(FastFuel fastFuel) {
 		return DatabaseFastFuelController.getInstance(connection).saveFastFuel(fastFuel);
+	}
+
+	/************* marketing manager controller methods **************/
+
+	public SalesPatternList getAllSalePatterns() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllSalePatterns();
+	}
+
+	public ProductInSalePatternList getAllProductInSalePatterns() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllProductInSalePatterns();
+	}
+
+	public String checkActiveOfSale(int salePatternID) {
+		return DatabaseMarketingManagerController.getInstance(connection).checkActiveOfSale(salePatternID);
+	}
+
+	public String insertNewSale(int[] values) {
+		return DatabaseMarketingManagerController.getInstance(connection).insertNewSale(values);
+	}
+
+	public String insertNewActivity(String username, Date date, String action) {
+		return DatabaseMarketingManagerController.getInstance(connection).insertNewActivity(username, date, action);
+	}
+
+	public RankingSheetList getAllRankignSheets() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllRankignSheets();
+	}
+
+	public String createNewSalePatternID(int duration, String[] productInSP) {
+		return DatabaseMarketingManagerController.getInstance(connection).createNewSalePatternID(duration, productInSP);
+	}
+
+	public ProductRateList getAllProductRanks() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllProductRanks();
+	}
+
+	public String createNewPRUR(double dieselRank, double gasolineRank, double motorRank, double homeRank) {
+		return DatabaseMarketingManagerController.getInstance(connection).createNewPRUR(dieselRank, gasolineRank,
+				motorRank, homeRank);
+	}
+
+	public SalesList getSaleList() {
+		return DatabaseMarketingManagerController.getInstance(connection).getSaleList();
+	}
+
+	public SaleCommentReportList generateSaleCommentReport(int saleID) {
+		return DatabaseMarketingManagerController.getInstance(connection).generateSaleCommentReport(saleID);
+	}
+
+	public PeriodicReportList generatePeriodicReport(Date fromDate, Date toDate) {
+		return DatabaseMarketingManagerController.getInstance(connection).generatePeriodicReport(fromDate, toDate);
+	}
+
+	public Object checkSaleRange(Date startDate, Date endDate) {
+		return DatabaseMarketingManagerController.getInstance(connection).checkSaleRange(startDate, endDate);
 	}
 
 }

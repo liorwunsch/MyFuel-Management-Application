@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.Calendar;
 
 import enums.Affiliation;
 import enums.CustomerType;
@@ -19,7 +19,6 @@ import enums.ShipmentType;
  * 
  * @author Elroy, Lior, Vlad
  */
-@SuppressWarnings("deprecation")
 public class DefaultTableInserts {
 
 	/**
@@ -162,8 +161,8 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "customer") == false)
 			return;
 		// "customerID", "FK_userName", "creditCard", "customerType", "deleted"
-		Object[] values1 = { "111111111", "IsraelThePersonCustomer", "1111222233334444",
-				CustomerType.Person.toString(), false };
+		Object[] values1 = { "111111111", "IsraelThePersonCustomer", "1111222233334444", CustomerType.Person.toString(),
+				false };
 		TableInserts.insertCustomer(con, values1);
 		Object[] values2 = { "222222222", "IsraelTheCompanyCustomer", "4444333322221111",
 				CustomerType.Company.toString(), false };
@@ -223,11 +222,31 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "sale") == false)
 			return;
 		// "FK_salesPatternID", "active", "startTime", "endTime"
-		Object[] values1 = { "1", false, new Date(2019 - 1900, 5 - 1, 7, 18 - 2, 30 - 30),
-				new Date(2019 - 1900, 5 - 1, 7, 19 - 2, 00 - 30) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 18 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.set(Calendar.YEAR, 2019);
+		calendar2.set(Calendar.MONTH, 5 - 1);
+		calendar2.set(Calendar.DAY_OF_MONTH, 7);
+		calendar2.set(Calendar.HOUR, 19 - 2 - 12);
+		calendar2.set(Calendar.MINUTE, 00 - 30);
+		Object[] values1 = { "1", false, calendar1.getTime(), calendar2.getTime() };
 		TableInserts.insertSale(con, values1);
-		Object[] values2 = { "2", false, new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 00 - 30),
-				new Date(2019 - 1900, 5 - 1, 14, 13 - 2, 00 - 30) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		calendar2.set(Calendar.YEAR, 2019);
+		calendar2.set(Calendar.MONTH, 5 - 1);
+		calendar2.set(Calendar.DAY_OF_MONTH, 14);
+		calendar2.set(Calendar.HOUR, 13 - 2 - 12);
+		calendar2.set(Calendar.MINUTE, 00 - 30);
+		Object[] values2 = { "2", false, calendar1.getTime(), calendar2.getTime() };
 		TableInserts.insertSale(con, values2);
 	}
 
@@ -236,11 +255,21 @@ public class DefaultTableInserts {
 			return;
 		// 1 - "requestDate", "assessed"
 		// 2 - "requestDate", "assessed", "approved"
-		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 16), false };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 16 - 1);
+		Object[] values1 = { calendar1.getTime(), false };
 		TableInserts.insertProductRatesUpdateRequest1(con, values1);
-		Object[] values2 = { new Date(2019 - 1900, 5 - 1, 13), true, false };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 13 - 1);
+		Object[] values2 = { calendar1.getTime(), true, false };
 		TableInserts.insertProductRatesUpdateRequest2(con, values2);
-		Object[] values3 = { new Date(2019 - 1900, 5 - 1, 5), true, true };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 5 - 1);
+		Object[] values3 = { calendar1.getTime(), true, true };
 		TableInserts.insertProductRatesUpdateRequest2(con, values3);
 	}
 
@@ -316,11 +345,15 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "quarterly_report") == false)
 			return;
 		// "repQuarter", "repYear", "FK_fuelStationID", "dateCreated"
-		Object[] values1 = { 2, "2019", "1", new Date(2019 - 1900, 7 - 1, 1) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 7 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 1 - 1);
+		Object[] values1 = { 2, "2019", "1", calendar1.getTime() };
 		TableInserts.insertQuarterlyReport(con, values1);
-		Object[] values2 = { 2, "2019", "2", new Date(2019 - 1900, 7 - 1, 1) };
+		Object[] values2 = { 2, "2019", "2", calendar1.getTime() };
 		TableInserts.insertQuarterlyReport(con, values2);
-		Object[] values3 = { 2, "2019", "3", new Date(2019 - 1900, 7 - 1, 1) };
+		Object[] values3 = { 2, "2019", "3", calendar1.getTime() };
 		TableInserts.insertQuarterlyReport(con, values3);
 	}
 
@@ -451,9 +484,13 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "sale_comments_report") == false)
 			return;
 		// "FK_saleID", "numberOfCustomersBought", "sumOfPurchases", "dateCreated"
-		Object[] values1 = { "1", 2, 380, new Date(2019 - 1900, 5 - 1, 28) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28 - 1);
+		Object[] values1 = { "1", 2, 380, calendar1.getTime() };
 		TableInserts.insertSaleCommentsReport(con, values1);
-		Object[] values2 = { "2", 1, 188, new Date(2019 - 1900, 5 - 1, 28) };
+		Object[] values2 = { "2", 1, 188, calendar1.getTime() };
 		TableInserts.insertSaleCommentsReport(con, values2);
 	}
 
@@ -485,9 +522,13 @@ public class DefaultTableInserts {
 			return;
 		// "FK_customerID", "customerTypeRank", "fuelingHoursRank", "fuelTypesRank",
 		// "updatedForDate"
-		Object[] values1 = { "111111111", "8", "6", "5", new Date(2019 - 1900, 12 - 1, 28) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 12 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28 - 1);
+		Object[] values1 = { "111111111", "8", "6", "5", calendar1.getTime() };
 		TableInserts.insertRankingSheet(con, values1);
-		Object[] values2 = { "222222222", "10", "10", "9", new Date(2019 - 1900, 12 - 1, 28) };
+		Object[] values2 = { "222222222", "10", "10", "9", calendar1.getTime() };
 		TableInserts.insertRankingSheet(con, values2);
 	}
 
@@ -533,13 +574,26 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "notification") == false)
 			return;
 		// "FK_employeeID", "message", "dismissed", "dateCreated"
-		Object[] values1 = { "1", "a station order is ready to be assessed", true, new Date(2019 - 1900, 5 - 1, 25) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 25 - 1);
+		Object[] values1 = { "1", "a station order is ready to be assessed", true, calendar1.getTime() };
 		TableInserts.insertNotification(con, values1);
-		Object[] values2 = { "2", "a station order is ready to be assessed", true, new Date(2019 - 1900, 6 - 1, 4) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 4 - 1);
+		Object[] values2 = { "2", "a station order is ready to be assessed", true, calendar1.getTime() };
 		TableInserts.insertNotification(con, values2);
-		Object[] values3 = { "9", "a station order is ready to be assessed", true, new Date(2019 - 1900, 6 - 1, 18) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 18 - 1);
+		Object[] values3 = { "9", "a station order is ready to be assessed", true, calendar1.getTime() };
 		TableInserts.insertNotification(con, values3);
-		Object[] values4 = { "1", "a station order is ready to be assessed", false, new Date(2019 - 1900, 5 - 1, 26) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 26 - 1);
+		Object[] values4 = { "1", "a station order is ready to be assessed", false, calendar1.getTime() };
 		TableInserts.insertNotification(con, values4);
 	}
 
@@ -557,31 +611,67 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "orders") == false)
 			return;
 		// "orderTime", "amountBought", "address"
-		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 4, 12 - 2, 30 - 30), 600, "4th Hertzel St, Haifa" }; // Regular
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 4);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values1 = { calendar1.getTime(), 600, "4th Hertzel St, Haifa" }; // Regular
 		TableInserts.insertOrders(con, values1);
-		Object[] values2 = { new Date(2019 - 1900, 6 - 1, 24, 12 - 2, 30 - 30), 400, "4th Hertzel St, Haifa" }; // Urgent
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 24);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values2 = { calendar1.getTime(), 400, "4th Hertzel St, Haifa" }; // Urgent
 		TableInserts.insertOrders(con, values2);
-		Object[] values3 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 25);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values3 = { calendar1.getTime(), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values3);
-		Object[] values4 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values4 = { calendar1.getTime(), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values4);
-		Object[] values5 = { new Date(2019 - 1900, 5 - 1, 25, 12 - 2, 30 - 30), 3420, "Peretz St, Kiryat Ata" }; // fsmanager1
+		Object[] values5 = { calendar1.getTime(), 3420, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values5);
-		Object[] values6 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 17100, "Road 6" }; // fsmanager2
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 4);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values6 = { calendar1.getTime(), 17100, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values6);
-		Object[] values7 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 14250, "Road 6" }; // fsmanager2
+		Object[] values7 = { calendar1.getTime(), 14250, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values7);
-		Object[] values8 = { new Date(2019 - 1900, 6 - 1, 4, 12 - 2, 30 - 30), 11400, "Road 6" }; // fsmanager2
+		Object[] values8 = { calendar1.getTime(), 11400, "Road 6" }; // fsmanager2
 		TableInserts.insertOrders(con, values8);
-		Object[] values9 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 3420, "Dror St, Karmiel" }; // fsmanager3
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 18);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values9 = { calendar1.getTime(), 3420, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values9);
-		Object[] values10 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 2850, "Dror St, Karmiel" }; // fsmanager3
+		Object[] values10 = { calendar1.getTime(), 2850, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values10);
-		Object[] values11 = { new Date(2019 - 1900, 6 - 1, 18, 12 - 2, 30 - 30), 2280, "Dror St, Karmiel" }; // fsmanager3
+		Object[] values11 = { calendar1.getTime(), 2280, "Dror St, Karmiel" }; // fsmanager3
 		TableInserts.insertOrders(con, values11);
-		Object[] values12 = { new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 26);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values12 = { calendar1.getTime(), 5130, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values12);
-		Object[] values13 = { new Date(2019 - 1900, 7 - 1, 2, 12 - 2, 30 - 30), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 7 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 2);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values13 = { calendar1.getTime(), 4275, "Peretz St, Kiryat Ata" }; // fsmanager1
 		TableInserts.insertOrders(con, values13);
 	}
 
@@ -593,23 +683,39 @@ public class DefaultTableInserts {
 		// "reasonDismissal", "supplied"
 		// 3 - "FK_ordersID", "FK_productInStationID", "assessed", "approved",
 		// "reasonDismissal", "supplied", "timeSupplied"
-		Object[] values1 = { "3", "1", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 26);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values1 = { "3", "1", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values1);
-		Object[] values2 = { "4", "2", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
+		Object[] values2 = { "4", "2", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values2);
-		Object[] values3 = { "5", "3", true, true, "Nan", true, new Date(2019 - 1900, 5 - 1, 26, 12 - 2, 30 - 30) };
+		Object[] values3 = { "5", "3", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values3);
-		Object[] values4 = { "6", "4", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 5);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values4 = { "6", "4", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values4);
-		Object[] values5 = { "7", "5", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
+		Object[] values5 = { "7", "5", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values5);
-		Object[] values6 = { "8", "6", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 5, 12 - 2, 30 - 30) };
+		Object[] values6 = { "8", "6", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values6);
-		Object[] values7 = { "9", "7", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 19);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values7 = { "9", "7", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values7);
-		Object[] values8 = { "10", "8", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
+		Object[] values8 = { "10", "8", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values8);
-		Object[] values9 = { "11", "9", true, true, "Nan", true, new Date(2019 - 1900, 6 - 1, 19, 12 - 2, 30 - 30) };
+		Object[] values9 = { "11", "9", true, true, "Nan", true, calendar1.getTime() };
 		TableInserts.insertFuelStationOrder3(con, values9);
 		Object[] values10 = { "12", "1", true, false, "supply already on route", false };
 		TableInserts.insertFuelStationOrder2(con, values10);
@@ -634,11 +740,22 @@ public class DefaultTableInserts {
 			return;
 		// "FK_ordersID", "FK_customerID", "FK_product_Name", "FK_shipmentType",
 		// "duetime", "finalPrice"
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 14);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
 		Object[] values1 = { "1", "111111111", ProductName.HomeFuel.toString(), ShipmentType.Regular.toString(),
-				new Date(2019 - 1900, 5 - 1, 14, 12 - 2, 30 - 30), 1169.34 };
+				calendar1.getTime(), 1169.34 };
 		TableInserts.insertHomeFuelOrder(con, values1);
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 24);
+		calendar1.set(Calendar.HOUR, 18 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
 		Object[] values2 = { "2", "111111111", ProductName.HomeFuel.toString(), ShipmentType.Urgent.toString(),
-				new Date(2019 - 1900, 6 - 1, 24, 18 - 2, 30 - 30), 821.5 };
+				calendar1.getTime(), 821.5 };
 		TableInserts.insertHomeFuelOrder(con, values2);
 	}
 
@@ -660,14 +777,15 @@ public class DefaultTableInserts {
 			return;
 		// "FK_customerID", "FK_fuelCompanyName", "dateOfPurchase",
 		// "amountBoughtFromCompany", "amountPaidCompany"
-		Object[] values1 = { "111111111", FuelCompanyName.Paz.toString(), new Date(2019 - 1900, 5 - 1, 7), 3791.67,
-				875 };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7 - 1);
+		Object[] values1 = { "111111111", FuelCompanyName.Paz.toString(), calendar1.getTime(), 3791.67, 875 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values1);
-		Object[] values2 = { "222222222", FuelCompanyName.Sonol.toString(), new Date(2019 - 1900, 5 - 1, 7), 1971.67,
-				455 };
+		Object[] values2 = { "222222222", FuelCompanyName.Sonol.toString(), calendar1.getTime(), 1971.67, 455 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values2);
-		Object[] values3 = { "222222222", FuelCompanyName.Delek.toString(), new Date(2019 - 1900, 5 - 1, 7), 4823,
-				1113 };
+		Object[] values3 = { "222222222", FuelCompanyName.Delek.toString(), calendar1.getTime(), 4823, 1113 };
 		TableInserts.insertCustomerBoughtFromCompany(con, values3);
 	}
 
@@ -675,8 +793,19 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "periodic_customers_report") == false)
 			return;
 		// "dateFrom", "dateTo", "dateCreated"
-		Object[] values1 = { new Date(2019 - 1900, 5 - 1, 1), new Date(2019 - 1900, 5 - 1, 28),
-				new Date(2019 - 1900, 5 - 1, 28) };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 1 - 1);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.set(Calendar.YEAR, 2019);
+		calendar2.set(Calendar.MONTH, 5 - 1);
+		calendar2.set(Calendar.DAY_OF_MONTH, 28 - 1);
+		Calendar calendar3 = Calendar.getInstance();
+		calendar3.set(Calendar.YEAR, 2019);
+		calendar3.set(Calendar.MONTH, 5 - 1);
+		calendar3.set(Calendar.DAY_OF_MONTH, 28 - 1);
+		Object[] values1 = { calendar1.getTime(), calendar2.getTime(), calendar3.getTime() };
 		TableInserts.insertPeriodicCustomersReport(con, values1);
 	}
 
@@ -685,92 +814,189 @@ public class DefaultTableInserts {
 			return;
 		// "FK_employeeID", "time", "action"
 		// sql adds 2:30 hours to input
-		Object[] values1 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 30),
-				"added person customer with ID = 111111111" };
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values1 = { "4", calendar1.getTime(), "added person customer with ID = 111111111" };
 		TableInserts.insertActivity(con, values1);
-		Object[] values2 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 29),
-				"added company customer with ID = 222222222" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 29);
+		Object[] values2 = { "4", calendar1.getTime(), "added company customer with ID = 222222222" };
 		TableInserts.insertActivity(con, values2);
-		Object[] values3 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 28),
-				"added car with registration plate = 9959599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 28);
+		Object[] values3 = { "4", calendar1.getTime(), "added car with registration plate = 9959599" };
 		TableInserts.insertActivity(con, values3);
-		Object[] values4 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 27),
-				"added car with registration plate = 9958599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 27);
+		Object[] values4 = { "4", calendar1.getTime(), "added car with registration plate = 9958599" };
 		TableInserts.insertActivity(con, values4);
-		Object[] values5 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 26),
-				"added car with registration plate = 9957599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 26);
+		Object[] values5 = { "4", calendar1.getTime(), "added car with registration plate = 9957599" };
 		TableInserts.insertActivity(con, values5);
-		Object[] values6 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 25),
-				"added car with registration plate = 9956599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 25);
+		Object[] values6 = { "4", calendar1.getTime(), "added car with registration plate = 9956599" };
 		TableInserts.insertActivity(con, values6);
-		Object[] values7 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 24),
-				"added car with registration plate = 9955599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 24);
+		Object[] values7 = { "4", calendar1.getTime(), "added car with registration plate = 9955599" };
 		TableInserts.insertActivity(con, values7);
-		Object[] values8 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 23),
-				"added car with registration plate = 9954599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 23);
+		Object[] values8 = { "4", calendar1.getTime(), "added car with registration plate = 9954599" };
 		TableInserts.insertActivity(con, values8);
-		Object[] values9 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 22),
-				"added car with registration plate = 9953599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 22);
+		Object[] values9 = { "4", calendar1.getTime(), "added car with registration plate = 9953599" };
 		TableInserts.insertActivity(con, values9);
-		Object[] values10 = { "4", new Date(2019 - 1900, 5 - 1, 28, 9 - 2, 00 - 21),
-				"added car with registration plate = 9951599" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 28);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 21);
+		Object[] values10 = { "4", calendar1.getTime(), "added car with registration plate = 9951599" };
 		TableInserts.insertActivity(con, values10);
-		Object[] values11 = { "1", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
-				"generated quarterly report for 2019 quarter 2" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 7 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 1);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values11 = { "1", calendar1.getTime(), "generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values11);
-		Object[] values12 = { "2", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
-				"generated quarterly report for 2019 quarter 2" };
+		Object[] values12 = { "2", calendar1.getTime(), "generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values12);
-		Object[] values13 = { "9", new Date(2019 - 1900, 7 - 1, 1, 9 - 2, 00 - 30),
-				"generated quarterly report for 2019 quarter 2" };
+		Object[] values13 = { "9", calendar1.getTime(), "generated quarterly report for 2019 quarter 2" };
 		TableInserts.insertActivity(con, values13);
-		Object[] values14 = { "3", new Date(2019 - 1900, 5 - 1, 7, 18 - 2, 30 - 30),
-				"initiated sale with salespatternid 1" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 18 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values14 = { "3", calendar1.getTime(), "initiated sale with salespatternid 1" };
 		TableInserts.insertActivity(con, values14);
-		Object[] values15 = { "3", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 00 - 30),
-				"initiated sale with salespatternid 1" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values15 = { "3", calendar1.getTime(), "initiated sale with salespatternid 1" };
 		TableInserts.insertActivity(con, values15);
-		Object[] values16 = { "5", new Date(2019 - 1900, 5 - 1, 14, 12 - 2, 00 - 30),
-				"declined rates update request 2" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 14);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values16 = { "5", calendar1.getTime(), "declined rates update request 2" };
 		TableInserts.insertActivity(con, values16);
-		Object[] values17 = { "5", new Date(2019 - 1900, 5 - 1, 5, 15 - 2, 00 - 30),
-				"approved rates update request 3" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 5);
+		calendar1.set(Calendar.HOUR, 15 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values17 = { "5", calendar1.getTime(), "approved rates update request 3" };
 		TableInserts.insertActivity(con, values17);
-		Object[] values18 = { "1", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
-				"updated minimum storage threshold" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 1);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values18 = { "1", calendar1.getTime(), "updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values18);
-		Object[] values19 = { "2", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
-				"updated minimum storage threshold" };
+		Object[] values19 = { "2", calendar1.getTime(), "updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values19);
-		Object[] values20 = { "9", new Date(2019 - 1900, 5 - 1, 1, 9 - 2, 00 - 30),
-				"updated minimum storage threshold" };
+		Object[] values20 = { "9", calendar1.getTime(), "updated minimum storage threshold" };
 		TableInserts.insertActivity(con, values20);
-		Object[] values21 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 30),
-				"applied supplyment of fuelstationorder 1" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 27);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values21 = { "6", calendar1.getTime(), "applied supplyment of fuelstationorder 1" };
 		TableInserts.insertActivity(con, values21);
-		Object[] values22 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 29),
-				"applied supplyment of fuelstationorder 2" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 27);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 29);
+		Object[] values22 = { "6", calendar1.getTime(), "applied supplyment of fuelstationorder 2" };
 		TableInserts.insertActivity(con, values22);
-		Object[] values23 = { "6", new Date(2019 - 1900, 5 - 1, 27, 9 - 2, 00 - 28),
-				"applied supplyment of fuelstationorder 3" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 27);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 28);
+		Object[] values23 = { "6", calendar1.getTime(), "applied supplyment of fuelstationorder 3" };
 		TableInserts.insertActivity(con, values23);
-		Object[] values24 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 30),
-				"applied supplyment of fuelstationorder 4" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 6);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values24 = { "7", calendar1.getTime(), "applied supplyment of fuelstationorder 4" };
 		TableInserts.insertActivity(con, values24);
-		Object[] values25 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 29),
-				"applied supplyment of fuelstationorder 5" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 6);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 29);
+		Object[] values25 = { "7", calendar1.getTime(), "applied supplyment of fuelstationorder 5" };
 		TableInserts.insertActivity(con, values25);
-		Object[] values26 = { "7", new Date(2019 - 1900, 6 - 1, 6, 9 - 2, 00 - 28),
-				"applied supplyment of fuelstationorder 6" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 6);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 28);
+		Object[] values26 = { "7", calendar1.getTime(), "applied supplyment of fuelstationorder 6" };
 		TableInserts.insertActivity(con, values26);
-		Object[] values27 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 30),
-				"applied supplyment of fuelstationorder 7" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 20);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 30);
+		Object[] values27 = { "8", calendar1.getTime(), "applied supplyment of fuelstationorder 7" };
 		TableInserts.insertActivity(con, values27);
-		Object[] values28 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 29),
-				"applied supplyment of fuelstationorder 8" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 20);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 29);
+		Object[] values28 = { "8", calendar1.getTime(), "applied supplyment of fuelstationorder 8" };
 		TableInserts.insertActivity(con, values28);
-		Object[] values29 = { "8", new Date(2019 - 1900, 6 - 1, 20, 9 - 2, 00 - 28),
-				"applied supplyment of fuelstationorder 9" };
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 6 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 20);
+		calendar1.set(Calendar.HOUR, 9 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 00 - 28);
+		Object[] values29 = { "8", calendar1.getTime(), "applied supplyment of fuelstationorder 9" };
 		TableInserts.insertActivity(con, values29);
 	}
 
@@ -779,32 +1005,34 @@ public class DefaultTableInserts {
 			return;
 		// "FK_registrationPlate", "FK_customerID", "FK_productInStationID",
 		// "fastFuelTime", "amountBought", "finalPrice"
-		Object[] values1 = { "9959599", "111111111", "4", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
-				455 / 3 / 3.5, 455 / 3 }; // Paz
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 30 - 30);
+		Object[] values1 = { "9959599", "111111111", "4", calendar1.getTime(), 455 / 3 / 3.5, 455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values1);
-		Object[] values2 = { "9957599", "222222222", "5", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30), 455 / 3 / 3,
-				455 / 3 }; // Paz
+		Object[] values2 = { "9957599", "222222222", "5", calendar1.getTime(), 455 / 3 / 3, 455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values2);
-		Object[] values3 = { "9951599", "222222222", "6", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
-				455 / 3 / 6.5, 455 / 3 }; // Paz
+		Object[] values3 = { "9951599", "222222222", "6", calendar1.getTime(), 455 / 3 / 6.5, 455 / 3 }; // Paz
 		TableInserts.insertFastFuel(con, values3);
-		Object[] values4 = { "9958599", "222222222", "1", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
-				875 / 3 / 3.5, 875 / 3 }; // Sonol
+		Object[] values4 = { "9958599", "222222222", "1", calendar1.getTime(), 875 / 3 / 3.5, 875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values4);
-		Object[] values5 = { "9955599", "222222222", "2", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30), 875 / 3 / 3,
-				875 / 3 }; // Sonol
+		Object[] values5 = { "9955599", "222222222", "2", calendar1.getTime(), 875 / 3 / 3, 875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values5);
-		Object[] values6 = { "9953599", "222222222", "3", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
-				875 / 3 / 6.5, 875 / 3 }; // Sonol
+		Object[] values6 = { "9953599", "222222222", "3", calendar1.getTime(), 875 / 3 / 6.5, 875 / 3 }; // Sonol
 		TableInserts.insertFastFuel(con, values6);
-		Object[] values7 = { "9954599", "222222222", "7", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 30 - 30),
-				1113 / 3 / 3.5, 1113 / 3 }; // Delek
+		Object[] values7 = { "9954599", "222222222", "7", calendar1.getTime(), 1113 / 3 / 3.5, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values7);
-		Object[] values8 = { "9957599", "222222222", "8", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 20 - 30),
-				1113 / 3 / 3, 1113 / 3 }; // Delek
+		calendar1.set(Calendar.YEAR, 2019);
+		calendar1.set(Calendar.MONTH, 5 - 1);
+		calendar1.set(Calendar.DAY_OF_MONTH, 7);
+		calendar1.set(Calendar.HOUR, 12 - 2 - 12);
+		calendar1.set(Calendar.MINUTE, 20 - 30);
+		Object[] values8 = { "9957599", "222222222", "8", calendar1.getTime(), 1113 / 3 / 3, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values8);
-		Object[] values9 = { "9953599", "222222222", "9", new Date(2019 - 1900, 5 - 1, 7, 12 - 2, 20 - 30),
-				1113 / 3 / 6.5, 1113 / 3 }; // Delek
+		Object[] values9 = { "9953599", "222222222", "9", calendar1.getTime(), 1113 / 3 / 6.5, 1113 / 3 }; // Delek
 		TableInserts.insertFastFuel(con, values9);
 	}
 

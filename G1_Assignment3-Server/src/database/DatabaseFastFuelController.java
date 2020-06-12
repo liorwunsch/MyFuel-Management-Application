@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 
 import entities.FastFuel;
@@ -195,7 +196,6 @@ public class DatabaseFastFuelController {
 	 * @param fastFuel
 	 * @return message of success or fail in fastFuel->function
 	 */
-	@SuppressWarnings("deprecation")
 	public FastFuel saveFastFuel(FastFuel fastFuel) {
 		try {
 			String regPlate = fastFuel.getRegistrationPlate();
@@ -228,8 +228,12 @@ public class DatabaseFastFuelController {
 
 			// "FK_registrationPlate", "FK_customerID", "FK_productInStationID",
 			// "fastFuelTime", "amountBought", "finalPrice"
-			fastFuelTime.setHours(fastFuelTime.getHours() - 2);
-			fastFuelTime.setMinutes(fastFuelTime.getMinutes() - 30);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(fastFuelTime);
+			calendar.add(Calendar.HOUR, -2);
+			calendar.add(Calendar.MINUTE, -30);
+			fastFuelTime = calendar.getTime();
+
 			Object[] values1 = { regPlate, customerID, productInStationID, fastFuelTime, amountBought, finalPrice };
 			TableInserts.insertFastFuel(connection, values1);
 
@@ -398,7 +402,7 @@ public class DatabaseFastFuelController {
 			rs.close();
 
 			// "orderTime", "amountBought", "address"
-			Object[] values1 = { fastFuelTime, threshold - capacity, address };
+			Object[] values1 = { fastFuelTime, (threshold - capacity) * 2, address };
 			TableInserts.insertOrders(connection, values1);
 
 			pStmt = this.connection.prepareStatement("SELECT MAX(ordersID) FROM orders");

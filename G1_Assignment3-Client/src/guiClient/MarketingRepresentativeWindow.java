@@ -293,6 +293,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openAddEditCustomer(ActionEvent event) {
+		this.sidebar_btn1.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.addEditCustomerPane.setVisible(true);
 		this.visibleNow = this.addEditCustomerPane;
@@ -422,6 +423,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openAddEditCar(ActionEvent event) {
+		this.sidebar_btn2.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.addEditCarPane.setVisible(true);
 		this.visibleNow = this.addEditCarPane;
@@ -605,6 +607,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openSetPurchasingProgram(ActionEvent event) {
+		this.sidebar_btn3.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.setPurchasingPane.setVisible(true);
 		this.visibleNow = this.setPurchasingPane;
@@ -687,6 +690,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openSetPricingModel(ActionEvent event) {
+		this.sidebar_btn4.setSelected(true);
 		this.visibleNow.setVisible(false);
 		this.pricingModelPane.setVisible(true);
 		this.visibleNow = this.pricingModelPane;
@@ -1091,7 +1095,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 	 * 
 	 * @param username
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void setUserComponents(String username) {
 		super.setUserComponents(username);
@@ -1114,16 +1118,19 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		final TableColumn<Car, String> regPlateColumn = (TableColumn<Car, String>) new TableColumn(
 				"Registration Plate");
 		regPlateColumn.setCellValueFactory((Callback) new PropertyValueFactory("registrationPlate"));
-		regPlateColumn.impl_setWidth(160);
+		regPlateColumn.setMinWidth(160);
+		regPlateColumn.setMaxWidth(160);
 		this.tvECACar.getColumns().add(regPlateColumn);
 		final TableColumn<Car, String> ownerColumn = (TableColumn<Car, String>) new TableColumn("Owner Name");
 		ownerColumn.setCellValueFactory((Callback) new PropertyValueFactory("ownerName"));
-		ownerColumn.impl_setWidth(180);
+		ownerColumn.setMinWidth(180);
+		ownerColumn.setMaxWidth(180);
 		this.tvECACar.getColumns().add(ownerColumn);
 		final TableColumn<Car, ProductName> productColumn = (TableColumn<Car, ProductName>) new TableColumn(
 				"Fuel Type");
 		productColumn.setCellValueFactory((Callback) new PropertyValueFactory("productName"));
-		productColumn.impl_setWidth(160);
+		productColumn.setMinWidth(160);
+		productColumn.setMaxWidth(160);
 		this.tvECACar.getColumns().add(productColumn);
 		tvECACar.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if (newSelection != null) {
