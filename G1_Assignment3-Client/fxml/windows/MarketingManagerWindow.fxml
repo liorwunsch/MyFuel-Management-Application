@@ -274,7 +274,7 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnHomeGenerateAnalysis" layoutX="275.0" layoutY="559.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Generate This Week's Analysis">
+                              <Button fx:id="btnHomeGenerateAnalysis" layoutX="275.0" layoutY="559.0" mnemonicParsing="false" onAction="#btnHomeGenerateAnalysisPressed" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Generate This Week's Analysis">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -694,7 +694,7 @@
                                     <Insets right="20.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="tfSCRNumberOf" alignment="CENTER" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="tfSCRNumberOf" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="20.0" />
                                  </GridPane.margin>
@@ -741,10 +741,10 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="tvSCRDetails" layoutX="70.0" layoutY="295.0" prefHeight="208.0" prefWidth="243.0">
+                        <TableView fx:id="tvSCRDetails" layoutX="70.0" layoutY="295.0" prefHeight="208.0" prefWidth="251.0">
                            <columns>
-                              <TableColumn prefWidth="124.0" text="Customer ID" />
-                              <TableColumn prefWidth="119.0" text="Paid" />
+                              <TableColumn prefWidth="132.0" text="Customer ID" />
+                              <TableColumn prefWidth="118.0" text="Paid" />
                            </columns>
                         </TableView>
                      </children>

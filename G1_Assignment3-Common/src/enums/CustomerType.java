@@ -14,4 +14,12 @@ public enum CustomerType {
 			return "Company";
 		}
 	};
+
+	public static double getRank(String customerType) {
+		if (customerType.equals("Person"))
+			return 5;
+		else if (customerType.equals("Company"))
+			return 10;
+		return 0;
+	}
 }

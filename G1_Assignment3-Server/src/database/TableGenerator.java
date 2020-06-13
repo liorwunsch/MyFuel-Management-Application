@@ -517,8 +517,7 @@ public class TableGenerator { // creating the tables if they are not exists
 	private static void generateSale(Connection con) throws SQLException {
 		String tableName = "sale";
 		String values = "( " + " saleID INT NOT NULL AUTO_INCREMENT ," + " FK_salesPatternID int NOT NULL ,"
-				+ " active varchar(1)  NOT NULL ," + " startTime TIMESTAMP NOT NULL ," + " endTime TIMESTAMP NOT NULL ,"
-				+ " PRIMARY KEY (saleID) ,"
+				+ " startTime TIMESTAMP NOT NULL ," + " endTime TIMESTAMP NOT NULL ," + " PRIMARY KEY (saleID) ,"
 				// fk1
 				+ " KEY sale_ibfk_1 (FK_salesPatternID) ," + " CONSTRAINT sale_ibfk_1 FOREIGN KEY (FK_salesPatternID) "
 				+ " REFERENCES sales_pattern (salesPatternID) ON DELETE CASCADE ON UPDATE CASCADE )";

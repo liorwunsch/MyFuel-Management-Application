@@ -50,12 +50,12 @@ public abstract class EmployeeWindow extends UserWindow {
 
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
-		super.callAfterMessage(lastMsgFromServer);
-
 		if (lastMsgFromServer instanceof ActivityList) {
 			ActivityList activityList = (ActivityList) lastMsgFromServer;
 			handleGetActivityListFromServer(activityList);
+			return;
 		}
+		super.callAfterMessage(lastMsgFromServer);
 	}
 
 	/**

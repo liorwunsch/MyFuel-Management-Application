@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -141,16 +142,27 @@ public class DatabaseFastFuelController {
 			// 1 - check if there is active sale on fuelType
 			boolean activeSaleFlag = false;
 			int saleID = -1, salesPatternID = -1;
-			pStmt = this.connection.prepareStatement("SELECT saleID, FK_salesPatternID FROM sale WHERE active = 1");
+			pStmt = this.connection.prepareStatement("SELECT saleID, FK_salesPatternID, startTime, endTime FROM sale");
 			rs = pStmt.executeQuery();
 			if (!rs.next()) {
 				activeSaleFlag = false;
-			} else {
-				activeSaleFlag = true;
+			}
+			do {
 				saleID = rs.getInt(1);
 				salesPatternID = rs.getInt(2);
-			}
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date startTime = formatter.parse(rs.getString(3));
+				Date endTime = formatter.parse(rs.getString(4));
+				if (startTime.compareTo(new Date()) <= 0 && endTime.compareTo(new Date()) >= 0) {
+					activeSaleFlag = true;
+					break;
+				}
+			} while (rs.next());
 			rs.close();
+			if (activeSaleFlag == false) {
+				saleID = -1;
+				salesPatternID = -1;
+			}
 
 			double salesDiscount = 0;
 			// 2 - yes? save salesDiscount

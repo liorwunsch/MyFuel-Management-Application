@@ -221,7 +221,7 @@ public class DefaultTableInserts {
 	private static void insertDefaultSale(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "sale") == false)
 			return;
-		// "FK_salesPatternID", "active", "startTime", "endTime"
+		// "FK_salesPatternID", "startTime", "endTime"
 		Calendar calendar1 = Calendar.getInstance();
 		calendar1.set(Calendar.YEAR, 2019);
 		calendar1.set(Calendar.MONTH, 5 - 1);
@@ -234,7 +234,7 @@ public class DefaultTableInserts {
 		calendar2.set(Calendar.DAY_OF_MONTH, 7);
 		calendar2.set(Calendar.HOUR, 19 - 2 - 12);
 		calendar2.set(Calendar.MINUTE, 00 - 30);
-		Object[] values1 = { "1", false, calendar1.getTime(), calendar2.getTime() };
+		Object[] values1 = { "1", calendar1.getTime(), calendar2.getTime() };
 		TableInserts.insertSale(con, values1);
 		calendar1.set(Calendar.YEAR, 2019);
 		calendar1.set(Calendar.MONTH, 5 - 1);
@@ -246,7 +246,7 @@ public class DefaultTableInserts {
 		calendar2.set(Calendar.DAY_OF_MONTH, 14);
 		calendar2.set(Calendar.HOUR, 13 - 2 - 12);
 		calendar2.set(Calendar.MINUTE, 00 - 30);
-		Object[] values2 = { "2", false, calendar1.getTime(), calendar2.getTime() };
+		Object[] values2 = { "2", calendar1.getTime(), calendar2.getTime() };
 		TableInserts.insertSale(con, values2);
 	}
 

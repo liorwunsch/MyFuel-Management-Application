@@ -8,7 +8,7 @@ import entities.MarketingManager;
 
 /**
  * 
- * @author Elroy
+ * @author Elroy, Lior
  *
  */
 public class MarketingManagerController extends MarketingDepWorkerController {
@@ -43,7 +43,7 @@ public class MarketingManagerController extends MarketingDepWorkerController {
 				logged = true;
 			super.handleMessageFromClientUI(message);
 
-		} else if (message.startsWith("create sale pattern")) {
+		} else if (message.startsWith("create sale pattern") || message.equals("genAnalysis")) {
 			super.handleDepWorkerRequest(message);
 
 		} else {

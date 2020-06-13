@@ -336,7 +336,7 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnHomeGenerateAnalysis" layoutX="275.0" layoutY="598.0" mnemonicParsing="false" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Generate This Week's Analysis">
+                              <Button fx:id="btnHomeGenerateAnalysis" layoutX="275.0" layoutY="598.0" mnemonicParsing="false" onAction="#btnHomeGenerateAnalysisPressed" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Generate This Week's Analysis">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

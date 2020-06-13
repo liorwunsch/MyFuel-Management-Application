@@ -47,7 +47,7 @@ public class MarketingRepresentativeController extends MarketingDepWorkerControl
 		String[] splitMsg = message.split(" ");
 
 		if (message.startsWith("create sale pattern") || message.startsWith("pull ranking sheets")
-				|| message.startsWith("pull product rates")) {
+				|| message.startsWith("pull product rates") || message.equals("genAnalysis")) {
 			super.handleDepWorkerRequest(message);
 
 		} else {

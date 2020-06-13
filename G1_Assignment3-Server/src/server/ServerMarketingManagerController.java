@@ -60,9 +60,6 @@ public class ServerMarketingManagerController {
 			Date date = new Date();
 			Object result = null;
 			if (object instanceof MarketingManager) {
-
-//				String type = "";
-
 				MarketingManager manager = (MarketingManager) object;
 				String function = manager.getFunction();
 
@@ -77,35 +74,33 @@ public class ServerMarketingManagerController {
 								formatter.format(date) + " : " + client + " : request pull of sales patterns ");
 						this.lock.notifyAll();
 					}
-
 					result = this.databaseController.getAllSalePatterns();
 
-				}
+				} else if (function.startsWith("genAnalysis")) {
+					synchronized (this.lock) {
+						this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : generate analysis ");
+						this.lock.notifyAll();
+					}
+					result = this.databaseController.generateAnalysis();
 
-				else if (function.startsWith("pull product in sales patterns")) {
+				} else if (function.startsWith("pull product in sales patterns")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
 								formatter.format(date) + " : " + client + " : pull product in sales patterns ");
 						this.lock.notifyAll();
 					}
-
 					result = this.databaseController.getAllProductInSalePatterns();
 
-				}
-
-				else if (function.startsWith("check active sales")) {
+				} else if (function.startsWith("check active sales")) {
 					String[] msgarr = function.split(" ");
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(formatter.format(date) + " : " + client
 								+ " : request check active sales for paternID '" + msgarr[3] + "'");
 						this.lock.notifyAll();
 					}
-
 					result = this.databaseController.checkActiveOfSale(Integer.parseInt(msgarr[3]));
 
-				}
-
-				else if (function.startsWith("insert sale")) {
+				} else if (function.startsWith("insert sale")) {
 					String[] msgarr = function.split(" ");
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(formatter.format(date) + " : " + client
@@ -116,11 +111,9 @@ public class ServerMarketingManagerController {
 					for (int i = 0; i < values.length; i++) {
 						values[i] = Integer.parseInt(msgarr[2 + i]);
 					}
-
 					result = this.databaseController.insertNewSale(values);
-				}
 
-				else if (function.startsWith("add activity")) {
+				} else if (function.startsWith("add activity")) {
 					String[] msgarr = function.split(" ");
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
@@ -147,20 +140,15 @@ public class ServerMarketingManagerController {
 
 					result = this.databaseController.insertNewActivity(username, date1, sb.toString());
 
-				}
-
-				else if (function.startsWith("pull ranking sheets")) {
+				} else if (function.startsWith("pull ranking sheets")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
 								formatter.format(date) + " : " + client + " : request pull ranking sheets ");
 						this.lock.notifyAll();
 					}
-
 					result = this.databaseController.getAllRankignSheets();
 
-				}
-
-				else if (function.startsWith("create sale pattern")) {
+				} else if (function.startsWith("create sale pattern")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
 								formatter.format(date) + " : " + client + " : request create sale pattern ");
@@ -173,20 +161,15 @@ public class ServerMarketingManagerController {
 
 					result = this.databaseController.createNewSalePatternID(duration, productInSP);
 
-				}
-
-				else if (function.startsWith("pull product rates")) {
+				} else if (function.startsWith("pull product rates")) {
 					synchronized (this.lock) {
 						this.serverWindow
 								.updateArea(formatter.format(date) + " : " + client + " : request pull product rates ");
 						this.lock.notifyAll();
 					}
-
 					result = this.databaseController.getAllProductRanks();
 
-				}
-
-				else if (function.startsWith("create new PRUR")) {
+				} else if (function.startsWith("create new PRUR")) {
 					synchronized (this.lock) {
 						this.serverWindow
 								.updateArea(formatter.format(date) + " : " + client + " : request create new PRUR ");
@@ -210,9 +193,7 @@ public class ServerMarketingManagerController {
 
 					result = this.databaseController.getSaleList();
 
-				}
-
-				else if (function.startsWith("generate SaleCommentReport")) {
+				} else if (function.startsWith("generate SaleCommentReport")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
 								formatter.format(date) + " : " + client + " : request generate Sale Comment Report");
@@ -222,9 +203,7 @@ public class ServerMarketingManagerController {
 
 					result = this.databaseController.generateSaleCommentReport(Integer.parseInt(msgarr[2]));
 
-				}
-
-				else if (function.startsWith("generate periodic report")) {
+				} else if (function.startsWith("generate periodic report")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(
 								formatter.format(date) + " : " + client + " : request generate Periodic Report");
@@ -245,9 +224,8 @@ public class ServerMarketingManagerController {
 					System.out.println(toDate.toString());
 
 					result = this.databaseController.generatePeriodicReport(fromDate, toDate);
-				}
 
-				else if (function.startsWith("check sale range")) {
+				} else if (function.startsWith("check sale range")) {
 					synchronized (this.lock) {
 						this.serverWindow.updateArea(formatter.format(date) + " : " + client
 								+ " : request check sale range for initiating sale");
@@ -269,7 +247,6 @@ public class ServerMarketingManagerController {
 					System.out.println(endDate.toString());
 
 					result = this.databaseController.checkSaleRange(startDate, endDate);
-
 				}
 
 				//////////////////////////////////////////////////////////////////////////////////////////////////////////

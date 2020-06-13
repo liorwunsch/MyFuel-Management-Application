@@ -95,7 +95,6 @@ public class DatabaseMarketingRepresentativeController {
 					.prepareStatement("SELECT FK_username FROM customer WHERE customerID = ?");
 			pStmt.setString(1, customerID);
 			ResultSet rs1 = pStmt.executeQuery();
-
 			if (!rs1.next()) {
 				System.out.println("deleteCustomer !rs1.next()");
 				return false;
@@ -119,6 +118,17 @@ public class DatabaseMarketingRepresentativeController {
 			pStmt = this.connection.prepareStatement("DELETE FROM user WHERE username = ?");
 			pStmt.setString(1, username);
 			pStmt.executeUpdate();
+
+			pStmt = this.connection.prepareStatement("SELECT * FROM ranking_sheet WHERE FK_customerID = ?");
+			pStmt.setString(1, customerID);
+			rs1 = pStmt.executeQuery();
+			if (!rs1.next()) { // no ranking sheet
+			} else { // ranking sheet exists
+				pStmt = this.connection.prepareStatement("DELETE FROM ranking_sheet WHERE FK_customerID = ?");
+				pStmt.setString(1, customerID);
+				pStmt.executeUpdate();
+			}
+			rs1.close();
 
 			return true;
 
@@ -464,7 +474,6 @@ public class DatabaseMarketingRepresentativeController {
 					"SELECT registrationPlate, FK_productName, ownerName FROM car WHERE FK_customerID = ? AND deleted = 0");
 			pStmt.setString(1, customerID);
 			ResultSet rs2 = pStmt.executeQuery();
-
 			if (!rs2.next()) {
 				System.out.println("getCustomerCars nocars");
 				return carList;

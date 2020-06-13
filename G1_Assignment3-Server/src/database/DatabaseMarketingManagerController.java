@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,9 +28,15 @@ import entities.SaleCommentsReportList;
 import entities.SalesList;
 import entities.SalesPattern;
 import entities.SalesPatternList;
+import enums.CustomerType;
 import enums.FuelCompanyName;
 import enums.ProductName;
 
+/**
+ * 
+ * @author Elroy, Lior
+ *
+ */
 public class DatabaseMarketingManagerController {
 	private static DatabaseMarketingManagerController instance;
 
@@ -56,8 +63,8 @@ public class DatabaseMarketingManagerController {
 	//////////// functions//////////////////
 
 	/**
-	 * @return list of the sales patterns
-	 * @throws SQLException
+	 * 
+	 * @return SalesPatternList
 	 */
 	public SalesPatternList getAllSalePatterns() {
 		List<SalesPattern> list = new ArrayList<>();
@@ -74,7 +81,7 @@ public class DatabaseMarketingManagerController {
 			salesPatternList.setList(list);
 			rs.close();
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 		return salesPatternList;
 	}
@@ -82,7 +89,7 @@ public class DatabaseMarketingManagerController {
 	/**
 	 * method that pulls all products that are in a Sale Pattern
 	 * 
-	 * @return
+	 * @return ProductInSalePatternList
 	 */
 	public ProductInSalePatternList getAllProductInSalePatterns() {
 		List<ProductInSalesPattern> list = new ArrayList<>();
@@ -120,7 +127,7 @@ public class DatabaseMarketingManagerController {
 	 * method that check if a sale with required sale pattern id is active or not
 	 * 
 	 * @param salePatternID
-	 * @return
+	 * @return String
 	 */
 	public String checkActiveOfSale(int salePatternID) {
 		List<String> productNames = new ArrayList<>();
@@ -134,20 +141,24 @@ public class DatabaseMarketingManagerController {
 				while (rs.next()) {
 					int num = rs.getInt(1);
 					PreparedStatement pStmt2 = this.connection
-							.prepareStatement("SELECT COUNT(*) FROM sale WHERE active=1 AND FK_salesPatternID=?");
+							.prepareStatement("SELECT startTime, endTime FROM sale WHERE FK_salesPatternID=?");
 					pStmt2.setInt(1, num);
 					ResultSet rs2 = pStmt2.executeQuery();
 					if (rs2.next()) {
-						if (rs2.getInt(1) != 0) {
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						Date startTime = formatter.parse(rs2.getString(1));
+						Date endTime = formatter.parse(rs2.getString(2));
+						if (startTime.compareTo(new Date()) <= 0 && endTime.compareTo(new Date()) >= 0) {
 							return "active sale " + pName;
 						}
-
 					}
 					rs2.close();
 				}
 			}
-
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		return "inactive sale";
 	}
@@ -156,7 +167,7 @@ public class DatabaseMarketingManagerController {
 	 * method that creats a new row of sale
 	 * 
 	 * @param values
-	 * @return
+	 * @return String
 	 */
 	public String insertNewSale(int[] values) {
 		int salePatternID = values[0];
@@ -178,7 +189,8 @@ public class DatabaseMarketingManagerController {
 
 		System.out.println(calendar1.getTime() + ", " + calendar2.getTime());
 
-		Object[] values2 = { salePatternID, 0, calendar1.getTime(), calendar2.getTime() };
+		// "FK_salesPatternID", "startTime", "endTime"
+		Object[] values2 = { salePatternID, calendar1.getTime(), calendar2.getTime() };
 		try {
 			flag = TableInserts.insertSale(connection, values2);
 		} catch (Exception e) {
@@ -196,7 +208,7 @@ public class DatabaseMarketingManagerController {
 	 * @param employeeID
 	 * @param date
 	 * @param action
-	 * @return
+	 * @return String
 	 */
 	public String insertNewActivity(String username, Date date, String action) {
 		int flag;
@@ -219,7 +231,7 @@ public class DatabaseMarketingManagerController {
 	/**
 	 * method that pulls all ranking sheets from data base
 	 * 
-	 * @return
+	 * @return RankingSheetList
 	 */
 	public RankingSheetList getAllRankingSheets() {
 		List<RankingSheet> list = new ArrayList<>();
@@ -246,9 +258,8 @@ public class DatabaseMarketingManagerController {
 	 * 
 	 * @param duration
 	 * @param productInSP
-	 * @return
+	 * @return String
 	 */
-
 	public String createNewSalePatternID(int duration, String[] productInSP) {
 		String result = "failed to create sale pattern";
 		try {
@@ -282,7 +293,7 @@ public class DatabaseMarketingManagerController {
 	/**
 	 * method that pulls all Product Ranks
 	 * 
-	 * @return
+	 * @return ProductRateList
 	 */
 	public ProductRateList getAllProductRanks() {
 		List<Product> list = new ArrayList<>();
@@ -310,7 +321,7 @@ public class DatabaseMarketingManagerController {
 	 * @param gasolineRank
 	 * @param motorRank
 	 * @param homeRank
-	 * @return
+	 * @return String
 	 */
 	public String createNewPRUR(double dieselRank, double gasolineRank, double motorRank, double homeRank) {
 		int updateRateRequestID;
@@ -356,7 +367,7 @@ public class DatabaseMarketingManagerController {
 	/**
 	 * method that pulls sale products data from sql
 	 * 
-	 * @return
+	 * @return SalesList
 	 */
 	public SalesList getSaleList() {
 		List<RowInSaleCommentsReportTable> list = new ArrayList<>();
@@ -367,8 +378,7 @@ public class DatabaseMarketingManagerController {
 			stmt = connection.createStatement();
 			stmt2 = connection.createStatement();
 			ResultSet rs2 = null;
-			ResultSet rs = stmt
-					.executeQuery("SELECT saleID,FK_salesPatternID,startTime,endTime FROM sale WHERE active=0");
+			ResultSet rs = stmt.executeQuery("SELECT saleID,FK_salesPatternID,startTime,endTime FROM sale");
 			while (rs.next()) {
 				RowInSaleCommentsReportTable row = new RowInSaleCommentsReportTable();
 				int saleID = rs.getInt(1);
@@ -422,7 +432,7 @@ public class DatabaseMarketingManagerController {
 	 * method that generate a new commmon report
 	 * 
 	 * @param saleID
-	 * @return
+	 * @return SaleCommentsReportList
 	 */
 	public SaleCommentsReportList generateSaleCommentReport(int saleID) {
 		SaleCommentsReportList report = new SaleCommentsReportList();
@@ -494,7 +504,7 @@ public class DatabaseMarketingManagerController {
 	 * 
 	 * @param fromDate
 	 * @param toDate
-	 * @return
+	 * @return PeriodicReportList
 	 */
 	public PeriodicReportList generatePeriodicReport(Date fromDate, Date toDate) { // here
 		PeriodicReportList periodicReport = new PeriodicReportList();
@@ -529,7 +539,7 @@ public class DatabaseMarketingManagerController {
 			}
 			rs = stmt.executeQuery("SELECT * FROM customer_bought_from_company");
 			while (rs.next()) {
-				Date datePurchase = rs.getDate(3);
+				Date datePurchase = formatter.parse(rs.getString(3));
 				Date from2Date = new java.sql.Date(fromDate.getTime());
 				Date to2Date = new java.sql.Date(toDate.getTime());
 				if (datePurchase.compareTo(from2Date) >= 0 && datePurchase.compareTo(to2Date) <= 0) {
@@ -540,8 +550,8 @@ public class DatabaseMarketingManagerController {
 						company = FuelCompanyName.Delek;
 					if (rs.getString(2).equals("Sonol"))
 						company = FuelCompanyName.Sonol;
-					customerBoughtFromCompany = new CustomerBoughtFromCompany(rs.getString(1), company, rs.getDate(3),
-							rs.getDouble(4), rs.getDouble(5));
+					customerBoughtFromCompany = new CustomerBoughtFromCompany(rs.getString(1), company,
+							formatter.parse(rs.getString(3)), rs.getDouble(4), rs.getDouble(5));
 					customerList.add(customerBoughtFromCompany);
 				}
 			}
@@ -567,7 +577,7 @@ public class DatabaseMarketingManagerController {
 	 * 
 	 * @param startDate
 	 * @param endDate
-	 * @return
+	 * @return String
 	 */
 	public String checkSaleRange(Date startDate, Date endDate) {
 		PreparedStatement pStmt = null;
@@ -593,10 +603,93 @@ public class DatabaseMarketingManagerController {
 			return "ERROR range";
 		}
 		return "sale not in range";
-
 	}
 
-	///////////////////////////////////////////
+	/**
+	 * generate or update customers' ranking sheets
+	 * 
+	 * @return string of success or fail
+	 */
+	public String generateAnalysis() {
+		try {
+			ArrayList<String> customerIDs = getAllCustomerIDs();
+			if (customerIDs == null) {
+				System.out.println("generateAnalysis - customerIDs is null");
+				return "genAnalysis fail";
+			}
+
+			ResultSet rs;
+			PreparedStatement pStmt;
+			for (String customerID : customerIDs) {
+				pStmt = this.connection.prepareStatement("SELECT COUNT(*) FROM fast_fuel WHERE FK_customerID = ?");
+				pStmt.setString(1, customerID);
+				rs = pStmt.executeQuery();
+				int fuelingHours;
+				if (!rs.next()) {
+					fuelingHours = 0;
+				}
+				fuelingHours = rs.getInt(1);
+				rs.close();
+				double fuelingHoursRank = (fuelingHours > 50) ? 10 : ((fuelingHours / 50) * 10);
+
+				pStmt = this.connection
+						.prepareStatement("SELECT COUNT(DISTINCT FK_productName) FROM car WHERE FK_customerID = ?");
+				pStmt.setString(1, customerID);
+				rs = pStmt.executeQuery();
+				int fuelTypes;
+				if (!rs.next()) {
+					fuelTypes = 0;
+				}
+				fuelTypes = rs.getInt(1);
+				rs.close();
+				double fuelTypesRank = (fuelTypes / 3) * 10;
+
+				pStmt = this.connection.prepareStatement("SELECT customerType FROM customer WHERE customerID = ?");
+				pStmt.setString(1, customerID);
+				rs = pStmt.executeQuery();
+				double customerTypeRank;
+				if (!rs.next()) {
+					customerTypeRank = 0;
+				}
+				String customerType = rs.getString(1);
+				rs.close();
+				customerTypeRank = CustomerType.getRank(customerType);
+
+				Calendar calendar1 = Calendar.getInstance();
+//				calendar1.set(Calendar.MONTH, 12 - 1);
+
+				pStmt = this.connection.prepareStatement("SELECT * FROM ranking_sheet WHERE FK_customerID = ?");
+				pStmt.setString(1, customerID);
+				rs = pStmt.executeQuery();
+				if (!rs.next()) { // ranking sheet doesn't already exist
+					// "FK_customerID", "customerTypeRank", "fuelingHoursRank", "fuelTypesRank",
+					// "updatedForDate"
+					Object[] values1 = { customerID, customerTypeRank, fuelingHoursRank, fuelTypesRank,
+							calendar1.getTime() };
+					TableInserts.insertRankingSheet(connection, values1);
+				} else {
+					pStmt = this.connection.prepareStatement(
+							"UPDATE ranking_sheet SET customerTypeRank = ?, fuelingHoursRank = ?, fuelTypesRank = ?, updatedForDate = ? WHERE FK_customerID = ?");
+					pStmt.setDouble(1, customerTypeRank);
+					pStmt.setDouble(2, fuelingHoursRank);
+					pStmt.setDouble(3, fuelTypesRank);
+					pStmt.setDate(4, new java.sql.Date(calendar1.getTime().getTime()));
+					pStmt.setString(5, customerID);
+					pStmt.executeUpdate();
+				}
+				rs.close();
+			}
+
+			return "genAnalysis success";
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "genAnalysis fail";
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "genAnalysis fail";
+		}
+	}
 
 	////////// private functions ///////////
 
@@ -604,7 +697,7 @@ public class DatabaseMarketingManagerController {
 	 * merhod that pulls a list of product names from a required salePatternID
 	 * 
 	 * @param salePatternID
-	 * @return
+	 * @return List of String
 	 */
 	private List<String> getProductNameFromSP(int salePatternID) {
 		List<String> productNames = new ArrayList<>();
@@ -628,7 +721,7 @@ public class DatabaseMarketingManagerController {
 	 * method that gets a ProductName enum from a string
 	 * 
 	 * @param name
-	 * @return
+	 * @return ProductName
 	 */
 	private ProductName getProductName(String name) {
 		if (name.equals("Gasoline"))
@@ -644,7 +737,7 @@ public class DatabaseMarketingManagerController {
 	 * method that will return the employee id of the username
 	 * 
 	 * @param username
-	 * @return
+	 * @return int
 	 */
 	private int getEmployeeID(String username) {
 		int result = -1;
@@ -658,11 +751,39 @@ public class DatabaseMarketingManagerController {
 			}
 			rs.close();
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 		return result;
 	}
 
-	////////////////////////////////////////
+	/**
+	 * method that will return all the customer ids that are not deleted in the
+	 * database
+	 * 
+	 * @return ArrayList of String
+	 */
+	private ArrayList<String> getAllCustomerIDs() {
+		ArrayList<String> customerIDList = new ArrayList<String>();
+		try {
+			PreparedStatement pStmt = this.connection
+					.prepareStatement("SELECT customerID FROM customer WHERE deleted = 0");
+			ResultSet rs2 = pStmt.executeQuery();
+			if (!rs2.next()) {
+				System.out.println("no customers");
+				return customerIDList;
+			}
+
+			do {
+				customerIDList.add(rs2.getString(1));
+			} while (rs2.next());
+			rs2.close();
+
+			return customerIDList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

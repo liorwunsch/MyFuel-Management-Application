@@ -16,7 +16,6 @@ public class Sale implements Serializable {
 	private int salesPatternID;
 
 	// fields
-	private boolean active;
 	private Date startTime;
 	private Date endTime;
 
@@ -24,15 +23,12 @@ public class Sale implements Serializable {
 	 * w/o saleID auto-inc
 	 * 
 	 * @param salesPatternID
-	 * @param active
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Sale(int salesPatternID, boolean active, Date startTime, Date endTime) {
+	public Sale(int salesPatternID, Date startTime, Date endTime) {
 		super();
-
 		this.salesPatternID = salesPatternID;
-		this.active = active;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
@@ -41,15 +37,13 @@ public class Sale implements Serializable {
 	 * 
 	 * @param saleID
 	 * @param salesPatternID
-	 * @param active
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Sale(int saleID, int salesPatternID, boolean active, Date startTime, Date endTime) {
+	public Sale(int saleID, int salesPatternID, Date startTime, Date endTime) {
 		super();
 		this.saleID = saleID;
 		this.salesPatternID = salesPatternID;
-		this.active = active;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
@@ -64,14 +58,6 @@ public class Sale implements Serializable {
 
 	public void setSalesPatternID(int salesPatternID) {
 		this.salesPatternID = salesPatternID;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public Date getStartTime() {
@@ -95,8 +81,7 @@ public class Sale implements Serializable {
 		String str = "Sale [";
 		if (saleID != null)
 			str += "saleID=" + saleID + ", ";
-		str += "salesPatternID=" + salesPatternID + ", active=" + active + ", startTime=" + startTime + ", endTime="
-				+ endTime + "]";
+		str += "salesPatternID=" + salesPatternID + ", startTime=" + startTime + ", endTime=" + endTime + "]";
 		return str;
 	}
 

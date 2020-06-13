@@ -171,7 +171,7 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] Sale() {
-		return new String[] { "FK_salesPatternID", "active", "startTime", "endTime" };
+		return new String[] { "FK_salesPatternID", "startTime", "endTime" };
 	}
 
 	public static String[] SaleCommentsReport() {

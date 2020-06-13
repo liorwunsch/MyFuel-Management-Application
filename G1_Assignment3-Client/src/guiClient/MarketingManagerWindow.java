@@ -51,7 +51,7 @@ import javafx.stage.Window;
 
 /**
  * 
- * @author Elroy
+ * @author Elroy, Lior
  *
  */
 public class MarketingManagerWindow extends MarketingDepWorkerWindow {
@@ -246,7 +246,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	}
 
 	@Override
-	public void callAfterMessage(Object lastMsgFromServer) {// hello
+	public void callAfterMessage(Object lastMsgFromServer) {
 		/**
 		 * get sales patterns and product in sale pattern and than sert it to the table
 		 * view
@@ -368,7 +368,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				String[] msg = message.split(" ");
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Initiate Sale");
-				alert.setContentText("There is a sale actie with product = " + msg[2]);
+				alert.setContentText("There is a sale active with product = " + msg[2]);
 				alert.show();
 			}
 
@@ -421,7 +421,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				addActivity("Update Prodcut Rate Reuest ID= " + str[2]); // add activity
 			}
 		}
-
 		super.callAfterMessage(lastMsgFromServer);
 	}
 
@@ -462,10 +461,9 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	/**
 	 * Initiate sale
 	 */
-	public void btnISInitiateClicked() { // elroye
-		if (checkTimeByClock(tfISTime) && checkDateIsCorrect(dpISDate)
-				&& checkIfRowSelectedFromTable(tvISSalesPattern)) { // check time does not work
-			// enter stuff here
+	public void btnISInitiateClicked() {
+		if (checkTimeByClock(tfISTime, dpISDate) && checkDateIsCorrect(dpISDate)
+				&& checkIfRowSelectedFromTable(tvISSalesPattern)) {
 			checkSaleInDates();
 		}
 	}
@@ -560,44 +558,42 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		btnGMRViewReport.setOpacity(1);
 	}
 
-	public void btnGMRViewReport2Clicked() { // here
-		// do stuff
+	public void btnGMRViewReport2Clicked() {
 		if (checkDatePickerHasValue(dpGMRStartDate) == true && checkDatePickerHasValue(dpGMREndDate) == true) {
-			LocalDate localDate = dpGMRStartDate.getValue();
-			Date startDate = java.sql.Date.valueOf(localDate);
+			LocalDate ld1 = dpGMRStartDate.getValue();
+			Date startDate = java.sql.Date.valueOf(ld1);
 
-			localDate = dpGMREndDate.getValue();
-			Date endDate = java.sql.Date.valueOf(localDate);
+			LocalDate ld2 = dpGMREndDate.getValue();
+			Date endDate = java.sql.Date.valueOf(ld2);
 
 			if (startDate.compareTo(endDate) > 0) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText("'Start Date' is bigger than 'End Date'");
-				alert.show();
+				openErrorAlert("Error", "'Start Date' is bigger than 'End Date'");
 				dpGMRStartDate.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-			} else {
-				dpGMRStartDate.setStyle("-fx-border-style: none;");
-				// do what need to be done
-
-				Calendar calendar1 = Calendar.getInstance();
-				LocalDate ld1 = this.dpGMRStartDate.getValue();
-				Date ldDate1 = java.sql.Date.valueOf(ld1);
-				calendar1.setTime(ldDate1);
-				Calendar calendar2 = Calendar.getInstance();
-				LocalDate ld2 = this.dpGMREndDate.getValue();
-				Date ldDate2 = java.sql.Date.valueOf(ld2);
-				calendar2.setTime(ldDate2);
-
-				System.out.println(
-						"generate periodic report " + calendar1.get(Calendar.YEAR) + " " + calendar1.get(Calendar.MONTH)
-								+ " " + calendar1.get(Calendar.DAY_OF_MONTH) + " " + calendar2.get(Calendar.YEAR) + " "
-								+ calendar2.get(Calendar.MONTH) + " " + calendar2.get(Calendar.DAY_OF_MONTH));
-				this.sendToClientController(
-						"generate periodic report " + calendar1.get(Calendar.YEAR) + " " + calendar1.get(Calendar.MONTH)
-								+ " " + calendar1.get(Calendar.DAY_OF_MONTH) + " " + calendar2.get(Calendar.YEAR) + " "
-								+ calendar2.get(Calendar.MONTH) + " " + calendar2.get(Calendar.DAY_OF_MONTH));
-				periodicReportPane.setVisible(true);
-				generateReportPane.setVisible(false);
+				return;
 			}
+			if (endDate.compareTo(new Date()) > 0) {
+				openErrorAlert("Error", "'End Date' is maximum today");
+				dpGMREndDate.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+				return;
+			}
+
+			dpGMRStartDate.setStyle("-fx-border-style: none;");
+			dpGMREndDate.setStyle("-fx-border-style: none;");
+			Calendar calendar1 = Calendar.getInstance();
+			calendar1.setTime(startDate);
+			Calendar calendar2 = Calendar.getInstance();
+			calendar2.setTime(endDate);
+
+			System.out.println(
+					"generate periodic report " + calendar1.get(Calendar.YEAR) + " " + calendar1.get(Calendar.MONTH)
+							+ " " + calendar1.get(Calendar.DAY_OF_MONTH) + " " + calendar2.get(Calendar.YEAR) + " "
+							+ calendar2.get(Calendar.MONTH) + " " + calendar2.get(Calendar.DAY_OF_MONTH));
+			this.sendToClientController(
+					"generate periodic report " + calendar1.get(Calendar.YEAR) + " " + calendar1.get(Calendar.MONTH)
+							+ " " + calendar1.get(Calendar.DAY_OF_MONTH) + " " + calendar2.get(Calendar.YEAR) + " "
+							+ calendar2.get(Calendar.MONTH) + " " + calendar2.get(Calendar.DAY_OF_MONTH));
+			periodicReportPane.setVisible(true);
+			generateReportPane.setVisible(false);
 		}
 
 	}
@@ -629,7 +625,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		// do stuff
 		periodicReportPane.setVisible(false);
 		generateReportPane.setVisible(true);
-
 	}
 
 	public void btnPCRCloseHover() {
@@ -780,16 +775,34 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	 * @param tfISTime2
 	 * @return
 	 */
-	private boolean checkTimeByClock(TextField tf) {
+	private boolean checkTimeByClock(TextField tf, DatePicker dp) {
 		if (!tf.getText().contains(":")) {
 			tf.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return false;
 		}
 		String[] str = tf.getText().split(":");
-
 		if (this.checkValidTextField(str[0], "digits", "Time is only digits") == false
 				|| this.checkValidTextField(str[1], "digits", "Time is only digits") == false) {
 			return false;
+		}
+
+		Calendar calendar1 = Calendar.getInstance();
+		Date currendDate = new Date();
+		calendar1.setTime(currendDate);
+		Calendar calendar2 = Calendar.getInstance();
+		LocalDate ld = dp.getValue();
+		Date picked = java.sql.Date.valueOf(ld);
+		calendar2.setTime(picked);
+		if ((calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)
+				&& calendar1.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH)
+				&& calendar1.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH))) {
+			if (Integer.parseInt(str[0]) < calendar1.get(Calendar.HOUR) + 12
+					|| (Integer.parseInt(str[0]) == calendar1.get(Calendar.HOUR) + 12
+							&& Integer.parseInt(str[1]) < calendar1.get(Calendar.MINUTE))) {
+				openErrorAlert("Error", "Time must be now or after now");
+				tf.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+				return false;
+			}
 		}
 
 		if (Integer.parseInt(str[0]) >= 24 || Integer.parseInt(str[0]) < 0 || Integer.parseInt(str[1]) >= 60
@@ -1199,23 +1212,20 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		motorBikeDiscountColumn.setResizable(false);
 	}
 
-	private void initiateCustomersTableInPeriodicReport() { // here
+	private void initiateCustomersTableInPeriodicReport() {
 		tvPCRDetails.getColumns().clear();
 		TableColumn<CustomerBoughtFromCompany, String> customerIDColumn = new TableColumn<CustomerBoughtFromCompany, String>(
 				"Customer ID");
 		customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 		tvPCRDetails.getColumns().add(customerIDColumn);
-
 		TableColumn<CustomerBoughtFromCompany, FuelCompanyName> FuelCompanyColumn = new TableColumn<CustomerBoughtFromCompany, FuelCompanyName>(
 				"Fuel Company");
 		FuelCompanyColumn.setCellValueFactory(new PropertyValueFactory<>("fuelCompanyName"));
 		tvPCRDetails.getColumns().add(FuelCompanyColumn);
-
 		TableColumn<CustomerBoughtFromCompany, Double> amountBoughtColumn = new TableColumn<CustomerBoughtFromCompany, Double>(
 				"Amount Bought");
 		amountBoughtColumn.setCellValueFactory(new PropertyValueFactory<>("amountBoughtFromCompany"));
 		tvPCRDetails.getColumns().add(amountBoughtColumn);
-
 		TableColumn<CustomerBoughtFromCompany, Double> paidColumn = new TableColumn<CustomerBoughtFromCompany, Double>(
 				"Paid");
 		paidColumn.setCellValueFactory(new PropertyValueFactory<>("amountPaidCompany"));
@@ -1237,8 +1247,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	 * 
 	 * @param list
 	 */
-
-	private void updateCustomersTableInPeriodicReportTable(List<CustomerBoughtFromCompany> list) {// here
+	private void updateCustomersTableInPeriodicReportTable(List<CustomerBoughtFromCompany> list) {
 		for (int i = 0; i < tvPCRDetails.getItems().size(); i++) {
 			tvPCRDetails.getItems().clear();
 		}
@@ -1251,7 +1260,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 			}
 			tvPCRDetails.setItems(rowsList);
 		}
-
 	}
 
 	/**

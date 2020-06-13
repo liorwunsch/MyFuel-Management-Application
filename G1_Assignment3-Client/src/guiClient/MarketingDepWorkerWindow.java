@@ -11,6 +11,7 @@ import entities.RowForRankingSheetTable;
 import enums.ProductName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -65,6 +66,11 @@ public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 	protected RankingSheetList rankingSheetList;
 
 	/*********************** button listeners ***********************/
+
+	@FXML
+	void btnHomeGenerateAnalysisPressed(ActionEvent event) {
+		this.sendToClientController("genAnalysis");
+	}
 
 	@FXML
 	void btnCSPCreateClicked(MouseEvent event) {
@@ -132,6 +138,20 @@ public abstract class MarketingDepWorkerWindow extends EmployeeWindow {
 	}
 
 	/*************** boundary "logic" - window changes ***************/
+
+	@Override
+	public void callAfterMessage(Object lastMsgFromServer) {
+		super.callAfterMessage(lastMsgFromServer);
+		if ((lastMsgFromServer instanceof String)) {
+			String str = (String) lastMsgFromServer;
+			if (str.equals("genAnalysis success")) {
+				openConfirmationAlert("Analysis", "Weekly Analysis Generated");
+				requestToLogActivity("generated or updated analysis");
+			} else if (str.equals("genAnalysis fail")) {
+				openErrorAlert("Analysis", "Weekly Analysis Generate Failed");
+			}
+		}
+	}
 
 	/**
 	 * method that initiate a table

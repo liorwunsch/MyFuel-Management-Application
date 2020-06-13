@@ -44,6 +44,12 @@ public class DatabaseController {
 	 * singleton class constructor initialize connection to the database
 	 * <p>
 	 * happens once and before everything done on the server
+	 * 
+	 * @param serverWindow
+	 * @param host
+	 * @param schema
+	 * @param dbUsername
+	 * @param dbPassword
 	 */
 	private DatabaseController(ServerWindow serverWindow, String host, String schema, String dbUsername,
 			String dbPassword) {
@@ -55,8 +61,8 @@ public class DatabaseController {
 		}
 
 		try {
-			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST",
-					dbUsername, dbPassword);
+			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST", dbUsername,
+					dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
 
 			Statement stmt = this.connection.createStatement();
@@ -319,57 +325,147 @@ public class DatabaseController {
 
 	/************* marketing manager controller methods **************/
 
+	/**
+	 * 
+	 * @return SalesPatternList
+	 */
 	public SalesPatternList getAllSalePatterns() {
 		return DatabaseMarketingManagerController.getInstance(connection).getAllSalePatterns();
 	}
 
+	/**
+	 * method that pulls all products that are in a Sale Pattern
+	 * 
+	 * @return ProductInSalePatternList
+	 */
 	public ProductInSalePatternList getAllProductInSalePatterns() {
 		return DatabaseMarketingManagerController.getInstance(connection).getAllProductInSalePatterns();
 	}
 
+	/**
+	 * method that check if a sale with required sale pattern id is active or not
+	 * 
+	 * @param salePatternID
+	 * @return String
+	 */
 	public String checkActiveOfSale(int salePatternID) {
 		return DatabaseMarketingManagerController.getInstance(connection).checkActiveOfSale(salePatternID);
 	}
 
+	/**
+	 * method that creats a new row of sale
+	 * 
+	 * @param values
+	 * @return String
+	 */
 	public String insertNewSale(int[] values) {
 		return DatabaseMarketingManagerController.getInstance(connection).insertNewSale(values);
 	}
 
+	/**
+	 * create a new activity in sql
+	 * 
+	 * @param employeeID
+	 * @param date
+	 * @param action
+	 * @return String
+	 */
 	public String insertNewActivity(String username, Date date, String action) {
 		return DatabaseMarketingManagerController.getInstance(connection).insertNewActivity(username, date, action);
 	}
 
+	/**
+	 * method that pulls all ranking sheets from data base
+	 * 
+	 * @return RankingSheetList
+	 */
 	public RankingSheetList getAllRankignSheets() {
 		return DatabaseMarketingManagerController.getInstance(connection).getAllRankingSheets();
 	}
 
+	/**
+	 * method that create a new Sale Pattern
+	 * 
+	 * @param duration
+	 * @param productInSP
+	 * @return String
+	 */
 	public String createNewSalePatternID(int duration, String[] productInSP) {
 		return DatabaseMarketingManagerController.getInstance(connection).createNewSalePatternID(duration, productInSP);
 	}
 
+	/**
+	 * method that pulls all Product Ranks
+	 * 
+	 * @return ProductRateList
+	 */
 	public ProductRateList getAllProductRanks() {
 		return DatabaseMarketingManagerController.getInstance(connection).getAllProductRanks();
 	}
 
+	/**
+	 * method that create a new Product Rate Update Request
+	 * 
+	 * @param dieselRank
+	 * @param gasolineRank
+	 * @param motorRank
+	 * @param homeRank
+	 * @return String
+	 */
 	public String createNewPRUR(double dieselRank, double gasolineRank, double motorRank, double homeRank) {
 		return DatabaseMarketingManagerController.getInstance(connection).createNewPRUR(dieselRank, gasolineRank,
 				motorRank, homeRank);
 	}
 
+	/**
+	 * method that pulls sale products data from sql
+	 * 
+	 * @return SalesList
+	 */
 	public SalesList getSaleList() {
 		return DatabaseMarketingManagerController.getInstance(connection).getSaleList();
 	}
 
+	/**
+	 * method that generate a new commmon report
+	 * 
+	 * @param saleID
+	 * @return SaleCommentsReportList
+	 */
 	public SaleCommentsReportList generateSaleCommentReport(int saleID) {
 		return DatabaseMarketingManagerController.getInstance(connection).generateSaleCommentReport(saleID);
 	}
 
+	/**
+	 * method that generate new periodic report if not exists and pulls customer
+	 * data bought form the compnay in date between fromDate : toDate
+	 * 
+	 * @param fromDate
+	 * @param toDate
+	 * @return PeriodicReportList
+	 */
 	public PeriodicReportList generatePeriodicReport(Date fromDate, Date toDate) {
 		return DatabaseMarketingManagerController.getInstance(connection).generatePeriodicReport(fromDate, toDate);
 	}
 
-	public Object checkSaleRange(Date startDate, Date endDate) {
+	/**
+	 * method that check if a new sale will be in some range of other sale dates
+	 * 
+	 * @param startDate
+	 * @param endDate
+	 * @return String
+	 */
+	public String checkSaleRange(Date startDate, Date endDate) {
 		return DatabaseMarketingManagerController.getInstance(connection).checkSaleRange(startDate, endDate);
+	}
+
+	/**
+	 * generate or update customers' ranking sheets
+	 * 
+	 * @return string of success or fail
+	 */
+	public String generateAnalysis() {
+		return DatabaseMarketingManagerController.getInstance(connection).generateAnalysis();
 	}
 
 }
