@@ -10,6 +10,7 @@ import entities.ActivityList;
 import entities.FastFuelList;
 import entities.FuelStationOrder;
 import entities.HomeFuelOrder;
+import entities.SupplierItemInTable;
 import guiServer.ServerWindow;
 
 /**
@@ -148,11 +149,15 @@ public class DatabaseController {
 	}
 	
 	//vlad added
-	public FuelStationOrder[] getFuelStationOrder(String username) {
-		return DatabaseSupplierController.getInstance(connection).getFuelStationOrder(username);
+	public SupplierItemInTable[] getFuelStationOrder(int fuelStationIDs) {
+		return DatabaseSupplierController.getInstance(connection).getSupplierItemInTable(fuelStationIDs);
 	}
-	public void approveFuelStationOrder(int ordersID) {
-		DatabaseSupplierController.getInstance(connection).approveFuelStationOrder(ordersID);
+	public void approveFuelStationOrder(int ordersID, double amount) {
+		DatabaseSupplierController.getInstance(connection).approveFuelStationOrder(ordersID,amount);
+	}
+
+	public Integer[] getFuelStationWithOrder(String username) {
+		return DatabaseSupplierController.getInstance(connection).getFuelStationWithOrder(username);
 	}
 	
 

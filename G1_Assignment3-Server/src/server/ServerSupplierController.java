@@ -1,9 +1,10 @@
 package server;
 
 import java.io.IOException;
+
 import database.DatabaseController;
 import entities.FuelStationOrder;
-import guiServer.ServerWindow;
+import entities.SupplierItemInTable;
 import ocsf.server.ConnectionToClient;
 
 /**
@@ -38,23 +39,39 @@ public class ServerSupplierController {
 		try {
 			String[] arr = str.split(" ");
 			//username must be without enter
-			if(arr[0].equals("fuel_station_order_approve")) {
-				approveFuelStationOrder(Integer.valueOf(arr[1]));
-			}else {
-				FuelStationOrder[] fs = getFuelStationOrder(arr[1]);
+			switch(arr[0]) {
+			case "fuel_station_order_getsiit":
+				SupplierItemInTable[] fso = getFuelStationOrder(Integer.valueOf(arr[1]));
+				client.sendToClient(fso);
+				break;
+			case "fuel_station_order_approve":
+				approveFuelStationOrder( Integer.valueOf(arr[1]), Double.valueOf(arr[2]) );
+				break;
+			case "fuel_station_order_getfs":
+				Integer[] fs = getFuelStationWithOrder(arr[1]);
 				client.sendToClient(fs);
+				break;
 			}
+			/*
+			 * if(arr[0].equals("fuel_station_order_approve")) {
+			 * approveFuelStationOrder(Integer.valueOf(arr[1])); }else { FuelStationOrder[]
+			 * fs = getFuelStationOrder(arr[1]); client.sendToClient(fs); }
+			 */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public FuelStationOrder[] getFuelStationOrder(String username) {
-		return this.databaseController.getFuelStationOrder(username);
+	private Integer[] getFuelStationWithOrder(String username) {
+		return this.databaseController.getFuelStationWithOrder(username);
+	}
+
+	public SupplierItemInTable[] getFuelStationOrder(int fuelStationIDs) {
+		return this.databaseController.getFuelStationOrder(fuelStationIDs);
 	}
 	
-	public void approveFuelStationOrder(int OrdersID) {
-		 this.databaseController.approveFuelStationOrder(OrdersID);
+	public void approveFuelStationOrder(int OrdersID, double amount) {
+		 this.databaseController.approveFuelStationOrder(OrdersID,amount);
 	}
 	
 }

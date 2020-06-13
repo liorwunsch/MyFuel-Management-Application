@@ -1,14 +1,12 @@
 package guiClient;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import client.SupplierController;
 import entities.FuelStationOrder;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import entities.SupplierItemInTable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,16 +43,16 @@ public class SupplierWindow extends EmployeeWindow {
 	private Button btnASFSOShow;
 
 	@FXML
-	private TableView<itemInTable> tvASFSODetails;
+	private TableView<SupplierItemInTable> tvASFSODetails;
 	
-	private FuelStationOrder[] fso;
+	private SupplierItemInTable[] siit;
+	private Integer[] fuelStationIDs;
 	
 	@FXML
 	void initialize() {
 		this.visibleNow = this.homePane;
 		this.controller = SupplierController.getInstance();
 		this.controller.setCurrentWindow(this);
-		 SupplierController.getInstance().getFuelStationOrder(); 
 	}
 
 	@Override
@@ -68,42 +66,43 @@ public class SupplierWindow extends EmployeeWindow {
 		/**
 		 * 
 		 */
-		if(lastMsgFromServer instanceof FuelStationOrder[]) {
-			fso = (FuelStationOrder[])lastMsgFromServer;
+		if(lastMsgFromServer instanceof SupplierItemInTable[]) {
+			siit = (SupplierItemInTable[])lastMsgFromServer;
+		}
+		if(lastMsgFromServer instanceof Integer[]) {
+			fuelStationIDs = (Integer[])lastMsgFromServer;
 		}
 	}
 
 	@FXML
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void openApproveSupplied(ActionEvent event) {
-		List<Integer> pisList = new ArrayList<>(); 
 		this.homePane.setVisible(false);
-		if(cobASFSOFuelStationID.getItems().size() == 0) {
-			for(FuelStationOrder item: fso) {
-				  pisList.add(item.getProductInStaionID()); }
-				  
-				  cobASFSOFuelStationID.getItems().addAll(pisList);
-		}
+		SupplierController.getInstance().getFuelStationWithOrder();
+		cobASFSOFuelStationID.getItems().clear();
+		tvASFSODetails.getItems().clear();
+		List<Integer> fsList = Arrays.asList(fuelStationIDs);
+		cobASFSOFuelStationID.getItems().addAll(fsList);
 
-		final TableColumn<itemInTable, Integer> orderIDColumn = new TableColumn<itemInTable, Integer>("orderID");
+		final TableColumn<SupplierItemInTable, Integer> orderIDColumn = new TableColumn<SupplierItemInTable, Integer>("orderID");
 		orderIDColumn.setCellValueFactory(new PropertyValueFactory("orderID"));
-		final TableColumn<itemInTable, Date> orderTimeColumn = new TableColumn<itemInTable, Date>("orderTime");
+		final TableColumn<SupplierItemInTable, Date> orderTimeColumn = new TableColumn<SupplierItemInTable, Date>("orderTime");
 		orderTimeColumn.setCellValueFactory(new PropertyValueFactory("orderTime"));
-		final TableColumn<itemInTable, Integer> productNameColumn = new TableColumn<itemInTable, Integer>("productName");
+		final TableColumn<SupplierItemInTable, Integer> productNameColumn = new TableColumn<SupplierItemInTable, Integer>("productName");
 		productNameColumn.setCellValueFactory(new PropertyValueFactory("productName"));
-		final TableColumn<itemInTable, Double> amountColumn = new TableColumn<itemInTable, Double>("amount");
+		final TableColumn<SupplierItemInTable, Double> amountColumn = new TableColumn<SupplierItemInTable, Double>("amount");
 		amountColumn.setCellValueFactory(new PropertyValueFactory("amount"));
-		final TableColumn<itemInTable, Double> totalPriceColumn = new TableColumn<itemInTable, Double>("totalPrice");
-		totalPriceColumn.setCellValueFactory(new PropertyValueFactory("totalPrice"));
+		final TableColumn<SupplierItemInTable, String> AddressColumn = new TableColumn<SupplierItemInTable, String>("address");
+		AddressColumn.setCellValueFactory(new PropertyValueFactory("address"));
 		
-		tvASFSODetails.getColumns().setAll(orderIDColumn,orderTimeColumn,productNameColumn
-				,amountColumn,totalPriceColumn);
+		tvASFSODetails.getColumns().setAll(orderIDColumn,orderTimeColumn,productNameColumn,amountColumn,AddressColumn);
 		approveSuppliedPane.setVisible(true);
 	}
 	
 	
 	  @FXML
-	  @Override void openHome(ActionEvent event) { 
+	  @Override 
+	  void openHome(ActionEvent event) { 
 		  approveSuppliedPane.setVisible(false);
 		  super.openHome(event);
 	  }
@@ -112,70 +111,16 @@ public class SupplierWindow extends EmployeeWindow {
 	@FXML
     void btnASFSOShowPressed(ActionEvent event) {
 		Integer cur = cobASFSOFuelStationID.getValue();
+		SupplierController.getInstance().getSupplierItemInTable(cur); 
 		tvASFSODetails.getItems().clear();
-		for (FuelStationOrder item: fso) {
-			if(item != null && cur.equals(item.getProductInStaionID())) {
-				tvASFSODetails.getItems().add(new itemInTable(item.getOrdersID(), item.getOrderTime(),item.getProductInStaionID(), item.getAmountBought(), item.getAmountBought()*2));
-			}
-		}
-
+		tvASFSODetails.getItems().addAll(siit);
     }
-	public class itemInTable{
-		Integer orderID;
-		Date orderTime;
-		Integer productName;
-		Double amount;
-		Double totalPrice;
-		public itemInTable(int orderID, Date orderTime, int productName, double amount, double totalPrice) {
-			super();
-			this.orderID = orderID;
-			this.orderTime = orderTime;
-			this.productName = productName;
-			this.amount = amount;
-			this.totalPrice = totalPrice;
-		}
-		public Integer getOrderID() {
-			return orderID;
-		}
-		public void setOrderID(Integer orderID) {
-			this.orderID = orderID;
-		}
-		public Date getOrderTime() {
-			return orderTime;
-		}
-		public void setOrderTime(Date orderTime) {
-			this.orderTime = orderTime;
-		}
-		public Integer getProductName() {
-			return productName;
-		}
-		public void setProductName(Integer productName) {
-			this.productName = productName;
-		}
-		public Double getAmount() {
-			return amount;
-		}
-		public void setAmount(Double amount) {
-			this.amount = amount;
-		}
-		public Double getTotalPrice() {
-			return totalPrice;
-		}
-		public void setTotalPrice(Double totalPrice) {
-			this.totalPrice = totalPrice;
-		}
-	}
-	
 	
 	   @FXML
 	    void btnASFSOApproveSPressed(ActionEvent event) {
-		   int approvedId = tvASFSODetails.getSelectionModel().getSelectedItem().orderID;
+		   int approvedId = tvASFSODetails.getSelectionModel().getSelectedItem().getOrderID();
+		   double amount = tvASFSODetails.getSelectionModel().getSelectedItem().getAmount();
 		   tvASFSODetails.getItems().remove(tvASFSODetails.getSelectionModel().getSelectedItem());
-		   for (int i=0 ; i < fso.length ; i++) {
-			  if(fso[i].getOrdersID() == approvedId) {
-				  fso[i] = null;
-			  }
-		   }
-		   SupplierController.getInstance().approveFuelStationOrder(approvedId);
+		   SupplierController.getInstance().approveFuelStationOrder(approvedId,amount);
 	    }
 }

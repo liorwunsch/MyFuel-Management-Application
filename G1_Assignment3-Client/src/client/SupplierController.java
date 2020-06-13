@@ -37,12 +37,11 @@ public class SupplierController extends UserController {
 		 * 
 		 */
 	}
-
-	public void getFuelStationOrder() {
+	public void getFuelStationWithOrder() {
 		try {
 			openConnection();
 			awaitResponse = true;
-			sendToServer("fuel_station_order " + username);
+			sendToServer("fuel_station_order_getfs " + username);
 
 			/* wait for ack or data from the server */
 			while (awaitResponse) {
@@ -52,7 +51,6 @@ public class SupplierController extends UserController {
 					ie.printStackTrace();
 				}
 			}
-			// FuelStationOrder[] fsoA = (FuelStationOrder[]) this.lastMsgFromServer;
 			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 		} catch (ConnectException ce) {
 			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
@@ -62,18 +60,20 @@ public class SupplierController extends UserController {
 		}
 	}
 
-	public void approveFuelStationOrder(int OrdersID) {
+	public void getSupplierItemInTable(int fuelStationIDs) {
 		try {
 			openConnection();
 			awaitResponse = true;
-			sendToServer("fuel_station_order_approve " + OrdersID);
+			sendToServer("fuel_station_order_getsiit " + fuelStationIDs);
 
-			/* Doesnt need because it will be relevent for next enter 
-			 * wait for ack or data from the server while (awaitResponse) { try {
-			 * Thread.sleep(100); } catch (InterruptedException ie) { ie.printStackTrace();
-			 * } }
-			 */
-			// FuelStationOrder[] fsoA = (FuelStationOrder[]) this.lastMsgFromServer;
+			/* wait for ack or data from the server */
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ie) {
+					ie.printStackTrace();
+				}
+			}
 			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 		} catch (ConnectException ce) {
 			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
@@ -82,4 +82,19 @@ public class SupplierController extends UserController {
 			ioe.printStackTrace();
 		}
 	}
+
+	public void approveFuelStationOrder(int OrdersID,double amount) {
+		try {
+			openConnection();
+			awaitResponse = true;
+			sendToServer("fuel_station_order_approve " + OrdersID + " " + amount);
+			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+		} catch (ConnectException ce) {
+			this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+			ce.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+	
 }
