@@ -9,7 +9,7 @@ import java.util.List;
  * @author Elroy
  */
 @SuppressWarnings("serial")
-public class SaleCommentReportList implements Serializable {
+public class SaleCommentsReportList implements Serializable {
 	private SaleCommentsReport report = null;
 	private List<CustomerBoughtInSale> list = new ArrayList<>();
 	private boolean generated = false;
@@ -22,7 +22,7 @@ public class SaleCommentReportList implements Serializable {
 		this.generated = generated;
 	}
 
-	public SaleCommentReportList() {
+	public SaleCommentsReportList() {
 		super();
 	}
 

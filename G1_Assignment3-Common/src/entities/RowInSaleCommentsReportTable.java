@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Elroy
  */
 @SuppressWarnings("serial")
-public class RowInSaleCommentReportTable implements Serializable {
+public class RowInSaleCommentsReportTable implements Serializable {
 	private int saleID;
 	private Date startTime;
 	private Date endTime;
@@ -16,11 +16,11 @@ public class RowInSaleCommentReportTable implements Serializable {
 	private double gasolineDisc;
 	private double motorDisc;
 
-	public RowInSaleCommentReportTable() {
+	public RowInSaleCommentsReportTable() {
 
 	}
 
-	public RowInSaleCommentReportTable(int saleID, Date startTime, Date endTime, double dieselDisc, double gasolineDisc,
+	public RowInSaleCommentsReportTable(int saleID, Date startTime, Date endTime, double dieselDisc, double gasolineDisc,
 			double motorDisc) {
 		super();
 		this.saleID = saleID;

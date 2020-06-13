@@ -81,6 +81,32 @@ public abstract class UserWindow extends AFXML {
 		this.cobHomeMonth.setValue(calendar.get(Calendar.MONTH) + 1);
 	}
 
+	/**
+	 * checks there are no digits / letters in a tf value
+	 * 
+	 * @param tf
+	 * @param kind         = { digits, letters }
+	 * @param errorMessage
+	 * @return true if valid, else false
+	 */
+	protected boolean checkValidTextField(String tf, String kind, String errorMessage) {
+		if (kind.equals("digits")) {
+			if (tf.matches(".*[ -/].*") || tf.matches(".*[:-~].*")) {
+				openErrorAlert("Error", errorMessage);
+				return false;
+			}
+		} else if (kind.equals("letters")) {
+			if (tf.matches(".*[ -@].*")) {
+				openErrorAlert("Error", errorMessage);
+				return false;
+			}
+		} else {
+			System.out.println("expected digits or letters but got " + kind);
+			return false;
+		}
+		return true;
+	}
+
 	/*********************** button listeners ***********************/
 
 	@FXML

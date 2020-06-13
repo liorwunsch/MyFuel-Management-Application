@@ -37,7 +37,7 @@
                      <children>
                         <Label fx:id="lblHelloUser" layoutX="14.0" layoutY="4.0" prefHeight="35.0" prefWidth="233.0" text="Hello, Julia" textFill="WHITE">
                            <font>
-                              <Font name="Leelawadee UI" size="18.0" />
+                              <Font name="Leelawadee UI" size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -936,35 +936,30 @@
                         <Button fx:id="btnSPMClear" layoutX="633.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnSPMClearPressed" prefHeight="32.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Clear" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="createSalePatternPane" layoutX="6.0" layoutY="12.0" prefHeight="678.0" prefWidth="681.0" visible="false">
+                  <AnchorPane fx:id="createSalePatternPane" layoutX="13.0" layoutY="21.0" prefHeight="626.0" prefWidth="605.0" visible="false">
                      <children>
-                        <Label layoutX="4.0" layoutY="-4.0" prefHeight="21.0" prefWidth="243.0" text="Sales Pattern Information:">
-                           <font>
-                              <Font name="Arial Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane layoutX="5.0" layoutY="15.0" prefHeight="658.0" prefWidth="591.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                        <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="605.0" prefWidth="591.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                            <children>
-                              <TableView fx:id="tvCSPAnalysis" layoutX="23.0" layoutY="313.0" prefHeight="320.0" prefWidth="541.0">
-                                <columns>
-                                  <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer ID" />
-                                  <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer Type Rank" />
+                              <TableView fx:id="tvCSPAnalysis" layoutX="23.0" layoutY="292.0" prefHeight="299.0" prefWidth="541.0">
+                                 <columns>
+                                    <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer ID" />
+                                    <TableColumn minWidth="-1.0" prefWidth="135.0" text="Customer Type Rank" />
                                     <TableColumn minWidth="-1.0" prefWidth="135.0" text="Fueling Hours Rank" />
                                     <TableColumn minWidth="-1.0" prefWidth="135.0" text="Fuel Types Rank" />
-                                </columns>
+                                 </columns>
                               </TableView>
-                              <GridPane layoutX="23.0" layoutY="38.0" prefHeight="185.0" prefWidth="375.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="126.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="26.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="234.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <GridPane layoutX="23.0" layoutY="38.0" prefHeight="169.0" prefWidth="375.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="126.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="16.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="237.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
                                     <Label text="Duration">
                                        <font>
@@ -974,20 +969,7 @@
                                     <Label GridPane.rowIndex="1" />
                                     <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="225.0" spacing="3.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
                                        <children>
-                                          <TextField fx:id="tfCSPDuration" prefHeight="30.0" prefWidth="65.0" promptText="HH:MM" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <children>
-                                          <TextField fx:id="tfCSPDieselDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
-                                          <Label text="\%">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="3.0" />
-                                             </padding>
-                                          </Label>
+                                          <TextField fx:id="tfCSPDuration" prefHeight="30.0" prefWidth="98.0" promptText="Enter Minutes" />
                                        </children>
                                     </HBox>
                                     <Label text="Diesel " GridPane.rowIndex="1">
@@ -1005,13 +987,37 @@
                                           <Font name="Arial" size="16.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="cbCSPDiesel" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <CheckBox fx:id="cbCSPGasoline" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <CheckBox fx:id="cbCSPDiesel" mnemonicParsing="false" onMouseClicked="#cbCSPDieselClicked" prefHeight="17.0" prefWidth="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="cbCSPGasoline" mnemonicParsing="false" onMouseClicked="#cbCSPGasolineClicked" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" onMouseClicked="#cbCSPMotorbikeClicked" prefHeight="17.0" prefWidth="16.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <children>
+                                          <TextField fx:id="tfCSPDieselDisc" disable="true" prefHeight="30.0" prefWidth="182.0" promptText="Discount">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Label text="\$">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="3.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <children>
-                                          <TextField fx:id="tfCSPGasolineDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
-                                          <Label text="\%">
+                                          <TextField fx:id="tfCSPGasolineDisc" disable="true" prefHeight="30.0" prefWidth="182.0" promptText="Discount">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Label text="\$">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -1023,8 +1029,12 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <children>
-                                          <TextField fx:id="tfCSPMotorbikeDisc" prefHeight="30.0" prefWidth="182.0" promptText="Discount" />
-                                          <Label text="\%">
+                                          <TextField fx:id="tfCSPMotorbikeDisc" disable="true" prefHeight="30.0" prefWidth="182.0" promptText="Discount">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Label text="\$">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -1036,7 +1046,7 @@
                                     </HBox>
                                  </children>
                               </GridPane>
-                              <Button fx:id="btnCSPCreate" layoutX="111.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Create Pattern" textFill="WHITE">
+                              <Button fx:id="btnCSPCreate" layoutX="132.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#btnCSPCreateClicked" onMouseEntered="#btnCSPCreateHover" onMouseExited="#btnCSPCreateExit" prefHeight="30.0" prefWidth="200.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Create Pattern" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri" size="20.0" />
                                  </font>
@@ -1053,13 +1063,21 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="23.0" layoutY="283.0" text="Sales Analysis:" textFill="#144465" underline="true">
+                              <Label layoutX="23.0" layoutY="266.0" text="Sales Analysis:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="lblDieselDiscERR" layoutX="384.0" layoutY="91.0" text="must" textFill="#f50b0b" visible="false" />
+                              <Label fx:id="lblGasolineDiscERR" layoutX="385.0" layoutY="136.0" text="must" textFill="#f50b0b" visible="false" />
+                              <Label fx:id="lblMotorDiscERR" layoutX="384.0" layoutY="178.0" text="must" textFill="#f50b0b" visible="false" />
                            </children>
                         </AnchorPane>
+                        <Label layoutY="-10.0" prefHeight="21.0" prefWidth="215.0" text="Sale Pattern Information:">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>

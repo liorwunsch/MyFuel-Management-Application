@@ -42,9 +42,11 @@ public class MarketingManagerController extends MarketingDepWorkerController {
 			else
 				logged = true;
 			super.handleMessageFromClientUI(message);
-		}
 
-		else {
+		} else if (message.startsWith("create sale pattern")) {
+			super.handleDepWorkerRequest(message);
+
+		} else {
 			try {
 				System.out.println("message from clientUI : " + message);
 				this.openConnection();
@@ -64,15 +66,15 @@ public class MarketingManagerController extends MarketingDepWorkerController {
 					}
 				}
 
+				this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+
 			} catch (ConnectException ce) {
 				this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
 				ce.printStackTrace();
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			this.currentWindow.callAfterMessage(this.lastMsgFromServer);
 		}
-
 	}
 
 }

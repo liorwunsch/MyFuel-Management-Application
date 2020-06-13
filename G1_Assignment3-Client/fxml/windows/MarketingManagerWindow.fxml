@@ -35,7 +35,7 @@
                      <children>
                         <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="35.0" prefWidth="232.0" text="Hello, Julia" textFill="WHITE">
                            <font>
-                              <Font name="Leelawadee UI" size="24.0" />
+                              <Font name="Leelawadee UI" size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -354,7 +354,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <DatePicker fx:id="dpISDate" layoutX="103.0" layoutY="86.0" prefHeight="30.0" />
+                              <DatePicker fx:id="dpISDate" editable="false" layoutX="103.0" layoutY="86.0" prefHeight="30.0" />
                               <TextField fx:id="tfISTime" layoutX="103.0" layoutY="47.0" prefHeight="30.0" prefWidth="172.0" promptText="HH:MM" />
                               <Label layoutX="39.0" layoutY="51.0" text="Time">
                                  <font>
@@ -431,9 +431,9 @@
                                           <Font name="Arial" size="16.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="cbCSPDiesel" mnemonicParsing="false" onMouseClicked="#cbCSPDieselCliked" prefHeight="17.0" prefWidth="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <CheckBox fx:id="cbCSPGasoline" mnemonicParsing="false" onMouseClicked="#cbCSPGasolineCliked" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" onMouseClicked="#cbCSPMotorbikeCliked" prefHeight="17.0" prefWidth="16.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <CheckBox fx:id="cbCSPDiesel" mnemonicParsing="false" onMouseClicked="#cbCSPDieselClicked" prefHeight="17.0" prefWidth="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="cbCSPGasoline" mnemonicParsing="false" onMouseClicked="#cbCSPGasolineClicked" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <CheckBox fx:id="cbCSPMotorbike" mnemonicParsing="false" onMouseClicked="#cbCSPMotorbikeClicked" prefHeight="17.0" prefWidth="16.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
                                           <TextField fx:id="tfCSPDieselDisc" disable="true" prefHeight="30.0" prefWidth="182.0" promptText="Discount">
@@ -588,7 +588,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="paneGMRPeriodicNext" layoutX="15.0" layoutY="223.0" prefHeight="284.0" prefWidth="778.0">
+                              <AnchorPane fx:id="paneGMRPeriodicNext" layoutX="15.0" layoutY="223.0" prefHeight="284.0" prefWidth="778.0" visible="false">
                                  <children>
                                     <AnchorPane layoutY="32.0" prefHeight="232.0" prefWidth="773.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                                        <children>
@@ -624,13 +624,13 @@
                                                       <Font name="Arial" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <DatePicker fx:id="dpGMRStartDate" prefHeight="30.0" GridPane.columnIndex="1" />
+                                                <DatePicker fx:id="dpGMRStartDate" editable="false" prefHeight="30.0" GridPane.columnIndex="1" />
                                                 <Label text="To Date:" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="Arial" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <DatePicker fx:id="dpGMREndDate" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <DatePicker fx:id="dpGMREndDate" editable="false" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -1023,7 +1023,7 @@
                                     </HBox>
                                  </children>
                               </GridPane>
-                              <Label layoutX="25.0" layoutY="14.0" text="Current Product Rates:" textFill="#144465" underline="true">
+                              <Label layoutX="25.0" layoutY="14.0" text="Current Product Rates: (discount from max price)" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>

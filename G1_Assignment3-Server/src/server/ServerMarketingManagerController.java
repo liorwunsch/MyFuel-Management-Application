@@ -118,7 +118,6 @@ public class ServerMarketingManagerController {
 					}
 
 					result = this.databaseController.insertNewSale(values);
-
 				}
 
 				else if (function.startsWith("add activity")) {

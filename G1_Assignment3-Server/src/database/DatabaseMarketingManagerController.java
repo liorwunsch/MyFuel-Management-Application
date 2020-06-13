@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,9 +21,9 @@ import entities.ProductInSalesPattern;
 import entities.ProductRateList;
 import entities.RankingSheet;
 import entities.RankingSheetList;
-import entities.RowInSaleCommentReportTable;
-import entities.SaleCommentReportList;
+import entities.RowInSaleCommentsReportTable;
 import entities.SaleCommentsReport;
+import entities.SaleCommentsReportList;
 import entities.SalesList;
 import entities.SalesPattern;
 import entities.SalesPatternList;
@@ -142,15 +143,12 @@ public class DatabaseMarketingManagerController {
 						}
 
 					}
-
 					rs2.close();
 				}
 			}
 
 		} catch (SQLException e) {
-
 		}
-
 		return "inactive sale";
 	}
 
@@ -177,6 +175,8 @@ public class DatabaseMarketingManagerController {
 		calendar2.set(Calendar.DAY_OF_MONTH, values[8]);
 		calendar2.set(Calendar.HOUR, values[9]);
 		calendar2.set(Calendar.MINUTE, values[10]);
+
+		System.out.println(calendar1.getTime() + ", " + calendar2.getTime());
 
 		Object[] values2 = { salePatternID, 0, calendar1.getTime(), calendar2.getTime() };
 		try {
@@ -221,7 +221,7 @@ public class DatabaseMarketingManagerController {
 	 * 
 	 * @return
 	 */
-	public RankingSheetList getAllRankignSheets() {
+	public RankingSheetList getAllRankingSheets() {
 		List<RankingSheet> list = new ArrayList<>();
 		RankingSheetList rankingSheetList = new RankingSheetList(new ArrayList<>());
 		Statement stmt = null;
@@ -252,7 +252,6 @@ public class DatabaseMarketingManagerController {
 	public String createNewSalePatternID(int duration, String[] productInSP) {
 		String result = "failed to create sale pattern";
 		try {
-
 			Object[] values1 = { duration };
 			int newSalePatternID = TableInserts.insertSalesPattern(connection, values1);
 			if (newSalePatternID == -1)
@@ -278,7 +277,6 @@ public class DatabaseMarketingManagerController {
 
 		}
 		return result;
-
 	}
 
 	/**
@@ -317,7 +315,14 @@ public class DatabaseMarketingManagerController {
 	public String createNewPRUR(double dieselRank, double gasolineRank, double motorRank, double homeRank) {
 		int updateRateRequestID;
 		try {
-			Object[] values1 = { new Date(), false, false };
+			Calendar calendar3 = Calendar.getInstance();
+			Date now = new Date();
+			calendar3.setTime(now);
+			calendar3.add(Calendar.HOUR, -2);
+			calendar3.add(Calendar.MINUTE, -30);
+			now = calendar3.getTime();
+
+			Object[] values1 = { now, false, false };
 			System.out.println("Create new PRUR");
 			updateRateRequestID = TableInserts.insertProductRatesUpdateRequest2(connection, values1);
 			System.out.println("new ID= " + updateRateRequestID);
@@ -354,7 +359,7 @@ public class DatabaseMarketingManagerController {
 	 * @return
 	 */
 	public SalesList getSaleList() {
-		List<RowInSaleCommentReportTable> list = new ArrayList<>();
+		List<RowInSaleCommentsReportTable> list = new ArrayList<>();
 		SalesList saleList = new SalesList(new ArrayList<>());
 		Statement stmt = null;
 		Statement stmt2 = null;
@@ -365,11 +370,18 @@ public class DatabaseMarketingManagerController {
 			ResultSet rs = stmt
 					.executeQuery("SELECT saleID,FK_salesPatternID,startTime,endTime FROM sale WHERE active=0");
 			while (rs.next()) {
-				RowInSaleCommentReportTable row = new RowInSaleCommentReportTable();
+				RowInSaleCommentsReportTable row = new RowInSaleCommentsReportTable();
 				int saleID = rs.getInt(1);
 				int salesPatternID = rs.getInt(2);
-				Date startTime = rs.getDate(3);
-				Date endTime = rs.getDate(4);
+
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date startTime = formatter.parse(rs.getString(3));
+				Date endTime = formatter.parse(rs.getString(4));
+
+				if (endTime.compareTo(new Date()) > 0) {
+					continue;
+				}
+
 				row.setSaleID(saleID);
 				row.setStartTime(startTime);
 				row.setEndTime(endTime);
@@ -398,9 +410,12 @@ public class DatabaseMarketingManagerController {
 			System.out.println(e.getSQLState());
 			System.out.println(e.getMessage());
 			return new SalesList(new ArrayList<>());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return new SalesList(new ArrayList<>());
 		}
-		return saleList;
 
+		return saleList;
 	}
 
 	/**
@@ -409,11 +424,12 @@ public class DatabaseMarketingManagerController {
 	 * @param saleID
 	 * @return
 	 */
-	public SaleCommentReportList generateSaleCommentReport(int saleID) {
-		SaleCommentReportList report = new SaleCommentReportList();
+	public SaleCommentsReportList generateSaleCommentReport(int saleID) {
+		SaleCommentsReportList report = new SaleCommentsReportList();
 		List<CustomerBoughtInSale> customerList = new ArrayList<>();
 		Statement stmt = null;
 		boolean found = false;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			stmt = connection.createStatement();
 			CustomerBoughtInSale customerBought;
@@ -421,7 +437,8 @@ public class DatabaseMarketingManagerController {
 			SaleCommentsReport saleReport = null;
 			rs = stmt.executeQuery("SELECT * FROM sale_comments_report WHERE FK_saleID=" + saleID);
 			while (rs.next()) {
-				saleReport = new SaleCommentsReport(rs.getInt(1), rs.getInt(2), rs.getDouble(3), rs.getDate(4));
+				saleReport = new SaleCommentsReport(rs.getInt(1), rs.getInt(2), rs.getDouble(3),
+						formatter.parse(rs.getString(4)));
 				found = true;
 			}
 			rs = stmt.executeQuery("SELECT * FROM customer_bought_in_sale WHERE FK_saleID=" + saleID);
@@ -438,7 +455,14 @@ public class DatabaseMarketingManagerController {
 				rs.close();
 				return report;
 			}
+
+			Calendar calendar = Calendar.getInstance();
 			Date dateCreated = new Date();
+			calendar.setTime(dateCreated);
+			calendar.add(Calendar.HOUR, -2);
+			calendar.add(Calendar.MINUTE, -30);
+			dateCreated = calendar.getTime();
+
 			double sumOfPurchases = 0;
 			int numberOfParticepents = customerList.size();
 			for (CustomerBoughtInSale customer : customerList) {
@@ -456,7 +480,10 @@ public class DatabaseMarketingManagerController {
 			System.out.println(e.getLocalizedMessage());
 			System.out.println(e.getSQLState());
 			System.out.println(e.getMessage());
-			return new SaleCommentReportList();
+			return new SaleCommentsReportList();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return new SaleCommentsReportList();
 		}
 		return report;
 	}
@@ -470,12 +497,12 @@ public class DatabaseMarketingManagerController {
 	 * @return
 	 */
 	public PeriodicReportList generatePeriodicReport(Date fromDate, Date toDate) { // here
-
 		PeriodicReportList periodicReport = new PeriodicReportList();
 		List<CustomerBoughtFromCompany> customerList = new ArrayList<>();
 		Statement stmt = null;
 		PreparedStatement pStmt = null;
 		boolean found = false;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			stmt = connection.createStatement();
 			PeriodicCustomersReport PCReport = null;
@@ -488,7 +515,8 @@ public class DatabaseMarketingManagerController {
 			rs = pStmt.executeQuery();
 			while (rs.next()) {
 				System.out.println("found");
-				PCReport = new PeriodicCustomersReport(rs.getDate(1), rs.getDate(2), rs.getDate(3));
+				PCReport = new PeriodicCustomersReport(formatter.parse(rs.getString(1)),
+						formatter.parse(rs.getString(2)), formatter.parse(rs.getString(3)));
 				System.out.println("found Report = " + PCReport);
 				found = true;
 			}
@@ -525,6 +553,9 @@ public class DatabaseMarketingManagerController {
 			System.out.println(e.getLocalizedMessage());
 			System.out.println(e.getSQLState());
 			System.out.println(e.getMessage());
+			return new PeriodicReportList();
+		} catch (Exception e) {
+			e.printStackTrace();
 			return new PeriodicReportList();
 		}
 		return periodicReport;
@@ -594,7 +625,7 @@ public class DatabaseMarketingManagerController {
 	}
 
 	/**
-	 * method that gets a ProdcutName enum from a string
+	 * method that gets a ProductName enum from a string
 	 * 
 	 * @param name
 	 * @return

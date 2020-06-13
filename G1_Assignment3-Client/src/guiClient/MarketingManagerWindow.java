@@ -18,12 +18,10 @@ import entities.Product;
 import entities.ProductInSalePatternList;
 import entities.ProductInSalesPattern;
 import entities.ProductRateList;
-import entities.RankingSheet;
 import entities.RankingSheetList;
-import entities.RowForRankingSheetTable;
 import entities.RowForSalesPatternTable;
-import entities.RowInSaleCommentReportTable;
-import entities.SaleCommentReportList;
+import entities.RowInSaleCommentsReportTable;
+import entities.SaleCommentsReportList;
 import entities.SaleCommentsReport;
 import entities.SalesList;
 import entities.SalesPattern;
@@ -69,12 +67,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	private Label lblHomeERR2;
 
 	@FXML
-	private Label lblDieselDiscERR;
-	@FXML
-	private Label lblGasolineDiscERR;
-	@FXML
-	private Label lblMotorDiscERR;
-	@FXML
 	private ToggleGroup one;
 	@FXML
 	private ToggleButton tbHomePage;
@@ -91,9 +83,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	private ToggleGroup one1;
 	@FXML
 	private ToggleGroup one2;
-
-	@FXML
-	private AnchorPane createSalePatternPane; // create sale patten page
 
 	@FXML
 	private AnchorPane initiateSalePane; // initiate sale page
@@ -124,7 +113,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	@FXML
 	private Button btnGMRViewReport;
 	@FXML
-	private TableView<RowInSaleCommentReportTable> tvGMRPickSale;
+	private TableView<RowInSaleCommentsReportTable> tvGMRPickSale;
 
 	@FXML
 	private AnchorPane paneGMRPeriodicNext;
@@ -207,9 +196,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 
 	private String userName;
 	private SalesPatternList salesPatternList;
-	private RankingSheetList rankingSheetList;
 	private ProductInSalePatternList productInSalesPatternList;
-	private ProductRateList productRateList;
 	private int choosesPatternID = 0;
 	private int choosesPatternDuration = 0;
 
@@ -218,8 +205,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		this.visibleNow = homePane;
 		this.controller = MarketingManagerController.getInstance();
 		this.controller.setCurrentWindow(this);
-//		String[] strarr = str.split(" ");
-//		userName = strarr[1];
 		initializeSalesPatternTable();
 		initializeRankingSheetTable();
 		initiateSaleCommentsReportTable();
@@ -266,7 +251,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		 * get sales patterns and product in sale pattern and than sert it to the table
 		 * view
 		 */
-
 		if (lastMsgFromServer instanceof PeriodicReportList) {
 			PeriodicReportList report = (PeriodicReportList) lastMsgFromServer;
 			if (report.getReport() == null) {
@@ -280,21 +264,19 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				Date dateFrom = new java.sql.Date(periodicReport.getDateFrom().getTime());
 				Date dateTo = new java.sql.Date(periodicReport.getDateTo().getTime());
 				Date dateCreated = new java.sql.Date(periodicReport.getDateCreated().getTime());
-//				dateCreated.
 				tfPCRFrom.setText(dateFrom.toString());
 				tfPCRTo.setText(dateTo.toString());
 				lblPCRDateCreated.setText(dateCreated.toString());
 				updateCustomersTableInPeriodicReportTable(report.getList());
 				if (report.isGenerated()) {
-
 					addActivity("Generated New Periodic Report With From Date = " + dateFrom.toString()
 							+ " , To Date = " + dateTo.toString());
 				}
 			}
 		}
 
-		else if (lastMsgFromServer instanceof SaleCommentReportList) {
-			SaleCommentReportList report = (SaleCommentReportList) lastMsgFromServer;
+		else if (lastMsgFromServer instanceof SaleCommentsReportList) {
+			SaleCommentsReportList report = (SaleCommentsReportList) lastMsgFromServer;
 			if (report.getReport() == null) {
 				Alert a = new Alert(AlertType.ERROR);
 				a.setTitle("Cant initiate commonets report");
@@ -311,7 +293,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				updateCustomersTableInCommonReportTable(report.getList());
 				if (report.isGenerated())
 					addActivity("Generated New Common Report For Sale = " + saleReport.getSaleID());
-
 				// continue for filling customer table
 			}
 		}
@@ -413,6 +394,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				a.setContentText("there is a problem in saving the new sale");
 				a.show();
 			} else if (message.startsWith("new sale")) {
+				openConfirmationAlert("Sale", "Initiate Sale Success");
 				addActivity("Initialzing Sale"); // add activity
 			} else if (message.startsWith("failed to create sale pattern")) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -427,19 +409,17 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 				alert.setContentText("the id is: " + str[3]);
 				alert.show();
 				addActivity("Created A Sale Pattern With ID= " + str[3]); // add activity
-			}
-
-			else if (message.startsWith("failed PRUR")) {
+			} else if (message.startsWith("failed PRUR")) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Update Prodcut Rate");
 				alert.setHeaderText("Update Prodcut Rate Failed");
 				alert.setContentText("There was a technical problem in 'Update Prodcut Rate' , Contact Technician");
 				alert.show();
 			} else if (message.startsWith("success PRUR")) {
+				openConfirmationAlert("Product Rates Update Request", "Request Sent To Network Manager");
 				String[] str = message.split(" ");
 				addActivity("Update Prodcut Rate Reuest ID= " + str[2]); // add activity
 			}
-
 		}
 
 		super.callAfterMessage(lastMsgFromServer);
@@ -463,6 +443,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 ///////// Initiate sale Start: //////////////
 
 	public void tbInitiateSaleClicked() {
+		this.tbInitiateSale.setSelected(true);
 		removeAllPanesVisiblity();
 		initiateSalePane.setVisible(true);
 		clearFields();
@@ -485,7 +466,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		if (checkTimeByClock(tfISTime) && checkDateIsCorrect(dpISDate)
 				&& checkIfRowSelectedFromTable(tvISSalesPattern)) { // check time does not work
 			// enter stuff here
-
 			checkSaleInDates();
 		}
 	}
@@ -511,81 +491,13 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 
 	@FXML
 	void openCreateSalesPattern(ActionEvent event) {
+		this.tbCreateSalePattern.setSelected(true);
 		this.topbar_window_label.setText("Create Sales Pattern");
 		removeAllPanesVisiblity();
 		createSalePatternPane.setVisible(true);
 		clearFields();
 		getAllRankingSheets();
 		getAllProductRanks();
-
-	}
-
-	public void btnCSPCreateClicked() {
-		if (checkOfCreateSalePatternFields() == true && checkDuration(tfCSPDuration) && checkPrecentageInCSP()) {
-			String message = "create sale pattern";
-//			String[] str = tfCSPDuration.getText().split(":");
-//			int hours = Integer.parseInt(str[0]) * 60;
-//			int minutes = Integer.parseInt(str[1]);
-//			int durationInMinutes = hours + minutes;
-			message += " " + tfCSPDuration.getText();
-
-			if (cbCSPDiesel.isSelected())
-				message += " " + "Diesel " + Double.parseDouble(tfCSPDieselDisc.getText());
-			else
-				message += " " + "Diesel 0.0";
-
-			if (cbCSPGasoline.isSelected())
-				message += " " + "Gasoline " + Double.parseDouble(tfCSPGasolineDisc.getText());
-			else
-				message += " " + "Gasoline 0.0";
-
-			if (cbCSPMotorbike.isSelected())
-				message += " " + "MotorbikeFuel " + Double.parseDouble(tfCSPMotorbikeDisc.getText());
-			else
-				message += " " + "MotorbikeFuel 0.0";
-
-//			System.out.println(message);
-
-			this.sendToClientController(message);
-
-		}
-	}
-
-	public void btnCSPCreateHover() {
-		btnCSPCreate.setOpacity(0.85);
-	}
-
-	public void btnCSPCreateExit() {
-		btnCSPCreate.setOpacity(1);
-	}
-
-	public void cbCSPDieselCliked() {// *
-		tfCSPDieselDisc.setDisable(!tfCSPDieselDisc.isDisable());
-		if (tfCSPDieselDisc.isDisable()) {
-			this.lblDieselDiscERR.setVisible(false);
-			tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-			tfCSPDieselDisc.clear();
-		}
-
-	}
-
-	public void cbCSPGasolineCliked() {
-		tfCSPGasolineDisc.setDisable(!tfCSPGasolineDisc.isDisable());
-		if (tfCSPGasolineDisc.isDisable()) {
-			this.lblGasolineDiscERR.setVisible(false);
-			tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-			tfCSPGasolineDisc.clear();
-		}
-
-	}
-
-	public void cbCSPMotorbikeCliked() {
-		tfCSPMotorbikeDisc.setDisable(!tfCSPMotorbikeDisc.isDisable());
-		if (tfCSPMotorbikeDisc.isDisable()) {
-			this.lblMotorDiscERR.setVisible(false);
-			tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
-			tfCSPMotorbikeDisc.clear();
-		}
 	}
 
 ///////// Create Sale Pattern End //////////////
@@ -593,6 +505,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 ///////// Generate Marketing Report Start: //////////////
 
 	public void tbGenerateReportClicked() {
+		this.tbGenerateReport.setSelected(true);
 		removeAllPanesVisiblity();
 		generateReportPane.setVisible(true);
 		clearFields();
@@ -627,7 +540,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 
 	public void btnGMRViewReportClicked() {
 		if (checkIfRowSelectedFromTable(tvGMRPickSale) == true) {
-			RowInSaleCommentReportTable row = tvGMRPickSale.getSelectionModel().getSelectedItem();
+			RowInSaleCommentsReportTable row = tvGMRPickSale.getSelectionModel().getSelectedItem();
 			// filing fields acoridng to selected item
 			tfSCRStartTime.setText(row.getStartTime().toString());
 			tfSCREndTime.setText(row.getEndTime().toString());
@@ -732,6 +645,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 ///////// Request Product Rate Update Start: //////////////
 
 	public void tbRequestProductRateUpdateClicked() {
+		this.tbRequestProductRateUpdate.setSelected(true);
 		removeAllPanesVisiblity();
 		requestRateUpdatePane.setVisible(true);
 		clearFields();
@@ -835,7 +749,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	 * @return
 	 */
 	private boolean checkDateIsCorrect(DatePicker dp) {
-
 		Calendar calendar1 = Calendar.getInstance();
 		Date currendDate = new Date();
 		calendar1.setTime(currendDate);
@@ -873,6 +786,12 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 			return false;
 		}
 		String[] str = tf.getText().split(":");
+
+		if (this.checkValidTextField(str[0], "digits", "Time is only digits") == false
+				|| this.checkValidTextField(str[1], "digits", "Time is only digits") == false) {
+			return false;
+		}
+
 		if (Integer.parseInt(str[0]) >= 24 || Integer.parseInt(str[0]) < 0 || Integer.parseInt(str[1]) >= 60
 				|| Integer.parseInt(str[1]) < 0) {
 			tf.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -880,15 +799,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		}
 		tf.setStyle("-fx-border-style: none;");
 		return true;
-	}
-
-	/**
-	 * method that will sent to the client controller the required message
-	 * 
-	 * @param message
-	 */
-	private void sendToClientController(String message) {
-		this.controller.handleMessageFromClientUI(message);
 	}
 
 	/**
@@ -1033,32 +943,40 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		cbRPRUMotorbike.setStyle("-fx-border-style: none;");
 		cbRPRUHomeFuel.setStyle("-fx-border-style: none;");
 
-		if (cbRPRUDiesel.isSelected() && tfRPRUDiesel2.getText().trim().isEmpty()) {
+		if (cbRPRUDiesel.isSelected() && tfRPRUDiesel2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUDiesel2.getText(), "digits", "Rate is only digits") == false) {
 			tfRPRUDiesel2.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return false;
 		}
 
-		if (cbRPRUDiesel.isSelected() && !tfRPRUDiesel2.getText().trim().isEmpty())
+		if (cbRPRUDiesel.isSelected() && !tfRPRUDiesel2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUDiesel2.getText(), "digits", "Rate is only digits") == true) {
 			tfRPRUDiesel2.setStyle("-fx-border-style: none;");
-
-		if (cbRPRUGasoline.isSelected() && tfRPRUGasoline2.getText().trim().isEmpty()) {
+		}
+		if (cbRPRUGasoline.isSelected() && tfRPRUGasoline2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUGasoline2.getText(), "digits", "Rate is only digits") == false) {
 			tfRPRUGasoline2.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return false;
 		}
-		if (cbRPRUGasoline.isSelected() && !tfRPRUGasoline2.getText().trim().isEmpty())
+		if (cbRPRUGasoline.isSelected() && !tfRPRUGasoline2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUGasoline2.getText(), "digits", "Rate is only digits") == true) {
 			tfRPRUGasoline2.setStyle("-fx-border-style: none;");
-
-		if (cbRPRUMotorbike.isSelected() && tfRPRUMotorbike2.getText().trim().isEmpty()) {
+		}
+		if (cbRPRUMotorbike.isSelected() && tfRPRUMotorbike2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUMotorbike2.getText(), "digits", "Rate is only digits") == false) {
 			tfRPRUMotorbike2.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return false;
 		}
-		if (cbRPRUMotorbike.isSelected() && !tfRPRUMotorbike2.getText().trim().isEmpty())
+		if (cbRPRUMotorbike.isSelected() && !tfRPRUMotorbike2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUMotorbike2.getText(), "digits", "Rate is only digits") == true) {
 			tfRPRUMotorbike2.setStyle("-fx-border-style: none;");
-
-		if (cbRPRUHomeFuel.isSelected() && tfRPRUHomeFuel2.getText().trim().isEmpty()) {
+		}
+		if (cbRPRUHomeFuel.isSelected() && tfRPRUHomeFuel2.getText().trim().isEmpty()
+				|| this.checkValidTextField(tfRPRUHomeFuel2.getText(), "digits", "Rate is only digits") == false) {
 			tfRPRUHomeFuel2.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			return false;
 		}
+
 		boolean flagDiesel = true;
 		boolean flagGasoline = true;
 		boolean flagMotorbikeFuel = true;
@@ -1132,7 +1050,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	/**
 	 * method that put values is text fields to indicate data to the user
 	 */
-
 	private void updateRatesInFields() {// *
 		double rate;
 		for (Product product : productRateList.getList()) {
@@ -1149,15 +1066,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		}
 	}
 
-	private void getAllProductRanks() {
-		this.sendToClientController("pull product rates");
-	}
-
-	/**
-	 * a method that will pull form SQL the produtn in sales patterns and show them
-	 * on the table view
-	 */
-
 	private void getAllProductInSalePatterns() {
 		this.sendToClientController("pull product in sales patterns " + userName);
 	}
@@ -1168,14 +1076,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	 */
 	private void getAllSalesPatterns() {
 		this.sendToClientController("pull sales patterns " + userName);
-	}
-
-	/**
-	 * a method that will pull form SQL the ranking sheets and show them on the
-	 * table view
-	 */
-	private void getAllRankingSheets() {
-		this.sendToClientController("pull ranking sheets ");
 	}
 
 	/**
@@ -1233,38 +1133,18 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	}
 
 	/**
-	 * method that updates the ranking sheet table
-	 */
-	private void updateRankingSheetListInTable() {
-		List<RankingSheet> RSList = this.rankingSheetList.getList();
-		ObservableList<RowForRankingSheetTable> rowsList = FXCollections.observableArrayList();
-
-		for (int i = 0; i < tvCSPAnalysis.getItems().size(); i++) {
-			tvCSPAnalysis.getItems().clear();
-		}
-		Iterator<RankingSheet> iterator = RSList.iterator();
-		while (iterator.hasNext()) {
-			RankingSheet rS = (RankingSheet) iterator.next();
-			RowForRankingSheetTable row = new RowForRankingSheetTable(rS.getCustomerID(), rS.getCustomerTypeRank(),
-					rS.getFuelingHoursRank(), rS.getFuelTypesRank());
-			rowsList.add(row);
-		}
-		tvCSPAnalysis.setItems(rowsList);
-	}
-
-	/**
 	 * method that updates the common report table
 	 * 
 	 * @param list
 	 */
 	private void updateCommentsReportTable(SalesList list) {
-		List<RowInSaleCommentReportTable> rowLister = list.getList();
-		ObservableList<RowInSaleCommentReportTable> rowsList = FXCollections.observableArrayList();
+		List<RowInSaleCommentsReportTable> rowLister = list.getList();
+		ObservableList<RowInSaleCommentsReportTable> rowsList = FXCollections.observableArrayList();
 
 		for (int i = 0; i < tvGMRPickSale.getItems().size(); i++) {
 			tvGMRPickSale.getItems().clear();
 		}
-		for (RowInSaleCommentReportTable row : rowLister) {
+		for (RowInSaleCommentsReportTable row : rowLister) {
 			rowsList.add(row);
 		}
 		tvGMRPickSale.setItems(rowsList);
@@ -1319,43 +1199,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		motorBikeDiscountColumn.setResizable(false);
 	}
 
-	private void initializeRankingSheetTable() {
-		tvCSPAnalysis.getColumns().clear();
-		TableColumn<RowForRankingSheetTable, String> cusotmerIDColumn = new TableColumn<RowForRankingSheetTable, String>(
-				"Customer ID");
-		cusotmerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-		tvCSPAnalysis.getColumns().add(cusotmerIDColumn);
-
-		TableColumn<RowForRankingSheetTable, Double> typeRankColumn = new TableColumn<RowForRankingSheetTable, Double>(
-				"Customer Type Rank");
-		typeRankColumn.setCellValueFactory(new PropertyValueFactory<>("customerTypeRank"));
-		tvCSPAnalysis.getColumns().add(typeRankColumn);
-
-		TableColumn<RowForRankingSheetTable, Double> fuelingHoursColumn = new TableColumn<RowForRankingSheetTable, Double>(
-				"Fueling Hours Rank");
-		fuelingHoursColumn.setCellValueFactory(new PropertyValueFactory<>("fuelingHoursRank"));
-		tvCSPAnalysis.getColumns().add(fuelingHoursColumn);
-
-		TableColumn<RowForRankingSheetTable, Double> fuelingTypesColumn = new TableColumn<RowForRankingSheetTable, Double>(
-				"Fueling Types Rank");
-		fuelingTypesColumn.setCellValueFactory(new PropertyValueFactory<>("fuelTypesRank"));
-		tvCSPAnalysis.getColumns().add(fuelingTypesColumn);
-
-		cusotmerIDColumn.prefWidthProperty().bind(tvCSPAnalysis.widthProperty().multiply(0.22));
-		typeRankColumn.prefWidthProperty().bind(tvCSPAnalysis.widthProperty().multiply(0.25));
-		fuelingHoursColumn.prefWidthProperty().bind(tvCSPAnalysis.widthProperty().multiply(0.25));
-		fuelingTypesColumn.prefWidthProperty().bind(tvCSPAnalysis.widthProperty().multiply(0.25));
-
-		cusotmerIDColumn.setResizable(false);
-		typeRankColumn.setResizable(false);
-		fuelingHoursColumn.setResizable(false);
-		fuelingTypesColumn.setResizable(false);
-	}
-
-	/**
-	 * method that initiate a table
-	 */
-
 	private void initiateCustomersTableInPeriodicReport() { // here
 		tvPCRDetails.getColumns().clear();
 		TableColumn<CustomerBoughtFromCompany, String> customerIDColumn = new TableColumn<CustomerBoughtFromCompany, String>(
@@ -1396,7 +1239,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 	 */
 
 	private void updateCustomersTableInPeriodicReportTable(List<CustomerBoughtFromCompany> list) {// here
-
 		for (int i = 0; i < tvPCRDetails.getItems().size(); i++) {
 			tvPCRDetails.getItems().clear();
 		}
@@ -1461,32 +1303,32 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 
 	private void initiateSaleCommentsReportTable() {
 		tvGMRPickSale.getColumns().clear();
-		TableColumn<RowInSaleCommentReportTable, Integer> saleIDColumn = new TableColumn<RowInSaleCommentReportTable, Integer>(
+		TableColumn<RowInSaleCommentsReportTable, Integer> saleIDColumn = new TableColumn<RowInSaleCommentsReportTable, Integer>(
 				"ID");
 		saleIDColumn.setCellValueFactory(new PropertyValueFactory<>("saleID"));
 		tvGMRPickSale.getColumns().add(saleIDColumn);
 
-		TableColumn<RowInSaleCommentReportTable, Date> startTimeColumn = new TableColumn<RowInSaleCommentReportTable, Date>(
+		TableColumn<RowInSaleCommentsReportTable, Date> startTimeColumn = new TableColumn<RowInSaleCommentsReportTable, Date>(
 				"Start Time");
 		startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
 		tvGMRPickSale.getColumns().add(startTimeColumn);
 
-		TableColumn<RowInSaleCommentReportTable, Date> endTimeColumn = new TableColumn<RowInSaleCommentReportTable, Date>(
+		TableColumn<RowInSaleCommentsReportTable, Date> endTimeColumn = new TableColumn<RowInSaleCommentsReportTable, Date>(
 				"End Time");
 		endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
 		tvGMRPickSale.getColumns().add(endTimeColumn);
 
-		TableColumn<RowInSaleCommentReportTable, Double> dieselDiscColumn = new TableColumn<RowInSaleCommentReportTable, Double>(
+		TableColumn<RowInSaleCommentsReportTable, Double> dieselDiscColumn = new TableColumn<RowInSaleCommentsReportTable, Double>(
 				"Diesel Discount");
 		dieselDiscColumn.setCellValueFactory(new PropertyValueFactory<>("dieselDisc"));
 		tvGMRPickSale.getColumns().add(dieselDiscColumn);
 
-		TableColumn<RowInSaleCommentReportTable, Double> gasolineDiscColumn = new TableColumn<RowInSaleCommentReportTable, Double>(
+		TableColumn<RowInSaleCommentsReportTable, Double> gasolineDiscColumn = new TableColumn<RowInSaleCommentsReportTable, Double>(
 				"Gasoline Discount");
 		gasolineDiscColumn.setCellValueFactory(new PropertyValueFactory<>("gasolineDisc"));
 		tvGMRPickSale.getColumns().add(gasolineDiscColumn);
 
-		TableColumn<RowInSaleCommentReportTable, Double> motorDiscColumn = new TableColumn<RowInSaleCommentReportTable, Double>(
+		TableColumn<RowInSaleCommentsReportTable, Double> motorDiscColumn = new TableColumn<RowInSaleCommentsReportTable, Double>(
 				"Motorbike Fuel Discount");
 		motorDiscColumn.setCellValueFactory(new PropertyValueFactory<>("motorDisc"));
 		tvGMRPickSale.getColumns().add(motorDiscColumn);
@@ -1499,142 +1341,11 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		motorDiscColumn.prefWidthProperty().bind(tvGMRPickSale.widthProperty().multiply(0.23));
 
 		saleIDColumn.setResizable(false);
-		startTimeColumn.setResizable(false);
-		endTimeColumn.setResizable(false);
+//		startTimeColumn.setResizable(false);
+//		endTimeColumn.setResizable(false);
 		dieselDiscColumn.setResizable(false);
 		gasolineDiscColumn.setResizable(false);
 		motorDiscColumn.setResizable(false);
-	}
-
-	/**
-	 * method that check the values of precentages fields is correct
-	 * 
-	 * @return
-	 */
-	private boolean checkPrecentageInCSP() {
-		boolean flagDiesel = true;
-		boolean flagGasoline = true;
-		boolean flagMotorbikeFuel = true;
-		for (Product product : productRateList.getList()) {
-			if (product.getProductName().equals(ProductName.Diesel)) {
-				if (!tfCSPDieselDisc.getText().trim().isEmpty() && Double.parseDouble(tfCSPDieselDisc.getText()) > 0
-						&& Double.parseDouble(tfCSPDieselDisc.getText()) < product.getCurrentPrice()) {
-					tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-					lblDieselDiscERR.setVisible(false);
-					flagDiesel = true;
-				}
-				if (!tfCSPDieselDisc.getText().trim().isEmpty() && (Double.parseDouble(tfCSPDieselDisc.getText()) <= 0
-						|| Double.parseDouble(tfCSPDieselDisc.getText()) >= product.getCurrentPrice())) {
-					lblDieselDiscERR.setVisible(true);
-					lblDieselDiscERR.setText("must be lower than: " + product.getCurrentPrice() + " and not 0");
-					tfCSPDieselDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-					flagDiesel = false;
-				}
-			}
-			if (product.getProductName().equals(ProductName.Gasoline)) {
-				if (!tfCSPGasolineDisc.getText().trim().isEmpty() && Double.parseDouble(tfCSPGasolineDisc.getText()) > 0
-						&& Double.parseDouble(tfCSPGasolineDisc.getText()) < product.getCurrentPrice()) {
-					tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-					lblGasolineDiscERR.setVisible(false);
-					flagGasoline = true;
-				}
-				if (!tfCSPGasolineDisc.getText().trim().isEmpty()
-						&& (Double.parseDouble(tfCSPGasolineDisc.getText()) <= 0
-								|| Double.parseDouble(tfCSPGasolineDisc.getText()) >= product.getCurrentPrice())) {
-					lblGasolineDiscERR.setVisible(true);
-					lblGasolineDiscERR.setText("must be lower than: " + product.getCurrentPrice() + " and not 0");
-					tfCSPGasolineDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-					flagGasoline = false;
-				}
-			}
-			if (product.getProductName().equals(ProductName.MotorbikeFuel)) {
-				if (!tfCSPMotorbikeDisc.getText().trim().isEmpty()
-						&& Double.parseDouble(tfCSPMotorbikeDisc.getText()) > 0
-						&& Double.parseDouble(tfCSPMotorbikeDisc.getText()) < product.getCurrentPrice()) {
-					tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
-					lblMotorDiscERR.setVisible(false);
-					flagMotorbikeFuel = true;
-				}
-				if (!tfCSPMotorbikeDisc.getText().trim().isEmpty()
-						&& (Double.parseDouble(tfCSPMotorbikeDisc.getText()) <= 0
-								|| Double.parseDouble(tfCSPMotorbikeDisc.getText()) >= product.getCurrentPrice())) {
-					lblMotorDiscERR.setVisible(true);
-					lblMotorDiscERR.setText("must be lower than: " + product.getCurrentPrice() + " and not 0");
-					tfCSPMotorbikeDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-					flagMotorbikeFuel = false;
-				}
-			}
-		}
-		return flagDiesel && flagGasoline && flagMotorbikeFuel;
-
-	}
-
-	/**
-	 * check if fields are empty
-	 * 
-	 * @return result
-	 */
-
-	private boolean checkOfCreateSalePatternFields() {
-		boolean result = false;
-		if (tfCSPDuration.getText().trim().isEmpty())
-			tfCSPDuration.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-
-		if (!cbCSPDiesel.isSelected() && !cbCSPGasoline.isSelected() && !cbCSPGasoline.isSelected()
-				&& !cbCSPMotorbike.isSelected()) {
-			tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-			tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-			tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Discounts Are Empty");
-			alert.setContentText("You must feel at least one discount");
-			alert.show();
-//			cbCSPDiesel.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-//			cbCSPGasoline.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-//			cbCSPMotorbike.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-		}
-		if (cbCSPDiesel.isSelected() && tfCSPDieselDisc.getText().trim().isEmpty()) {
-			tfCSPDieselDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-			return false;
-		}
-		if (cbCSPGasoline.isSelected() && tfCSPGasolineDisc.getText().trim().isEmpty()) {
-			tfCSPGasolineDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-			return false;
-		}
-		if (cbCSPMotorbike.isSelected() && tfCSPMotorbikeDisc.getText().trim().isEmpty()) {
-			tfCSPMotorbikeDisc.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-			return false;
-		}
-		if (!tfCSPDuration.getText().trim().isEmpty()
-				&& ((cbCSPDiesel.isSelected() && !tfCSPDieselDisc.getText().trim().isEmpty())
-						|| (cbCSPGasoline.isSelected() && !tfCSPGasolineDisc.getText().trim().isEmpty())
-						|| (cbCSPMotorbike.isSelected() && !tfCSPMotorbikeDisc.getText().trim().isEmpty()))) {
-			tfCSPDuration.setStyle("-fx-border-style: none;");
-			cbCSPDiesel.setStyle("-fx-border-style: none;");
-			tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-			cbCSPGasoline.setStyle("-fx-border-style: none;");
-			tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-			cbCSPMotorbike.setStyle("-fx-border-style: none;");
-			tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
-			result = true;
-		}
-		return result;
-	}
-
-	/**
-	 * 
-	 * @return result check that the time field value is correct
-	 */
-	private boolean checkDuration(TextField tf) {
-		boolean result = false;
-		if (Integer.parseInt(tf.getText()) > 0) {
-			result = true;
-		}
-		if (result == false)
-			tf.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
-		else
-			tf.setStyle("-fx-border-style: none;");
-		return result;
 	}
 
 	/**
@@ -1648,9 +1359,6 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		dpGMREndDate.setValue(null);
 		paneGMRCommentNext.setVisible(false);
 		paneGMRPeriodicNext.setVisible(false);
-		this.lblDieselDiscERR.setVisible(false);
-		this.lblGasolineDiscERR.setVisible(false);
-		this.lblMotorDiscERR.setVisible(false);
 		this.lblDieselERR2.setVisible(false);
 		this.lblGasolineERR2.setVisible(false);
 		this.lblHomeERR2.setVisible(false);
@@ -1660,26 +1368,7 @@ public class MarketingManagerWindow extends MarketingDepWorkerWindow {
 		tfISTime.setStyle("-fx-border-style: none;");
 		dpISDate.setValue(null);
 		dpISDate.setStyle("-fx-border-style: none;");
-		tfCSPDuration.clear();
-		tfCSPDuration.setStyle("-fx-border-style: none;");
-		cbCSPDiesel.setSelected(false);
-		cbCSPDiesel.setStyle("-fx-border-style: none;");
-		cbCSPGasoline.setSelected(false);
-		cbCSPGasoline.setStyle("-fx-border-style: none;");
-		cbCSPMotorbike.setSelected(false);
-		cbCSPMotorbike.setStyle("-fx-border-style: none;");
-		tfCSPDieselDisc.clear();
-		tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-		tfCSPGasolineDisc.clear();
-		tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-		tfCSPMotorbikeDisc.clear();
-		tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
-		tfCSPDieselDisc.setDisable(true);
-		tfCSPDieselDisc.setStyle("-fx-border-style: none;");
-		tfCSPGasolineDisc.setDisable(true);
-		tfCSPGasolineDisc.setStyle("-fx-border-style: none;");
-		tfCSPMotorbikeDisc.setDisable(true);
-		tfCSPMotorbikeDisc.setStyle("-fx-border-style: none;");
+		clearSalePatternPane();
 		cbRPRUDiesel.setSelected(false);
 		cbRPRUDiesel.setStyle("-fx-border-style: none;");
 		cbRPRUGasoline.setSelected(false);

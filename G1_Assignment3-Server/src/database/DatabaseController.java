@@ -22,7 +22,7 @@ import entities.ProductRateList;
 import entities.PurchasingProgram;
 import entities.PurchasingProgramType;
 import entities.RankingSheetList;
-import entities.SaleCommentReportList;
+import entities.SaleCommentsReportList;
 import entities.SalesList;
 import entities.SalesPatternList;
 import entities.User;
@@ -55,7 +55,7 @@ public class DatabaseController {
 		}
 
 		try {
-			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=Asia/Jerusalem",
+			this.connection = DriverManager.getConnection("jdbc:mysql://" + host + "/?serverTimezone=IST",
 					dbUsername, dbPassword);
 			serverWindow.updateArea("SQL connection succeeded");
 
@@ -340,7 +340,7 @@ public class DatabaseController {
 	}
 
 	public RankingSheetList getAllRankignSheets() {
-		return DatabaseMarketingManagerController.getInstance(connection).getAllRankignSheets();
+		return DatabaseMarketingManagerController.getInstance(connection).getAllRankingSheets();
 	}
 
 	public String createNewSalePatternID(int duration, String[] productInSP) {
@@ -360,7 +360,7 @@ public class DatabaseController {
 		return DatabaseMarketingManagerController.getInstance(connection).getSaleList();
 	}
 
-	public SaleCommentReportList generateSaleCommentReport(int saleID) {
+	public SaleCommentsReportList generateSaleCommentReport(int saleID) {
 		return DatabaseMarketingManagerController.getInstance(connection).generateSaleCommentReport(saleID);
 	}
 

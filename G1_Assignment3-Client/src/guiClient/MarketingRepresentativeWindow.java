@@ -7,6 +7,8 @@ import client.MarketingRepresentativeController;
 import entities.Car;
 import entities.CarList;
 import entities.Customer;
+import entities.ProductRateList;
+import entities.RankingSheetList;
 import entities.User;
 import enums.ProductName;
 import javafx.collections.FXCollections;
@@ -282,6 +284,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.visibleNow = this.homePane;
 		this.controller = MarketingRepresentativeController.getInstance();
 		this.controller.setCurrentWindow(this);
+		initializeRankingSheetTable();
 	}
 
 	@Override
@@ -753,13 +756,36 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 				.handleMessageFromClientUI("setpricingmodel " + customerID + " " + model + " " + defaultDiscount);
 	}
 
+	@FXML
+	void openCreateSalesPattern(ActionEvent event) {
+		this.sidebar_btn5.setSelected(true);
+		this.visibleNow.setVisible(false);
+		this.createSalePatternPane.setVisible(true);
+		this.visibleNow = this.createSalePatternPane;
+		this.topbar_window_label.setText("Create Sales Pattern");
+		clearFields();
+		getAllRankingSheets();
+		getAllProductRanks();
+	}
+
 	/*************** boundary "logic" - window changes ***************/
 
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
 
-		if (lastMsgFromServer instanceof String) {
+		if (lastMsgFromServer instanceof ProductRateList) {
+			ProductRateList list = (ProductRateList) lastMsgFromServer;
+			if (list.getList().isEmpty()) {
+				Alert a = new Alert(AlertType.CONFIRMATION);
+				a.setTitle("Product Rate:");
+				a.setContentText("there are no products");
+				a.show();
+			} else {
+				productRateList = list;
+			}
+
+		} else if (lastMsgFromServer instanceof String) {
 			String str = (String) lastMsgFromServer;
 			if (str.equals("save car success")) {
 				openConfirmationAlert("Success", "Car Saved");
@@ -966,6 +992,21 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 						this.controller.handleMessageFromClientUI("getcustomercars " + this.tfSPMCustID.getText());
 					}
 				}
+
+			} else if (str.startsWith("failed to create sale pattern")) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Creating Sale Pattern");
+				alert.setContentText("There was a technical probel in creating 'Sale Pattern' , Contact Technician");
+				alert.show();
+
+			} else if (str.startsWith("created sale pattern")) {
+				String[] str1 = str.split(" ");
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Creating Sale Pattern");
+				alert.setHeaderText("Creation Successful!");
+				alert.setContentText("the id is: " + str1[3]);
+				alert.show();
+				requestToLogActivity("Created A Sale Pattern With ID= " + str1[3]); // add activity
 			}
 
 		} else if (lastMsgFromServer instanceof Object[]) {
@@ -1087,6 +1128,18 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 				}
 				openConfirmationAlert("Success", "Number of Cars = " + numOfCars);
 			}
+
+		} else if (lastMsgFromServer instanceof RankingSheetList) {
+			RankingSheetList list = (RankingSheetList) lastMsgFromServer;
+			if (list.getList().isEmpty()) {
+				Alert a = new Alert(AlertType.CONFIRMATION);
+				a.setTitle("Ranking Sheet:");
+				a.setContentText("there are no ranking sheets");
+				a.show();
+			} else {
+				rankingSheetList = list;
+				updateRankingSheetListInTable();
+			}
 		}
 	}
 
@@ -1150,7 +1203,6 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		this.taSPPSingleDetails.setText("Fast fueling in fuel stations of only 1 fuel company\n\n10 dollars per month");
 		this.taSPPExpensiveDetails
 				.setText("Fast fueling in fuel stations of 2-3 fuel companies\n\n20 dollars per month");
-
 		clearFields();
 	}
 
@@ -1167,6 +1219,7 @@ public class MarketingRepresentativeWindow extends MarketingDepWorkerWindow {
 		clearEditCarPane();
 		clearSetPurchasingPane();
 		clearPricingModelPane();
+		clearSalePatternPane();
 	}
 
 	private void clearEditCustomerPane() {

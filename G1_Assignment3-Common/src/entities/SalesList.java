@@ -12,17 +12,17 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 public class SalesList implements Serializable {
-	private List<RowInSaleCommentReportTable> list = new ArrayList<>();
+	private List<RowInSaleCommentsReportTable> list = new ArrayList<>();
 
-	public SalesList(List<RowInSaleCommentReportTable> list) {
+	public SalesList(List<RowInSaleCommentsReportTable> list) {
 		this.list = list;
 	}
 
-	public List<RowInSaleCommentReportTable> getList() {
+	public List<RowInSaleCommentsReportTable> getList() {
 		return list;
 	}
 
-	public void setList(List<RowInSaleCommentReportTable> list) {
+	public void setList(List<RowInSaleCommentsReportTable> list) {
 		this.list = list;
 	}
 
