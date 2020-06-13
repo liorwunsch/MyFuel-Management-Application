@@ -73,7 +73,7 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] InventoryReport() {
-		return new String[] { "FK_repQuarter", "FK_repYear", "FK_fuelStationID" };
+		return new String[] { "FK_repQuarter", "FK_repYear", "FK_fuelStationID", "totalAmountSold" };
 	}
 
 	public static String[] Notification() {
@@ -115,7 +115,7 @@ public class FieldIndicatorsForInsert {
 
 	public static String[] ProductInInventoryReport() {
 		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport", "FK_repYear_inventoryReport",
-				"amountSold", "amountBegin", "amountEnd" };
+				"amountSold", "amountEnd" };
 	}
 
 	public static String[] ProductInOutcomeReport() {

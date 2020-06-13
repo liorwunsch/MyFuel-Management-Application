@@ -37,7 +37,7 @@ public class TableGenerator { // creating the tables if they are not exists
 			generateOutcomeReport(con);
 			generateProductInOutcomeReport(con);
 			generateInventoryReport(con);
-			generateProductInInventroyReport(con);
+			generateProductInInventoryReport(con);
 			generateCustomerBoughtInSale(con);
 			generateSaleCommentsReport(con);
 			generateCar(con);
@@ -271,7 +271,8 @@ public class TableGenerator { // creating the tables if they are not exists
 	private static void generateInventoryReport(Connection con) throws SQLException {
 		String tableName = "inventory_report";
 		String values = "( " + " FK_repQuarter INT NOT NULL ," + " FK_repYear varchar(32) NOT NULL ,"
-				+ " FK_fuelStationID INT NOT NULL , " + " PRIMARY KEY (FK_repQuarter,FK_repYear,FK_fuelStationID) ,"
+				+ " FK_fuelStationID INT NOT NULL , " + " totalAmountSold DOUBLE(32,2) NOT NULL , "
+				+ " PRIMARY KEY (FK_repQuarter,FK_repYear,FK_fuelStationID) ,"
 				// fk1
 				+ " KEY inventory_report_ibfk_1 (FK_repQuarter,FK_repYear,FK_fuelStationID) ,"
 				+ " CONSTRAINT inventory_report_ibfk_1 FOREIGN KEY (FK_repQuarter,FK_repYear,FK_fuelStationID) "
@@ -365,11 +366,11 @@ public class TableGenerator { // creating the tables if they are not exists
 		generateTable(con, tableName, values);
 	}
 
-	private static void generateProductInInventroyReport(Connection con) throws SQLException {
+	private static void generateProductInInventoryReport(Connection con) throws SQLException {
 		String tableName = "product_in_inventory_report";
 		String values = "( " + " FK_productInStationID INT NOT NULL ," + " FK_repQuarter_inventoryReport INT NOT NULL ,"
 				+ " FK_repYear_inventoryReport varchar(32) NOT NULL ," + " amountSold DOUBLE(32,2) NOT NULL ,"
-				+ " amountBegin DOUBLE(32,2) NOT NULL ," + " amountEnd DOUBLE(32,2) NOT NULL ,"
+				+ " amountEnd DOUBLE(32,2) NOT NULL ,"
 				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_inventoryReport,FK_repYear_inventoryReport) ,"
 				// fk1
 				+ " KEY product_in_inventory_report_ibfk_1 (FK_productInStationID) ,"

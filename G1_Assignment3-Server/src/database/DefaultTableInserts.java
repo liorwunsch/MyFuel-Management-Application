@@ -434,12 +434,12 @@ public class DefaultTableInserts {
 	private static void insertDefaultInventoryReport(Connection con) throws SQLException {
 		if (checkTableEmpty(con, "inventory_report") == false)
 			return;
-		// "FK_repQuarter", "FK_repYear", "FK_fuelStationID"
-		Object[] values1 = { 2, "2019", "1" };
+		// "FK_repQuarter", "FK_repYear", "FK_fuelStationID", "totalAmountSold"
+		Object[] values1 = { 2, "2019", "1", 117.22 };
 		TableInserts.insertInventoryReport(con, values1);
-		Object[] values2 = { 2, "2019", "2" };
+		Object[] values2 = { 2, "2019", "2", 225.43 };
 		TableInserts.insertInventoryReport(con, values2);
-		Object[] values3 = { 2, "2019", "3" };
+		Object[] values3 = { 2, "2019", "3", 286.74 };
 		TableInserts.insertInventoryReport(con, values3);
 	}
 
@@ -447,24 +447,24 @@ public class DefaultTableInserts {
 		if (checkTableEmpty(con, "product_in_inventory_report") == false)
 			return;
 		// "FK_productInStationID", "FK_repQuarter_inventoryReport",
-		// "FK_repYear_inventoryReport", "amountSold", "amountBegin", "amountEnd"
-		Object[] values1 = { "1", 2, "2019", 455 / 3 / 3.5, 1340 * 3, 1340 * 3 };
+		// "FK_repYear_inventoryReport", "amountSold", "amountEnd"
+		Object[] values1 = { "1", 2, "2019", 455 / 3 / 3.5, 1340 * 3 };
 		TableInserts.insertProductInInventoryReport(con, values1);
-		Object[] values2 = { "2", 2, "2019", 455 / 3 / 3, 895 * 3, 895 * 3 };
+		Object[] values2 = { "2", 2, "2019", 455 / 3 / 3, 895 * 3 };
 		TableInserts.insertProductInInventoryReport(con, values2);
-		Object[] values3 = { "3", 2, "2019", 455 / 3 / 6.5, 1500, 1500 };
+		Object[] values3 = { "3", 2, "2019", 455 / 3 / 6.5, 1500 };
 		TableInserts.insertProductInInventoryReport(con, values3);
-		Object[] values4 = { "4", 2, "2019", 875 / 3 / 3.5, 13400, 13400 };
+		Object[] values4 = { "4", 2, "2019", 875 / 3 / 3.5, 13400 };
 		TableInserts.insertProductInInventoryReport(con, values4);
-		Object[] values5 = { "5", 2, "2019", 875 / 3 / 3, 8950, 8950 };
+		Object[] values5 = { "5", 2, "2019", 875 / 3 / 3, 8950 };
 		TableInserts.insertProductInInventoryReport(con, values5);
-		Object[] values6 = { "6", 2, "2019", 875 / 3 / 6.5, 5000, 5000 };
+		Object[] values6 = { "6", 2, "2019", 875 / 3 / 6.5, 5000 };
 		TableInserts.insertProductInInventoryReport(con, values6);
-		Object[] values7 = { "7", 2, "2019", 1113 / 3 / 3.5, 13400 / 5, 13400 / 5 };
+		Object[] values7 = { "7", 2, "2019", 1113 / 3 / 3.5, 13400 / 5 };
 		TableInserts.insertProductInInventoryReport(con, values7);
-		Object[] values8 = { "8", 2, "2019", 1113 / 3 / 3, 8950 / 5, 8950 / 5 };
+		Object[] values8 = { "8", 2, "2019", 1113 / 3 / 3, 8950 / 5 };
 		TableInserts.insertProductInInventoryReport(con, values8);
-		Object[] values9 = { "9", 2, "2019", 1113 / 3 / 6.5, 1000, 1000 };
+		Object[] values9 = { "9", 2, "2019", 1113 / 3 / 6.5, 1000 };
 		TableInserts.insertProductInInventoryReport(con, values9);
 	}
 

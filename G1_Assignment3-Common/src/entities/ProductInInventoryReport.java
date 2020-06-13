@@ -8,7 +8,6 @@ public class ProductInInventoryReport extends ProductInQuarterlyReport {
 
 	// fields
 	private double amountSold;
-	private double amountBegin;
 	private double amountEnd;
 
 	/**
@@ -17,14 +16,12 @@ public class ProductInInventoryReport extends ProductInQuarterlyReport {
 	 * @param repQuarter
 	 * @param repYear
 	 * @param amountSold
-	 * @param amountBegin
 	 * @param amountEnd
 	 */
 	public ProductInInventoryReport(int productInStationID, int repQuarter, String repYear, double amountSold,
-			double amountBegin, double amountEnd) {
+			double amountEnd) {
 		super(productInStationID, repQuarter, repYear);
 		this.amountSold = amountSold;
-		this.amountBegin = amountBegin;
 		this.amountEnd = amountEnd;
 	}
 
@@ -34,14 +31,6 @@ public class ProductInInventoryReport extends ProductInQuarterlyReport {
 
 	public void setAmountSold(double amountSold) {
 		this.amountSold = amountSold;
-	}
-
-	public double getAmountBegin() {
-		return amountBegin;
-	}
-
-	public void setAmountBegin(double amountBegin) {
-		this.amountBegin = amountBegin;
 	}
 
 	public double getAmountEnd() {
@@ -54,8 +43,8 @@ public class ProductInInventoryReport extends ProductInQuarterlyReport {
 
 	@Override
 	public String toString() {
-		return "ProductInInventoryReport [" + super.toString() + ", amountSold=" + amountSold + ", amountBegin="
-				+ amountBegin + ", amountEnd=" + amountEnd + "]";
+		return "ProductInInventoryReport [" + super.toString() + ", amountSold=" + amountSold + ", amountEnd="
+				+ amountEnd + "]";
 	}
 
 	@Override
