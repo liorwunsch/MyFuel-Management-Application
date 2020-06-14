@@ -2,7 +2,14 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * The SupplierItemInTable Class is the basic that in the table in one
+ * of the components it SupplierWindow.
+ * <p>
+ * This class isnt part of the class diagram because its simplify version fuel station order.
+ * with more data
+ * @author Leptop-Pc
+ */
 @SuppressWarnings("serial")
 public class SupplierItemInTable implements Serializable{
 	public Integer fuelStationID; 

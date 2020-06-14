@@ -305,9 +305,9 @@
                           <columns>
                             <TableColumn prefWidth="98.0" text="Order ID" />
                             <TableColumn prefWidth="195.0" text="Order Time" />
-                              <TableColumn prefWidth="164.0" text="Product Name" />
+                              <TableColumn prefWidth="200.0" text="Product Name" />
                               <TableColumn prefWidth="116.0" text="Amount" />
-                              <TableColumn prefWidth="133.0" text="Total Price" />
+                              <TableColumn prefWidth="133.0" text="Address" />
                           </columns>
                         </TableView>
                      </children>

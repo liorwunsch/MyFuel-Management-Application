@@ -6,9 +6,17 @@ import java.net.ConnectException;
 import entities.FuelStation;
 import entities.FuelStationOrder;
 import enums.FuelCompanyName;
-
+/**
+ * This Class is connection between the supplier gui and the server request and acknowledge
+ * <br />
+ * Sending message to serve the message of supplier always starts with fuel_station_order.
+ * <br />
+ * this is the way designed to recognize the requested approach 
+ * @author Leptop-Pc
+ * @see guiClient.SupplierWindow
+ */
 public class SupplierController extends UserController {
-
+	
 	private static SupplierController instance;
 	// set only in successful login
 	public String username;

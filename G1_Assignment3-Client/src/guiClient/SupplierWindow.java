@@ -19,6 +19,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 
+/**
+ * supplier windows contains screans
+ * <ol>
+ * <li> homePane 
+ * <li> approveSuppliedPane
+ * </ol>
+ * @author Leptop-Pc
+ * @see guiClient.EmployeeWindow
+ */
 public class SupplierWindow extends EmployeeWindow {
 
 	@FXML
@@ -41,11 +50,19 @@ public class SupplierWindow extends EmployeeWindow {
 
 	@FXML
 	private Button btnASFSOShow;
-
+	/**
+	 * This Table view display on AnchorPane approveSuppliedPan.
+	 * @see entities.SupplierItemInTable
+	 */
 	@FXML
 	private TableView<SupplierItemInTable> tvASFSODetails;
-	
+	/**
+	 *  This arrays sets when the show button pressed in AnchorPane approveSuppliedPane
+	 */
 	private SupplierItemInTable[] siit;
+	/**
+	 *  This arrays sets when you enter to AnchorPane approveSuppliedPane
+	 */
 	private Integer[] fuelStationIDs;
 	
 	@FXML
@@ -59,13 +76,15 @@ public class SupplierWindow extends EmployeeWindow {
 	public Window getWindow() {
 		return this.approveSuppliedPane.getScene().getWindow();
 	}
-
+	
+	/**
+	 * This method adaptation of the parent method for Supplier
+	 * @see guiClient.EmployeeWindow#callAfterMessage
+	 */
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
 		super.callAfterMessage(lastMsgFromServer);
-		/**
-		 * 
-		 */
+		//vlad added 
 		if(lastMsgFromServer instanceof SupplierItemInTable[]) {
 			siit = (SupplierItemInTable[])lastMsgFromServer;
 		}
@@ -73,7 +92,17 @@ public class SupplierWindow extends EmployeeWindow {
 			fuelStationIDs = (Integer[])lastMsgFromServer;
 		}
 	}
-
+	/**
+	 * This method sets the AnchorPane approveSuppliedPan.
+	 * <br/>
+	 * The method sets:
+	 * <ol>
+	 * <li> fuelStationIDs pull the info from server
+	 * <li> tvASFSODetails tableView set cloumn 
+	 * <li> approveSuppliedPane display the anchor
+	 * </ol>
+	 * @param event press on button to enter the anchor
+	 */
 	@FXML
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void openApproveSupplied(ActionEvent event) {
@@ -84,16 +113,22 @@ public class SupplierWindow extends EmployeeWindow {
 		List<Integer> fsList = Arrays.asList(fuelStationIDs);
 		cobASFSOFuelStationID.getItems().addAll(fsList);
 
-		final TableColumn<SupplierItemInTable, Integer> orderIDColumn = new TableColumn<SupplierItemInTable, Integer>("orderID");
+		final TableColumn<SupplierItemInTable, Integer> orderIDColumn = new TableColumn<SupplierItemInTable, Integer>("Order ID");
 		orderIDColumn.setCellValueFactory(new PropertyValueFactory("orderID"));
-		final TableColumn<SupplierItemInTable, Date> orderTimeColumn = new TableColumn<SupplierItemInTable, Date>("orderTime");
+		orderIDColumn.setMinWidth(orderIDColumn.getPrefWidth());
+		final TableColumn<SupplierItemInTable, Date> orderTimeColumn = new TableColumn<SupplierItemInTable, Date>("Order Time");
 		orderTimeColumn.setCellValueFactory(new PropertyValueFactory("orderTime"));
-		final TableColumn<SupplierItemInTable, Integer> productNameColumn = new TableColumn<SupplierItemInTable, Integer>("productName");
+		orderTimeColumn.setMinWidth(orderTimeColumn.getPrefWidth());
+		final TableColumn<SupplierItemInTable, Integer> productNameColumn = new TableColumn<SupplierItemInTable, Integer>("Product Name");
 		productNameColumn.setCellValueFactory(new PropertyValueFactory("productName"));
-		final TableColumn<SupplierItemInTable, Double> amountColumn = new TableColumn<SupplierItemInTable, Double>("amount");
+		productNameColumn.setPrefWidth(100);
+		productNameColumn.setMinWidth(productNameColumn.getPrefWidth());
+		final TableColumn<SupplierItemInTable, Double> amountColumn = new TableColumn<SupplierItemInTable, Double>("Amount");
 		amountColumn.setCellValueFactory(new PropertyValueFactory("amount"));
-		final TableColumn<SupplierItemInTable, String> AddressColumn = new TableColumn<SupplierItemInTable, String>("address");
+		amountColumn.setMinWidth(amountColumn.getPrefWidth());
+		final TableColumn<SupplierItemInTable, String> AddressColumn = new TableColumn<SupplierItemInTable, String>("Address");
 		AddressColumn.setCellValueFactory(new PropertyValueFactory("address"));
+		AddressColumn.setMinWidth(AddressColumn.getPrefWidth());
 		
 		tvASFSODetails.getColumns().setAll(orderIDColumn,orderTimeColumn,productNameColumn,amountColumn,AddressColumn);
 		approveSuppliedPane.setVisible(true);
@@ -107,7 +142,10 @@ public class SupplierWindow extends EmployeeWindow {
 		  super.openHome(event);
 	  }
 	 
-	
+	/**
+	 * This method will show new fuel station order
+	 * @param event button btnASFSOShow pressed
+	 */
 	@FXML
     void btnASFSOShowPressed(ActionEvent event) {
 		Integer cur = cobASFSOFuelStationID.getValue();
@@ -115,7 +153,10 @@ public class SupplierWindow extends EmployeeWindow {
 		tvASFSODetails.getItems().clear();
 		tvASFSODetails.getItems().addAll(siit);
     }
-	
+	/**
+	 * This method will approve the select fuel station order
+	 * @param event btnASFSOApprove pressed
+	 */
 	   @FXML
 	    void btnASFSOApproveSPressed(ActionEvent event) {
 		   int approvedId = tvASFSODetails.getSelectionModel().getSelectedItem().getOrderID();

@@ -34,7 +34,11 @@ public class ServerSupplierController {
 		}
 		return instance;
 	}
-	
+	/**
+	 * This method  parse the message for it correct route.
+	 * @param str the message
+	 * @param client
+	 */
 	public void handleMessageFromClient(String str, ConnectionToClient client) {
 		try {
 			String[] arr = str.split(" ");
