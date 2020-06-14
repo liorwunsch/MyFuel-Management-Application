@@ -1,5 +1,7 @@
 package guiClient;
 
+import java.io.IOException;
+
 import client.LoginController;
 import client.SupplierController;
 import javafx.event.ActionEvent;
@@ -25,20 +27,36 @@ import javafx.stage.StageStyle;
  */
 public class LoginWindow extends AFXML {
 
-	@FXML	private AnchorPane serverPane;
-	@FXML	private TextField tfLoginServerHost;
-	@FXML	private TextField tfLoginServerPort;
-	@FXML	private Label lblError1;
-	@FXML	private Button btnContinue;
+	@FXML
+	private AnchorPane serverPane;
+	@FXML
+	private TextField tfLoginServerHost;
+	@FXML
+	private TextField tfLoginServerPort;
+	@FXML
+	private Label lblError1;
+	@FXML
+	private Button btnContinue;
 
-	@FXML	private AnchorPane loginPane;
-	@FXML	private TextField tfLoginUserName;
-	@FXML	private PasswordField tfLoginPassword;
-	@FXML	private ToggleGroup rb1;
-	@FXML	private RadioButton rbEmployee;
-	@FXML	private RadioButton rbCustomer;
-	@FXML	private Label lblError;
-	@FXML	private Button btnSignIn;
+	@FXML
+	private AnchorPane loginPane;
+	@FXML
+	private TextField tfLoginUserName;
+	@FXML
+	private PasswordField tfLoginPassword;
+	@FXML
+	private ToggleGroup rb1;
+	@FXML
+	private RadioButton rbEmployee;
+	@FXML
+	private RadioButton rbCustomer;
+	@FXML
+	private Label lblError;
+	@FXML
+	private Button btnSignIn;
+
+	@FXML
+	private Button btnEmu;
 	
 	//vlad added
 	private String username;
@@ -75,6 +93,28 @@ public class LoginWindow extends AFXML {
 		mySignIn();
 	}
 
+	@FXML
+	void btnEmuPressed(ActionEvent event) {
+		try {
+			String newWindowPath = "/windows/FastFuelWindow.fxml";
+			String newWindowTitle = "MyFuel Fast Fuel Emulator";
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(newWindowPath));
+			Scene newScene = new Scene(loader.load());
+			Stage newStage = new Stage();
+			;
+
+			newStage.setResizable(false);
+			newStage.setScene(newScene);
+			newStage.setTitle(newWindowTitle);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+			this.btnSignIn.getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/*********************** button functions ***********************/
 
 	/**
@@ -97,7 +137,8 @@ public class LoginWindow extends AFXML {
 		this.tfLoginServerPort.setStyle("-fx-border-style: none;");
 
 		this.controller = LoginController.getInstance(host, Integer.parseInt(port), this);
-		this.controller.setCurrentWindow(this);
+		if (this.controller != null)
+			this.controller.setCurrentWindow(this);
 	}
 
 	/**
@@ -205,6 +246,7 @@ public class LoginWindow extends AFXML {
 
 			UserWindow newWindow = loader.getController();
 			newWindow.setUserComponents(this.tfLoginUserName.getText());
+			newWindow.requestToLogActivity("logged in");
 
 			newStage.setResizable(false);
 			newStage.setScene(newScene);

@@ -5,19 +5,36 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import entities.ActivityList;
+import entities.Car;
+import entities.CarList;
+import entities.Customer;
+import entities.FastFuel;
 import entities.FastFuelList;
 import entities.FuelStationOrder;
 import entities.HomeFuelOrder;
+import entities.HomeFuelOrderList;
+import entities.PeriodicReportList;
+import entities.PricingModel;
+import entities.ProductInSalePatternList;
+import entities.ProductRateList;
+import entities.PurchasingProgram;
+import entities.PurchasingProgramType;
+import entities.RankingSheetList;
+import entities.SaleCommentsReportList;
+import entities.SalesList;
+import entities.SalesPatternList;
 import entities.SupplierItemInTable;
+import entities.User;
 import guiServer.ServerWindow;
 
 /**
  * controller for database
  * 
  * @version N Methods To Final
- * @see activityLogger(), + methods of other database controllers
+ * @see methods of other database controllers
  * @author Elroy, Lior
  */
 public class DatabaseController {
@@ -29,6 +46,12 @@ public class DatabaseController {
 	 * singleton class constructor initialize connection to the database
 	 * <p>
 	 * happens once and before everything done on the server
+	 * 
+	 * @param serverWindow
+	 * @param host
+	 * @param schema
+	 * @param dbUsername
+	 * @param dbPassword
 	 */
 	private DatabaseController(ServerWindow serverWindow, String host, String schema, String dbUsername,
 			String dbPassword) {
@@ -97,7 +120,7 @@ public class DatabaseController {
 	 * @param action
 	 * @return message for server
 	 */
-	public String activityLogger(String username, String action) throws SQLException {
+	public String activityLogger(String username, String[] action) {
 		return DatabaseUserController.getInstance(connection).activityLogger(username, action);
 	}
 
@@ -160,5 +183,304 @@ public class DatabaseController {
 		return DatabaseSupplierController.getInstance(connection).getFuelStationWithOrder(username);
 	}
 	
+
+	/**
+	 * 
+	 * @param username
+	 * @return purchasing program of customer with that username
+	 */
+	public PurchasingProgramType getPurchasingProgramSequence(String username) {
+		return DatabaseCustomerController.getInstance(connection).getPurchasingProgramSequence(username);
+	}
+
+	/**
+	 * 
+	 * @param string
+	 * @return home fuel orders of customer with that username
+	 */
+	public HomeFuelOrderList getHomeFuelOrdersSequence(String username) {
+		return DatabaseCustomerController.getInstance(connection).getHomeFuelOrdersSequence(username);
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return string of success or fail
+	 */
+	public String updatePassword(String username, String password) {
+		return DatabaseCustomerController.getInstance(connection).updatePassword(username, password);
+	}
+
+	/************* marketing representative controller methods **************/
+
+	/**
+	 * 
+	 * @param user
+	 * @param customer
+	 * @return string of success or fail
+	 */
+	public String saveNewCustomerSequence(User user, Customer customer) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).saveNewCustomerSequence(user,
+				customer);
+	}
+
+	/**
+	 * 
+	 * @param customerID
+	 * @return user and customer entities
+	 */
+	public Object[] getCustomerDetails(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).getCustomerDetails(customerID);
+	}
+
+	/**
+	 * delete customer and its username from db
+	 * 
+	 * @param customerID
+	 * @return false if failed
+	 */
+	public boolean deleteCustomer(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).deleteCustomer(customerID);
+	}
+
+	/**
+	 * check if customerID exists, 0 if exists, 1 if deleted, 2 if doesnt exist
+	 * 
+	 * @param customerID
+	 */
+	public Integer checkCustomerExists(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).checkCustomerExists(customerID);
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param customer
+	 * @return string of success or fail
+	 */
+	public String updateCustomer(User user, Customer customer) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).updateCustomer(user, customer);
+	}
+
+	/**
+	 * 
+	 * @param car
+	 * @return string of success or fail
+	 */
+	public String saveNewCarSequence(Car car) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).saveNewCarSequence(car);
+	}
+
+	/**
+	 * 
+	 * @param customerID
+	 * @return list of cars of customer
+	 */
+	public CarList getCustomerCars(String customerID) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).getCustomerCars(customerID);
+	}
+
+	/**
+	 * 
+	 * @param regPlate
+	 * @return string of success or fail
+	 */
+	public Boolean deleteCar(String regPlate) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).deleteCar(regPlate);
+	}
+
+	/**
+	 * 
+	 * @param car
+	 * @return string of success or fail
+	 */
+	public String updateCar(Car car) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).updateCar(car);
+	}
+
+	/**
+	 * 
+	 * @param purchasingProgram
+	 * @return string of success or fail
+	 */
+	public String setPurchasingProgram(PurchasingProgram purchasingProgram) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection)
+				.setPurchasingProgram(purchasingProgram);
+	}
+
+	/**
+	 * 
+	 * @param pricingModel
+	 * @return string of success or fail
+	 */
+	public String setPricingModel(PricingModel pricingModel) {
+		return DatabaseMarketingRepresentativeController.getInstance(connection).setPricingModel(pricingModel);
+	}
+
+	/************* fast fuel controller methods **************/
+
+	/**
+	 * 
+	 * @param fastFuel
+	 * @return fuel type of car and price per liter after discounts
+	 */
+	public FastFuel getFuelTypeAndPricePerLiter(FastFuel fastFuel) {
+		return DatabaseFastFuelController.getInstance(connection).getFuelTypeAndPricePerLiter(fastFuel);
+	}
+
+	/**
+	 * 
+	 * @param fastFuel
+	 * @return message of success or fail in fastFuel->function
+	 */
+	public FastFuel saveFastFuel(FastFuel fastFuel) {
+		return DatabaseFastFuelController.getInstance(connection).saveFastFuel(fastFuel);
+	}
+
+	/************* marketing manager controller methods **************/
+
+	/**
+	 * 
+	 * @return SalesPatternList
+	 */
+	public SalesPatternList getAllSalePatterns() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllSalePatterns();
+	}
+
+	/**
+	 * method that pulls all products that are in a Sale Pattern
+	 * 
+	 * @return ProductInSalePatternList
+	 */
+	public ProductInSalePatternList getAllProductInSalePatterns() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllProductInSalePatterns();
+	}
+
+	/**
+	 * method that check if a sale with required sale pattern id is active or not
+	 * 
+	 * @param salePatternID
+	 * @return String
+	 */
+	public String checkActiveOfSale(int salePatternID) {
+		return DatabaseMarketingManagerController.getInstance(connection).checkActiveOfSale(salePatternID);
+	}
+
+	/**
+	 * method that creats a new row of sale
+	 * 
+	 * @param values
+	 * @return String
+	 */
+	public String insertNewSale(int[] values) {
+		return DatabaseMarketingManagerController.getInstance(connection).insertNewSale(values);
+	}
+
+	/**
+	 * create a new activity in sql
+	 * 
+	 * @param employeeID
+	 * @param date
+	 * @param action
+	 * @return String
+	 */
+	public String insertNewActivity(String username, Date date, String action) {
+		return DatabaseMarketingManagerController.getInstance(connection).insertNewActivity(username, date, action);
+	}
+
+	/**
+	 * method that pulls all ranking sheets from data base
+	 * 
+	 * @return RankingSheetList
+	 */
+	public RankingSheetList getAllRankignSheets() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllRankingSheets();
+	}
+
+	/**
+	 * method that create a new Sale Pattern
+	 * 
+	 * @param duration
+	 * @param productInSP
+	 * @return String
+	 */
+	public String createNewSalePatternID(int duration, String[] productInSP) {
+		return DatabaseMarketingManagerController.getInstance(connection).createNewSalePatternID(duration, productInSP);
+	}
+
+	/**
+	 * method that pulls all Product Ranks
+	 * 
+	 * @return ProductRateList
+	 */
+	public ProductRateList getAllProductRanks() {
+		return DatabaseMarketingManagerController.getInstance(connection).getAllProductRanks();
+	}
+
+	/**
+	 * method that create a new Product Rate Update Request
+	 * 
+	 * @param dieselRank
+	 * @param gasolineRank
+	 * @param motorRank
+	 * @param homeRank
+	 * @return String
+	 */
+	public String createNewPRUR(double dieselRank, double gasolineRank, double motorRank, double homeRank) {
+		return DatabaseMarketingManagerController.getInstance(connection).createNewPRUR(dieselRank, gasolineRank,
+				motorRank, homeRank);
+	}
+
+	/**
+	 * method that pulls sale products data from sql
+	 * 
+	 * @return SalesList
+	 */
+	public SalesList getSaleList() {
+		return DatabaseMarketingManagerController.getInstance(connection).getSaleList();
+	}
+
+	/**
+	 * method that generate a new commmon report
+	 * 
+	 * @param saleID
+	 * @return SaleCommentsReportList
+	 */
+	public SaleCommentsReportList generateSaleCommentReport(int saleID) {
+		return DatabaseMarketingManagerController.getInstance(connection).generateSaleCommentReport(saleID);
+	}
+
+	/**
+	 * method that generate new periodic report if not exists and pulls customer
+	 * data bought form the compnay in date between fromDate : toDate
+	 * 
+	 * @param fromDate
+	 * @param toDate
+	 * @return PeriodicReportList
+	 */
+	public PeriodicReportList generatePeriodicReport(Date fromDate, Date toDate) {
+		return DatabaseMarketingManagerController.getInstance(connection).generatePeriodicReport(fromDate, toDate);
+	}
+
+	/**
+	 * method that check if a new sale will be in some range of other sale dates
+	 * 
+	 * @param startDate
+	 * @param endDate
+	 * @return String
+	 */
+	public String checkSaleRange(Date startDate, Date endDate) {
+		return DatabaseMarketingManagerController.getInstance(connection).checkSaleRange(startDate, endDate);
+	}
+
+	/**
+	 * generate or update customers' ranking sheets
+	 * 
+	 * @return string of success or fail
+	 */
+	public String generateAnalysis() {
+		return DatabaseMarketingManagerController.getInstance(connection).generateAnalysis();
+	}
 
 }

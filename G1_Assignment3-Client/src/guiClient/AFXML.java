@@ -20,28 +20,51 @@ import javafx.stage.Stage;
  */
 public abstract class AFXML {
 
-	@FXML	protected AnchorPane titleBar;
-	@FXML	protected Button btnMini;
-	@FXML	protected Button btnExit;
+	@FXML
+	protected AnchorPane titleBar;
+	@FXML
+	protected Button btnMini;
+	@FXML
+	protected Button btnExit;
 
 	protected AnchorPane visibleNow;
 	protected ClientController controller;
 
 	/**
-	 * executes window methods according to input
+	 * changes the window after server returned an answer to client's request
 	 * 
 	 * @param lastMsgFromServer
 	 */
 	public abstract void callAfterMessage(Object lastMsgFromServer);
 
 	/**
-	 * opens error popup window all windows use this
+	 * opens error popup window, all windows use this
 	 * 
 	 * @param title
 	 * @param msg
 	 */
 	public void openErrorAlert(String title, String msg) {
 		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(msg);
+		alert.show();
+		ButtonType buttonTypeOne = new ButtonType("OK");
+		alert.getButtonTypes().setAll(buttonTypeOne);
+
+		final Button btn = (Button) alert.getDialogPane().lookupButton(buttonTypeOne);
+		btn.setOnAction(event -> {
+			alert.hide();
+		});
+	}
+
+	/**
+	 * opens confirmation popup window, all windows use this
+	 * 
+	 * @param title
+	 * @param msg
+	 */
+	public void openConfirmationAlert(String title, String msg) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(msg);
 		alert.show();

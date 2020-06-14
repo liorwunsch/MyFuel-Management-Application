@@ -25,7 +25,7 @@
       <Button fx:id="btnDisconnect" layoutX="350.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#disConnectedBtnClicked" onMouseEntered="#disConnectedBtnHover" onMouseExited="#disConnectedBtnExit" prefHeight="54.0" prefWidth="161.0" style="-fx-background-color: LIGHTCORAL;" text="Disconnect " />
       <ImageView fx:id="imgStatus" fitHeight="115.0" fitWidth="88.0" layoutX="387.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@מטלות%20בית/סמסטר%205/שיטות%20-%20פרוייקט/server%20gui%20develep/disconnected.png" />
+            <Image url="@disconnected.png" />
          </image>
       </ImageView>
       <Label layoutX="391.0" layoutY="32.0" text="Server Status">

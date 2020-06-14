@@ -89,8 +89,7 @@ public class ProductInStation extends Product {
 		String str = "ProductInStation [" + super.toString() + ", ";
 		if (productInStationID != null)
 			str += "productInStationID=" + productInStationID + ", ";
-		str += ", fuelStationID=" + fuelStationID + ", capacity=" + capacity + ", thresholdLevel=" + threshold
-				+ "]";
+		str += ", fuelStationID=" + fuelStationID + ", capacity=" + capacity + ", thresholdLevel=" + threshold + "]";
 		return str;
 	}
 

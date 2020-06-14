@@ -21,6 +21,7 @@ public class PricingModel implements Serializable {
 
 	/**
 	 * w/o lastMonthUtilization optional
+	 * 
 	 * @param customerID
 	 * @param pricingModelName
 	 * @param currentDiscount

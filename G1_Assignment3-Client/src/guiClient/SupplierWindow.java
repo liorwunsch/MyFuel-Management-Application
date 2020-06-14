@@ -164,4 +164,10 @@ public class SupplierWindow extends EmployeeWindow {
 		   tvASFSODetails.getItems().remove(tvASFSODetails.getSelectionModel().getSelectedItem());
 		   SupplierController.getInstance().approveFuelStationOrder(approvedId,amount);
 	    }
+	@Override
+	public void clearFields() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

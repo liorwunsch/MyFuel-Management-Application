@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import entities.Activity;
@@ -123,20 +124,32 @@ public class DatabaseUserController {
 	 * @param action
 	 * @return message for server
 	 */
-	public String activityLogger(String username, String action) {
+	public String activityLogger(String username, String[] action) {
 		try {
 			PreparedStatement pStmt;
 			pStmt = this.connection.prepareStatement("SELECT employeeID FROM employee WHERE FK_userName = ?");
 			pStmt.setString(1, username);
 			ResultSet rs1 = pStmt.executeQuery();
+			if (!rs1.next())
+				return "activityLogger failed";
 			int employeeID = rs1.getInt(1);
 
-			Object[] values1 = { employeeID, new Date(), action };
+			Calendar calendar = Calendar.getInstance();
+			Date now = new Date();
+			calendar.setTime(now);
+			calendar.add(Calendar.HOUR, -2);
+			calendar.add(Calendar.MINUTE, -30);
+			now = calendar.getTime();
+
+			StringBuilder myAction = new StringBuilder("");
+			for (int i = 3; i < action.length; i++)
+				myAction.append(action[i] + " ");
+
+			Object[] values1 = { employeeID, now, myAction.toString() };
 			TableInserts.insertActivity(connection, values1);
 			return "activityLogger succeeded";
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return "activityLogger failed";
 		}
 	}

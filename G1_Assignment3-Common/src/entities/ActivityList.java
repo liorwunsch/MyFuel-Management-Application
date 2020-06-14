@@ -3,6 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author Lior
+ */
 @SuppressWarnings("serial")
 public class ActivityList implements Serializable {
 

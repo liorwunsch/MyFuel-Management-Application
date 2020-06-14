@@ -2,6 +2,7 @@ package database;
 
 /**
  * indicates the values of input of a query
+ * 
  * @author Lior, Vlad, Elroy
  */
 public class FieldIndicatorsForInsert {
@@ -32,7 +33,8 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] FastFuel() {
-		return new String[] { "FK_registrationPlate", "FK_customerID", "FK_productInStationID", "fastFuelTime", "amountBought", "finalPrice" };
+		return new String[] { "FK_registrationPlate", "FK_customerID", "FK_productInStationID", "fastFuelTime",
+				"amountBought", "finalPrice" };
 	}
 
 	public static String[] FuelCompany() {
@@ -71,7 +73,7 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] InventoryReport() {
-		return new String[] { "FK_repQuarter", "FK_repYear", "FK_fuelStationID" };
+		return new String[] { "FK_repQuarter", "FK_repYear", "FK_fuelStationID", "totalAmountSold" };
 	}
 
 	public static String[] Notification() {
@@ -113,7 +115,7 @@ public class FieldIndicatorsForInsert {
 
 	public static String[] ProductInInventoryReport() {
 		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport", "FK_repYear_inventoryReport",
-				"amountSold", "amountBegin", "amountEnd" };
+				"amountSold", "amountEnd" };
 	}
 
 	public static String[] ProductInOutcomeReport() {
@@ -169,7 +171,7 @@ public class FieldIndicatorsForInsert {
 	}
 
 	public static String[] Sale() {
-		return new String[] { "FK_salesPatternID", "active", "startTime", "endTime" };
+		return new String[] { "FK_salesPatternID", "startTime", "endTime" };
 	}
 
 	public static String[] SaleCommentsReport() {

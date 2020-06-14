@@ -25,6 +25,7 @@ public class HomeFuelOrder extends Orders {
 
 	/**
 	 * without ordersID auto-inc
+	 * 
 	 * @param orderTime
 	 * @param amountBought
 	 * @param address
@@ -45,6 +46,7 @@ public class HomeFuelOrder extends Orders {
 	}
 
 	/**
+	 * with everything
 	 * 
 	 * @param ordersID
 	 * @param orderTime

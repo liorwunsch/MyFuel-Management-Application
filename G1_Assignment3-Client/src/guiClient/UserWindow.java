@@ -1,5 +1,6 @@
 package guiClient;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -31,42 +32,79 @@ import javafx.stage.WindowEvent;
  */
 public abstract class UserWindow extends AFXML {
 
-	@FXML	protected BorderPane mainBorderPane;
-	@FXML	protected AnchorPane mainwindow_pane;
-	@FXML	protected Label lblHelloUser;
-	@FXML	protected Label topbar_window_label;
+	@FXML
+	protected BorderPane mainBorderPane;
+	@FXML
+	protected AnchorPane mainwindow_pane;
+	@FXML
+	protected Label lblHelloUser;
+	@FXML
+	protected Label topbar_window_label;
 
-	@FXML	protected AnchorPane homePane;
-	@FXML	protected Label lblHomeUserName;
-	@FXML	protected ComboBox<Integer> cobHomeYear;
-	@FXML	protected ComboBox<Integer> cobHomeMonth;
-	@FXML	protected Button btnHomeUpdate;
-	@FXML	protected Button btnSignOut;
+	@FXML
+	protected AnchorPane homePane;
+	@FXML
+	protected Label lblHomeUserName;
+	@FXML
+	protected ComboBox<Integer> cobHomeYear;
+	@FXML
+	protected ComboBox<Integer> cobHomeMonth;
+	@FXML
+	protected Button btnHomeUpdate;
+	@FXML
+	protected Button btnSignOut;
 
 	protected String username; // the username of the current user of the window
 
-	/**
-	 * @param username
-	 * @return the window of the boundary
-	 */
 	public abstract Window getWindow();
+
+	public abstract void clearFields();
 
 	/**
 	 * initialize all components shared by all users
+	 * 
 	 * @param username
 	 */
-	@SuppressWarnings({ "deprecation" })
 	public void setUserComponents(String username) {
 		this.username = username;
 		this.lblHelloUser.setText("Hello, " + username);
 		this.lblHomeUserName.setText(username + " !");
 
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new java.util.Date());
+
 		this.cobHomeYear.getItems().removeAll((Collection<?>) this.cobHomeYear.getItems());
 		this.cobHomeYear.getItems().addAll(new Integer[] { 2019, 2020 });
-		this.cobHomeYear.setValue(new java.util.Date().getYear() + 1900);
+		this.cobHomeYear.setValue(calendar.get(Calendar.YEAR));
 		this.cobHomeMonth.getItems().removeAll((Collection<?>) this.cobHomeMonth.getItems());
 		this.cobHomeMonth.getItems().addAll(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
-		this.cobHomeMonth.setValue(new java.util.Date().getMonth() + 1);
+		this.cobHomeMonth.setValue(calendar.get(Calendar.MONTH) + 1);
+	}
+
+	/**
+	 * checks there are no digits / letters in a tf value
+	 * 
+	 * @param tf
+	 * @param kind         = { digits, letters }
+	 * @param errorMessage
+	 * @return true if valid, else false
+	 */
+	protected boolean checkValidTextField(String tf, String kind, String errorMessage) {
+		if (kind.equals("digits")) {
+			if (tf.matches(".*[ -/].*") || tf.matches(".*[:-~].*")) {
+				openErrorAlert("Error", errorMessage);
+				return false;
+			}
+		} else if (kind.equals("letters")) {
+			if (tf.matches(".*[ -@].*")) {
+				openErrorAlert("Error", errorMessage);
+				return false;
+			}
+		} else {
+			System.out.println("expected digits or letters but got " + kind);
+			return false;
+		}
+		return true;
 	}
 
 	/*********************** button listeners ***********************/
@@ -75,14 +113,6 @@ public abstract class UserWindow extends AFXML {
 	public void closeTopBar(ActionEvent event) {
 		if (!this.signOutClicked(this.getWindow()))
 			event.consume();
-	}
-
-	@FXML
-	void openHome(ActionEvent event) {
-		this.visibleNow.setVisible(false);
-		this.homePane.setVisible(true);
-		this.visibleNow = homePane;
-		this.topbar_window_label.setText("Home");
 	}
 
 	@FXML
@@ -120,16 +150,16 @@ public abstract class UserWindow extends AFXML {
 
 	@Override
 	public void callAfterMessage(Object lastMsgFromServer) {
-		if(lastMsgFromServer == null)
+		if (lastMsgFromServer == null) {
 			openErrorAlert("Error", "Something went Wrong");
-		
-		if (lastMsgFromServer instanceof String) {
+
+		} else if (lastMsgFromServer instanceof String) {
 			String message = (String) lastMsgFromServer;
 			if (message.startsWith("sign out"))
-				handleSignOutFromServer(message, this.getWindow());
+				handleSignOutFromServer(message, getWindow());
 		}
 	}
-	
+
 	/**
 	 * @param lastMsgFromServer
 	 * @param window
@@ -139,9 +169,8 @@ public abstract class UserWindow extends AFXML {
 
 		if (lastMsgFromServer.startsWith("sign out succeeded")) {
 			this.signOutToLogin(window);
-		}
 
-		if (lastMsgFromServer.startsWith("sign out failed")) {
+		} else if (lastMsgFromServer.startsWith("sign out failed")) {
 			Alert a = new Alert(Alert.AlertType.ERROR);
 			a.setContentText("Error - sign out failed");
 			a.show();
@@ -160,7 +189,7 @@ public abstract class UserWindow extends AFXML {
 
 			LoginWindow loginWindow = (LoginWindow) loader.getController();
 			loginWindow.setVisibleNow(true);
-			
+
 			newStage.setResizable(false);
 			newStage.setScene(newScene);
 			newStage.setTitle("MyFuel Login");
@@ -177,4 +206,13 @@ public abstract class UserWindow extends AFXML {
 		}
 	}
 
+	/**
+	 * send activity to log in db
+	 * 
+	 * @param action
+	 */
+	public void requestToLogActivity(String action) {
+		String message = "activity log " + username + " " + action;
+		this.controller.handleMessageFromClientUI(message);
+	}
 }

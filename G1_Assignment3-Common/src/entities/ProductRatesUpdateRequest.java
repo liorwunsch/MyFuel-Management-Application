@@ -19,6 +19,7 @@ public class ProductRatesUpdateRequest implements Serializable {
 
 	/**
 	 * w/o updateRateRequestID auto-inc, approved
+	 * 
 	 * @param requestDate
 	 * @param assessed
 	 */
@@ -30,6 +31,7 @@ public class ProductRatesUpdateRequest implements Serializable {
 
 	/**
 	 * w/o updateRateRequestID auto-inc
+	 * 
 	 * @param requestDate
 	 * @param assessed
 	 * @param approved
@@ -43,6 +45,7 @@ public class ProductRatesUpdateRequest implements Serializable {
 
 	/**
 	 * w/o approved optional
+	 * 
 	 * @param updateRateRequestID
 	 * @param requestDate
 	 * @param assessed

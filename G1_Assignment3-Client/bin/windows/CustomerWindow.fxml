@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -27,25 +27,6 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.CustomerWindow">
    <children>
-      <AnchorPane fx:id="fastFuelPane" layoutX="44.0" layoutY="64.0" prefHeight="576.0" prefWidth="1014.0" visible="false">
-         <children>
-            <Label fx:id="lblFFPricePerLiter" layoutX="419.0" layoutY="282.0" text="0.00">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
-            <Label layoutX="455.0" layoutY="413.0" text="Dollar Per Liter">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="304.0" layoutY="141.0" text="Fuel Type">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
       <BorderPane fx:id="mainBorderPane" minHeight="676.0" prefHeight="703.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css">
          <left>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
@@ -54,7 +35,7 @@
                      <children>
                         <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="35.0" prefWidth="232.0" text="Hello, Julia" textFill="WHITE">
                            <font>
-                              <Font name="Leelawadee UI" size="24.0" />
+                              <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -227,7 +208,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="259.0" text="Home">
+                        <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="25.0" prefWidth="525.0" text="Home">
                            <font>
                               <Font name="Arial" size="26.0" />
                            </font>
@@ -351,6 +332,8 @@
                                     <Font name="Arial Bold" size="10.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="btnHomeUpdatePass" layoutX="147.0" layoutY="571.0" mnemonicParsing="false" onAction="#btnHomeUpdatePassPressed" prefHeight="25.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Change Password" />
+                              <PasswordField fx:id="tfHomeNewPass" layoutX="15.0" layoutY="572.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="127.0" promptText="* new password (0-9)" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -752,20 +735,8 @@
                      <children>
                         <AnchorPane layoutX="2.0" layoutY="24.0" prefHeight="427.0" prefWidth="836.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
                            <children>
-                              <TableView fx:id="tvVODetails" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0">
-                                <columns>
-                                  <TableColumn minWidth="-1.0" prefWidth="60.0" text="ID" />
-                                    <TableColumn minWidth="-1.0" prefWidth="107.0" text="Order Time" />
-                                    <TableColumn minWidth="-1.0" prefWidth="92.0" text="Address" />
-                                    <TableColumn minWidth="-1.0" prefWidth="95.0" text="Product Name" />
-                                    <TableColumn minWidth="-1.0" prefWidth="90.0" text="Amount" />
-                                    <TableColumn minWidth="-1.0" prefWidth="117.0" text="Shipment Method" />
-                                    <TableColumn minWidth="-1.0" prefWidth="84.0" text="Status" />
-                                    <TableColumn minWidth="-1.0" prefWidth="86.0" text="Arrival Time" />
-                                    <TableColumn minWidth="-1.0" prefWidth="91.0" text="Total Price" />
-                                </columns>
-                              </TableView>
-                              <Label layoutX="14.0" layoutY="14.0" text="Your MyFuel Orders:" textFill="#144465" underline="true">
+                              <TableView fx:id="tvVODetails" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0" />
+                              <Label layoutX="14.0" layoutY="14.0" text="Your Home Fuel Orders:" textFill="#144465" underline="true">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>

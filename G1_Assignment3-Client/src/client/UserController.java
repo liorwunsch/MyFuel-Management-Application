@@ -21,7 +21,7 @@ public abstract class UserController extends ClientController {
 	public void handleMessageFromClientUI(String message) {
 		try {
 			System.out.println("message from clientUI : " + message);
-			this.openConnection();
+			openConnection();
 			awaitResponse = true;
 			boolean flag = true;
 

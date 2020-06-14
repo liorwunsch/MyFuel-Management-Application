@@ -5,7 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import database.DatabaseController;
+import entities.Car;
+import entities.Customer;
+import entities.FastFuel;
 import entities.HomeFuelOrder;
+import entities.MarketingManager;
+import entities.PricingModel;
+import entities.PurchasingProgram;
 import entities.User;
 import guiServer.ServerWindow;
 import ocsf.server.AbstractServer;
@@ -69,42 +75,64 @@ public class ServerController extends AbstractServer {
 				this.serverWindow.updateArea(formatter.format(date) + " : " + client
 						+ " : request : login with username " + user.getUsername());
 				String function = user.getFunction();
-				if (function.startsWith("login") || function.startsWith("sign out"))
+				if (function.startsWith("login") || function.startsWith("sign out")) {
 					ServerUserController.getInstance(serverWindow, databaseController, lock)
 							.handleMessageFromClient(user, client);
-			}
 
-			if (object instanceof HomeFuelOrder) {
+				} else if (function.equals("get purchasing program")) {
+					ServerCustomerController.getInstance(databaseController).handleMessageFromClient(user, client);
+				}
+
+			} else if (object instanceof HomeFuelOrder) {
 				HomeFuelOrder homeFuelOrder = (HomeFuelOrder) object;
 				this.serverWindow
 						.updateArea(formatter.format(date) + " : " + client + " : request : save homefuel order");
-				ServerCustomerController.getInstance(databaseController)
-						.handleMessageFromClient(homeFuelOrder, client);
-			}
+				ServerCustomerController.getInstance(databaseController).handleMessageFromClient(homeFuelOrder, client);
 
-			if (object instanceof String) {
+			} else if (object instanceof Car) {
+				ServerMarketingRepresentativeController.getInstance(databaseController).handleMessageFromClient(object,
+						client);
+
+			} else if (object instanceof PurchasingProgram) {
+				ServerMarketingRepresentativeController.getInstance(databaseController).handleMessageFromClient(object,
+						client);
+
+			} else if (object instanceof PricingModel) {
+				ServerMarketingRepresentativeController.getInstance(databaseController).handleMessageFromClient(object,
+						client);
+
+			} else if (object instanceof FastFuel) {
+				ServerFastFuelController.getInstance(databaseController).handleMessageFromClient(object, client);
+
+			} else if (object instanceof String) {
 				String str = (String) object;
 				this.serverWindow.updateArea(formatter.format(date) + " : " + client + " : request : " + str);
 				if (str.startsWith("ack")) {
 					client.sendToClient("ack");
-				}
-				if (str.startsWith("activity")) {
+
+				} else if (str.startsWith("activity")) {
 					ServerUserController.getInstance(serverWindow, databaseController, lock)
 							.handleMessageFromClient(str, client);
-				}
-				if (str.startsWith("fastfuel")) {
-					ServerCustomerController.getInstance(databaseController)
-							.handleMessageFromClient(str, client);
-				}
-				if (str.startsWith("homefuel")) {
-					ServerCustomerController.getInstance(databaseController)
-							.handleMessageFromClient(str, client);
-				}
-				
-				//vlad added
-				if (str.startsWith("fuel_station_order")) {
+					//vlad added
+				}else if (str.startsWith("fuel_station_order")) {
 					ServerSupplierController.getInstance(databaseController).handleMessageFromClient(str, client);
 				}
+
+			} else if (object instanceof Object[]) {
+				Object[] objArr = (Object[]) object;
+				if (objArr.length == 2 && objArr[0] instanceof User && objArr[1] instanceof Customer) {
+					ServerMarketingRepresentativeController.getInstance(databaseController)
+							.handleMessageFromClient(object, client);
+				}
+
+			} else if (object instanceof MarketingManager) {
+				System.out.println(client + " requested MarketingManager ");
+				MarketingManager manager = (MarketingManager) object;
+				this.serverWindow.updateArea(formatter.format(date) + " : " + client
+						+ " : requested MarketingManager operation : " + manager.getUserName());
+				ServerMarketingManagerController.getInstance(serverWindow, databaseController, lock)
+						.handleMessageFromClient(manager, client);
+				System.out.println(client + " end MarketingManager ");
 			}
 
 		} catch (IOException e) {

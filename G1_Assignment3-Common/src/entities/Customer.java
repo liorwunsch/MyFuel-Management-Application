@@ -21,7 +21,40 @@ public class Customer implements Serializable {
 	private boolean deleted;
 
 	/**
-	 * with customerID
+	 * w/o deleted, username
+	 * 
+	 * @param customerID
+	 * @param creditCard
+	 * @param customerType
+	 * @param deleted
+	 */
+	public Customer(String customerID, String creditCard, CustomerType customerType) {
+		super();
+		this.customerID = customerID;
+		this.creditCard = creditCard;
+		this.customerType = customerType;
+	}
+
+	/**
+	 * w/o deleted
+	 * 
+	 * @param customerID
+	 * @param username
+	 * @param creditCard
+	 * @param customerType
+	 * @param deleted
+	 */
+	public Customer(String customerID, String username, String creditCard, CustomerType customerType) {
+		super();
+		this.customerID = customerID;
+		this.username = username;
+		this.creditCard = creditCard;
+		this.customerType = customerType;
+	}
+
+	/**
+	 * everything
+	 * 
 	 * @param customerID
 	 * @param username
 	 * @param creditCard

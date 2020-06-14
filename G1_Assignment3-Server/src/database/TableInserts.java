@@ -10,6 +10,7 @@ import database.FieldIndicatorsForInsert;
 
 /**
  * executes insert queries by predetermined values and indication
+ * 
  * @author Elroy, Lior, Vlad
  */
 public class TableInserts {
@@ -122,7 +123,7 @@ public class TableInserts {
 	public static int insertFuelStationOrder2(Connection con, Object[] values) throws SQLException {
 		return TableInserts.insertRow(con, "fuel_station_order", FieldIndicatorsForInsert.FuelStationOrder2(), values);
 	}
-	
+
 	public static int insertFuelStationOrder3(Connection con, Object[] values) throws SQLException {
 		return TableInserts.insertRow(con, "fuel_station_order", FieldIndicatorsForInsert.FuelStationOrder3(), values);
 	}

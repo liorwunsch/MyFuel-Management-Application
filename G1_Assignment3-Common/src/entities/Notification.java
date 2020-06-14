@@ -22,6 +22,7 @@ public class Notification implements Serializable {
 
 	/**
 	 * without notificationID auto-inc
+	 * 
 	 * @param employeeID
 	 * @param message
 	 * @param dismissed
