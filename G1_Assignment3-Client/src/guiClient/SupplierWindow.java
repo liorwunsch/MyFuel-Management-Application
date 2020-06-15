@@ -149,9 +149,12 @@ public class SupplierWindow extends EmployeeWindow {
 	@FXML
     void btnASFSOShowPressed(ActionEvent event) {
 		Integer cur = cobASFSOFuelStationID.getValue();
-		SupplierController.getInstance().getSupplierItemInTable(cur); 
-		tvASFSODetails.getItems().clear();
-		tvASFSODetails.getItems().addAll(siit);
+		if(cur != null) {
+			SupplierController.getInstance().getSupplierItemInTable(cur); 
+			tvASFSODetails.getItems().clear();
+			tvASFSODetails.getItems().addAll(siit);
+		}
+		
     }
 	/**
 	 * This method will approve the select fuel station order
@@ -159,10 +162,14 @@ public class SupplierWindow extends EmployeeWindow {
 	 */
 	   @FXML
 	    void btnASFSOApproveSPressed(ActionEvent event) {
-		   int approvedId = tvASFSODetails.getSelectionModel().getSelectedItem().getOrderID();
-		   double amount = tvASFSODetails.getSelectionModel().getSelectedItem().getAmount();
-		   tvASFSODetails.getItems().remove(tvASFSODetails.getSelectionModel().getSelectedItem());
-		   SupplierController.getInstance().approveFuelStationOrder(approvedId,amount);
+		   SupplierItemInTable selectedItem = tvASFSODetails.getSelectionModel().getSelectedItem();
+		   if(selectedItem != null) {
+			   int approvedId = selectedItem.getOrderID();
+			   double amount = selectedItem.getAmount();
+			   tvASFSODetails.getItems().remove(tvASFSODetails.getSelectionModel().getSelectedItem());
+			   SupplierController.getInstance().approveFuelStationOrder(approvedId,amount);
+		   }
+		  
 	    }
 	@Override
 	public void clearFields() {
