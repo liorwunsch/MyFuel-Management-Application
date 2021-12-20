@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.CustomerWindow">
+   <children>
+      <BorderPane fx:id="mainBorderPane" minHeight="676.0" prefHeight="703.0" prefWidth="1102.0" styleClass="main-pane" stylesheets="@../pics/style.css">
+         <left>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="602.0" minWidth="260.0" prefHeight="602.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="122.0">
+                     <children>
+                        <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="49.0" prefWidth="242.0" text="Hello, Julia" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <GridPane maxHeight="-Infinity" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" focusTraversable="false" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#openHome" prefHeight="188.0" prefWidth="347.0" selected="true" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                           <graphic>
+                              <Pane>
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
+                                       <image>
+                                          <Image url="@../pics/home.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </graphic>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="one" />
+                           </toggleGroup>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </ToggleButton>
+                        <ToggleButton fx:id="sidebar_btn2" alignment="CENTER_LEFT" focusTraversable="false" mnemonicParsing="false" onAction="#openViewOrders" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="View Home Fuel Orders" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                           <graphic>
+                              <Pane>
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
+                                       <image>
+                                          <Image url="@../pics/vieworders.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </graphic>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </ToggleButton>
+                        <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" focusTraversable="false" mnemonicParsing="false" onAction="#openOrderHomeFuel" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Order Home Fuel" textFill="WHITE" toggleGroup="$one" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                           <graphic>
+                              <Pane>
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-3.0">
+                                       <image>
+                                          <Image url="@../pics/orderhomefuel.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </graphic>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </ToggleButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </GridPane>
+                  <Pane minHeight="190.0" minWidth="260.0" prefHeight="190.0" prefWidth="260.0">
+                     <children>
+                        <Group layoutX="125.0" layoutY="65.0">
+                           <children>
+                              <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="-73.0" layoutY="-65.0">
+                                 <image>
+                                    <Image url="@../pics/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="-64.0" layoutY="81.0" prefWidth="124.0" text="MyFuel" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <Pane>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="btnSignOut" focusTraversable="false" layoutY="1.0" mnemonicParsing="false" onAction="#btnSignOutClicked" styleClass="disconnect-button" stylesheets="@../pics/style.css" text="Sign Out" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="26.0">
+                                 <image>
+                                    <Image url="@../pics/signout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Leelawadee UI" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <VBox prefHeight="56.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="titleBar" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" styleClass="linear-grad-to-top" stylesheets="@../pics/style.css">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/logo_mini.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="27.0" layoutY="7.0" text="MyFuel" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnExit" focusTraversable="false" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
+                           <graphic>
+                              <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pics/close.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnMini" focusTraversable="false" layoutX="994.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
+                           <graphic>
+                              <ImageView fitHeight="11.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pics/minimize.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1100.0" style="-fx-background-color: #d8dce0;">
+                     <children>
+                        <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="6.0" text="Customer" textFill="WHITE" underline="true">
+                                 <font>
+                                    <Font name="Leelawadee UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="30.0" prefWidth="800.0" text="Home">
+                           <font>
+                              <Font name="Arial" size="26.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="1.0" left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <AnchorPane fx:id="mainwindow_pane" prefHeight="665.0" prefWidth="828.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="homePane" layoutX="8.0" layoutY="11.0" prefHeight="623.0" prefWidth="826.0" styleClass="home" stylesheets="@../pics/gridPaneStyle.css">
+                     <children>
+                        <ImageView fitHeight="620.0" fitWidth="824.0" layoutY="3.0">
+                           <image>
+                              <Image url="@../pics/HomeBackground.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="610.0" prefWidth="823.0">
+                           <children>
+                              <ImageView fitHeight="127.0" fitWidth="150.0" layoutX="131.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pics/avatar.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="31.0" layoutY="280.0" text="Your Monthly Activity:" textFill="#144465" underline="true">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="27.0" layoutY="220.0" text="Upcoming Payment: " textFill="#144465">
+                                 <font>
+                                    <Font name="Calibri Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblHomePayment" layoutX="235.0" layoutY="220.0" prefHeight="28.0" prefWidth="463.0" text="&lt;THIS month sum of rows' price+membership cost&gt; $">
+                                 <font>
+                                    <Font name="Calibri" size="21.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfHomeTotal" editable="false" focusTraversable="false" layoutX="597.0" layoutY="562.0" prefHeight="25.0" prefWidth="121.0" />
+                              <Label layoutX="545.0" layoutY="565.0" text="Total:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="722.0" layoutY="560.0" text="\$" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="27.0" layoutY="170.0" text="Membership Type:" textFill="#144465">
+                                 <font>
+                                    <Font name="Calibri Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblHomeMember" layoutX="235.0" layoutY="170.0" prefHeight="28.0" prefWidth="471.0" text="&lt;purchasing program type&gt; (0.00)$ per month">
+                                 <font>
+                                    <Font name="Calibri" size="21.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane layoutX="75.0" layoutY="309.0">
+                                 <children>
+                                    <TableView fx:id="tvHomeFastFuel" focusTraversable="false" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="643.0" />
+                                    <GridPane layoutX="2.0" prefHeight="30.0" prefWidth="562.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <ComboBox fx:id="cobHomeMonth" focusTraversable="false" prefHeight="30.0" prefWidth="150.0" promptText="[This Month]" visibleRowCount="12" GridPane.columnIndex="3" />
+                                          <Label text="Month:" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cobHomeYear" focusTraversable="false" prefHeight="30.0" prefWidth="150.0" promptText="[This Year]" visibleRowCount="12" GridPane.columnIndex="1" />
+                                          <Label text="Year:">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnHomeUpdate" focusTraversable="false" mnemonicParsing="false" onAction="#btnHomeUpdatePressed" styleClass="task-button" stylesheets="@../pics/style.css" text="Update Table" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="556.0" layoutY="592.0" text="(excluding membership fee)" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnHomeUpdatePass" focusTraversable="false" layoutX="138.0" layoutY="571.0" mnemonicParsing="false" onAction="#btnHomeUpdatePassPressed" prefHeight="25.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Change Password" />
+                              <PasswordField fx:id="tfHomeNewPass" focusTraversable="false" layoutX="15.0" layoutY="572.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="118.0" promptText="* new password" />
+                              <GridPane layoutX="251.0" layoutY="49.0" prefHeight="94.0" prefWidth="333.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to MyFuel" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Calibri" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblHomeUserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="368.0" text="&lt;userName&gt;!" underline="true" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Calibri" size="28.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="orderHomeFuelPane" layoutX="12.0" layoutY="3.0" prefHeight="631.0" prefWidth="815.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="1.0" layoutY="5.0" prefHeight="309.0" prefWidth="802.0">
+                           <children>
+                              <Label layoutX="1.0" layoutY="-6.0" prefHeight="21.0" prefWidth="231.0" text="Purchase Information:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane fx:id="apOHFPurchaseInfo" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="801.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                                 <children>
+                                    <VBox layoutX="30.0" layoutY="19.0" prefHeight="224.0" prefWidth="213.0">
+                                       <children>
+                                          <Label text="Please Fill the Following:" textFill="#144465" underline="true">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="15.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label prefHeight="21.0" prefWidth="129.0" text="Amount of Fuel:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <TextField fx:id="tfOHFAmount1" prefHeight="30.0" prefWidth="145.0" promptText="*">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Label prefHeight="27.0" prefWidth="51.0" text="Liter">
+                                                   <font>
+                                                      <Font name="Arial" size="16.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label prefHeight="21.0" prefWidth="129.0" text="Home Address:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField fx:id="tfOHFAddress" prefHeight="30.0" prefWidth="76.0" promptText="*">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                          <Label prefHeight="30.0" prefWidth="140.0" text="Current Fuel Price:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="198.0">
+                                             <children>
+                                                <TextField fx:id="tfOHFPrice1" editable="false" focusTraversable="false" prefHeight="30.0" prefWidth="145.0" styleClass="info-textFields" stylesheets="@../pics/style.css">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="\$ \ Liter">
+                                                   <font>
+                                                      <Font name="Arial" size="16.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" layoutX="271.0" layoutY="58.0" prefHeight="140.0" prefWidth="245.0">
+                                       <children>
+                                          <ScrollPane focusTraversable="false" prefHeight="115.0" prefWidth="210.0">
+                                             <content>
+                                                <GridPane prefHeight="105.0" prefWidth="242.0" style="-fx-background-color: white;">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label text="Added price :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price multiplier : " wrappingWidth="136.548828125" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Label text="Estimated delivery time:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font name="Arial" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="5.5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label text="100%" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                      <Label text="5-10 Days" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </GridPane>
+                                             </content>
+                                          </ScrollPane>
+                                          <RadioButton fx:id="rbOHFShipment1" mnemonicParsing="false" onKeyPressed="#tabRbOHFShipment1" selected="true" text="Regular Shipment">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="two" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" layoutX="528.0" layoutY="58.0" prefHeight="140.0" prefWidth="245.0">
+                                       <children>
+                                          <ScrollPane focusTraversable="false" prefHeight="123.0" prefWidth="210.0">
+                                             <content>
+                                                <GridPane prefHeight="105.0" prefWidth="243.0" style="-fx-background-color: white;">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label text="Added price :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price multiplier : " wrappingWidth="136.548828125" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Label text="Estimated delivery time:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                         <font>
+                                                            <Font name="Arial" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="5.5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label text="102%" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                      <Label text="6 Hours" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </GridPane>
+                                             </content>
+                                          </ScrollPane>
+                                          <RadioButton fx:id="rbOHFShipment2" mnemonicParsing="false" onKeyPressed="#tabRbOHFShipment2" text="Urgent Shipment" toggleGroup="$two">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </RadioButton>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="btnOHFShowPrice" focusTraversable="false" layoutX="330.0" layoutY="231.0" mnemonicParsing="false" onAction="#btnOHFShowPricePressed" prefHeight="37.0" prefWidth="151.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Price">
+                                       <graphic>
+                                          <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../pics/eye.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="271.0" layoutY="19.0" text="Please Choose One:" textFill="#144465" underline="true">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="1.0" layoutY="315.0" prefHeight="320.0" prefWidth="377.0">
+                           <children>
+                              <Label layoutY="-4.0" prefHeight="21.0" prefWidth="137.0" text="Order Details:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane fx:id="apOHFOrderDetails" disable="true" layoutY="17.0" prefHeight="296.0" prefWidth="355.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                                 <children>
+                                    <VBox layoutX="30.0" layoutY="14.0" prefHeight="223.0" prefWidth="289.0">
+                                       <children>
+                                          <Label prefHeight="18.0" prefWidth="129.0" text="Ordered in:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="35.0" prefWidth="196.0">
+                                             <children>
+                                                <TextField fx:id="tfOHFDate" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" styleClass="info-textFields" stylesheets="@../pics/style.css">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <Label prefHeight="21.0" prefWidth="129.0" text="Final Price:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="32.0" prefWidth="196.0">
+                                             <children>
+                                                <TextField fx:id="tfOHFFinalPrice" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" styleClass="info-textFields" stylesheets="@../pics/style.css">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Label prefHeight="27.0" prefWidth="25.0" text="\$">
+                                                   <font>
+                                                      <Font name="Arial" size="16.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label prefHeight="18.0" prefWidth="129.0" text="Amount:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="35.0" prefWidth="196.0">
+                                             <children>
+                                                <TextField fx:id="tfOHFAmount2" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" styleClass="info-textFields" stylesheets="@../pics/style.css">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Label prefHeight="27.0" prefWidth="51.0" text="Liter">
+                                                   <font>
+                                                      <Font name="Arial" size="16.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label prefHeight="18.0" prefWidth="147.0" text="Shipment Method:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="35.0" prefWidth="196.0">
+                                             <children>
+                                                <TextField fx:id="tfOHFShipmentReview" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" styleClass="info-textFields" stylesheets="@../pics/style.css">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="btnOHFConfirm" focusTraversable="false" layoutX="46.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnOHFConfirmPressed" prefHeight="30.0" prefWidth="120.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Confirm">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../pics/v.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnOHFCancel" focusTraversable="false" layoutX="183.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnOHFCancelPressed" prefHeight="30.0" prefWidth="120.0" styleClass="cancel-button" stylesheets="@../pics/style.css" text="Cancel ">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../pics/x.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="365.0" layoutY="315.0" prefHeight="313.0" prefWidth="440.0">
+                           <children>
+                              <Label layoutX="4.0" layoutY="-3.0" prefHeight="21.0" prefWidth="190.0" text="Price Calculations:">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane layoutX="4.0" layoutY="17.0" prefHeight="296.0" prefWidth="433.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                                 <children>
+                                    <Label layoutX="23.0" layoutY="153.0" prefHeight="21.0" prefWidth="282.0" text="Urgent shipment (within 6 hours):" textFill="#3b33d3">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="23.0" layoutY="26.0" text="Fuel amount between 600 to 800 liters: " textFill="#3b33d3">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="23.0" layoutY="89.0" text="Fuel amount over 800 liters:  " textFill="#3b33d3">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="28.0" layoutY="47.0" text="3% off order price.">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="28.0" layoutY="110.0" text="4% discount on order price.">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="28.0" layoutY="174.0" text="+2% of fuel price">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="8.0" layoutY="104.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                       <font>
+                                          <Font size="58.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="7.0" layoutY="39.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                       <font>
+                                          <Font size="58.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="8.0" layoutY="-25.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                       <font>
+                                          <Font size="58.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="23.0" layoutY="213.0" prefHeight="21.0" prefWidth="282.0" text="How the final price is calculated:" textFill="#3b33d3">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="8.0" layoutY="164.0" prefHeight="63.0" prefWidth="13.0" text=".">
+                                       <font>
+                                          <Font size="58.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER" layoutX="24.0" layoutY="234.0" spacing="3.0">
+                                       <children>
+                                          <Label prefHeight="36.0" prefWidth="59.0" text="amount discount" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text="*" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text="(" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label prefHeight="35.0" prefWidth="60.0" text="Price multiplier" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text="*" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label prefHeight="35.0" prefWidth="60.0" text="Current fuel price" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text="*" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label prefHeight="35.0" prefWidth="60.0" text="amount of fuel" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text="+" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="35.0" prefWidth="60.0" text="shipment price" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="16.0" prefWidth="5.0" text=")" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Arial" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="viewOrderPane" layoutY="5.0" prefHeight="584.0" prefWidth="837.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="2.0" layoutY="24.0" prefHeight="427.0" prefWidth="836.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                           <children>
+                              <TableView fx:id="tvVODetails" focusTraversable="false" layoutX="6.0" layoutY="44.0" prefHeight="366.0" prefWidth="823.0" />
+                              <Label layoutX="12.0" layoutY="15.0" text="Your Home Fuel Orders:" textFill="#144465" underline="true">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="5.0" text="Order Information:">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

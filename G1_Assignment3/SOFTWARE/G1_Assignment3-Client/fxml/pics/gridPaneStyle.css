@@ -1,0 +1,25 @@
+.grid-pane {
+  -fx-background-color:#f1f2f4;
+  -fx-border-color: #698396;
+  -fx-border-width:3px 3px 3px 3px;
+}
+
+.home
+{
+-fx-background-color:#dbe9f5;
+}
+
+.reports{
+  -fx-background-color:#ffffff;
+  -fx-border-color: #000000;
+  -fx-border-width:2px;
+}
+
+.notify
+{
+  -fx-background-color:#73beff9c;
+  -fx-border-color: #ff4b4b;
+  -fx-border-width:3px;
+  -fx-background-radius: 90px;
+  -fx-border-radius: 90px;
+}

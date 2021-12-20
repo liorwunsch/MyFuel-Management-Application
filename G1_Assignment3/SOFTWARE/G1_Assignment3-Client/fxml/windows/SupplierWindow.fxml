@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" minHeight="598.0" prefHeight="658.0" prefWidth="866.0" styleClass="main-pane" stylesheets="@../pics/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiClient.SupplierWindow">
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="590.0" minWidth="260.0" prefHeight="590.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #1e262c;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="52.0" prefWidth="122.0">
+               <children>
+                  <Label fx:id="lblHelloUser" layoutX="15.0" prefHeight="53.0" prefWidth="244.0" text="Hello, Julia" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Leelawadee UI" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <GridPane maxHeight="-Infinity" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ToggleButton fx:id="sidebar_btn0" alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#openHome" prefHeight="188.0" prefWidth="347.0" selected="true" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-4.0">
+                                 <image>
+                                    <Image url="@../pics/home.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="one" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="sidebar_btn1" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#openApproveSupplied" prefHeight="188.0" prefWidth="347.0" styleClass="side-bar-toggle-button" stylesheets="@../pics/style.css" text="Approve Pending Supply" textFill="WHITE" toggleGroup="$one" wrapText="true" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <Pane>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-3.0">
+                                 <image>
+                                    <Image url="@../pics/orderhomefuel.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
+            <Pane minHeight="190.0" minWidth="260.0" prefHeight="190.0" prefWidth="260.0">
+               <children>
+                  <Group layoutX="132.0" layoutY="64.0">
+                     <children>
+                        <ImageView fitHeight="158.0" fitWidth="143.0" layoutX="-73.0" layoutY="-65.0">
+                           <image>
+                              <Image url="@../pics/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="-64.0" layoutY="81.0" prefWidth="124.0" text="MyFuel" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Group>
+               </children>
+            </Pane>
+            <Pane>
+               <VBox.margin>
+                  <Insets left="5.0" top="30.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="btnSignOut" layoutY="1.0" mnemonicParsing="false" onAction="#btnSignOutClicked" styleClass="disconnect-button" stylesheets="@../pics/style.css" text="Sign Out" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0">
+                           <image>
+                              <Image url="@../pics/signout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Leelawadee UI" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <VBox prefHeight="56.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="titleBar" onMouseDragged="#dragTopBar" onMousePressed="#clickOnTopBar" styleClass="linear-grad-to-top" stylesheets="@../pics/style.css">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pics/logo_mini.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="27.0" layoutY="7.0" text="MyFuel" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnExit" layoutX="1045.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeTopBar" prefHeight="25.0" prefWidth="55.0" styleClass="exit-button" stylesheets="@../pics/style.css">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnMini" layoutX="994.0" mnemonicParsing="false" onAction="#minimizeTopBar" prefHeight="25.0" prefWidth="50.0" styleClass="minimize-button" stylesheets="@../pics/style.css">
+                     <graphic>
+                        <ImageView fitHeight="11.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #d8dce0;">
+               <children>
+                  <Pane prefWidth="260.0" style="-fx-background-color: #1e262c;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="6.0" text="Supplier" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Label fx:id="topbar_window_label" alignment="TOP_LEFT" minHeight="-Infinity" prefHeight="30.0" prefWidth="800.0" text="Home">
+                     <font>
+                        <Font name="Arial" size="26.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <AnchorPane fx:id="mainwindow_pane" prefHeight="600.0" prefWidth="824.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="homePane" layoutX="16.0" layoutY="5.0" prefHeight="565.0" prefWidth="803.0" styleClass="home" stylesheets="@../pics/gridPaneStyle.css">
+               <children>
+                  <ImageView fitHeight="586.0" fitWidth="803.0" layoutY="3.0">
+                     <image>
+                        <Image url="@../pics/HomeBackground.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="1.0" layoutY="4.0" prefHeight="585.0" prefWidth="802.0">
+                     <children>
+                        <GridPane layoutX="250.0" layoutY="44.0" prefHeight="94.0" prefWidth="333.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to MyFuel" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Calibri" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblHomeUserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="334.0" text="&lt;userName&gt;!" underline="true" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Calibri" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <ImageView fitHeight="127.0" fitWidth="150.0" layoutX="136.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pics/avatar.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="56.0" layoutY="205.0" text="Your Monthly Activity:" textFill="#144465" underline="true">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="103.0" layoutY="242.0">
+                           <children>
+                              <TableView fx:id="tvHomeActivity" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="643.0" />
+                              <GridPane layoutX="2.0" prefHeight="30.0" prefWidth="562.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ComboBox fx:id="cobHomeMonth" prefHeight="30.0" prefWidth="150.0" promptText="[This Month]" visibleRowCount="12" GridPane.columnIndex="3" />
+                                    <Label text="Month:" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="cobHomeYear" prefHeight="30.0" prefWidth="150.0" promptText="[This Year]" visibleRowCount="12" GridPane.columnIndex="1" />
+                                    <Label text="Year:">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnHomeUpdate" mnemonicParsing="false" onAction="#btnHomeUpdatePressed" styleClass="task-button" stylesheets="@../pics/style.css" text="Update Table" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="approveSuppliedPane" layoutX="14.0" layoutY="12.0" prefHeight="480.0" prefWidth="747.0" visible="false">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="17.0" prefHeight="454.0" prefWidth="731.0" styleClass="grid-pane" stylesheets="@../pics/gridPaneStyle.css">
+                     <children>
+                        <AnchorPane fx:id="apASFSO" disable="true" layoutX="301.0" layoutY="379.0">
+                           <children>
+                              <Button fx:id="btnASFSOApprove" mnemonicParsing="false" onAction="#btnASFSOApproveSPressed" prefHeight="30.0" prefWidth="130.0" styleClass="confirmation-button" stylesheets="@../pics/style.css" text="Approve">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/v.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="tvASFSODetails" layoutX="11.0" layoutY="132.0" prefHeight="221.0" prefWidth="709.0" />
+                        <AnchorPane fx:id="gpASFSO" layoutX="13.0" layoutY="50.0">
+                           <children>
+                              <VBox prefHeight="66.0" prefWidth="159.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="112.0" text="Fuel Station ID:">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="1.0" />
+                                       </padding>
+                                    </Label>
+                                    <ComboBox fx:id="cobASFSOFuelStationID" prefHeight="30.0" prefWidth="150.0" promptText="Select ID" />
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnASFSOShow" layoutX="194.0" layoutY="19.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#btnASFSOShowPressed" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Show Station Orders">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../pics/eye.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="207.0" layoutY="23.0" text="No Station Orders To Assess" textFill="RED" visible="false" />
+                        <Label layoutX="14.0" layoutY="17.0" text="Please Choose a Fuel Station Order for Approval of Supply:" textFill="#144465" underline="true">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnASFSOClear" layoutX="663.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnASFSOClearPressed" prefHeight="30.0" styleClass="task-button" stylesheets="@../pics/style.css" text="Clear" />
+                     </children>
+                  </AnchorPane>
+                  <Label layoutY="-1.0" text="Fuel Station Orders Information:">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

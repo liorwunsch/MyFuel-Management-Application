@@ -1,0 +1,43 @@
+.login-main-pane {
+  -fx-background-color:#ffffff;
+  -fx-border-color:#000000;
+  -fx-border-width:1px;
+}
+
+.signIn-label {
+  -fx-border-color: #f56c2c;
+  -fx-border-width:0px 0px 3px 0px;
+}
+
+.signIn-button {
+  -fx-background-color: #f56b2c;
+  -fx-background-radius:7px;
+  -fx-font-family: Leelawadee Ui;
+  -fx-font-size: 16px;
+  -fx-text-fill: #ffffff;
+}
+
+.signIn-button:hover {
+  -fx-background-color: #FFA07A;
+  -fx-background-radius:7px;
+}
+
+.title-bar {
+  -fx-background-color: #141b20;
+}
+
+.exit-button {
+  -fx-background-color:  #141b20;
+}
+
+.exit-button:hover {
+  -fx-background-color: #d1332eb2;
+}
+
+.minimize-button {
+  -fx-background-color:#141b20;
+}
+
+.minimize-button:hover {
+  -fx-background-color: #2b7fd4b2;
+}

@@ -1,0 +1,96 @@
+package client;
+
+import java.io.IOException;
+
+import java.net.ConnectException;
+
+import entities.MarketingManager;
+
+/**
+ * logic controller for marketing manager
+ * 
+ * @version Final
+ * @author Elroy, Lior
+ *
+ */
+public class MarketingManagerController extends MarketingDepWorkerController {
+
+	/**
+	 * singleton instance
+	 */
+	private static MarketingManagerController instance;
+
+	/**
+	 * singleton class constructor
+	 */
+	private boolean logged = false;
+
+	private MarketingManagerController() {
+		super();
+	}
+
+	/**
+	 * @return instance of this class
+	 */
+	public static MarketingManagerController getInstance() {
+		if (instance == null) {
+			instance = new MarketingManagerController();
+		}
+		return instance;
+	}
+
+	/**
+	 * receives string from the window
+	 * <p>
+	 * opens connection to the server
+	 * <p>
+	 * sends the server a request accordingly
+	 * <p>
+	 * calls <code>callAfterMessage()</code> of <code>currentWindow</code>
+	 * 
+	 * @param message
+	 */
+	@Override
+	public void handleMessageFromClientUI(String message) {
+		if (logged == false || message.startsWith("signout") || message.startsWith("activity")) {
+			if (message.startsWith("signout"))
+				logged = false;
+			else
+				logged = true;
+			super.handleMessageFromClientUI(message);
+
+		} else if (message.startsWith("create sale pattern") || message.equals("genAnalysis")) {
+			super.handleDepWorkerRequest(message);
+
+		} else {
+			try {
+				System.out.println("message from clientUI : " + message);
+				this.openConnection();
+				awaitResponse = true;
+
+				MarketingManager manager = new MarketingManager();
+				manager.setFunction(message);
+				this.sendToServer(manager);
+
+				/* wait for ack or data from the server */
+				while (awaitResponse) {
+					try {
+						Thread.sleep(100);
+						System.out.println("marketing manager is waiting");
+					} catch (InterruptedException ie) {
+						ie.printStackTrace();
+					}
+				}
+
+				this.currentWindow.callAfterMessage(this.lastMsgFromServer);
+
+			} catch (ConnectException ce) {
+				this.currentWindow.openErrorAlert("Server Error", "Error - No connection to server");
+				ce.printStackTrace();
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+		}
+	}
+
+}

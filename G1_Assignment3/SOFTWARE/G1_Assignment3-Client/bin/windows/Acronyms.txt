@@ -1,0 +1,47 @@
+btn button
+lbl label
+tf text field
+ta text area
+tx text
+tv table view
+rb radio button
+cb check box
+cob combo box
+dp date picker
+vb vbox
+
+#Customer#
+OHF order home fuel
+VO view orders
+
+#Fuel Station Manager#
+UT update threshold
+ASO assess station orders
+DO decline order
+GQR generate quartely report
+
+#Marketing Manager#
+IS initiate Sale
+CRS create sales pattern
+GMR generate marketing report
+RPRU request product rate update
+SCR sale comments report
+PCR periodic customer report
+RPRU request product rate update
+
+#Marketing Representative#
+AECU add\edit customer
+ECU edit customer
+AECA add\edit car
+ECA edit car
+SPP set purchasing program
+SPM set pricing model
+CSP create sales pattern
+
+#Network Manager#
+APRUR assess product rates update request
+VQR view quarterly report
+QR quarter report
+
+#Supplier#
+ASFSO approve supplied fuel station order
